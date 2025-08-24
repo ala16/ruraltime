@@ -47,13 +47,27 @@ export function Oferecemos() {
 
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-lg">Histórias Reais</CardTitle>
+                  <CardTitle className="text-lg">Atrativos da Região</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    Conheça as histórias dos produtores, suas tradições familiares e 
-                    a importância do agronegócio regional.
-                  </p>
+                  <div className="space-y-3 text-muted-foreground">
+                    <div>
+                      <p className="font-semibold text-primary">🍷 Adega Vicchini</p>
+                      <p className="text-sm">Vinhos familiares, café e produtos artesanais em Campo Novo</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-primary">🏨 Hotel Fazenda Boa Esperança</p>
+                      <p className="text-sm">800 hectares de história nas encostas da Serra da Bocaina</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-primary">☕ Aromas de Bragança</p>
+                      <p className="text-sm">Torrefação de café com experiências gastronômicas</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-primary">🎨 Lagarta Sucateira</p>
+                      <p className="text-sm">Ateliê da infância e educação criativa no Bairro do Menin</p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>

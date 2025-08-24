@@ -58,10 +58,10 @@ export function Contato() {
                 Atendimento personalizado:
               </p>
               <a 
-                href="tel:+5511963907046" 
+                href="tel:+5511943032251" 
                 className="text-primary font-semibold hover:underline text-lg"
               >
-                (11) 96390-7046
+                (11) 94303-2251
               </a>
               <p className="text-sm text-muted-foreground mt-2">
                 Segunda a sexta, 8h às 18h
