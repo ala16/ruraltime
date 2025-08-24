@@ -1,5 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card";
-import ricardoPhoto from "@/assets/ricardo-photo.jpg";
 
 export function QuemSomos() {
   return (
@@ -42,7 +41,7 @@ export function QuemSomos() {
           <div className="flex justify-center">
             <div className="relative">
               <img 
-                src={ricardoPhoto} 
+                src="/lovable-uploads/90cfd02e-03c8-4d03-b0f9-ef03d64c6bbc.png" 
                 alt="Ricardo Augusto Lima Rodrigues" 
                 className="w-80 h-80 object-cover rounded-2xl shadow-2xl"
               />
