@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import heroBanner from "@/assets/hero-banner.jpg";
 
 interface HeroProps {
@@ -6,6 +7,7 @@ interface HeroProps {
 }
 
 export function Hero({ onSectionClick }: HeroProps) {
+  const navigate = useNavigate();
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -32,7 +34,7 @@ export function Hero({ onSectionClick }: HeroProps) {
           <Button 
             variant="hero" 
             size="lg"
-            onClick={() => onSectionClick("oferecemos")}
+            onClick={() => navigate('/propriedades')}
             className="text-lg px-8 py-4"
           >
             Descubra Experiências
