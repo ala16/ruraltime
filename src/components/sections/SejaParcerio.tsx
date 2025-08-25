@@ -5,11 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Handshake, Building, Users, Heart } from "lucide-react";
+import { Handshake, Building, Users, Heart, Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 export function SejaParceiro() {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
@@ -44,9 +46,20 @@ export function SejaParceiro() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Seja Parceiro</h2>
-          <p className="text-xl opacity-90 max-w-3xl mx-auto">
+          <p className="text-xl opacity-90 max-w-3xl mx-auto mb-6">
             O sucesso do Rural Time depende da força da rede. Junte-se a nós e apoie o turismo rural digital.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              onClick={() => navigate('/cadastro-propriedade')}
+              variant="hero"
+              size="lg"
+              className="bg-white text-primary hover:bg-white/90"
+            >
+              <Plus className="mr-2 h-5 w-5" />
+              Cadastre sua Propriedade
+            </Button>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
