@@ -14,7 +14,90 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      propriedades: {
+        Row: {
+          atividades: string[] | null
+          ativo: boolean
+          capacidade_visitantes: number | null
+          cep: string | null
+          cidade: string
+          created_at: string
+          descricao: string | null
+          destaque: boolean
+          email: string | null
+          endereco: string
+          estado: string
+          horario_funcionamento: string | null
+          id: string
+          imagens: string[] | null
+          infraestrutura: string[] | null
+          latitude: number | null
+          longitude: number | null
+          nome: string
+          preco_visita: number | null
+          tamanho_hectares: number | null
+          telefone: string | null
+          tipo_propriedade: string
+          updated_at: string
+          user_id: string
+          website: string | null
+        }
+        Insert: {
+          atividades?: string[] | null
+          ativo?: boolean
+          capacidade_visitantes?: number | null
+          cep?: string | null
+          cidade: string
+          created_at?: string
+          descricao?: string | null
+          destaque?: boolean
+          email?: string | null
+          endereco: string
+          estado?: string
+          horario_funcionamento?: string | null
+          id?: string
+          imagens?: string[] | null
+          infraestrutura?: string[] | null
+          latitude?: number | null
+          longitude?: number | null
+          nome: string
+          preco_visita?: number | null
+          tamanho_hectares?: number | null
+          telefone?: string | null
+          tipo_propriedade: string
+          updated_at?: string
+          user_id: string
+          website?: string | null
+        }
+        Update: {
+          atividades?: string[] | null
+          ativo?: boolean
+          capacidade_visitantes?: number | null
+          cep?: string | null
+          cidade?: string
+          created_at?: string
+          descricao?: string | null
+          destaque?: boolean
+          email?: string | null
+          endereco?: string
+          estado?: string
+          horario_funcionamento?: string | null
+          id?: string
+          imagens?: string[] | null
+          infraestrutura?: string[] | null
+          latitude?: number | null
+          longitude?: number | null
+          nome?: string
+          preco_visita?: number | null
+          tamanho_hectares?: number | null
+          telefone?: string | null
+          tipo_propriedade?: string
+          updated_at?: string
+          user_id?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
