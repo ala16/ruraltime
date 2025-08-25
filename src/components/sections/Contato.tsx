@@ -75,14 +75,18 @@ export function Contato() {
           <h3 className="text-2xl font-bold text-primary mb-8">Siga-nos nas Redes Sociais</h3>
           <div className="flex justify-center space-x-6">
             <a 
-              href="#" 
+              href="https://www.instagram.com/agroruraltime/" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
               aria-label="Instagram"
             >
               <Instagram className="w-6 h-6 text-white" />
             </a>
             <a 
-              href="#" 
+              href="https://www.facebook.com/AgroRuralTime/" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
               aria-label="Facebook"
             >

@@ -14,6 +14,7 @@ export function Navigation({ onSectionClick }: NavigationProps) {
     { label: "Início", id: "inicio" },
     { label: "Quem Somos", id: "quem-somos" },
     { label: "O que Oferecemos", id: "oferecemos" },
+    { label: "Atrativos", id: "atrativos" },
     { label: "Benefícios", id: "beneficios" },
     { label: "Como Funciona", id: "como-funciona" },
     { label: "Impacto CNA Jovem", id: "impacto" },

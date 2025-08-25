@@ -3,6 +3,7 @@ import { Navigation } from "@/components/ui/navigation";
 import { Hero } from "@/components/sections/Hero";
 import { QuemSomos } from "@/components/sections/QuemSomos";
 import { Oferecemos } from "@/components/sections/Oferecemos";
+import { Atrativos } from "@/components/sections/Atrativos";
 import { Beneficios } from "@/components/sections/Beneficios";
 import { ComoFunciona } from "@/components/sections/ComoFunciona";
 import { ImpactoCNA } from "@/components/sections/ImpactoCNA";
@@ -44,6 +45,7 @@ const Index = () => {
         <Hero onSectionClick={scrollToSection} />
         <QuemSomos />
         <Oferecemos />
+        <Atrativos />
         <Beneficios />
         <ComoFunciona />
         <ImpactoCNA />
