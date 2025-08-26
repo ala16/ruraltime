@@ -43,15 +43,15 @@ const Index = () => {
       
       <main>
         <Hero onSectionClick={scrollToSection} />
-        <QuemSomos />
-        <Oferecemos />
         <Atrativos />
+        <Oferecemos />
         <Beneficios />
         <ComoFunciona />
         <ImpactoCNA />
         <Depoimentos />
         <SejaParceiro />
         <Contato />
+        <QuemSomos />
       </main>
       
       <Footer onSectionClick={scrollToSection} />

@@ -1,49 +1,93 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Clock, ExternalLink } from "lucide-react";
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+
 const atrativos = [{
   id: 1,
   nome: "Adega Vicchini",
   subtitulo: "Vinhas & Vinhos",
-  descricao: "Vinho familiar, café moído e em grãos, geleias, mel, patês e uvas frescas selecionadas",
-  endereco: "Estrada Municipal Ver. Álvaro Alessandri s/n, Campo Novo, Bragança Paulista - SP",
-  telefone: "(11) 4033-6966",
-  instagram: "https://www.instagram.com/adegavicchini/",
-  facebook: "https://www.facebook.com/VicchiniVV",
+  imagem: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=300&fit=crop",
   categoria: "Vinícola",
   emoji: "🍷"
 }, {
   id: 2,
   nome: "Hotel Fazenda Boa Esperança",
   subtitulo: "Espaço Terroir de Bragança",
-  descricao: "800 hectares de história nas encostas da Serra da Bocaina. Casa sede neoclássica, terreiro de café, plantação e muito charme rural",
-  endereco: "Estr. Mun. Dr. Renato Ferrara, km 5 – Bocaina, Bragança Paulista - SP",
-  telefone: "(11) 4032-7788",
-  site: "https://maisonterroir.com.br/",
+  imagem: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&h=300&fit=crop",
   categoria: "Hotel Fazenda",
   emoji: "🏨"
 }, {
   id: 3,
   nome: "Aromas de Bragança",
   subtitulo: "Torrefação de Café",
-  descricao: "Torrefação artesanal com experiências gastronômicas únicas. 4.982 avaliações no Google",
-  endereco: "Estr. Municipal Doutor Renato Ferrara, km5 - Bocaina, Bragança Paulista - SP, 12921-880",
-  telefone: "(11) 94485-2320",
-  horario: "Segunda às 08:00",
+  imagem: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&h=300&fit=crop",
   categoria: "Café",
   emoji: "☕"
 }, {
   id: 4,
   nome: "Lagarta Sucateira",
   subtitulo: "Ateliê da Infância e Educação",
-  descricao: "Escola de artes e educação criativa. 5.022 avaliações no Google",
-  endereco: "Estr. Mun. Aurelio Frias Fernandes - Bairro do Menin, Bragança Paulista - SP, 12929-899",
-  horario: "Domingo às 19:00",
-  instagram: "https://www.instagram.com/lagarta_sucateira/",
-  facebook: "https://www.facebook.com/LagartaSucateira/",
+  imagem: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop",
   categoria: "Arte e Educação",
   emoji: "🎨"
 }];
+
 export function Atrativos() {
-  return;
+  return (
+    <section id="atrativos" className="py-20 bg-background">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-primary mb-4">Atrativos da Região</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Descubra os melhores destinos rurais da Região Bragantina
+          </p>
+        </div>
+
+        <Carousel
+          plugins={[
+            Autoplay({
+              delay: 3000,
+            }),
+          ]}
+          className="w-full"
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {atrativos.map((atrativo) => (
+              <CarouselItem key={atrativo.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <img
+                    src={atrativo.imagem}
+                    alt={atrativo.nome}
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-2xl">{atrativo.emoji}</span>
+                      <span className="text-sm bg-white/20 px-2 py-1 rounded-full backdrop-blur-sm">
+                        {atrativo.categoria}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-semibold mb-1">{atrativo.nome}</h3>
+                    <p className="text-sm text-white/90">{atrativo.subtitulo}</p>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
+        </Carousel>
+      </div>
+    </section>
+  );
 }
