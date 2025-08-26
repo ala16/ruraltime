@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { SearchBooking } from "@/components/ui/search-booking";
 import heroBanner from "@/assets/hero-banner.jpg";
 
 interface HeroProps {
@@ -30,6 +31,11 @@ export function Hero({ onSectionClick }: HeroProps) {
           promovendo experiências autênticas no campo e impulsionando a transformação digital no agro.
         </p>
         
+        {/* Sistema de Busca tipo Booking */}
+        <div className="mb-8">
+          <SearchBooking className="max-w-4xl mx-auto" />
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button 
             variant="hero" 
