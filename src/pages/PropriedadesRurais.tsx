@@ -15,7 +15,8 @@ import {
   Users, 
   DollarSign,
   Calendar,
-  Star
+  Star,
+  Lock
 } from "lucide-react";
 
 interface Propriedade {
@@ -25,9 +26,6 @@ interface Propriedade {
   endereco: string;
   cidade: string;
   estado: string;
-  telefone: string;
-  email: string;
-  website: string;
   tipo_propriedade: string;
   tamanho_hectares: number;
   preco_visita: number;
@@ -36,6 +34,13 @@ interface Propriedade {
   atividades: string[];
   infraestrutura: string[];
   destaque: boolean;
+  has_contact: boolean;
+}
+
+interface ContactInfo {
+  telefone: string;
+  email: string;
+  website: string;
 }
 
 const PropriedadesRurais = () => {
@@ -43,19 +48,22 @@ const PropriedadesRurais = () => {
   const { toast } = useToast();
   const [propriedades, setPropriedades] = useState<Propriedade[]>([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     buscarPropriedades();
+    checkAuth();
   }, []);
+
+  const checkAuth = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    setUser(user);
+  };
 
   const buscarPropriedades = async () => {
     try {
       const { data, error } = await supabase
-        .from('propriedades')
-        .select('*')
-        .eq('ativo', true)
-        .order('destaque', { ascending: false })
-        .order('created_at', { ascending: false });
+        .rpc('get_property_public_view');
 
       if (error) throw error;
       setPropriedades(data || []);
@@ -73,6 +81,54 @@ const PropriedadesRurais = () => {
 
   const handleAgendar = (propriedadeId: string) => {
     navigate(`/agendamento/${propriedadeId}`);
+  };
+
+  const handleContactAction = async (propriedadeId: string, action: 'phone' | 'email' | 'website') => {
+    if (!user) {
+      toast({
+        title: "Login necessário",
+        description: "Faça login para acessar informações de contato.",
+        variant: "destructive"
+      });
+      navigate('/login');
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .rpc('get_property_contact_info', { property_id: propriedadeId });
+
+      if (error) throw error;
+      
+      if (data && data.length > 0) {
+        const contactInfo = data[0];
+        
+        switch (action) {
+          case 'phone':
+            if (contactInfo.telefone) {
+              window.open(`tel:${contactInfo.telefone}`, '_self');
+            }
+            break;
+          case 'email':
+            if (contactInfo.email) {
+              window.open(`mailto:${contactInfo.email}`, '_self');
+            }
+            break;
+          case 'website':
+            if (contactInfo.website) {
+              window.open(contactInfo.website, '_blank');
+            }
+            break;
+        }
+      }
+    } catch (error) {
+      console.error('Erro ao buscar informações de contato:', error);
+      toast({
+        title: "Erro",
+        description: "Erro ao acessar informações de contato.",
+        variant: "destructive"
+      });
+    }
   };
 
   if (loading) {
@@ -211,28 +267,51 @@ const PropriedadesRurais = () => {
                     </Button>
                   </div>
 
-                  <div className="flex gap-2">
-                    {propriedade.telefone && (
-                      <Button variant="outline" size="sm" className="flex-1">
-                        <Phone className="mr-1 h-3 w-3" />
-                        Telefone
-                      </Button>
-                    )}
-                    
-                    {propriedade.email && (
-                      <Button variant="outline" size="sm" className="flex-1">
-                        <Mail className="mr-1 h-3 w-3" />
-                        E-mail
-                      </Button>
-                    )}
-                    
-                    {propriedade.website && (
-                      <Button variant="outline" size="sm" className="flex-1">
-                        <Globe className="mr-1 h-3 w-3" />
-                        Website
-                      </Button>
-                    )}
-                  </div>
+                  {propriedade.has_contact && (
+                    <div className="flex gap-2">
+                      {user ? (
+                        <>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="flex-1"
+                            onClick={() => handleContactAction(propriedade.id, 'phone')}
+                          >
+                            <Phone className="mr-1 h-3 w-3" />
+                            Telefone
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="flex-1"
+                            onClick={() => handleContactAction(propriedade.id, 'email')}
+                          >
+                            <Mail className="mr-1 h-3 w-3" />
+                            E-mail
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="flex-1"
+                            onClick={() => handleContactAction(propriedade.id, 'website')}
+                          >
+                            <Globe className="mr-1 h-3 w-3" />
+                            Website
+                          </Button>
+                        </>
+                      ) : (
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="w-full"
+                          onClick={() => navigate('/login')}
+                        >
+                          <Lock className="mr-1 h-3 w-3" />
+                          Fazer login para ver contatos
+                        </Button>
+                      )}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ))}
