@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
-import { CalendarIcon, MapPin, Clock, Users } from "lucide-react";
+import { CalendarIcon, MapPin, Clock, Users, ChevronDown } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { cn } from "@/lib/utils";
@@ -16,11 +16,66 @@ interface SearchBookingProps {
   className?: string;
 }
 
+interface Propriedade {
+  id: string;
+  nome: string;
+  cidade: string;
+  telefone?: string;
+}
+
 export function SearchBooking({ className }: SearchBookingProps) {
   const [destino, setDestino] = useState("");
   const [data, setData] = useState<Date>();
   const [horario, setHorario] = useState("");
   const [numPessoas, setNumPessoas] = useState("");
+  const [propriedades, setPropriedades] = useState<Propriedade[]>([]);
+  const [sugestoes, setSugestoes] = useState<Propriedade[]>([]);
+  const [showSugestoes, setShowSugestoes] = useState(false);
+  const [showTodosDestinos, setShowTodosDestinos] = useState(false);
+
+  useEffect(() => {
+    carregarPropriedades();
+  }, []);
+
+  const carregarPropriedades = async () => {
+    try {
+      const { data: props, error } = await supabase
+        .from('propriedades')
+        .select('id, nome, cidade, telefone')
+        .eq('ativo', true)
+        .order('nome');
+
+      if (error) {
+        console.error('Erro ao carregar propriedades:', error);
+        return;
+      }
+
+      setPropriedades(props || []);
+    } catch (error) {
+      console.error('Erro ao carregar propriedades:', error);
+    }
+  };
+
+  const handleDestinoChange = (value: string) => {
+    setDestino(value);
+    
+    if (value.length >= 3) {
+      const filtradas = propriedades.filter(prop => 
+        prop.nome.toLowerCase().includes(value.toLowerCase()) ||
+        prop.cidade.toLowerCase().includes(value.toLowerCase())
+      );
+      setSugestoes(filtradas);
+      setShowSugestoes(true);
+    } else {
+      setShowSugestoes(false);
+    }
+  };
+
+  const selecionarDestino = (propriedade: Propriedade) => {
+    setDestino(propriedade.nome);
+    setShowSugestoes(false);
+    setShowTodosDestinos(false);
+  };
 
   const handleBuscar = async () => {
     if (!destino || !data || !horario || !numPessoas) {
@@ -33,36 +88,33 @@ export function SearchBooking({ className }: SearchBookingProps) {
     }
 
     try {
-      // Buscar propriedades da cidade selecionada
-      const { data: propriedades, error } = await supabase
-        .from('propriedades')
-        .select('*')
-        .eq('cidade', destino)
-        .eq('ativo', true);
+      // Buscar a propriedade selecionada
+      const propriedadeSelecionada = propriedades.find(prop => 
+        prop.nome.toLowerCase() === destino.toLowerCase()
+      );
 
-      if (error) {
-        console.error('Erro ao buscar propriedades:', error);
+      if (!propriedadeSelecionada) {
         toast({
-          title: "Erro",
-          description: "Erro ao buscar propriedades. Tente novamente.",
+          title: "Propriedade não encontrada",
+          description: "Por favor, selecione uma propriedade da lista.",
           variant: "destructive",
         });
         return;
       }
 
-      if (!propriedades || propriedades.length === 0) {
+      if (!propriedadeSelecionada.telefone) {
         toast({
-          title: "Nenhuma propriedade encontrada",
-          description: `Não encontramos propriedades em ${destino}. Tente outra cidade.`,
+          title: "Contato não disponível",
+          description: "Esta propriedade não tem telefone cadastrado.",
           variant: "destructive",
         });
         return;
       }
 
-      // Gerar mensagem para todas as propriedades da cidade
+      // Gerar mensagem personalizada
       const dataFormatada = format(data, "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
       
-      const mensagem = `Olá! Gostaria de agendar uma visita para turismo rural em ${destino}.
+      const mensagem = `Olá! Gostaria de agendar uma visita no *${propriedadeSelecionada.nome}*.
 
 📅 Data: ${dataFormatada}
 🕐 Horário: ${horario}
@@ -72,19 +124,7 @@ Poderia me informar sobre disponibilidade e valores?
 
 Mensagem enviada através do Rural Time.`;
 
-      // Enviar para a primeira propriedade com telefone disponível
-      const propriedadeComTelefone = propriedades.find(prop => prop.telefone);
-      
-      if (!propriedadeComTelefone || !propriedadeComTelefone.telefone) {
-        toast({
-          title: "Contato não disponível",
-          description: "Nenhuma propriedade em " + destino + " tem telefone cadastrado.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      const telefone = propriedadeComTelefone.telefone.replace(/\D/g, '');
+      const telefone = propriedadeSelecionada.telefone.replace(/\D/g, '');
       const mensagemEncoded = encodeURIComponent(mensagem);
       const whatsappUrl = `https://wa.me/55${telefone}?text=${mensagemEncoded}`;
       
@@ -92,7 +132,7 @@ Mensagem enviada através do Rural Time.`;
 
       toast({
         title: "Mensagem enviada!",
-        description: `Sua solicitação foi enviada para ${propriedadeComTelefone.nome} via WhatsApp.`,
+        description: `Sua solicitação foi enviada para ${propriedadeSelecionada.nome} via WhatsApp.`,
       });
 
     } catch (error) {
@@ -109,17 +149,64 @@ Mensagem enviada através do Rural Time.`;
     <Card className={cn("p-6 bg-card/95 backdrop-blur-sm border-primary/20", className)}>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
         {/* Destino */}
-        <div className="space-y-2">
+        <div className="space-y-2 relative">
           <label className="text-sm font-medium text-card-foreground flex items-center gap-2">
             <MapPin className="h-4 w-4" />
             Destino
           </label>
-          <Input
-            placeholder="Ex: Atibaia, Bragança Paulista..."
-            value={destino}
-            onChange={(e) => setDestino(e.target.value)}
-            className="bg-background/80"
-          />
+          <div className="relative">
+            <Input
+              placeholder="Digite o nome da propriedade..."
+              value={destino}
+              onChange={(e) => handleDestinoChange(e.target.value)}
+              onFocus={() => destino.length >= 3 && setShowSugestoes(true)}
+              className="bg-background/80 pr-10"
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowTodosDestinos(!showTodosDestinos)}
+              className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 p-0 hover:bg-muted"
+            >
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </div>
+
+          {/* Sugestões de autocomplete */}
+          {showSugestoes && sugestoes.length > 0 && (
+            <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-popover border border-border rounded-md shadow-lg max-h-60 overflow-auto">
+              {sugestoes.map((prop) => (
+                <button
+                  key={prop.id}
+                  onClick={() => selecionarDestino(prop)}
+                  className="w-full text-left px-4 py-2 hover:bg-muted transition-colors border-b border-border/50 last:border-b-0"
+                >
+                  <div className="font-medium text-popover-foreground">{prop.nome}</div>
+                  <div className="text-sm text-muted-foreground">{prop.cidade}</div>
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Lista de todos os destinos */}
+          {showTodosDestinos && (
+            <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-popover border border-border rounded-md shadow-lg max-h-60 overflow-auto">
+              <div className="px-4 py-2 bg-muted/50 border-b border-border">
+                <span className="text-sm font-medium text-popover-foreground">Propriedades Disponíveis</span>
+              </div>
+              {propriedades.map((prop) => (
+                <button
+                  key={prop.id}
+                  onClick={() => selecionarDestino(prop)}
+                  className="w-full text-left px-4 py-2 hover:bg-muted transition-colors border-b border-border/50 last:border-b-0"
+                >
+                  <div className="font-medium text-popover-foreground">{prop.nome}</div>
+                  <div className="text-sm text-muted-foreground">{prop.cidade}</div>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Data */}
