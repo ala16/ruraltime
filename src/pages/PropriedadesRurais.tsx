@@ -23,7 +23,8 @@ import {
   DollarSign,
   Calendar,
   Star,
-  ImageIcon
+  ImageIcon,
+  Navigation
 } from "lucide-react";
 
 interface Propriedade {
@@ -43,6 +44,8 @@ interface Propriedade {
   destaque: boolean;
   has_contact: boolean;
   imagens: string[];
+  latitude: number;
+  longitude: number;
 }
 
 interface ContactInfo {
@@ -138,6 +141,17 @@ const PropriedadesRurais = () => {
           window.open(contact.website, '_blank');
         }
         break;
+    }
+  };
+
+  const handleOpenGoogleMaps = (propriedade: Propriedade) => {
+    if (propriedade.latitude && propriedade.longitude) {
+      const url = `https://www.google.com/maps?q=${propriedade.latitude},${propriedade.longitude}`;
+      window.open(url, '_blank');
+    } else if (propriedade.endereco) {
+      const address = `${propriedade.endereco}, ${propriedade.cidade}, ${propriedade.estado}`;
+      const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+      window.open(url, '_blank');
     }
   };
 
@@ -323,6 +337,15 @@ const PropriedadesRurais = () => {
                     >
                       <Calendar className="mr-2 h-4 w-4" />
                       Agendar Visita
+                    </Button>
+                    
+                    <Button
+                      variant="outline"
+                      onClick={() => handleOpenGoogleMaps(propriedade)}
+                      className="flex-1"
+                    >
+                      <Navigation className="mr-2 h-4 w-4" />
+                      Ver no Mapa
                     </Button>
                   </div>
 

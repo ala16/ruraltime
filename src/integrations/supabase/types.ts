@@ -154,6 +154,8 @@ export type Database = {
           id: string
           imagens: string[]
           infraestrutura: string[]
+          latitude: number
+          longitude: number
           nome: string
           preco_visita: number
           tamanho_hectares: number
