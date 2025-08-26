@@ -41,7 +41,7 @@ export function Apoiadores() {
               <img
                 src={apoiador.logo}
                 alt={apoiador.alt}
-                className="max-h-16 md:max-h-20 w-auto object-contain filter hover:brightness-110 transition-all duration-300"
+                className="max-h-24 md:max-h-28 w-auto object-contain filter hover:brightness-110 transition-all duration-300"
               />
             </div>
           ))}
