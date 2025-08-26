@@ -6,6 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { 
   ArrowLeft, 
   MapPin, 
   Phone, 
@@ -15,15 +22,9 @@ import {
   Users, 
   DollarSign,
   Calendar,
-  Star
+  Star,
+  ImageIcon
 } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 interface Propriedade {
   id: string;
@@ -196,24 +197,37 @@ const PropriedadesRurais = () => {
                 )}
                 
                 {/* Carrossel de Imagens */}
-                {propriedade.imagens && propriedade.imagens.length > 0 && (
+                {propriedade.imagens && propriedade.imagens.length > 0 ? (
                   <div className="relative">
                     {propriedade.imagens.length === 1 ? (
-                      <img 
-                        src={propriedade.imagens[0]} 
-                        alt={`${propriedade.nome} - Foto 1`}
-                        className="w-full h-48 object-cover"
-                      />
+                      <div className="aspect-video relative overflow-hidden">
+                        <img 
+                          src={propriedade.imagens[0]} 
+                          alt={`${propriedade.nome} - Imagem principal`}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            target.parentElement?.classList.add('hidden');
+                          }}
+                        />
+                      </div>
                     ) : (
                       <Carousel className="w-full">
                         <CarouselContent>
                           {propriedade.imagens.map((imagem, index) => (
                             <CarouselItem key={index}>
-                              <img 
-                                src={imagem} 
-                                alt={`${propriedade.nome} - Foto ${index + 1}`}
-                                className="w-full h-48 object-cover"
-                              />
+                              <div className="aspect-video relative overflow-hidden">
+                                <img 
+                                  src={imagem} 
+                                  alt={`${propriedade.nome} - Imagem ${index + 1}`}
+                                  className="w-full h-full object-cover"
+                                  onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    target.style.display = 'none';
+                                  }}
+                                />
+                              </div>
                             </CarouselItem>
                           ))}
                         </CarouselContent>
@@ -222,8 +236,15 @@ const PropriedadesRurais = () => {
                       </Carousel>
                     )}
                   </div>
+                ) : (
+                  <div className="aspect-video bg-muted flex items-center justify-center">
+                    <div className="text-center text-muted-foreground">
+                      <ImageIcon className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                      <p className="text-sm">Nenhuma imagem disponível</p>
+                    </div>
+                  </div>
                 )}
-                
+
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div>
