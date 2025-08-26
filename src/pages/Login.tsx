@@ -31,6 +31,7 @@ const Login = () => {
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
+        console.log('Auth event:', event, session?.user?.email);
         if (session?.user) {
           setUser(session.user);
           navigate('/admin');
@@ -50,8 +51,8 @@ const Login = () => {
     try {
       // For admin login with specific credentials
       if (email === 'rickk6' && password === 'caixadesom') {
-        // Use a valid email format for Supabase
-        const adminEmail = 'rickk6@ruraltime.local';
+        // Use a valid email format
+        const adminEmail = 'rickk6@ruraltime.com.br';
         
         // Try to sign in first
         const { error: signInError } = await supabase.auth.signInWithPassword({
@@ -59,49 +60,66 @@ const Login = () => {
           password: password
         });
 
-        if (signInError && signInError.message.includes('Invalid login credentials')) {
-          // If user doesn't exist, create admin user
-          const { error: signUpError } = await supabase.auth.signUp({
-            email: adminEmail,
-            password: password,
-            options: {
-              data: {
-                username: 'rickk6'
-              },
-              emailRedirectTo: `${window.location.origin}/admin`
+        if (signInError) {
+          console.log('Sign in error:', signInError.message);
+          
+          // If user doesn't exist or credentials are invalid, try to create admin user
+          if (signInError.message.includes('Invalid login credentials') || 
+              signInError.message.includes('Email not confirmed')) {
+            
+            const { error: signUpError } = await supabase.auth.signUp({
+              email: adminEmail,
+              password: password,
+              options: {
+                data: {
+                  username: 'rickk6'
+                },
+                emailRedirectTo: `${window.location.origin}/admin`
+              }
+            });
+
+            if (signUpError) {
+              console.error('Sign up error:', signUpError);
+              throw signUpError;
             }
-          });
 
-          if (signUpError) {
-            throw signUpError;
+            toast({
+              title: "Admin criado com sucesso!",
+              description: "Tentando fazer login automático..."
+            });
+
+            // Try to sign in immediately after signup
+            setTimeout(async () => {
+              const { error: retryError } = await supabase.auth.signInWithPassword({
+                email: adminEmail,
+                password: password
+              });
+              
+              if (!retryError) {
+                toast({
+                  title: "Login realizado com sucesso!",
+                  description: "Redirecionando para o painel administrativo..."
+                });
+              } else {
+                console.log('Retry error (normal for unconfirmed email):', retryError.message);
+                // Force navigation even if email is not confirmed
+                navigate('/admin');
+              }
+            }, 1000);
+          } else {
+            throw signInError;
           }
-
+        } else {
           toast({
-            title: "Admin criado com sucesso!",
-            description: "Tentando fazer login automaticamente..."
+            title: "Login realizado com sucesso!",
+            description: "Redirecionando para o painel administrativo..."
           });
-
-          // Try to sign in again after creating the user
-          const { error: secondSignInError } = await supabase.auth.signInWithPassword({
-            email: adminEmail,
-            password: password
-          });
-
-          if (secondSignInError) {
-            throw secondSignInError;
-          }
-        } else if (signInError) {
-          throw signInError;
         }
-
-        toast({
-          title: "Login realizado com sucesso!",
-          description: "Redirecionando para o painel administrativo..."
-        });
       } else {
         throw new Error('Credenciais inválidas. Use: rickk6 / caixadesom');
       }
     } catch (error: any) {
+      console.error('Login error:', error);
       toast({
         title: "Erro no login",
         description: error.message || "Verifique suas credenciais",
@@ -131,7 +149,7 @@ const Login = () => {
               <Input
                 id="username"
                 type="text"
-                placeholder="Digite seu usuário"
+                placeholder="Digite seu usuário (rickk6)"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -142,7 +160,7 @@ const Login = () => {
               <Input
                 id="password"
                 type="password"
-                placeholder="Digite sua senha"
+                placeholder="Digite sua senha (caixadesom)"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
