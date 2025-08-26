@@ -59,18 +59,11 @@ const PropriedadesRurais = () => {
   const { toast } = useToast();
   const [propriedades, setPropriedades] = useState<Propriedade[]>([]);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
   const [contactInfo, setContactInfo] = useState<Record<string, ContactInfo>>({});
 
   useEffect(() => {
-    checkAuth();
     buscarPropriedades();
   }, []);
-
-  const checkAuth = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    setUser(user);
-  };
 
   const buscarPropriedades = async () => {
     try {
@@ -94,7 +87,7 @@ const PropriedadesRurais = () => {
   };
 
   const buscarContato = async (propriedadeId: string) => {
-    if (!user || contactInfo[propriedadeId]) return;
+    if (contactInfo[propriedadeId]) return;
     
     try {
       const { data, error } = await supabase
@@ -351,64 +344,51 @@ const PropriedadesRurais = () => {
 
                   {propriedade.has_contact && (
                     <div className="flex gap-2">
-                      {user ? (
-                        <>
-                          {!contactInfo[propriedade.id] ? (
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              className="w-full"
-                              onClick={() => buscarContato(propriedade.id)}
-                            >
-                              Ver Informações de Contato
-                            </Button>
-                          ) : (
-                            <>
-                              {contactInfo[propriedade.id].telefone && (
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  className="flex-1"
-                                  onClick={() => handleContactAction(propriedade.id, 'phone')}
-                                >
-                                  <Phone className="mr-1 h-3 w-3" />
-                                  Telefone
-                                </Button>
-                              )}
-                              {contactInfo[propriedade.id].email && (
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  className="flex-1"
-                                  onClick={() => handleContactAction(propriedade.id, 'email')}
-                                >
-                                  <Mail className="mr-1 h-3 w-3" />
-                                  E-mail
-                                </Button>
-                              )}
-                              {contactInfo[propriedade.id].website && (
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  className="flex-1"
-                                  onClick={() => handleContactAction(propriedade.id, 'website')}
-                                >
-                                  <Globe className="mr-1 h-3 w-3" />
-                                  Website
-                                </Button>
-                              )}
-                            </>
-                          )}
-                        </>
-                      ) : (
+                      {!contactInfo[propriedade.id] ? (
                         <Button 
                           variant="outline" 
                           size="sm" 
                           className="w-full"
-                          onClick={() => navigate('/auth')}
+                          onClick={() => buscarContato(propriedade.id)}
                         >
-                          🔒 Fazer Login para Ver Contato
+                          Ver Informações de Contato
                         </Button>
+                      ) : (
+                        <>
+                          {contactInfo[propriedade.id].telefone && (
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="flex-1"
+                              onClick={() => handleContactAction(propriedade.id, 'phone')}
+                            >
+                              <Phone className="mr-1 h-3 w-3" />
+                              Telefone
+                            </Button>
+                          )}
+                          {contactInfo[propriedade.id].email && (
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="flex-1"
+                              onClick={() => handleContactAction(propriedade.id, 'email')}
+                            >
+                              <Mail className="mr-1 h-3 w-3" />
+                              E-mail
+                            </Button>
+                          )}
+                          {contactInfo[propriedade.id].website && (
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="flex-1"
+                              onClick={() => handleContactAction(propriedade.id, 'website')}
+                            >
+                              <Globe className="mr-1 h-3 w-3" />
+                              Website
+                            </Button>
+                          )}
+                        </>
                       )}
                     </div>
                   )}
