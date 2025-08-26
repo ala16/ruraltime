@@ -63,11 +63,10 @@ const Login = () => {
         if (signInError) {
           console.log('Sign in error:', signInError.message);
           
-          // If user doesn't exist or credentials are invalid, try to create admin user
-          if (signInError.message.includes('Invalid login credentials') || 
-              signInError.message.includes('Email not confirmed')) {
+          // If user doesn't exist, create admin user
+          if (signInError.message.includes('Invalid login credentials')) {
             
-            const { error: signUpError } = await supabase.auth.signUp({
+            const { data, error: signUpError } = await supabase.auth.signUp({
               email: adminEmail,
               password: password,
               options: {
@@ -83,29 +82,32 @@ const Login = () => {
               throw signUpError;
             }
 
-            toast({
-              title: "Admin criado com sucesso!",
-              description: "Tentando fazer login automático..."
-            });
-
-            // Try to sign in immediately after signup
-            setTimeout(async () => {
-              const { error: retryError } = await supabase.auth.signInWithPassword({
+            // Since email confirmation is disabled, signup should auto-login
+            if (data.session) {
+              toast({
+                title: "Admin criado e logado com sucesso!",
+                description: "Redirecionando para o painel administrativo..."
+              });
+              // Navigation will happen via auth state change
+            } else {
+              toast({
+                title: "Admin criado com sucesso!",
+                description: "Fazendo login..."
+              });
+              
+              // Try immediate login since email confirmation is disabled
+              const { error: immediateLoginError } = await supabase.auth.signInWithPassword({
                 email: adminEmail,
                 password: password
               });
               
-              if (!retryError) {
+              if (!immediateLoginError) {
                 toast({
                   title: "Login realizado com sucesso!",
                   description: "Redirecionando para o painel administrativo..."
                 });
-              } else {
-                console.log('Retry error (normal for unconfirmed email):', retryError.message);
-                // Force navigation even if email is not confirmed
-                navigate('/admin');
               }
-            }, 1000);
+            }
           } else {
             throw signInError;
           }
