@@ -121,7 +121,10 @@ const PropriedadesRurais = () => {
     switch (type) {
       case 'phone':
         if (contact.telefone) {
-          window.open(`tel:${contact.telefone}`);
+          // Format phone number for WhatsApp (remove special characters and add country code if needed)
+          const phoneNumber = contact.telefone.replace(/\D/g, ''); // Remove non-digits
+          const formattedNumber = phoneNumber.startsWith('55') ? phoneNumber : `55${phoneNumber}`;
+          window.open(`https://wa.me/${formattedNumber}`, '_blank');
         }
         break;
       case 'email':
