@@ -1,24 +1,29 @@
 export function Apoiadores() {
   const apoiadores = [
     {
-      nome: "FAESP SENAR",
-      logo: "/lovable-uploads/e430ecfc-bbb1-4ef9-9d79-e3299560f3de.png",
-      alt: "Logo FAESP SENAR"
+      nome: "FAESP",
+      logo: "/lovable-uploads/2edc709e-34ba-4fca-ba0e-8708c15dd363.png",
+      alt: "Logo FAESP"
+    },
+    {
+      nome: "SENAR",
+      logo: "/lovable-uploads/9f8fe04f-5a65-42a9-842f-3f2da97920e4.png",
+      alt: "Logo SENAR"
     },
     {
       nome: "Sindicato Rural de Piracaia",
-      logo: "/lovable-uploads/715d953e-9ffa-4677-a467-b493dc3f95e9.png",
+      logo: "/lovable-uploads/8f4c3935-a693-45a8-a5f5-286ebc58b661.png",
       alt: "Logo Sindicato Rural de Piracaia"
     },
     {
-      nome: "Sindicato Rural de Bragança Paulista",
-      logo: "/lovable-uploads/56834f25-7ee7-4b35-b278-5ce4bbdd0cde.png",
-      alt: "Logo Sindicato Rural de Bragança Paulista"
+      nome: "Sindicato Rural de Atibaia",
+      logo: "/lovable-uploads/1b844a56-a2d5-439d-b9b7-4861b7ab0615.png",
+      alt: "Logo Sindicato Rural de Atibaia"
     },
     {
-      nome: "Sindicato Rural de Atibaia",
-      logo: "/lovable-uploads/d9ba2bf5-c2e2-4db0-a909-744769d5fbca.png",
-      alt: "Logo Sindicato Rural de Atibaia"
+      nome: "Sindicato Rural de Bragança Paulista",
+      logo: "/lovable-uploads/7b6d29b4-588a-4f88-a07a-9a003ec14747.png",
+      alt: "Logo Sindicato Rural de Bragança Paulista"
     }
   ];
 
@@ -32,7 +37,7 @@ export function Apoiadores() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 items-center justify-items-center">
           {apoiadores.map((apoiador, index) => (
             <div
               key={index}
