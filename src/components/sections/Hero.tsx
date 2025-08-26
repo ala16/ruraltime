@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { SearchBooking } from "@/components/ui/search-booking";
+import { LogIn, MapPin } from "lucide-react";
 import heroBanner from "@/assets/hero-banner.jpg";
 
 interface HeroProps {
@@ -11,6 +12,35 @@ export function Hero({ onSectionClick }: HeroProps) {
   const navigate = useNavigate();
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Navigation Header */}
+      <div className="absolute top-0 left-0 right-0 z-20 bg-black/20 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-2">
+              <h2 className="text-white font-bold text-lg">Rural Time</h2>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Button
+                variant="ghost"
+                onClick={() => navigate('/propriedades')}
+                className="text-white hover:bg-white/20"
+              >
+                <MapPin className="w-4 h-4 mr-2" />
+                Ver Propriedades
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => navigate('/login')}
+                className="border-white text-white hover:bg-white hover:text-primary"
+              >
+                <LogIn className="w-4 h-4 mr-2" />
+                Admin
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
