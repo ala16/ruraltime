@@ -11,6 +11,7 @@ import { Depoimentos } from "@/components/sections/Depoimentos";
 import { SejaParceiro } from "@/components/sections/SejaParcerio";
 import { Contato } from "@/components/sections/Contato";
 import { Footer } from "@/components/sections/Footer";
+import { Apoiadores } from "@/components/sections/Apoiadores";
 
 const Index = () => {
   const scrollToSection = (sectionId: string) => {
@@ -52,6 +53,7 @@ const Index = () => {
         <SejaParceiro />
         <Contato />
         <QuemSomos />
+        <Apoiadores />
       </main>
       
       <Footer onSectionClick={scrollToSection} />
