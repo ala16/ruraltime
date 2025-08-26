@@ -50,7 +50,7 @@ const Login = () => {
 
     try {
       // For admin login with specific credentials
-      if (email === 'admin' && password === 'admin') {
+      if (email === 'admin' && password === 'admin123') {
         // Use a valid email format
         const adminEmail = 'admin@ruraltime.com.br';
         
@@ -116,7 +116,7 @@ const Login = () => {
           });
         }
       } else {
-        throw new Error('Credenciais inválidas. Use: admin / admin');
+        throw new Error('Credenciais inválidas. Use: admin / admin123');
       }
     } catch (error: any) {
       console.error('Login error:', error);
@@ -160,7 +160,7 @@ const Login = () => {
               <Input
                 id="password"
                 type="password"
-                placeholder="Digite sua senha (admin)"
+                placeholder="Digite sua senha (admin123)"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
