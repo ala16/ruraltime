@@ -130,6 +130,35 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_property_contact_info: {
+        Args: { property_id: string }
+        Returns: {
+          email: string
+          telefone: string
+          website: string
+        }[]
+      }
+      get_property_public_view: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          atividades: string[]
+          capacidade_visitantes: number
+          cidade: string
+          created_at: string
+          descricao: string
+          destaque: boolean
+          endereco: string
+          estado: string
+          has_contact: boolean
+          horario_funcionamento: string
+          id: string
+          infraestrutura: string[]
+          nome: string
+          preco_visita: number
+          tamanho_hectares: number
+          tipo_propriedade: string
+        }[]
+      }
       is_admin: {
         Args: { user_uuid: string }
         Returns: boolean
