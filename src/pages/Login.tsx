@@ -50,9 +50,9 @@ const Login = () => {
 
     try {
       // For admin login with specific credentials
-      if (email === 'rickk6' && password === 'caixadesom') {
+      if (email === 'admin' && password === 'admin') {
         // Use a valid email format
-        const adminEmail = 'rickk6@ruraltime.com.br';
+        const adminEmail = 'admin@ruraltime.com.br';
         
         // Try to sign in first
         const { error: signInError } = await supabase.auth.signInWithPassword({
@@ -72,7 +72,7 @@ const Login = () => {
               password: password,
               options: {
                 data: {
-                  username: 'rickk6'
+                  username: 'admin'
                 },
                 emailRedirectTo: `${window.location.origin}/admin`
               }
@@ -116,7 +116,7 @@ const Login = () => {
           });
         }
       } else {
-        throw new Error('Credenciais inválidas. Use: rickk6 / caixadesom');
+        throw new Error('Credenciais inválidas. Use: admin / admin');
       }
     } catch (error: any) {
       console.error('Login error:', error);
@@ -149,7 +149,7 @@ const Login = () => {
               <Input
                 id="username"
                 type="text"
-                placeholder="Digite seu usuário (rickk6)"
+                placeholder="Digite seu usuário (admin)"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -160,7 +160,7 @@ const Login = () => {
               <Input
                 id="password"
                 type="password"
-                placeholder="Digite sua senha (caixadesom)"
+                placeholder="Digite sua senha (admin)"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
