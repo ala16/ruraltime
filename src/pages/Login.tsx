@@ -50,14 +50,16 @@ const Login = () => {
     try {
       // For admin login with specific credentials
       if (email === 'rickk6' && password === 'caixadesom') {
-        // Try to sign in with email
-        const adminEmail = 'admin@ruraltime.com';
-        const { error } = await supabase.auth.signInWithPassword({
+        // Use a valid email format for Supabase
+        const adminEmail = 'rickk6@ruraltime.local';
+        
+        // Try to sign in first
+        const { error: signInError } = await supabase.auth.signInWithPassword({
           email: adminEmail,
           password: password
         });
 
-        if (error) {
+        if (signInError && signInError.message.includes('Invalid login credentials')) {
           // If user doesn't exist, create admin user
           const { error: signUpError } = await supabase.auth.signUp({
             email: adminEmail,
@@ -76,16 +78,28 @@ const Login = () => {
 
           toast({
             title: "Admin criado com sucesso!",
-            description: "Faça login novamente com as credenciais."
+            description: "Tentando fazer login automaticamente..."
           });
-        } else {
-          toast({
-            title: "Login realizado com sucesso!",
-            description: "Redirecionando para o painel administrativo..."
+
+          // Try to sign in again after creating the user
+          const { error: secondSignInError } = await supabase.auth.signInWithPassword({
+            email: adminEmail,
+            password: password
           });
+
+          if (secondSignInError) {
+            throw secondSignInError;
+          }
+        } else if (signInError) {
+          throw signInError;
         }
+
+        toast({
+          title: "Login realizado com sucesso!",
+          description: "Redirecionando para o painel administrativo..."
+        });
       } else {
-        throw new Error('Credenciais inválidas');
+        throw new Error('Credenciais inválidas. Use: rickk6 / caixadesom');
       }
     } catch (error: any) {
       toast({
