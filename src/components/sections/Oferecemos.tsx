@@ -1,9 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, MapPin, TrendingUp, Network } from "lucide-react";
-
 export function Oferecemos() {
-  return (
-    <section id="oferecemos" className="py-20 bg-background">
+  return <section id="oferecemos" className="py-20 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-primary mb-4">O que Oferecemos</h2>
@@ -46,29 +44,8 @@ export function Oferecemos() {
               </Card>
 
               <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg">Atrativos da Região</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3 text-muted-foreground">
-                    <div>
-                      <p className="font-semibold text-primary">🍷 Adega Vicchini</p>
-                      <p className="text-sm">Vinhos familiares, café e produtos artesanais em Campo Novo</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-primary">🏨 Hotel Fazenda Boa Esperança</p>
-                      <p className="text-sm">800 hectares de história nas encostas da Serra da Bocaina</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-primary">☕ Aromas de Bragança</p>
-                      <p className="text-sm">Torrefação de café com experiências gastronômicas</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-primary">🎨 Lagarta Sucateira</p>
-                      <p className="text-sm">Ateliê da infância e educação criativa no Bairro do Menin</p>
-                    </div>
-                  </div>
-                </CardContent>
+                
+                
               </Card>
             </div>
           </div>
@@ -126,6 +103,5 @@ export function Oferecemos() {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 }
