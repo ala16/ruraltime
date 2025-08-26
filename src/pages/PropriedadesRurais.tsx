@@ -15,8 +15,7 @@ import {
   Users, 
   DollarSign,
   Calendar,
-  Star,
-  Lock
+  Star
 } from "lucide-react";
 
 interface Propriedade {
@@ -49,10 +48,11 @@ const PropriedadesRurais = () => {
   const [propriedades, setPropriedades] = useState<Propriedade[]>([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [contactInfo, setContactInfo] = useState<Record<string, ContactInfo>>({});
 
   useEffect(() => {
-    buscarPropriedades();
     checkAuth();
+    buscarPropriedades();
   }, []);
 
   const checkAuth = async () => {
@@ -63,7 +63,9 @@ const PropriedadesRurais = () => {
   const buscarPropriedades = async () => {
     try {
       const { data, error } = await supabase
-        .rpc('get_property_public_view');
+        .rpc('get_property_public_view')
+        .order('destaque', { ascending: false })
+        .order('created_at', { ascending: false });
 
       if (error) throw error;
       setPropriedades(data || []);
@@ -79,55 +81,54 @@ const PropriedadesRurais = () => {
     }
   };
 
-  const handleAgendar = (propriedadeId: string) => {
-    navigate(`/agendamento/${propriedadeId}`);
-  };
-
-  const handleContactAction = async (propriedadeId: string, action: 'phone' | 'email' | 'website') => {
-    if (!user) {
-      toast({
-        title: "Login necessário",
-        description: "Faça login para acessar informações de contato.",
-        variant: "destructive"
-      });
-      navigate('/login');
-      return;
-    }
-
+  const buscarContato = async (propriedadeId: string) => {
+    if (!user || contactInfo[propriedadeId]) return;
+    
     try {
       const { data, error } = await supabase
         .rpc('get_property_contact_info', { property_id: propriedadeId });
 
       if (error) throw error;
-      
       if (data && data.length > 0) {
-        const contactInfo = data[0];
-        
-        switch (action) {
-          case 'phone':
-            if (contactInfo.telefone) {
-              window.open(`tel:${contactInfo.telefone}`, '_self');
-            }
-            break;
-          case 'email':
-            if (contactInfo.email) {
-              window.open(`mailto:${contactInfo.email}`, '_self');
-            }
-            break;
-          case 'website':
-            if (contactInfo.website) {
-              window.open(contactInfo.website, '_blank');
-            }
-            break;
-        }
+        setContactInfo(prev => ({
+          ...prev,
+          [propriedadeId]: data[0]
+        }));
       }
     } catch (error) {
-      console.error('Erro ao buscar informações de contato:', error);
-      toast({
-        title: "Erro",
-        description: "Erro ao acessar informações de contato.",
-        variant: "destructive"
-      });
+      console.error('Erro ao buscar contato:', error);
+    }
+  };
+
+  const handleAgendar = (propriedadeId: string) => {
+    navigate(`/agendamento/${propriedadeId}`);
+  };
+
+  const handleContactAction = async (propriedadeId: string, type: 'phone' | 'email' | 'website') => {
+    // First ensure we have contact info
+    if (!contactInfo[propriedadeId]) {
+      await buscarContato(propriedadeId);
+    }
+
+    const contact = contactInfo[propriedadeId];
+    if (!contact) return;
+
+    switch (type) {
+      case 'phone':
+        if (contact.telefone) {
+          window.open(`tel:${contact.telefone}`);
+        }
+        break;
+      case 'email':
+        if (contact.email) {
+          window.open(`mailto:${contact.email}`);
+        }
+        break;
+      case 'website':
+        if (contact.website) {
+          window.open(contact.website, '_blank');
+        }
+        break;
     }
   };
 
@@ -271,43 +272,61 @@ const PropriedadesRurais = () => {
                     <div className="flex gap-2">
                       {user ? (
                         <>
-                          <Button 
-                            variant="outline" 
-                            size="sm" 
-                            className="flex-1"
-                            onClick={() => handleContactAction(propriedade.id, 'phone')}
-                          >
-                            <Phone className="mr-1 h-3 w-3" />
-                            Telefone
-                          </Button>
-                          <Button 
-                            variant="outline" 
-                            size="sm" 
-                            className="flex-1"
-                            onClick={() => handleContactAction(propriedade.id, 'email')}
-                          >
-                            <Mail className="mr-1 h-3 w-3" />
-                            E-mail
-                          </Button>
-                          <Button 
-                            variant="outline" 
-                            size="sm" 
-                            className="flex-1"
-                            onClick={() => handleContactAction(propriedade.id, 'website')}
-                          >
-                            <Globe className="mr-1 h-3 w-3" />
-                            Website
-                          </Button>
+                          {!contactInfo[propriedade.id] ? (
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="w-full"
+                              onClick={() => buscarContato(propriedade.id)}
+                            >
+                              Ver Informações de Contato
+                            </Button>
+                          ) : (
+                            <>
+                              {contactInfo[propriedade.id].telefone && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  className="flex-1"
+                                  onClick={() => handleContactAction(propriedade.id, 'phone')}
+                                >
+                                  <Phone className="mr-1 h-3 w-3" />
+                                  Telefone
+                                </Button>
+                              )}
+                              {contactInfo[propriedade.id].email && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  className="flex-1"
+                                  onClick={() => handleContactAction(propriedade.id, 'email')}
+                                >
+                                  <Mail className="mr-1 h-3 w-3" />
+                                  E-mail
+                                </Button>
+                              )}
+                              {contactInfo[propriedade.id].website && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  className="flex-1"
+                                  onClick={() => handleContactAction(propriedade.id, 'website')}
+                                >
+                                  <Globe className="mr-1 h-3 w-3" />
+                                  Website
+                                </Button>
+                              )}
+                            </>
+                          )}
                         </>
                       ) : (
                         <Button 
                           variant="outline" 
                           size="sm" 
                           className="w-full"
-                          onClick={() => navigate('/login')}
+                          onClick={() => navigate('/auth')}
                         >
-                          <Lock className="mr-1 h-3 w-3" />
-                          Fazer login para ver contatos
+                          🔒 Fazer Login para Ver Contato
                         </Button>
                       )}
                     </div>
