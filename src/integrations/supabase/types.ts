@@ -152,6 +152,7 @@ export type Database = {
           has_contact: boolean
           horario_funcionamento: string
           id: string
+          imagens: string[]
           infraestrutura: string[]
           nome: string
           preco_visita: number

@@ -17,6 +17,13 @@ import {
   Calendar,
   Star
 } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface Propriedade {
   id: string;
@@ -34,6 +41,7 @@ interface Propriedade {
   infraestrutura: string[];
   destaque: boolean;
   has_contact: boolean;
+  imagens: string[];
 }
 
 interface ContactInfo {
@@ -184,6 +192,35 @@ const PropriedadesRurais = () => {
                       <Star className="h-4 w-4 fill-current" />
                       <span className="text-sm font-medium">Destaque</span>
                     </div>
+                  </div>
+                )}
+                
+                {/* Carrossel de Imagens */}
+                {propriedade.imagens && propriedade.imagens.length > 0 && (
+                  <div className="relative">
+                    {propriedade.imagens.length === 1 ? (
+                      <img 
+                        src={propriedade.imagens[0]} 
+                        alt={`${propriedade.nome} - Foto 1`}
+                        className="w-full h-48 object-cover"
+                      />
+                    ) : (
+                      <Carousel className="w-full">
+                        <CarouselContent>
+                          {propriedade.imagens.map((imagem, index) => (
+                            <CarouselItem key={index}>
+                              <img 
+                                src={imagem} 
+                                alt={`${propriedade.nome} - Foto ${index + 1}`}
+                                className="w-full h-48 object-cover"
+                              />
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="left-2" />
+                        <CarouselNext className="right-2" />
+                      </Carousel>
+                    )}
                   </div>
                 )}
                 
