@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -343,6 +343,22 @@ const PropriedadesRurais = () => {
                       <Navigation className="mr-2 h-4 w-4" />
                       Ver no Mapa
                     </Button>
+                  </div>
+                  
+                  <div className="mt-4 pt-4 border-t">
+                    <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-4 rounded-lg">
+                      <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
+                        🎁 Presente uma Experiência
+                      </h4>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        Compre um voucher de experiência rural como presente
+                      </p>
+                      <Link to={`/voucher/${propriedade.id}`}>
+                        <Button variant="default" size="sm" className="w-full">
+                          Comprar Voucher - R$ {propriedade.preco_visita?.toFixed(2).replace('.', ',') || '199,99'}
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
 
                   {propriedade.has_contact && (

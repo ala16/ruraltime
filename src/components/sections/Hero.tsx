@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { SearchBooking } from "@/components/ui/search-booking";
-import { LogIn, MapPin } from "lucide-react";
+import { LogIn, MapPin, QrCode } from "lucide-react";
 import heroBanner from "@/assets/hero-banner.jpg";
 
 interface HeroProps {
@@ -27,6 +27,14 @@ export function Hero({ onSectionClick }: HeroProps) {
               >
                 <MapPin className="w-4 h-4 mr-2" />
                 Ver Propriedades
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() => navigate('/validar-voucher')}
+                className="text-white hover:bg-white/20"
+              >
+                <QrCode className="w-4 h-4 mr-2" />
+                Validar Voucher
               </Button>
               <Button
                 variant="outline"

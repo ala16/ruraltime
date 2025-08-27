@@ -11,6 +11,10 @@ import PropriedadesRurais from "./pages/PropriedadesRurais";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import AuthPage from "./pages/AuthPage";
+import ComprarVoucher from "./pages/ComprarVoucher";
+import VoucherSuccess from "./pages/VoucherSuccess";
+import VoucherCanceled from "./pages/VoucherCanceled";
+import ValidarVoucher from "./pages/ValidarVoucher";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +32,10 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/voucher/:propriedadeId" element={<ComprarVoucher />} />
+          <Route path="/voucher-success" element={<VoucherSuccess />} />
+          <Route path="/voucher-canceled" element={<VoucherCanceled />} />
+          <Route path="/validar-voucher" element={<ValidarVoucher />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
