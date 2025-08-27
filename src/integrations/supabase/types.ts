@@ -125,11 +125,86 @@ export type Database = {
         }
         Relationships: []
       }
+      vouchers: {
+        Row: {
+          beneficiario_email: string | null
+          beneficiario_nome: string | null
+          codigo: string
+          comprador_email: string
+          comprador_nome: string
+          created_at: string
+          data_compra: string
+          data_expiracao: string
+          data_uso: string | null
+          id: string
+          observacoes: string | null
+          propriedade_id: string
+          qr_code_data: string | null
+          status: string
+          stripe_payment_intent_id: string | null
+          updated_at: string
+          usado_por: string | null
+          valor: number
+        }
+        Insert: {
+          beneficiario_email?: string | null
+          beneficiario_nome?: string | null
+          codigo: string
+          comprador_email: string
+          comprador_nome: string
+          created_at?: string
+          data_compra?: string
+          data_expiracao?: string
+          data_uso?: string | null
+          id?: string
+          observacoes?: string | null
+          propriedade_id: string
+          qr_code_data?: string | null
+          status?: string
+          stripe_payment_intent_id?: string | null
+          updated_at?: string
+          usado_por?: string | null
+          valor: number
+        }
+        Update: {
+          beneficiario_email?: string | null
+          beneficiario_nome?: string | null
+          codigo?: string
+          comprador_email?: string
+          comprador_nome?: string
+          created_at?: string
+          data_compra?: string
+          data_expiracao?: string
+          data_uso?: string | null
+          id?: string
+          observacoes?: string | null
+          propriedade_id?: string
+          qr_code_data?: string | null
+          status?: string
+          stripe_payment_intent_id?: string | null
+          updated_at?: string
+          usado_por?: string | null
+          valor?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vouchers_propriedade_id_fkey"
+            columns: ["propriedade_id"]
+            isOneToOne: false
+            referencedRelation: "propriedades"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      generate_voucher_code: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
       get_property_contact_info: {
         Args: { property_id: string }
         Returns: {
@@ -165,6 +240,22 @@ export type Database = {
       is_admin: {
         Args: { user_uuid: string }
         Returns: boolean
+      }
+      use_voucher: {
+        Args: { used_by_name: string; voucher_code: string }
+        Returns: boolean
+      }
+      validate_voucher: {
+        Args: { voucher_code: string }
+        Returns: {
+          beneficiario_nome: string
+          data_expiracao: string
+          propriedade_nome: string
+          status: string
+          valid: boolean
+          valor: number
+          voucher_id: string
+        }[]
       }
     }
     Enums: {
