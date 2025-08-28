@@ -162,7 +162,7 @@ const Login = () => {
               <Input
                 id="password"
                 type="password"
-                placeholder="Digite sua senha (admin123)"
+                placeholder="Digite sua senha"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
