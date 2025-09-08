@@ -32,22 +32,22 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
   return (
     <>
       {/* Top Bar */}
-      <div className="hidden lg:block bg-rural-primary text-primary-foreground py-2">
+      <div className="hidden lg:block bg-rural-primary text-white py-3 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
-                <MapPin className="w-4 h-4" />
-                <span>Região Bragantina - São Paulo</span>
+                <MapPin className="w-4 h-4 text-white/90" />
+                <span className="text-white/90 font-medium">Região Bragantina - São Paulo</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4" />
-                <span>(11) 99999-9999</span>
+                <Phone className="w-4 h-4 text-white/90" />
+                <span className="text-white/90">(11) 99999-9999</span>
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Mail className="w-4 h-4" />
-              <span>contato@ruraltime.com</span>
+              <Mail className="w-4 h-4 text-white/90" />
+              <span className="text-white/90">contato@ruraltime.com</span>
             </div>
           </div>
         </div>
@@ -56,19 +56,23 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
       {/* Main Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'glass shadow-soft py-2' 
-          : 'bg-transparent py-4'
+          ? 'bg-white/95 backdrop-blur-lg shadow-xl border-b border-white/20 py-3' 
+          : 'bg-white/10 backdrop-blur-md py-4'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">RT</span>
+              <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-xl">RT</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-foreground">Rural Time</h1>
-                <p className="text-sm text-rural-text-light">Turismo e Artesanato na Região Bragantina</p>
+                <h1 className={`text-xl font-bold transition-colors ${
+                  isScrolled ? 'text-rural-primary' : 'text-white'
+                }`}>Rural Time</h1>
+                <p className={`text-sm transition-colors ${
+                  isScrolled ? 'text-rural-text-light' : 'text-white/90'
+                }`}>Turismo e Artesanato na Região Bragantina</p>
               </div>
             </div>
 
@@ -78,14 +82,18 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                 <button
                   key={item.id}
                   onClick={() => onSectionClick(item.id)}
-                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                  className={`font-medium transition-all duration-200 hover:scale-105 ${
+                    isScrolled 
+                      ? 'text-rural-primary hover:text-rural-secondary' 
+                      : 'text-white hover:text-rural-secondary'
+                  }`}
                 >
                   {item.label}
                 </button>
               ))}
               <Button 
                 onClick={() => onSectionClick('propriedades')}
-                className="btn-modern bg-gradient-primary hover:bg-gradient-secondary text-primary-foreground px-6 py-2"
+                className="btn-modern bg-gradient-primary hover:bg-gradient-secondary text-white px-6 py-2.5 shadow-lg hover:shadow-xl font-semibold"
               >
                 Ver Propriedades
               </Button>
@@ -97,7 +105,9 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-foreground"
+                className={`transition-colors ${
+                  isScrolled ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
+                }`}
               >
                 {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
@@ -108,7 +118,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden">
-            <div className="glass border-t border-border/20 backdrop-blur-xl">
+            <div className="bg-white/95 backdrop-blur-lg border-t border-rural-accent/20 shadow-xl">
               <div className="px-4 py-6 space-y-4">
                 {navigationItems.map((item) => (
                   <button
@@ -117,7 +127,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                       onSectionClick(item.id);
                       setIsMobileMenuOpen(false);
                     }}
-                    className="block w-full text-left py-3 px-4 text-foreground hover:text-primary hover:bg-accent/50 rounded-lg transition-all duration-200"
+                    className="block w-full text-left py-3 px-4 text-rural-primary hover:text-rural-secondary hover:bg-rural-accent/10 rounded-lg transition-all duration-200 font-medium"
                   >
                     {item.label}
                   </button>
@@ -127,7 +137,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                     onSectionClick('propriedades');
                     setIsMobileMenuOpen(false);
                   }}
-                  className="w-full btn-modern bg-gradient-primary hover:bg-gradient-secondary text-primary-foreground"
+                  className="w-full btn-modern bg-gradient-primary hover:bg-gradient-secondary text-white shadow-lg font-semibold"
                 >
                   Ver Propriedades
                 </Button>
