@@ -123,7 +123,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
             {/* Right Column - Feature Cards */}
             <div className="space-y-6 animate-slide-up">
               {features.map((feature, index) => (
-                <Card key={index} className="glass border-white/20 hover-lift">
+                <Card key={index} className="bg-black/20 backdrop-blur-md border-white/20 hover-lift">
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
                       <div className="p-3 bg-gradient-primary rounded-xl">
@@ -133,7 +133,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                         <h3 className="text-lg font-semibold text-white mb-2">
                           {feature.title}
                         </h3>
-                        <p className="text-white/80">
+                        <p className="text-white/90">
                           {feature.description}
                         </p>
                       </div>
@@ -143,7 +143,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
               ))}
 
               {/* Location Card */}
-              <Card className="glass border-white/20 bg-rural-secondary/10 hover-lift">
+              <Card className="bg-black/30 backdrop-blur-md border-white/20 hover-lift">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-3 mb-4">
                     <MapPin className="w-5 h-5 text-rural-secondary" />
@@ -156,7 +156,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-white/80 text-sm leading-relaxed">
+                  <p className="text-white/90 text-sm leading-relaxed">
                     Uma região rica em tradições, cultura e belezas naturais. 
                     Conecte-se com a essência do interior paulista através de experiências únicas.
                   </p>
