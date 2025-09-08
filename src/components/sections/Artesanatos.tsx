@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -21,9 +20,12 @@ interface Artesanato {
 }
 
 export const Artesanatos = () => {
-  const navigate = useNavigate();
   const [artesanatos, setArtesanatos] = useState<Artesanato[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const handleViewDetails = (id: string) => {
+    window.location.href = `/artesanato/${id}`;
+  };
 
   useEffect(() => {
     const fetchArtesanatos = async () => {
@@ -168,7 +170,7 @@ export const Artesanatos = () => {
                         </span>
                         <Button 
                           size="sm" 
-                          onClick={() => navigate(`/artesanato/${artesanato.id}`)}
+                          onClick={() => handleViewDetails(artesanato.id)}
                           className="ml-2"
                         >
                           <Eye className="w-4 h-4 mr-1" />
