@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { Navigation } from "@/components/ui/navigation";
-import { Hero } from "@/components/sections/Hero";
+import { ModernNavigation } from "@/components/ui/modern-navigation";
+import { ModernHero } from "@/components/sections/ModernHero";
 import { QuemSomos } from "@/components/sections/QuemSomos";
 import { Oferecemos } from "@/components/sections/Oferecemos";
 import { Atrativos } from "@/components/sections/Atrativos";
@@ -41,10 +41,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      <Navigation onSectionClick={scrollToSection} />
+      <ModernNavigation onSectionClick={scrollToSection} />
       
       <main>
-        <Hero onSectionClick={scrollToSection} />
+        <ModernHero onSectionClick={scrollToSection} />
         <Atrativos />
         <Artesanatos />
         <Oferecemos />

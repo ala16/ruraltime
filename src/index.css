@@ -8,111 +8,129 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* Modern neutrals with better contrast */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 222 20% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 20% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 20% 11%;
 
-    /* Primary green - inspired by SENAR/CNA branding */
-    --primary: 140 45% 35%;
+    /* Enhanced primary palette - Modern green with warmth */
+    --primary: 154 67% 23%;
     --primary-foreground: 0 0% 98%;
-    --primary-light: 140 45% 45%;
-    --primary-dark: 140 50% 25%;
+    --primary-light: 154 45% 35%;
+    --primary-lighter: 154 35% 45%;
+    --primary-dark: 154 75% 15%;
 
-    /* Secondary green - lighter tone */
-    --secondary: 120 35% 55%;
-    --secondary-foreground: 140 50% 15%;
+    /* Warm secondary for accent */
+    --secondary: 43 74% 66%;
+    --secondary-foreground: 154 75% 15%;
+    --secondary-light: 43 65% 75%;
+    --secondary-dark: 43 85% 45%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Refined neutrals */
+    --muted: 210 20% 97%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 120 40% 85%;
-    --accent-foreground: 140 50% 20%;
+    --accent: 154 35% 92%;
+    --accent-foreground: 154 75% 15%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    /* Rural Time brand colors */
-    --rural-green: 140 45% 35%;
-    --rural-green-light: 120 35% 55%;
-    --rural-cream: 45 30% 95%;
-    --rural-earth: 30 25% 75%;
+    /* Rural Time modern brand palette */
+    --rural-primary: 154 67% 23%;
+    --rural-secondary: 43 74% 66%;
+    --rural-accent: 25 90% 85%;
+    --rural-neutral: 210 15% 96%;
+    --rural-text-light: 215 16% 47%;
+    --rural-text-dark: 222 20% 11%;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
-    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.9), hsl(var(--secondary) / 0.8));
+    /* Modern gradients with depth */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--rural-primary)), hsl(var(--primary-light)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--rural-secondary)), hsl(var(--secondary-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--rural-primary) / 0.95), hsl(var(--rural-secondary) / 0.85));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--rural-accent)), hsl(var(--secondary-light)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--background)), hsl(var(--rural-neutral)));
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Glass morphism effect */
+    --glass-bg: hsl(var(--background) / 0.8);
+    --glass-border: hsl(var(--border) / 0.2);
 
-    --radius: 0.5rem;
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(var(--rural-primary) / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(var(--rural-primary) / 0.1), 0 2px 4px -1px hsl(var(--rural-primary) / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(var(--rural-primary) / 0.1), 0 4px 6px -2px hsl(var(--rural-primary) / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(var(--rural-primary) / 0.1), 0 10px 10px -5px hsl(var(--rural-primary) / 0.04);
+
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 154 67% 23%;
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 240 6% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 6% 10%;
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 217 91% 60%;
   }
 
   .dark {
-    --background: 140 50% 8%;
-    --foreground: 120 20% 95%;
+    --background: 154 25% 8%;
+    --foreground: 154 15% 95%;
 
-    --card: 140 45% 12%;
-    --card-foreground: 120 20% 95%;
+    --card: 154 20% 12%;
+    --card-foreground: 154 15% 95%;
 
-    --popover: 140 45% 12%;
-    --popover-foreground: 120 20% 95%;
+    --popover: 154 20% 12%;
+    --popover-foreground: 154 15% 95%;
 
-    --primary: 120 35% 65%;
-    --primary-foreground: 140 50% 15%;
-    --primary-light: 120 35% 75%;
-    --primary-dark: 140 50% 25%;
+    --primary: 154 45% 65%;
+    --primary-foreground: 154 75% 15%;
+    --primary-light: 154 35% 75%;
+    --primary-lighter: 154 25% 85%;
+    --primary-dark: 154 55% 25%;
 
-    --secondary: 140 30% 25%;
-    --secondary-foreground: 120 20% 95%;
+    --secondary: 43 55% 75%;
+    --secondary-foreground: 154 75% 15%;
+    --secondary-light: 43 45% 85%;
+    --secondary-dark: 43 65% 55%;
 
-    --muted: 140 30% 20%;
-    --muted-foreground: 120 15% 70%;
+    --muted: 154 15% 20%;
+    --muted-foreground: 154 10% 70%;
 
-    --accent: 140 30% 20%;
-    --accent-foreground: 120 20% 95%;
+    --accent: 154 15% 20%;
+    --accent-foreground: 154 15% 95%;
 
-    --rural-green: 120 35% 65%;
-    --rural-green-light: 120 35% 75%;
-    --rural-cream: 45 15% 15%;
-    --rural-earth: 30 20% 25%;
+    --rural-primary: 154 45% 65%;
+    --rural-secondary: 43 55% 75%;
+    --rural-accent: 25 60% 25%;
+    --rural-neutral: 154 15% 15%;
+    --rural-text-light: 154 10% 70%;
+    --rural-text-dark: 154 15% 95%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --border: 154 20% 18%;
+    --input: 154 20% 18%;
+    --ring: 154 45% 65%;
+
+    --sidebar-background: 240 6% 10%;
+    --sidebar-foreground: 240 5% 96%;
+    --sidebar-primary: 224 76% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 240 5% 96%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
@@ -122,6 +140,88 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Glass morphism utilities */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+  }
+
+  /* Custom shadows */
+  .shadow-soft {
+    box-shadow: var(--shadow-md);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.15);
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Modern button styles */
+  .btn-modern {
+    @apply relative overflow-hidden;
+    transition: all 0.3s ease;
+  }
+
+  .btn-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-modern:hover::before {
+    left: 100%;
   }
 }

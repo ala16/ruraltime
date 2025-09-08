@@ -94,14 +94,20 @@ export const Artesanatos = () => {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-background via-secondary/20 to-background">
+    <section id="artesanatos" className="py-24 bg-gradient-to-br from-background via-rural-neutral to-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-            Artesanato da Região Bragantina
+        {/* Section Header */}
+        <div className="text-center mb-20 animate-fade-in">
+          <div className="inline-flex items-center px-4 py-2 bg-rural-secondary/10 rounded-full mb-6">
+            <span className="text-rural-secondary font-medium">✨ Tradição & Arte</span>
+          </div>
+          <h2 className="text-5xl lg:text-6xl font-bold mb-8">
+            <span className="bg-gradient-to-r from-rural-primary to-rural-secondary bg-clip-text text-transparent">
+              Artesanato Regional
+            </span>
           </h2>
           <div className="max-w-4xl mx-auto mb-12">
-            <p className="text-muted-foreground text-lg leading-relaxed">
+            <p className="text-xl text-rural-text-light leading-relaxed">
               O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região, 
               que preservam tradições e agregam valor cultural às suas experiências rurais.
             </p>
@@ -125,53 +131,54 @@ export const Artesanatos = () => {
             <CarouselContent className="-ml-2 md:-ml-4">
               {artesanatos.map((artesanato) => (
                 <CarouselItem key={artesanato.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                  <Card className="overflow-hidden h-full group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-card/50 backdrop-blur-sm">
+                  <Card className="overflow-hidden h-full group hover-lift border-0 bg-gradient-card shadow-soft">
                     <div className="relative overflow-hidden">
                       <img
                         src={artesanato.imagens[0]}
                         alt={artesanato.nome}
                         className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {artesanato.destaque && (
-                        <Badge className="absolute top-4 left-4 bg-primary/90 text-primary-foreground backdrop-blur-sm">
+                        <Badge className="absolute top-4 left-4 bg-rural-secondary/90 text-rural-secondary-foreground backdrop-blur-sm border-0 shadow-glow">
                           <Star className="w-3 h-3 mr-1" />
                           Destaque
                         </Badge>
                       )}
                       <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <button className="p-2 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background transition-colors">
-                          <Heart className="w-4 h-4 text-muted-foreground hover:text-primary" />
+                        <button className="p-2 rounded-full glass hover:bg-white/20 transition-colors">
+                          <Heart className="w-4 h-4 text-white hover:text-rural-secondary" />
                         </button>
                       </div>
                     </div>
                     <CardContent className="p-6">
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors">
+                      <div className="flex items-start justify-between mb-4">
+                        <h3 className="font-semibold text-xl text-foreground group-hover:text-rural-primary transition-colors">
                           {artesanato.nome}
                         </h3>
                         <div className="text-right">
-                          <div className="text-xl font-bold text-primary">
+                          <div className="text-2xl font-bold bg-gradient-to-r from-rural-primary to-rural-secondary bg-clip-text text-transparent">
                             R$ {artesanato.preco?.toFixed(2)}
                           </div>
                         </div>
                       </div>
                       
-                      <Badge variant="secondary" className="mb-3">
+                      <Badge variant="secondary" className="mb-4 bg-rural-accent/20 text-rural-primary border-rural-accent/30">
                         {artesanato.categoria}
                       </Badge>
                       
-                      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                      <p className="text-rural-text-light text-sm mb-6 line-clamp-2 leading-relaxed">
                         {artesanato.descricao}
                       </p>
                       
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">
-                          Por: <span className="font-medium text-foreground">{artesanato.artesao_nome}</span>
+                        <span className="text-sm text-rural-text-light">
+                          Por: <span className="font-medium text-rural-primary">{artesanato.artesao_nome}</span>
                         </span>
                         <Button 
                           size="sm" 
                           onClick={() => handleViewDetails(artesanato.id)}
-                          className="ml-2"
+                          className="btn-modern bg-gradient-primary hover:bg-gradient-secondary text-primary-foreground ml-2 shadow-soft"
                         >
                           <Eye className="w-4 h-4 mr-1" />
                           Ver detalhes
@@ -182,8 +189,8 @@ export const Artesanatos = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden md:flex -left-12 bg-background/80 backdrop-blur-sm border-border/50 hover:bg-background" />
-            <CarouselNext className="hidden md:flex -right-12 bg-background/80 backdrop-blur-sm border-border/50 hover:bg-background" />
+            <CarouselPrevious className="hidden md:flex -left-12 glass border-rural-accent/30 hover:bg-rural-accent/20 text-rural-primary" />
+            <CarouselNext className="hidden md:flex -right-12 glass border-rural-accent/30 hover:bg-rural-accent/20 text-rural-primary" />
           </Carousel>
         </div>
       </div>
