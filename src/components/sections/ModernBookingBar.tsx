@@ -1,46 +1,124 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Calendar, MapPin, Users, Search, Clock } from 'lucide-react';
+import { Calendar, MapPin, Users, Search } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from '@/hooks/use-toast';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+
+interface Propriedade {
+  id: string;
+  nome: string;
+  cidade: string;
+  telefone?: string;
+}
 
 export const ModernBookingBar = () => {
+  const [propriedades, setPropriedades] = useState<Propriedade[]>([]);
   const [searchData, setSearchData] = useState({
     destination: '',
     date: '',
-    guests: '',
-    activity: ''
+    guests: ''
   });
 
-  const activities = [
-    'Todos os Atrativos',
-    'Trilhas Ecológicas',
-    'Fazendas Orgânicas', 
-    'Artesanato Local',
-    'Turismo Gastronômico',
-    'Experiência Rural',
-    'Observação de Fauna',
-    'Agroturismo'
-  ];
+  useEffect(() => {
+    carregarPropriedades();
+  }, []);
 
-  const locations = [
-    'Região Bragantina',
-    'Atibaia',
-    'Bragança Paulista',
-    'Itatiba',
-    'Jarinu',
-    'Joanópolis',
-    'Morungaba',
-    'Nazaré Paulista',
-    'Piracaia',
-    'Tuiuti',
-    'Vinhedo'
-  ];
+  const carregarPropriedades = async () => {
+    try {
+      const { data, error } = await supabase.rpc('get_property_public_view');
+      
+      if (error) {
+        console.error('Erro ao carregar propriedades:', error);
+        return;
+      }
 
-  const handleSearch = () => {
-    console.log('Pesquisar:', searchData);
-    // Aqui você pode implementar a lógica de busca/navegação
+      // Transformar os dados para o formato necessário
+      const propriedadesFormatadas = data?.map((prop: any) => ({
+        id: prop.id,
+        nome: prop.nome,
+        cidade: prop.cidade,
+        telefone: null // Será obtido quando necessário
+      })) || [];
+
+      setPropriedades(propriedadesFormatadas);
+    } catch (error) {
+      console.error('Erro ao carregar propriedades:', error);
+    }
+  };
+
+  const handleSearch = async () => {
+    if (!searchData.destination || !searchData.date || !searchData.guests) {
+      toast({
+        title: "Campos obrigatórios",
+        description: "Por favor, preencha todos os campos para continuar.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      // Buscar a propriedade selecionada
+      const propriedadeSelecionada = propriedades.find(prop => prop.id === searchData.destination);
+
+      if (!propriedadeSelecionada) {
+        toast({
+          title: "Propriedade não encontrada",
+          description: "Por favor, selecione uma propriedade da lista.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Buscar informações de contato da propriedade
+      const { data: contactInfo, error } = await supabase
+        .rpc('get_property_contact_info', { property_id: propriedadeSelecionada.id });
+
+      if (error || !contactInfo?.[0]?.telefone) {
+        toast({
+          title: "Contato não disponível",
+          description: "Esta propriedade não tem telefone cadastrado.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Gerar mensagem personalizada
+      const dataObj = new Date(searchData.date);
+      const dataFormatada = format(dataObj, "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
+      
+      const mensagem = `Olá! Gostaria de agendar uma visita no *${propriedadeSelecionada.nome}*.
+
+📅 Data: ${dataFormatada}
+👥 Número de pessoas: ${searchData.guests}
+
+Poderia me informar sobre disponibilidade, horários e valores?
+
+Mensagem enviada através do Rural Time.`;
+
+      const telefone = contactInfo[0].telefone.replace(/\D/g, '');
+      const mensagemEncoded = encodeURIComponent(mensagem);
+      const whatsappUrl = `https://wa.me/55${telefone}?text=${mensagemEncoded}`;
+      
+      window.open(whatsappUrl, '_blank');
+
+      toast({
+        title: "Mensagem enviada!",
+        description: `Sua solicitação foi enviada para ${propriedadeSelecionada.nome} via WhatsApp.`,
+      });
+
+    } catch (error) {
+      console.error('Erro ao processar busca:', error);
+      toast({
+        title: "Erro",
+        description: "Erro ao processar sua solicitação. Tente novamente.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -64,7 +142,7 @@ export const ModernBookingBar = () => {
         {/* Booking Form */}
         <Card className="glass-dark backdrop-blur-xl border-white/20 shadow-xl-soft hover-lift">
           <CardContent className="p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 items-end">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-end">
               
               {/* Destino */}
               <div className="space-y-2">
@@ -74,12 +152,15 @@ export const ModernBookingBar = () => {
                 </label>
                 <Select onValueChange={(value) => setSearchData({...searchData, destination: value})}>
                   <SelectTrigger className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/20 h-12">
-                    <SelectValue placeholder="Escolha a cidade" />
+                    <SelectValue placeholder="Escolha a propriedade" />
                   </SelectTrigger>
-                  <SelectContent>
-                    {locations.map((location) => (
-                      <SelectItem key={location} value={location}>
-                        {location}
+                  <SelectContent className="bg-background border-border z-50 max-h-64 overflow-y-auto">
+                    {propriedades.map((propriedade) => (
+                      <SelectItem key={propriedade.id} value={propriedade.id} className="cursor-pointer">
+                        <div className="flex flex-col">
+                          <div className="font-medium text-foreground">{propriedade.nome}</div>
+                          <div className="text-sm text-muted-foreground">{propriedade.cidade}</div>
+                        </div>
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -111,33 +192,13 @@ export const ModernBookingBar = () => {
                   <SelectTrigger className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/20 h-12">
                     <SelectValue placeholder="Quantas pessoas?" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-background border-border z-50">
                     {[1,2,3,4,5,6,7,8,9,10].map((num) => (
                       <SelectItem key={num} value={num.toString()}>
                         {num} {num === 1 ? 'pessoa' : 'pessoas'}
                       </SelectItem>
                     ))}
                     <SelectItem value="10+">Mais de 10 pessoas</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Tipo de Atividade */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-white/90 flex items-center">
-                  <Clock className="w-4 h-4 mr-2" />
-                  Atividade
-                </label>
-                <Select onValueChange={(value) => setSearchData({...searchData, activity: value})}>
-                  <SelectTrigger className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/20 h-12">
-                    <SelectValue placeholder="Tipo de experiência" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {activities.map((activity) => (
-                      <SelectItem key={activity} value={activity}>
-                        {activity}
-                      </SelectItem>
-                    ))}
                   </SelectContent>
                 </Select>
               </div>
