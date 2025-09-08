@@ -12,6 +12,7 @@ import { SejaParceiro } from "@/components/sections/SejaParcerio";
 import { Contato } from "@/components/sections/Contato";
 import { Footer } from "@/components/sections/Footer";
 import { Apoiadores } from "@/components/sections/Apoiadores";
+import { Artesanatos } from "@/components/sections/Artesanatos";
 
 const Index = () => {
   const scrollToSection = (sectionId: string) => {
@@ -45,6 +46,7 @@ const Index = () => {
       <main>
         <Hero onSectionClick={scrollToSection} />
         <Atrativos />
+        <Artesanatos />
         <Oferecemos />
         <Beneficios />
         <ComoFunciona />

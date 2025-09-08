@@ -7,19 +7,25 @@ import { supabase } from '@/integrations/supabase/client';
 import { LogOut, Plus, Edit, Trash2, Eye } from 'lucide-react';
 import PropertyForm from '@/components/admin/PropertyForm';
 import PropertyList from '@/components/admin/PropertyList';
+import ArtesanatoForm from '@/components/admin/ArtesanatoForm';
+import ArtesanatoList from '@/components/admin/ArtesanatoList';
 
 const Admin = () => {
   const [user, setUser] = useState(null);
   const [properties, setProperties] = useState([]);
+  const [artesanatos, setArtesanatos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingProperty, setEditingProperty] = useState(null);
+  const [editingArtesanato, setEditingArtesanato] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [activeTab, setActiveTab] = useState('properties');
   const navigate = useNavigate();
   const { toast } = useToast();
 
   useEffect(() => {
     checkAuth();
     loadProperties();
+    loadArtesanatos();
   }, []);
 
   const checkAuth = async () => {
@@ -48,6 +54,24 @@ const Admin = () => {
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadArtesanatos = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('artesanatos')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setArtesanatos(data || []);
+    } catch (error: any) {
+      toast({
+        title: "Erro ao carregar artesanatos",
+        description: error.message,
+        variant: "destructive"
+      });
     }
   };
 
@@ -91,10 +115,41 @@ const Admin = () => {
     }
   };
 
+  const handleDeleteArtesanato = async (id: string) => {
+    if (!confirm('Tem certeza que deseja excluir este artesanato?')) return;
+
+    try {
+      const { error } = await supabase
+        .from('artesanatos')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+
+      toast({
+        title: "Artesanato excluído",
+        description: "O artesanato foi removido com sucesso."
+      });
+
+      loadArtesanatos();
+    } catch (error: any) {
+      toast({
+        title: "Erro ao excluir artesanato",
+        description: error.message,
+        variant: "destructive"
+      });
+    }
+  };
+
   const handleFormSuccess = () => {
     setShowForm(false);
     setEditingProperty(null);
-    loadProperties();
+    setEditingArtesanato(null);
+    if (activeTab === 'properties') {
+      loadProperties();
+    } else {
+      loadArtesanatos();
+    }
   };
 
   if (loading) {
@@ -142,36 +197,82 @@ const Admin = () => {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {showForm ? (
-          <PropertyForm
-            property={editingProperty}
-            onSuccess={handleFormSuccess}
-            onCancel={() => {
-              setShowForm(false);
-              setEditingProperty(null);
-            }}
-          />
+          activeTab === 'properties' ? (
+            <PropertyForm
+              property={editingProperty}
+              onSuccess={handleFormSuccess}
+              onCancel={() => {
+                setShowForm(false);
+                setEditingProperty(null);
+              }}
+            />
+          ) : (
+            <ArtesanatoForm
+              artesanato={editingArtesanato}
+              onSuccess={handleFormSuccess}
+              onCancel={() => {
+                setShowForm(false);
+                setEditingArtesanato(null);
+              }}
+            />
+          )
         ) : (
           <>
+            {/* Tabs */}
+            <div className="flex space-x-1 mb-6 bg-muted rounded-lg p-1">
+              <button
+                onClick={() => setActiveTab('properties')}
+                className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                  activeTab === 'properties'
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Propriedades ({properties.length})
+              </button>
+              <button
+                onClick={() => setActiveTab('artesanatos')}
+                className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                  activeTab === 'artesanatos'
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Artesanatos ({artesanatos.length})
+              </button>
+            </div>
+
             {/* Actions Bar */}
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-gray-900">
-                Gerenciar Propriedades
+                {activeTab === 'properties' ? 'Gerenciar Propriedades' : 'Gerenciar Artesanatos'}
               </h2>
               <Button onClick={() => setShowForm(true)}>
                 <Plus className="w-4 h-4 mr-2" />
-                Nova Propriedade
+                {activeTab === 'properties' ? 'Nova Propriedade' : 'Novo Artesanato'}
               </Button>
             </div>
 
-            {/* Properties List */}
-            <PropertyList
-              properties={properties}
-              onEdit={(property) => {
-                setEditingProperty(property);
-                setShowForm(true);
-              }}
-              onDelete={handleDeleteProperty}
-            />
+            {/* Content */}
+            {activeTab === 'properties' ? (
+              <PropertyList
+                properties={properties}
+                onEdit={(property) => {
+                  setEditingProperty(property);
+                  setShowForm(true);
+                }}
+                onDelete={handleDeleteProperty}
+              />
+            ) : (
+              <ArtesanatoList
+                artesanatos={artesanatos}
+                onEdit={(artesanato) => {
+                  setEditingArtesanato(artesanato);
+                  setShowForm(true);
+                }}
+                onDelete={handleDeleteArtesanato}
+              />
+            )}
           </>
         )}
       </main>
