@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Heart, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Heart, Star, Eye } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import Autoplay from "embla-carousel-autoplay";
@@ -19,6 +21,7 @@ interface Artesanato {
 }
 
 export const Artesanatos = () => {
+  const navigate = useNavigate();
   const [artesanatos, setArtesanatos] = useState<Artesanato[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -163,6 +166,14 @@ export const Artesanatos = () => {
                         <span className="text-sm text-muted-foreground">
                           Por: <span className="font-medium text-foreground">{artesanato.artesao_nome}</span>
                         </span>
+                        <Button 
+                          size="sm" 
+                          onClick={() => navigate(`/artesanato/${artesanato.id}`)}
+                          className="ml-2"
+                        >
+                          <Eye className="w-4 h-4 mr-1" />
+                          Ver detalhes
+                        </Button>
                       </div>
                     </CardContent>
                   </Card>

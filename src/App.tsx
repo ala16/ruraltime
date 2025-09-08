@@ -15,6 +15,7 @@ import ComprarVoucher from "./pages/ComprarVoucher";
 import VoucherSuccess from "./pages/VoucherSuccess";
 import VoucherCanceled from "./pages/VoucherCanceled";
 import ValidarVoucher from "./pages/ValidarVoucher";
+import ArtesanatoDetalhes from "./pages/ArtesanatoDetalhes";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/voucher-success" element={<VoucherSuccess />} />
           <Route path="/voucher-canceled" element={<VoucherCanceled />} />
           <Route path="/validar-voucher" element={<ValidarVoucher />} />
+          <Route path="/artesanato/:id" element={<ArtesanatoDetalhes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
