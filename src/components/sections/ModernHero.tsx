@@ -38,12 +38,6 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
     }
   ];
 
-  const stats = [
-    { number: '50+', label: 'Propriedades Parceiras' },
-    { number: '200+', label: 'Artesãos Cadastrados' },
-    { number: '1000+', label: 'Visitantes Felizes' },
-    { number: '15', label: 'Cidades Atendidas' }
-  ];
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
@@ -105,19 +99,6 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                 </Button>
               </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-8">
-                {stats.map((stat, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-3xl lg:text-4xl font-bold text-white mb-1">
-                      {stat.number}
-                    </div>
-                    <div className="text-sm text-white/70">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Right Column - Feature Cards */}
