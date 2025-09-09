@@ -31,28 +31,6 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
 
   return (
     <>
-      {/* Top Bar */}
-      <div className="hidden lg:block bg-rural-primary text-white py-3 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-4 h-4 text-white/90" />
-                <span className="text-white/90 font-medium">Região Bragantina - São Paulo</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-white/90" />
-                <span className="text-white/90">(11) 99999-9999</span>
-              </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Mail className="w-4 h-4 text-white/90" />
-              <span className="text-white/90">contato@ruraltime.com</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled 
