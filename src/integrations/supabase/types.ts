@@ -44,7 +44,9 @@ export type Database = {
       artesanatos: {
         Row: {
           artesao_contato: string | null
+          artesao_instagram: string | null
           artesao_nome: string
+          artesao_whatsapp: string | null
           categoria: string
           created_at: string
           descricao: string | null
@@ -59,7 +61,9 @@ export type Database = {
         }
         Insert: {
           artesao_contato?: string | null
+          artesao_instagram?: string | null
           artesao_nome: string
+          artesao_whatsapp?: string | null
           categoria: string
           created_at?: string
           descricao?: string | null
@@ -74,7 +78,9 @@ export type Database = {
         }
         Update: {
           artesao_contato?: string | null
+          artesao_instagram?: string | null
           artesao_nome?: string
+          artesao_whatsapp?: string | null
           categoria?: string
           created_at?: string
           descricao?: string | null
@@ -96,6 +102,7 @@ export type Database = {
           id: string
           name: string
           slug: string
+          source: string
         }
         Insert: {
           created_at?: string | null
@@ -103,6 +110,7 @@ export type Database = {
           id?: string
           name: string
           slug: string
+          source?: string
         }
         Update: {
           created_at?: string | null
@@ -110,6 +118,7 @@ export type Database = {
           id?: string
           name?: string
           slug?: string
+          source?: string
         }
         Relationships: []
       }
@@ -218,16 +227,21 @@ export type Database = {
           excerpt: string | null
           featured: boolean | null
           id: string
+          image_url: string | null
+          is_featured: boolean | null
           og_image_url: string | null
           published_at: string | null
           reading_time: number | null
           scheduled_at: string | null
           slug: string
+          source: string
           status: Database["public"]["Enums"]["post_status"] | null
           subtitle: string | null
+          summary: string | null
           tags: string[] | null
           title: string
           updated_at: string | null
+          views: number | null
         }
         Insert: {
           amp_html?: string | null
@@ -240,16 +254,21 @@ export type Database = {
           excerpt?: string | null
           featured?: boolean | null
           id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
           og_image_url?: string | null
           published_at?: string | null
           reading_time?: number | null
           scheduled_at?: string | null
           slug: string
+          source?: string
           status?: Database["public"]["Enums"]["post_status"] | null
           subtitle?: string | null
+          summary?: string | null
           tags?: string[] | null
           title: string
           updated_at?: string | null
+          views?: number | null
         }
         Update: {
           amp_html?: string | null
@@ -262,16 +281,21 @@ export type Database = {
           excerpt?: string | null
           featured?: boolean | null
           id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
           og_image_url?: string | null
           published_at?: string | null
           reading_time?: number | null
           scheduled_at?: string | null
           slug?: string
+          source?: string
           status?: Database["public"]["Enums"]["post_status"] | null
           subtitle?: string | null
+          summary?: string | null
           tags?: string[] | null
           title?: string
           updated_at?: string | null
+          views?: number | null
         }
         Relationships: [
           {
@@ -502,18 +526,21 @@ export type Database = {
           id: string
           name: string
           slug: string
+          source: string
         }
         Insert: {
           created_at?: string | null
           id?: string
           name: string
           slug: string
+          source?: string
         }
         Update: {
           created_at?: string | null
           id?: string
           name?: string
           slug?: string
+          source?: string
         }
         Relationships: []
       }
