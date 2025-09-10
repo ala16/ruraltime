@@ -696,7 +696,10 @@ export type Database = {
       get_artesanatos_public_view: {
         Args: Record<PropertyKey, never>
         Returns: {
+          artesao_contato: string
+          artesao_instagram: string
           artesao_nome: string
+          artesao_whatsapp: string
           categoria: string
           created_at: string
           descricao: string
@@ -704,7 +707,6 @@ export type Database = {
           id: string
           imagens: string[]
           nome: string
-          preco: number
         }[]
       }
       get_property_contact_info: {

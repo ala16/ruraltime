@@ -3,7 +3,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Heart, Star, Eye } from "lucide-react";
+import { Heart, Star, Eye, MessageCircle, Instagram } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import Autoplay from "embla-carousel-autoplay";
@@ -12,9 +12,11 @@ interface Artesanato {
   id: string;
   nome: string;
   descricao: string;
-  preco: number;
   categoria: string;
   artesao_nome: string;
+  artesao_contato: string;
+  artesao_whatsapp: string;
+  artesao_instagram: string;
   imagens: string[];
   destaque: boolean;
 }
@@ -166,14 +168,40 @@ export const Artesanatos = () => {
                         {artesanato.descricao}
                       </p>
                       
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-rural-text-light">
+                      <div className="space-y-3">
+                        <div className="text-sm text-rural-text-light">
                           Por: <span className="font-medium text-rural-primary">{artesanato.artesao_nome}</span>
-                        </span>
+                        </div>
+                        
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {artesanato.artesao_whatsapp && (
+                            <a
+                              href={`https://wa.me/${artesanato.artesao_whatsapp.replace(/\D/g, '')}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 px-2 py-1 bg-green-500 hover:bg-green-600 text-white rounded-md text-xs transition-colors"
+                            >
+                              <MessageCircle className="w-3 h-3" />
+                              WhatsApp
+                            </a>
+                          )}
+                          {artesanato.artesao_instagram && (
+                            <a
+                              href={`https://instagram.com/${artesanato.artesao_instagram.replace('@', '')}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 px-2 py-1 bg-pink-500 hover:bg-pink-600 text-white rounded-md text-xs transition-colors"
+                            >
+                              <Instagram className="w-3 h-3" />
+                              Instagram
+                            </a>
+                          )}
+                        </div>
+                        
                         <Button 
                           size="sm" 
                           onClick={() => handleViewDetails(artesanato.id)}
-                          className="btn-modern bg-gradient-primary hover:bg-gradient-secondary text-primary-foreground ml-2 shadow-soft"
+                          className="btn-modern bg-gradient-primary hover:bg-gradient-secondary text-primary-foreground w-full shadow-soft"
                         >
                           <Eye className="w-4 h-4 mr-1" />
                           Ver detalhes

@@ -12,7 +12,6 @@ interface Artesanato {
   id: string;
   nome: string;
   descricao: string;
-  preco: number;
   categoria: string;
   artesao_nome: string;
   artesao_contato: string;

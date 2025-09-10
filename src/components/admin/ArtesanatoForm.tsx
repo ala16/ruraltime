@@ -33,10 +33,11 @@ const ArtesanatoForm: React.FC<ArtesanatoFormProps> = ({ artesanato, onSuccess, 
   const [formData, setFormData] = useState({
     nome: '',
     descricao: '',
-    preco: '',
     categoria: '',
     artesao_nome: '',
     artesao_contato: '',
+    artesao_whatsapp: '',
+    artesao_instagram: '',
     imagens: [] as string[],
     disponivel: true,
     destaque: false,
@@ -50,10 +51,11 @@ const ArtesanatoForm: React.FC<ArtesanatoFormProps> = ({ artesanato, onSuccess, 
       setFormData({
         nome: artesanato.nome || '',
         descricao: artesanato.descricao || '',
-        preco: artesanato.preco?.toString() || '',
         categoria: artesanato.categoria || '',
         artesao_nome: artesanato.artesao_nome || '',
         artesao_contato: artesanato.artesao_contato || '',
+        artesao_whatsapp: artesanato.artesao_whatsapp || '',
+        artesao_instagram: artesanato.artesao_instagram || '',
         imagens: artesanato.imagens || [],
         disponivel: artesanato.disponivel ?? true,
         destaque: artesanato.destaque ?? false,
@@ -131,7 +133,6 @@ const ArtesanatoForm: React.FC<ArtesanatoFormProps> = ({ artesanato, onSuccess, 
 
       const artesanatoData = {
         ...formData,
-        preco: formData.preco ? parseFloat(formData.preco) : null,
         user_id: user.id,
       };
 
@@ -241,17 +242,6 @@ const ArtesanatoForm: React.FC<ArtesanatoFormProps> = ({ artesanato, onSuccess, 
               />
             </div>
 
-            <div>
-              <Label htmlFor="preco">Preço (R$)</Label>
-              <Input
-                id="preco"
-                type="number"
-                step="0.01"
-                value={formData.preco}
-                onChange={(e) => setFormData(prev => ({ ...prev, preco: e.target.value }))}
-                placeholder="0.00"
-              />
-            </div>
           </CardContent>
         </Card>
 
@@ -263,7 +253,7 @@ const ArtesanatoForm: React.FC<ArtesanatoFormProps> = ({ artesanato, onSuccess, 
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <Label htmlFor="artesao_nome">Nome do Artesão *</Label>
                 <Input
@@ -275,14 +265,33 @@ const ArtesanatoForm: React.FC<ArtesanatoFormProps> = ({ artesanato, onSuccess, 
                 />
               </div>
               <div>
-                <Label htmlFor="artesao_contato">Contato</Label>
+                <Label htmlFor="artesao_whatsapp">WhatsApp</Label>
                 <Input
-                  id="artesao_contato"
-                  value={formData.artesao_contato}
-                  onChange={(e) => setFormData(prev => ({ ...prev, artesao_contato: e.target.value }))}
-                  placeholder="Telefone, email ou rede social"
+                  id="artesao_whatsapp"
+                  value={formData.artesao_whatsapp}
+                  onChange={(e) => setFormData(prev => ({ ...prev, artesao_whatsapp: e.target.value }))}
+                  placeholder="(11) 99999-9999"
                 />
               </div>
+              <div>
+                <Label htmlFor="artesao_instagram">Instagram</Label>
+                <Input
+                  id="artesao_instagram"
+                  value={formData.artesao_instagram}
+                  onChange={(e) => setFormData(prev => ({ ...prev, artesao_instagram: e.target.value }))}
+                  placeholder="@usuario_instagram"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <Label htmlFor="artesao_contato">Outros Contatos</Label>
+              <Input
+                id="artesao_contato"
+                value={formData.artesao_contato}
+                onChange={(e) => setFormData(prev => ({ ...prev, artesao_contato: e.target.value }))}
+                placeholder="Email, telefone adicional ou outros meios de contato"
+              />
             </div>
           </CardContent>
         </Card>
