@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { ArrowLeft, Star, Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowLeft, Star, Mail, Phone, MapPin, Instagram, MessageCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -16,6 +16,8 @@ interface Artesanato {
   categoria: string;
   artesao_nome: string;
   artesao_contato: string;
+  artesao_instagram?: string;
+  artesao_whatsapp?: string;
   imagens: string[];
   destaque: boolean;
 }
@@ -25,6 +27,7 @@ const ArtesanatoDetalhes = () => {
   const navigate = useNavigate();
   const [artesanato, setArtesanato] = useState<Artesanato | null>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   useEffect(() => {
     const fetchArtesanato = async () => {
@@ -104,29 +107,39 @@ const ArtesanatoDetalhes = () => {
           {/* Imagens */}
           <div className="space-y-4">
             {artesanato.imagens && artesanato.imagens.length > 0 ? (
-              artesanato.imagens.length === 1 ? (
-                <img
-                  src={artesanato.imagens[0]}
-                  alt={artesanato.nome}
-                  className="w-full h-96 object-cover rounded-lg"
-                />
-              ) : (
-                <Carousel className="w-full">
-                  <CarouselContent>
+              <>
+                {/* Carrossel Principal */}
+                <div className="w-full">
+                  <img
+                    src={artesanato.imagens[selectedImageIndex]}
+                    alt={`${artesanato.nome} - ${selectedImageIndex + 1}`}
+                    className="w-full h-96 object-cover rounded-lg"
+                  />
+                </div>
+                
+                {/* Miniaturas */}
+                {artesanato.imagens.length > 1 && (
+                  <div className="flex gap-2 overflow-x-auto pb-2">
                     {artesanato.imagens.map((imagem, index) => (
-                      <CarouselItem key={index}>
+                      <button
+                        key={index}
+                        onClick={() => setSelectedImageIndex(index)}
+                        className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                          selectedImageIndex === index 
+                            ? 'border-primary shadow-lg' 
+                            : 'border-transparent hover:border-muted-foreground/50'
+                        }`}
+                      >
                         <img
                           src={imagem}
-                          alt={`${artesanato.nome} - ${index + 1}`}
-                          className="w-full h-96 object-cover rounded-lg"
+                          alt={`${artesanato.nome} miniatura ${index + 1}`}
+                          className="w-full h-full object-cover"
                         />
-                      </CarouselItem>
+                      </button>
                     ))}
-                  </CarouselContent>
-                  <CarouselPrevious />
-                  <CarouselNext />
-                </Carousel>
-              )
+                  </div>
+                )}
+              </>
             ) : (
               <div className="w-full h-96 bg-muted rounded-lg flex items-center justify-center">
                 <span className="text-muted-foreground">Sem imagem</span>
@@ -147,11 +160,8 @@ const ArtesanatoDetalhes = () => {
                 )}
               </div>
               
-              <div className="flex items-center gap-4 mb-4">
+              <div className="mb-4">
                 <Badge variant="secondary">{artesanato.categoria}</Badge>
-                <div className="text-2xl font-bold text-primary">
-                  R$ {artesanato.preco?.toFixed(2)}
-                </div>
               </div>
             </div>
 
@@ -169,35 +179,62 @@ const ArtesanatoDetalhes = () => {
             <Card>
               <CardContent className="p-6">
                 <h3 className="font-semibold mb-3">Artesão</h3>
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <div className="flex items-center gap-2">
                     <span className="font-medium">{artesanato.artesao_nome}</span>
                   </div>
-                  {artesanato.artesao_contato && (
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      {artesanato.artesao_contato.includes('@') ? (
-                        <>
-                          <Mail className="w-4 h-4" />
-                          <a 
-                            href={`mailto:${artesanato.artesao_contato}`}
-                            className="hover:text-primary transition-colors"
-                          >
-                            {artesanato.artesao_contato}
-                          </a>
-                        </>
-                      ) : (
-                        <>
-                          <Phone className="w-4 h-4" />
-                          <a 
-                            href={`tel:${artesanato.artesao_contato}`}
-                            className="hover:text-primary transition-colors"
-                          >
-                            {artesanato.artesao_contato}
-                          </a>
-                        </>
-                      )}
-                    </div>
-                  )}
+                  
+                  <div className="flex flex-wrap gap-3">
+                    {artesanato.artesao_whatsapp && (
+                      <a 
+                        href={`https://wa.me/${artesanato.artesao_whatsapp.replace(/\D/g, '')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-3 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors text-sm"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        WhatsApp
+                      </a>
+                    )}
+                    
+                    {artesanato.artesao_instagram && (
+                      <a 
+                        href={`https://instagram.com/${artesanato.artesao_instagram.replace('@', '')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-3 py-2 bg-pink-100 text-pink-700 rounded-lg hover:bg-pink-200 transition-colors text-sm"
+                      >
+                        <Instagram className="w-4 h-4" />
+                        Instagram
+                      </a>
+                    )}
+                    
+                    {artesanato.artesao_contato && (
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        {artesanato.artesao_contato.includes('@') ? (
+                          <>
+                            <Mail className="w-4 h-4" />
+                            <a 
+                              href={`mailto:${artesanato.artesao_contato}`}
+                              className="hover:text-primary transition-colors"
+                            >
+                              {artesanato.artesao_contato}
+                            </a>
+                          </>
+                        ) : (
+                          <>
+                            <Phone className="w-4 h-4" />
+                            <a 
+                              href={`tel:${artesanato.artesao_contato}`}
+                              className="hover:text-primary transition-colors"
+                            >
+                              {artesanato.artesao_contato}
+                            </a>
+                          </>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </CardContent>
             </Card>

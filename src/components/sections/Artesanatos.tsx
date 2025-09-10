@@ -152,15 +152,10 @@ export const Artesanatos = () => {
                       </div>
                     </div>
                     <CardContent className="p-6">
-                      <div className="flex items-start justify-between mb-4">
+                      <div className="mb-4">
                         <h3 className="font-semibold text-xl text-foreground group-hover:text-rural-primary transition-colors">
                           {artesanato.nome}
                         </h3>
-                        <div className="text-right">
-                          <div className="text-2xl font-bold bg-gradient-to-r from-rural-primary to-rural-secondary bg-clip-text text-transparent">
-                            R$ {artesanato.preco?.toFixed(2)}
-                          </div>
-                        </div>
                       </div>
                       
                       <Badge variant="secondary" className="mb-4 bg-rural-accent/20 text-rural-primary border-rural-accent/30">
