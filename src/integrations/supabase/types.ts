@@ -739,12 +739,14 @@ export type Database = {
           id: string
           imagens: string[]
           infraestrutura: string[]
+          instagram: string
           latitude: number
           longitude: number
           nome: string
           preco_visita: number
           tamanho_hectares: number
           tipo_propriedade: string
+          whatsapp: string
         }[]
       }
       is_admin: {
