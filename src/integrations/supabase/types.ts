@@ -417,6 +417,7 @@ export type Database = {
           id: string
           imagens: string[] | null
           infraestrutura: string[] | null
+          instagram: string | null
           latitude: number | null
           longitude: number | null
           nome: string
@@ -427,6 +428,7 @@ export type Database = {
           updated_at: string
           user_id: string
           website: string | null
+          whatsapp: string | null
         }
         Insert: {
           atividades?: string[] | null
@@ -444,6 +446,7 @@ export type Database = {
           id?: string
           imagens?: string[] | null
           infraestrutura?: string[] | null
+          instagram?: string | null
           latitude?: number | null
           longitude?: number | null
           nome: string
@@ -454,6 +457,7 @@ export type Database = {
           updated_at?: string
           user_id: string
           website?: string | null
+          whatsapp?: string | null
         }
         Update: {
           atividades?: string[] | null
@@ -471,6 +475,7 @@ export type Database = {
           id?: string
           imagens?: string[] | null
           infraestrutura?: string[] | null
+          instagram?: string | null
           latitude?: number | null
           longitude?: number | null
           nome?: string
@@ -481,6 +486,7 @@ export type Database = {
           updated_at?: string
           user_id?: string
           website?: string | null
+          whatsapp?: string | null
         }
         Relationships: []
       }
