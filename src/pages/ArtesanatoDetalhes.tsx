@@ -162,24 +162,37 @@ const ArtesanatoDetalhes = () => {
                 
                 {/* Miniaturas */}
                 {artesanato.imagens.length > 1 && (
-                  <div className="flex gap-2 overflow-x-auto pb-2">
-                    {artesanato.imagens.map((imagem, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setSelectedImageIndex(index)}
-                        className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                          selectedImageIndex === index 
-                            ? 'border-primary shadow-lg' 
-                            : 'border-transparent hover:border-muted-foreground/50'
-                        }`}
-                      >
-                        <img
-                          src={imagem}
-                          alt={`${artesanato.nome} miniatura ${index + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </button>
-                    ))}
+                  <div className="relative">
+                    <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-2" style={{
+                      scrollbarWidth: 'none',
+                      msOverflowStyle: 'none'
+                    }}>
+                      {artesanato.imagens.map((imagem, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setSelectedImageIndex(index)}
+                          className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
+                            selectedImageIndex === index 
+                              ? 'border-primary shadow-lg ring-2 ring-primary/30' 
+                              : 'border-muted hover:border-muted-foreground/50'
+                          }`}
+                        >
+                          <img
+                            src={imagem}
+                            alt={`${artesanato.nome} miniatura ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                    
+                    {/* Gradientes para indicar scroll quando há muitas imagens */}
+                    {artesanato.imagens.length > 6 && (
+                      <>
+                        <div className="absolute left-0 top-0 bottom-2 w-4 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
+                        <div className="absolute right-0 top-0 bottom-2 w-4 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
+                      </>
+                    )}
                   </div>
                 )}
               </>
