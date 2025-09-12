@@ -134,7 +134,7 @@ export const Artesanatos = () => {
               {artesanatos.map((artesanato) => (
                 <CarouselItem key={artesanato.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
                   <Card className="overflow-hidden h-full group hover-lift border-0 bg-gradient-card shadow-soft">
-                    <div className="relative overflow-hidden">
+                    <div className="relative overflow-hidden cursor-pointer" onClick={() => handleViewDetails(artesanato.id)}>
                       <img
                         src={artesanato.imagens[0]}
                         alt={artesanato.nome}

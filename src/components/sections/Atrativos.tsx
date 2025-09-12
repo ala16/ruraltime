@@ -107,7 +107,7 @@ export function Atrativos() {
           <CarouselContent className="-ml-2 md:-ml-4">
             {propriedades.map((propriedade) => (
               <CarouselItem key={propriedade.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onClick={() => navigate(`/propriedade/${propriedade.id}`)}>
                   <img
                     src={propriedade.imagens[0]}
                     alt={propriedade.nome}
