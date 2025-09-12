@@ -168,8 +168,8 @@ export function Atrativos() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
+          <CarouselPrevious className="left-4 bg-white/90 border-2 shadow-lg hover:bg-white w-12 h-12" />
+          <CarouselNext className="right-4 bg-white/90 border-2 shadow-lg hover:bg-white w-12 h-12" />
         </Carousel>
       </div>
     </section>

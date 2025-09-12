@@ -212,8 +212,8 @@ export const Artesanatos = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden md:flex -left-12 glass border-rural-accent/30 hover:bg-rural-accent/20 text-rural-primary" />
-            <CarouselNext className="hidden md:flex -right-12 glass border-rural-accent/30 hover:bg-rural-accent/20 text-rural-primary" />
+            <CarouselPrevious className="left-4 bg-white/90 border-2 shadow-lg hover:bg-white w-12 h-12" />
+            <CarouselNext className="right-4 bg-white/90 border-2 shadow-lg hover:bg-white w-12 h-12" />
           </Carousel>
         </div>
       </div>
