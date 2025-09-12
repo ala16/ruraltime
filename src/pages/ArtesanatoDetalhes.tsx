@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { ArrowLeft, Star, Mail, Phone, MapPin, Instagram, MessageCircle } from 'lucide-react';
+import { ArrowLeft, Star, Mail, Phone, MapPin, Instagram, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -27,6 +27,22 @@ const ArtesanatoDetalhes = () => {
   const [artesanato, setArtesanato] = useState<Artesanato | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const handlePreviousImage = () => {
+    if (artesanato?.imagens) {
+      setSelectedImageIndex(prev => 
+        prev === 0 ? artesanato.imagens.length - 1 : prev - 1
+      );
+    }
+  };
+
+  const handleNextImage = () => {
+    if (artesanato?.imagens) {
+      setSelectedImageIndex(prev => 
+        prev === artesanato.imagens.length - 1 ? 0 : prev + 1
+      );
+    }
+  };
 
   useEffect(() => {
     const fetchArtesanato = async () => {
@@ -108,12 +124,40 @@ const ArtesanatoDetalhes = () => {
             {artesanato.imagens && artesanato.imagens.length > 0 ? (
               <>
                 {/* Carrossel Principal */}
-                <div className="w-full">
+                <div className="relative w-full">
                   <img
                     src={artesanato.imagens[selectedImageIndex]}
                     alt={`${artesanato.nome} - ${selectedImageIndex + 1}`}
                     className="w-full h-96 object-cover rounded-lg"
                   />
+                  
+                  {/* Botões de navegação */}
+                  {artesanato.imagens.length > 1 && (
+                    <>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={handlePreviousImage}
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white w-12 h-12 rounded-full shadow-lg"
+                      >
+                        <ChevronLeft className="w-6 h-6" />
+                      </Button>
+                      
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={handleNextImage}
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white w-12 h-12 rounded-full shadow-lg"
+                      >
+                        <ChevronRight className="w-6 h-6" />
+                      </Button>
+                      
+                      {/* Indicador de posição */}
+                      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                        {selectedImageIndex + 1} / {artesanato.imagens.length}
+                      </div>
+                    </>
+                  )}
                 </div>
                 
                 {/* Miniaturas */}
