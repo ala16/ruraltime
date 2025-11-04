@@ -56,9 +56,9 @@ export const BrazilMap = () => {
   const [selectedState, setSelectedState] = useState<string | null>(null);
   const [propriedades, setPropriedades] = useState<Propriedade[]>([]);
   const [filteredPropriedades, setFilteredPropriedades] = useState<Propriedade[]>([]);
-  const [mapboxToken, setMapboxToken] = useState<string>('');
   const navigate = useNavigate();
   const markersRef = useRef<mapboxgl.Marker[]>([]);
+  const mapboxToken = 'pk.eyJ1Ijoicmlja2s2IiwiYSI6ImNtaGp1czhzdTE1b2YyaXByMGdiODBjZjAifQ.rYfe5zFBekxRf5SoKGp86A';
 
   useEffect(() => {
     // Fetch propriedades from database
@@ -219,36 +219,8 @@ export const BrazilMap = () => {
           </p>
         </div>
 
-        {!mapboxToken ? (
-          <Card className="p-6 mb-6 bg-yellow-50 border-yellow-200">
-            <div className="space-y-4">
-              <p className="text-sm text-yellow-800">
-                Para visualizar o mapa, insira sua chave pública do Mapbox:
-              </p>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  placeholder="Cole sua chave pública do Mapbox aqui"
-                  className="flex-1 px-4 py-2 border rounded-lg"
-                  onChange={(e) => setMapboxToken(e.target.value)}
-                />
-              </div>
-              <p className="text-xs text-yellow-700">
-                Obtenha sua chave em:{' '}
-                <a 
-                  href="https://account.mapbox.com/access-tokens/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="underline"
-                >
-                  https://account.mapbox.com/access-tokens/
-                </a>
-              </p>
-            </div>
-          </Card>
-        ) : (
-          <>
-            {/* Map Container */}
+        {/* Map Container */}
+        <>
             <div className="grid lg:grid-cols-4 gap-6">
               {/* States List */}
               <div className="lg:col-span-1">
@@ -344,7 +316,6 @@ export const BrazilMap = () => {
               </div>
             </div>
           </>
-        )}
       </div>
     </section>
   );
