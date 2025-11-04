@@ -28,7 +28,9 @@ const PropertyForm = ({ property, onSuccess, onCancel }) => {
     capacidade_visitantes: '',
     tamanho_hectares: '',
     destaque: false,
-    imagens: []
+    imagens: [],
+    latitude: '',
+    longitude: ''
   });
   const [loading, setLoading] = useState(false);
   const [uploadingImages, setUploadingImages] = useState(false);
@@ -59,6 +61,8 @@ const PropertyForm = ({ property, onSuccess, onCancel }) => {
         preco_visita: property.preco_visita?.toString() || '',
         capacidade_visitantes: property.capacidade_visitantes?.toString() || '',
         tamanho_hectares: property.tamanho_hectares?.toString() || '',
+        latitude: property.latitude?.toString() || '',
+        longitude: property.longitude?.toString() || '',
         imagens: property.imagens || []
       });
     }
@@ -151,6 +155,8 @@ const PropertyForm = ({ property, onSuccess, onCancel }) => {
         preco_visita: formData.preco_visita ? parseFloat(formData.preco_visita) : null,
         capacidade_visitantes: formData.capacidade_visitantes ? parseInt(formData.capacidade_visitantes) : null,
         tamanho_hectares: formData.tamanho_hectares ? parseFloat(formData.tamanho_hectares) : null,
+        latitude: formData.latitude ? parseFloat(formData.latitude) : null,
+        longitude: formData.longitude ? parseFloat(formData.longitude) : null,
       };
 
       if (property) {
@@ -348,6 +354,50 @@ const PropertyForm = ({ property, onSuccess, onCancel }) => {
                   onChange={(e) => handleInputChange('cep', e.target.value)}
                 />
               </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="latitude">Latitude (Coordenada Geográfica)</Label>
+                <Input
+                  id="latitude"
+                  type="number"
+                  step="any"
+                  value={formData.latitude}
+                  onChange={(e) => handleInputChange('latitude', e.target.value)}
+                  placeholder="-23.123456"
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  Use Google Maps para obter as coordenadas exatas
+                </p>
+              </div>
+              <div>
+                <Label htmlFor="longitude">Longitude (Coordenada Geográfica)</Label>
+                <Input
+                  id="longitude"
+                  type="number"
+                  step="any"
+                  value={formData.longitude}
+                  onChange={(e) => handleInputChange('longitude', e.target.value)}
+                  placeholder="-46.123456"
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  Copie e cole as coordenadas do Google Maps
+                </p>
+              </div>
+            </div>
+            
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <p className="text-sm text-blue-800 mb-2">
+                <strong>Como obter as coordenadas:</strong>
+              </p>
+              <ol className="text-sm text-blue-700 space-y-1 list-decimal list-inside">
+                <li>Abra o Google Maps</li>
+                <li>Busque pelo endereço da sua propriedade</li>
+                <li>Clique com o botão direito no local exato</li>
+                <li>Clique nas coordenadas que aparecem no topo</li>
+                <li>Cole a primeira coordenada em Latitude e a segunda em Longitude</li>
+              </ol>
             </div>
           </CardContent>
         </Card>
