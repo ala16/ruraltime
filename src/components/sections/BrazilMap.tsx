@@ -4,9 +4,10 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
-import { X, MapPin, Eye } from 'lucide-react';
+import { X, MapPin, Eye, ExternalLink } from 'lucide-react';
 
 interface Propriedade {
   id: string;
@@ -17,6 +18,10 @@ interface Propriedade {
   longitude: number;
   tipo_propriedade: string;
   preco_visita: number;
+  descricao?: string;
+  imagens?: string[];
+  atividades?: string[];
+  infraestrutura?: string[];
 }
 
 // Estados brasileiros com suas coordenadas centrais
@@ -56,6 +61,8 @@ export const BrazilMap = () => {
   const [selectedState, setSelectedState] = useState<string | null>(null);
   const [propriedades, setPropriedades] = useState<Propriedade[]>([]);
   const [filteredPropriedades, setFilteredPropriedades] = useState<Propriedade[]>([]);
+  const [selectedProperty, setSelectedProperty] = useState<Propriedade | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
   const navigate = useNavigate();
   const markersRef = useRef<mapboxgl.Marker[]>([]);
   const mapboxToken = 'pk.eyJ1Ijoicmlja2s2IiwiYSI6ImNtaGp1czhzdTE1b2YyaXByMGdiODBjZjAifQ.rYfe5zFBekxRf5SoKGp86A';
@@ -138,21 +145,21 @@ export const BrazilMap = () => {
 
       const marker = new mapboxgl.Marker(el)
         .setLngLat([propriedade.longitude, propriedade.latitude])
-        .setPopup(
-          new mapboxgl.Popup({ offset: 25 })
-            .setHTML(`
-              <div style="padding: 8px;">
-                <h3 style="font-weight: bold; margin-bottom: 4px;">${propriedade.nome}</h3>
-                <p style="font-size: 14px; color: #666; margin-bottom: 4px;">${propriedade.cidade} - ${propriedade.estado}</p>
-                <p style="font-size: 14px; color: #666;">${propriedade.tipo_propriedade}</p>
-              </div>
-            `)
-        )
         .addTo(map.current!);
 
-      // Navigate to property details on marker click
-      el.addEventListener('click', () => {
-        navigate(`/propriedade/${propriedade.id}`);
+      // Open preview dialog on marker click
+      el.addEventListener('click', async () => {
+        // Fetch full property details
+        const { data, error } = await supabase
+          .from('propriedades')
+          .select('*')
+          .eq('id', propriedade.id)
+          .single();
+        
+        if (!error && data) {
+          setSelectedProperty(data);
+          setShowPreview(true);
+        }
       });
 
       markersRef.current.push(marker);
@@ -329,6 +336,83 @@ export const BrazilMap = () => {
               </div>
             </div>
           </>
+
+        {/* Property Preview Dialog */}
+        <Dialog open={showPreview} onOpenChange={setShowPreview}>
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+            {selectedProperty && (
+              <>
+                <DialogHeader>
+                  <DialogTitle className="text-2xl">{selectedProperty.nome}</DialogTitle>
+                </DialogHeader>
+                
+                <div className="space-y-4">
+                  {/* Property Image */}
+                  {selectedProperty.imagens && selectedProperty.imagens.length > 0 && (
+                    <div className="relative w-full h-64 rounded-lg overflow-hidden">
+                      <img
+                        src={selectedProperty.imagens[0]}
+                        alt={selectedProperty.nome}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  
+                  {/* Property Details */}
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <MapPin className="w-4 h-4" />
+                      <span>{selectedProperty.cidade} - {selectedProperty.estado}</span>
+                    </div>
+                    
+                    <Badge variant="secondary" className="w-fit">
+                      {selectedProperty.tipo_propriedade}
+                    </Badge>
+                    
+                    {selectedProperty.descricao && (
+                      <p className="text-sm text-muted-foreground line-clamp-3">
+                        {selectedProperty.descricao}
+                      </p>
+                    )}
+                    
+                    {selectedProperty.preco_visita && (
+                      <div className="text-lg font-semibold text-primary">
+                        R$ {selectedProperty.preco_visita.toFixed(2)} / pessoa
+                      </div>
+                    )}
+                    
+                    {/* Activities */}
+                    {selectedProperty.atividades && selectedProperty.atividades.length > 0 && (
+                      <div>
+                        <h4 className="font-semibold text-sm mb-2">Atividades:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedProperty.atividades.slice(0, 5).map((atividade, idx) => (
+                            <Badge key={idx} variant="outline">
+                              {atividade}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Action Button */}
+                  <Button 
+                    className="w-full" 
+                    size="lg"
+                    onClick={() => {
+                      setShowPreview(false);
+                      navigate(`/propriedade/${selectedProperty.id}`);
+                    }}
+                  >
+                    Ver Detalhes Completos
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
