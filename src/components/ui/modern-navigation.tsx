@@ -50,7 +50,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                 }`}>Rural Time</h1>
                 <p className={`text-sm transition-colors ${
                   isScrolled ? 'text-rural-text-light' : 'text-white/90'
-                }`}>Turismo e Artesanato na Região Bragantina</p>
+                }`}>Turismo Rural e Artesanato Brasileiro</p>
               </div>
             </div>
 

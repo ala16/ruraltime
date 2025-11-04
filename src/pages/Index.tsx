@@ -32,11 +32,11 @@ const Index = () => {
 
   useEffect(() => {
     // Update page title and meta description for SEO
-    document.title = "Rural Time - Turismo Rural Digital na Região Bragantina";
+    document.title = "Rural Time - Turismo Rural Digital no Brasil";
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Conectamos turistas a pequenas propriedades rurais da Região Bragantina. Experiências autênticas no campo e transformação digital no agro. Projeto CNA Jovem.');
+      metaDescription.setAttribute('content', 'Conectamos turistas a pequenas propriedades rurais em todo o Brasil. Experiências autênticas no campo e transformação digital no agro. Projeto CNA Jovem.');
     }
   }, []);
 

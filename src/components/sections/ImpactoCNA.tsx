@@ -21,7 +21,7 @@ export function ImpactoCNA() {
             <CardContent>
               <p className="text-muted-foreground text-sm">
                 <strong className="text-primary">Meta:</strong> Aumentar o número de propriedades 
-                ofertando turismo rural na Região Bragantina.
+                ofertando turismo rural em todo o Brasil.
               </p>
             </CardContent>
           </Card>

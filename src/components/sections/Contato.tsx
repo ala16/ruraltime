@@ -21,9 +21,9 @@ export function Contato() {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                <strong className="text-primary">Região Bragantina</strong><br />
-                São Paulo - SP<br />
-                Cobrimos toda a região com foco em pequenas propriedades rurais
+                <strong className="text-primary">São Paulo</strong><br />
+                São Paulo - SP - Brasil<br />
+                Conectando propriedades rurais em todo o país
               </p>
             </CardContent>
           </Card>
@@ -109,11 +109,10 @@ export function Contato() {
         <div className="mt-16">
           <Card className="bg-gradient-secondary text-white border-0">
             <CardContent className="p-8 text-center">
-              <h4 className="text-2xl font-bold mb-4">Região Bragantina</h4>
+              <h4 className="text-2xl font-bold mb-4">Brasil Rural</h4>
               <p className="text-lg leading-relaxed max-w-3xl mx-auto">
-                Atendemos produtores e turistas em Bragança Paulista, Atibaia, Piracaia, 
-                Nazaré Paulista, Vargem, Tuiuti e toda a região, conectando experiências 
-                autênticas do campo com a proximidade da Grande São Paulo.
+                Conectamos produtores e turistas em todo o Brasil, promovendo experiências 
+                autênticas do campo e valorizando as tradições rurais de cada região.
               </p>
             </CardContent>
           </Card>

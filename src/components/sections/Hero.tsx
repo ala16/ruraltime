@@ -65,7 +65,7 @@ export function Hero({ onSectionClick }: HeroProps) {
         </h1>
         
         <p className="text-xl md:text-2xl mb-8 leading-relaxed max-w-3xl mx-auto">
-          O Rural Time conecta turistas a pequenas propriedades rurais da Região Bragantina, 
+          O Rural Time conecta turistas a pequenas propriedades rurais em todo o Brasil, 
           promovendo experiências autênticas no campo e impulsionando a transformação digital no agro.
         </p>
         

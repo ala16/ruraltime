@@ -69,7 +69,7 @@ export function Footer({ onSectionClick }: FooterProps) {
           <div>
             <h4 className="font-semibold text-lg mb-4">Contato</h4>
             <ul className="space-y-2 text-white/80">
-              <li>Região Bragantina - SP</li>
+              <li>São Paulo - SP - Brasil</li>
               <li>
                 <a href="mailto:contato@ruraltime.com.br" className="hover:text-white transition-colors">
                   contato@ruraltime.com.br

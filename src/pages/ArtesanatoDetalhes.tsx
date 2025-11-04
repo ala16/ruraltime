@@ -300,9 +300,9 @@ const ArtesanatoDetalhes = () => {
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-primary mt-1" />
                   <div>
-                    <h3 className="font-semibold mb-2">Artesanato da Região Bragantina</h3>
+                    <h3 className="font-semibold mb-2">Artesanato Brasileiro</h3>
                     <p className="text-sm text-muted-foreground">
-                      Peça única criada por talentosos artesãos da nossa região, 
+                      Peça única criada por talentosos artesãos brasileiros, 
                       preservando tradições e agregando valor cultural às experiências rurais.
                     </p>
                   </div>

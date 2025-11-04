@@ -45,7 +45,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
       <div className="absolute inset-0">
         <img 
           src={heroImage} 
-          alt="Paisagem rural da Região Bragantina" 
+          alt="Paisagem rural brasileira" 
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-hero" />
@@ -61,7 +61,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
               {/* Hero Badge */}
               <Badge className="bg-rural-secondary/20 text-rural-secondary border-rural-secondary/30 backdrop-blur-sm px-4 py-2 text-sm font-medium">
                 <Leaf className="w-4 h-4 mr-2" />
-                Turismo e Artesanato na Região Bragantina
+                Turismo Rural e Artesanato Brasileiro
               </Badge>
 
               {/* Main Heading */}
@@ -73,7 +73,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                   </span>
                 </h1>
                 <p className="text-xl lg:text-2xl text-white/90 leading-relaxed max-w-xl">
-                  Conectamos você às melhores experiências rurais e ao artesanato único da Região Bragantina. 
+                  Conectamos você às melhores experiências rurais e ao artesanato autêntico do Brasil. 
                   Viva momentos inesquecíveis no campo.
                 </p>
               </div>
@@ -129,7 +129,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                   <div className="flex items-center space-x-3 mb-4">
                     <MapPin className="w-5 h-5 text-rural-secondary" />
                     <h3 className="text-lg font-semibold text-white">
-                      Região Bragantina
+                      Brasil Rural
                     </h3>
                     <div className="flex space-x-1">
                       {[1, 2, 3, 4, 5].map((star) => (
@@ -138,8 +138,8 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                     </div>
                   </div>
                   <p className="text-white/90 text-sm leading-relaxed">
-                    Uma região rica em tradições, cultura e belezas naturais. 
-                    Conecte-se com a essência do interior paulista através de experiências únicas.
+                    Um país rico em tradições, cultura e belezas naturais. 
+                    Conecte-se com a essência do campo brasileiro através de experiências únicas.
                   </p>
                 </CardContent>
               </Card>

@@ -85,7 +85,7 @@ export const Artesanatos = () => {
       <section className="py-20 bg-gradient-to-br from-background via-secondary/20 to-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-            Artesanato da Região Bragantina
+            Artesanato Brasileiro
           </h2>
           <p className="text-muted-foreground text-lg">
             Em breve, artesanatos únicos da nossa região estarão disponíveis aqui.

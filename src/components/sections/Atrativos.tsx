@@ -88,7 +88,7 @@ export function Atrativos() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-primary mb-4">Atrativos da Região</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Descubra os melhores destinos rurais da Região Bragantina
+            Descubra os melhores destinos rurais do Brasil
           </p>
         </div>
 

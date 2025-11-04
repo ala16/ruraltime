@@ -179,7 +179,7 @@ const PropriedadesRurais = () => {
             Propriedades Rurais
           </h1>
           <p className="text-muted-foreground">
-            Descubra experiências autênticas no turismo rural da Região Bragantina
+            Descubra experiências autênticas no turismo rural do Brasil
           </p>
         </div>
 

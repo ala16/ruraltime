@@ -17,7 +17,7 @@ export function QuemSomos() {
               Nossa História
             </h3>
             <p className="text-lg text-foreground leading-relaxed">
-              O Rural Time surge como uma resposta inovadora aos desafios do turismo rural na Região Bragantina. 
+              O Rural Time surge como uma resposta inovadora aos desafios do turismo rural no Brasil. 
               Nossa plataforma digital conecta pequenos produtores rurais a turistas em busca de experiências 
               autênticas no campo.
             </p>

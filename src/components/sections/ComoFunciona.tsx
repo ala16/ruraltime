@@ -96,7 +96,7 @@ export function ComoFunciona() {
           <div className="bg-gradient-primary rounded-2xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">Pronto para começar?</h3>
             <p className="text-lg mb-6">
-              Faça parte da maior rede de turismo rural da Região Bragantina
+              Faça parte da maior rede de turismo rural do Brasil
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">

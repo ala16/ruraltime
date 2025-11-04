@@ -135,7 +135,7 @@ Mensagem enviada através do Rural Time.`;
             Agende seus Atrativos Turísticos
           </h2>
           <p className="text-rural-text-light text-lg max-w-2xl mx-auto">
-            Encontre e reserve as melhores experiências rurais da Região Bragantina
+            Encontre e reserve as melhores experiências rurais do Brasil
           </p>
         </div>
 
