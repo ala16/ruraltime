@@ -77,6 +77,8 @@ export const BrazilMap = () => {
         );
 
         setPropriedades(propriedadesComCoordenadas);
+        // Mostrar todas as propriedades no mapa inicialmente
+        setFilteredPropriedades(propriedadesComCoordenadas);
       } catch (error) {
         console.error('Erro:', error);
       }
@@ -199,6 +201,15 @@ export const BrazilMap = () => {
   const handleShowAll = () => {
     setSelectedState(null);
     setFilteredPropriedades(propriedades);
+    
+    // Reset map view to Brazil
+    if (map.current) {
+      map.current.flyTo({
+        center: [-54, -14],
+        zoom: 3.5,
+        essential: true
+      });
+    }
   };
 
   // Group properties by state
@@ -206,6 +217,11 @@ export const BrazilMap = () => {
     acc[prop.estado] = (acc[prop.estado] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
+  
+  // Filtrar apenas estados com propriedades
+  const estadosComPropriedades = Object.entries(ESTADOS_BRASILEIROS).filter(
+    ([sigla]) => propriedadesPorEstado[sigla] > 0
+  );
 
   return (
     <section id="mapa-brasil" className="py-20 bg-background">
@@ -240,7 +256,7 @@ export const BrazilMap = () => {
                   
                   <div className="space-y-2 max-h-[600px] overflow-y-auto">
                     <Button
-                      variant={!selectedState && filteredPropriedades.length > 0 ? "default" : "outline"}
+                      variant={!selectedState ? "default" : "outline"}
                       size="sm"
                       className="w-full justify-between"
                       onClick={handleShowAll}
@@ -249,8 +265,8 @@ export const BrazilMap = () => {
                       <Badge variant="secondary">{propriedades.length}</Badge>
                     </Button>
                     
-                    {Object.entries(ESTADOS_BRASILEIROS).map(([sigla, info]) => {
-                      const count = propriedadesPorEstado[sigla] || 0;
+                    {estadosComPropriedades.map(([sigla, info]) => {
+                      const count = propriedadesPorEstado[sigla];
                       return (
                         <Button
                           key={sigla}
@@ -258,12 +274,9 @@ export const BrazilMap = () => {
                           size="sm"
                           className="w-full justify-between"
                           onClick={() => handleStateClick(sigla)}
-                          disabled={count === 0}
                         >
                           <span>{sigla} - {info.nome}</span>
-                          {count > 0 && (
-                            <Badge variant="secondary">{count}</Badge>
-                          )}
+                          <Badge variant="secondary">{count}</Badge>
                         </Button>
                       );
                     })}
