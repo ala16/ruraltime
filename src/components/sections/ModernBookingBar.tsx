@@ -87,12 +87,11 @@ export const ModernBookingBar = () => {
         .select('*', { count: 'exact', head: true })
         .eq('disponivel', true);
 
-      // Buscar acessos únicos (multiplicar por 500)
-      const { data: analyticsData } = await supabase
-        .from('site_analytics')
-        .select('unique_visitors');
-      
-      const totalAcessos = (analyticsData?.reduce((sum, row) => sum + (row.unique_visitors || 0), 0) || 0) * 500;
+      // Calcular acessos únicos: começa em 3303 e aumenta 19 por dia
+      const dataInicial = new Date('2025-01-01');
+      const hoje = new Date();
+      const diasPassados = Math.floor((hoje.getTime() - dataInicial.getTime()) / (1000 * 60 * 60 * 24));
+      const totalAcessos = 3303 + (diasPassados * 19);
 
       setStats({
         atrativos: atrativos || 0,
