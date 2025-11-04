@@ -1,3 +1,10 @@
+import monteMorLogo from "@/assets/apoiador-monte-mor.png";
+import aromasSaboresLogo from "@/assets/apoiador-aromas-sabores.png";
+import ranchoFerreiroLogo from "@/assets/apoiador-rancho-ferreiro.png";
+import saoIgnacioLogo from "@/assets/apoiador-sao-ignacio.png";
+import candidaBaptistaLogo from "@/assets/apoiador-candida-baptista.jpg";
+import adegaVicchiniLogo from "@/assets/apoiador-adega-vicchini.png";
+
 export function Apoiadores() {
   const apoiadores = [
     {
@@ -24,6 +31,36 @@ export function Apoiadores() {
       nome: "Sindicato Rural de Bragança Paulista",
       logo: "/lovable-uploads/7b6d29b4-588a-4f88-a07a-9a003ec14747.png",
       alt: "Logo Sindicato Rural de Bragança Paulista"
+    },
+    {
+      nome: "Sindicato Rural de Monte Mor",
+      logo: monteMorLogo,
+      alt: "Logo Sindicato Rural de Monte Mor - SP"
+    },
+    {
+      nome: "Aromas e Sabores Cafeteria Artesanal",
+      logo: aromasSaboresLogo,
+      alt: "Logo Aromas e Sabores Cafeteria Artesanal"
+    },
+    {
+      nome: "Rancho do Ferreiro",
+      logo: ranchoFerreiroLogo,
+      alt: "Logo Rancho do Ferreiro"
+    },
+    {
+      nome: "São Ignácio Pesqueiro e Restaurante",
+      logo: saoIgnacioLogo,
+      alt: "Logo São Ignácio Pesqueiro e Restaurante"
+    },
+    {
+      nome: "Candida Baptista Turismo Rural",
+      logo: candidaBaptistaLogo,
+      alt: "Logo Candida Baptista Turismo Rural"
+    },
+    {
+      nome: "Adega Vicchini",
+      logo: adegaVicchiniLogo,
+      alt: "Logo Adega Vicchini - vinhas & vinhos"
     }
   ];
 
@@ -37,7 +74,7 @@ export function Apoiadores() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 items-center justify-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center">
           {apoiadores.map((apoiador, index) => (
             <div
               key={index}
