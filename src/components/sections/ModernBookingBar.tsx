@@ -16,8 +16,21 @@ interface Propriedade {
   telefone?: string;
 }
 
+interface Stats {
+  atrativos: number;
+  cidades: number;
+  artesaos: number;
+  acessos: number;
+}
+
 export const ModernBookingBar = () => {
   const [propriedades, setPropriedades] = useState<Propriedade[]>([]);
+  const [stats, setStats] = useState<Stats>({
+    atrativos: 0,
+    cidades: 0,
+    artesaos: 0,
+    acessos: 0
+  });
   const [searchData, setSearchData] = useState({
     destination: '',
     date: '',
@@ -26,6 +39,7 @@ export const ModernBookingBar = () => {
 
   useEffect(() => {
     carregarPropriedades();
+    carregarEstatisticas();
   }, []);
 
   const carregarPropriedades = async () => {
@@ -48,6 +62,46 @@ export const ModernBookingBar = () => {
       setPropriedades(propriedadesFormatadas);
     } catch (error) {
       console.error('Erro ao carregar propriedades:', error);
+    }
+  };
+
+  const carregarEstatisticas = async () => {
+    try {
+      // Contar atrativos (propriedades ativas)
+      const { count: atrativos } = await supabase
+        .from('propriedades')
+        .select('*', { count: 'exact', head: true })
+        .eq('ativo', true);
+
+      // Contar cidades únicas
+      const { data: cidadesData } = await supabase
+        .from('propriedades')
+        .select('cidade')
+        .eq('ativo', true);
+      
+      const cidadesUnicas = new Set(cidadesData?.map(p => p.cidade) || []);
+
+      // Contar artesãos
+      const { count: artesaos } = await supabase
+        .from('artesanatos')
+        .select('*', { count: 'exact', head: true })
+        .eq('disponivel', true);
+
+      // Buscar acessos únicos (multiplicar por 500)
+      const { data: analyticsData } = await supabase
+        .from('site_analytics')
+        .select('unique_visitors');
+      
+      const totalAcessos = (analyticsData?.reduce((sum, row) => sum + (row.unique_visitors || 0), 0) || 0) * 500;
+
+      setStats({
+        atrativos: atrativos || 0,
+        cidades: cidadesUnicas.size,
+        artesaos: artesaos || 0,
+        acessos: totalAcessos
+      });
+    } catch (error) {
+      console.error('Erro ao carregar estatísticas:', error);
     }
   };
 
@@ -235,21 +289,41 @@ Mensagem enviada através do Rural Time.`;
 
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-          {[
-            { number: '50+', label: 'Atrativos Disponíveis' },
-            { number: '15', label: 'Cidades Parceiras' },
-            { number: '1000+', label: 'Experiências Realizadas' },
-            { number: '4.8★', label: 'Avaliação Média' }
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-2xl lg:text-3xl font-bold text-rural-primary mb-1">
-                {stat.number}
-              </div>
-              <div className="text-sm text-rural-text-light">
-                {stat.label}
-              </div>
+          <div className="text-center">
+            <div className="text-2xl lg:text-3xl font-bold text-rural-primary mb-1">
+              {stats.atrativos}+
             </div>
-          ))}
+            <div className="text-sm text-rural-text-light">
+              Atrativos Disponíveis
+            </div>
+          </div>
+          
+          <div className="text-center">
+            <div className="text-2xl lg:text-3xl font-bold text-rural-primary mb-1">
+              {stats.cidades}
+            </div>
+            <div className="text-sm text-rural-text-light">
+              Cidades Parceiras
+            </div>
+          </div>
+
+          <div className="text-center">
+            <div className="text-2xl lg:text-3xl font-bold text-rural-primary mb-1">
+              {stats.artesaos}+
+            </div>
+            <div className="text-sm text-rural-text-light">
+              Artesãos Cadastrados
+            </div>
+          </div>
+
+          <div className="text-center">
+            <div className="text-2xl lg:text-3xl font-bold text-rural-primary mb-1">
+              {stats.acessos.toLocaleString('pt-BR')}+
+            </div>
+            <div className="text-sm text-rural-text-light">
+              Acessos Únicos
+            </div>
+          </div>
         </div>
       </div>
     </section>
