@@ -268,7 +268,10 @@ const CadastroPropriedade = () => {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="latitude">Latitude</Label>
+                    <Label htmlFor="latitude">
+                      <MapPin className="inline h-4 w-4 mr-1" />
+                      Latitude (Coordenada Geográfica)
+                    </Label>
                     <Input
                       id="latitude"
                       type="number"
@@ -277,9 +280,15 @@ const CadastroPropriedade = () => {
                       onChange={(e) => handleInputChange('latitude', e.target.value)}
                       placeholder="-23.123456"
                     />
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Use Google Maps para obter as coordenadas exatas
+                    </p>
                   </div>
                   <div>
-                    <Label htmlFor="longitude">Longitude</Label>
+                    <Label htmlFor="longitude">
+                      <MapPin className="inline h-4 w-4 mr-1" />
+                      Longitude (Coordenada Geográfica)
+                    </Label>
                     <Input
                       id="longitude"
                       type="number"
@@ -288,7 +297,23 @@ const CadastroPropriedade = () => {
                       onChange={(e) => handleInputChange('longitude', e.target.value)}
                       placeholder="-46.123456"
                     />
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Copie e cole as coordenadas do Google Maps
+                    </p>
                   </div>
+                </div>
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-2">
+                  <p className="text-sm text-blue-800 mb-2">
+                    <strong>Como obter as coordenadas:</strong>
+                  </p>
+                  <ol className="text-sm text-blue-700 space-y-1 list-decimal list-inside">
+                    <li>Abra o Google Maps</li>
+                    <li>Busque pelo endereço da sua propriedade</li>
+                    <li>Clique com o botão direito no local exato</li>
+                    <li>Clique nas coordenadas que aparecem no topo</li>
+                    <li>Cole a primeira coordenada em Latitude e a segunda em Longitude</li>
+                  </ol>
                 </div>
               </CardContent>
             </Card>
