@@ -1,4 +1,4 @@
-import ruralTimeLogo from "@/assets/rural-time-logo.png";
+import ruralTimeLogo from "@/assets/rural-time-logo-new.png";
 
 interface FooterProps {
   onSectionClick: (section: string) => void;
@@ -13,8 +13,8 @@ export function Footer({ onSectionClick }: FooterProps) {
           <div className="md:col-span-2">
             <img 
               src={ruralTimeLogo} 
-              alt="Rural Time" 
-              className="h-12 w-auto mb-4 brightness-0 invert"
+              alt="Rural Time Logo" 
+              className="h-24 w-auto mb-4"
             />
             <p className="text-white/80 leading-relaxed mb-4">
               Rural Time – Plataforma de Turismo Rural e Inovação no Agro. 

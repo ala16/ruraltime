@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './button';
 import { Menu, X, MapPin, Phone, Mail } from 'lucide-react';
+import ruralTimeLogo from "@/assets/rural-time-logo-new.png";
 
 interface ModernNavigationProps {
   onSectionClick: (sectionId: string) => void;
@@ -40,9 +41,11 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-xl">RT</span>
-              </div>
+              <img 
+                src={ruralTimeLogo} 
+                alt="Rural Time Logo" 
+                className="h-16 w-auto"
+              />
               <div>
                 <h1 className={`text-xl font-bold transition-colors ${
                   isScrolled ? 'text-rural-primary' : 'text-white'
