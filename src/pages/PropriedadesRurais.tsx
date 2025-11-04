@@ -15,7 +15,7 @@ import {
 import { 
   ArrowLeft, 
   MapPin, 
-  Phone, 
+  MessageCircle, 
   Mail, 
   Globe, 
   Clock, 
@@ -118,13 +118,15 @@ const PropriedadesRurais = () => {
     const contact = contactInfo[propriedadeId];
     if (!contact) return;
 
+    const whatsappMessage = encodeURIComponent('Olá vi a sua propriedade de turismo rural no site da www.ruraltime.com.br gostaria de agendar uma visita turística.');
+
     switch (type) {
       case 'phone':
         if (contact.telefone) {
           // Format phone number for WhatsApp (remove special characters and add country code if needed)
           const phoneNumber = contact.telefone.replace(/\D/g, ''); // Remove non-digits
           const formattedNumber = phoneNumber.startsWith('55') ? phoneNumber : `55${phoneNumber}`;
-          window.open(`https://wa.me/${formattedNumber}`, '_blank');
+          window.open(`https://wa.me/${formattedNumber}?text=${whatsappMessage}`, '_blank');
         }
         break;
       case 'email':
@@ -381,8 +383,8 @@ const PropriedadesRurais = () => {
                               className="flex-1"
                               onClick={() => handleContactAction(propriedade.id, 'phone')}
                             >
-                              <Phone className="mr-1 h-3 w-3" />
-                              Telefone
+                              <MessageCircle className="mr-1 h-3 w-3" />
+                              WhatsApp
                             </Button>
                           )}
                           {contactInfo[propriedade.id].email && (

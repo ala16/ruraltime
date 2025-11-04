@@ -79,9 +79,13 @@ const PropriedadeDetalhes = () => {
   }, [id]);
 
   const handleContactAction = (type: 'phone' | 'email' | 'website' | 'whatsapp' | 'instagram', value: string) => {
+    const whatsappMessage = encodeURIComponent('Olá vi a sua propriedade de turismo rural no site da www.ruraltime.com.br gostaria de agendar uma visita turística.');
+    
     switch (type) {
       case 'phone':
-        window.open(`tel:${value}`, '_self');
+        const phoneNumber = value.replace(/\D/g, '');
+        const formattedPhone = phoneNumber.startsWith('55') ? phoneNumber : `55${phoneNumber}`;
+        window.open(`https://wa.me/${formattedPhone}?text=${whatsappMessage}`, '_blank');
         break;
       case 'email':
         window.open(`mailto:${value}`, '_self');
@@ -90,7 +94,9 @@ const PropriedadeDetalhes = () => {
         window.open(value, '_blank');
         break;
       case 'whatsapp':
-        window.open(`https://wa.me/${value.replace(/\D/g, '')}`, '_blank');
+        const whatsappNumber = value.replace(/\D/g, '');
+        const formattedWhatsapp = whatsappNumber.startsWith('55') ? whatsappNumber : `55${whatsappNumber}`;
+        window.open(`https://wa.me/${formattedWhatsapp}?text=${whatsappMessage}`, '_blank');
         break;
       case 'instagram':
         window.open(`https://instagram.com/${value.replace('@', '')}`, '_blank');
@@ -336,10 +342,10 @@ const PropriedadeDetalhes = () => {
                     {contactInfo?.telefone && (
                       <button 
                         onClick={() => handleContactAction('phone', contactInfo.telefone!)}
-                        className="flex items-center gap-2 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors text-sm"
+                        className="flex items-center gap-2 px-3 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors text-sm"
                       >
-                        <Phone className="w-4 h-4" />
-                        Telefone
+                        <MessageCircle className="w-4 h-4" />
+                        WhatsApp
                       </button>
                     )}
                     
