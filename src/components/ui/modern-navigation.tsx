@@ -25,7 +25,6 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
     { label: 'Artesanato', id: 'artesanatos' },
     { label: 'O que Oferecemos', id: 'oferecemos' },
     { label: 'Como Funciona', id: 'como-funciona' },
-    { label: 'Seja Parceiro', id: 'seja-parceiro' },
     { label: 'Contato', id: 'contato' },
   ];
 
@@ -69,12 +68,6 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                   {item.label}
                 </button>
               ))}
-              <Button 
-                onClick={() => onSectionClick('propriedades')}
-                className="btn-modern bg-gradient-primary hover:bg-gradient-secondary text-white px-6 py-2.5 shadow-lg hover:shadow-xl font-semibold"
-              >
-                Ver Propriedades
-              </Button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -110,15 +103,6 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                     {item.label}
                   </button>
                 ))}
-                <Button 
-                  onClick={() => {
-                    onSectionClick('propriedades');
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full btn-modern bg-gradient-primary hover:bg-gradient-secondary text-white shadow-lg font-semibold"
-                >
-                  Ver Propriedades
-                </Button>
               </div>
             </div>
           </div>
