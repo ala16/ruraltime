@@ -67,10 +67,8 @@ export function Atrativos() {
   return <section id="atrativos" className="py-20 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">Atrativos Rurais</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Descubra os melhores destinos rurais do Brasil
-          </p>
+          <h2 className="text-4xl font-bold text-primary mb-4">Atrativos de Turismo Rurais</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Viaje pelos destinos rurais do Brasil e descubra experiências autênticas, cheias de sabor, história e simplicidade.</p>
         </div>
 
         <Carousel plugins={[Autoplay({
