@@ -51,7 +51,7 @@ export function SejaParceiro() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              onClick={() => navigate('/cadastro-propriedade')}
+              onClick={() => window.open('https://forms.gle/UFPLAfFNQmTmD2VdA', '_blank')}
               variant="hero"
               size="lg"
               className="bg-white text-primary hover:bg-white/90"
