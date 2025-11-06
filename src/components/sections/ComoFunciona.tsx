@@ -12,9 +12,9 @@ export function ComoFunciona() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
           {/* Passo 1 */}
-          <div className="text-center">
+          <div className="text-center flex-1 max-w-sm">
             <Card className="hover:shadow-xl transition-all duration-300 border-primary/20">
               <CardContent className="p-8">
                 <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6">
@@ -34,15 +34,15 @@ export function ComoFunciona() {
             </Card>
           </div>
 
-          {/* Seta */}
-          <div className="hidden md:flex items-center justify-center">
-            <div className="w-full h-0.5 bg-gradient-primary relative">
+          {/* Seta 1 */}
+          <div className="hidden md:flex items-center justify-center flex-shrink-0">
+            <div className="w-16 h-0.5 bg-gradient-primary relative">
               <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-8 border-l-primary border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
             </div>
           </div>
 
           {/* Passo 2 */}
-          <div className="text-center">
+          <div className="text-center flex-1 max-w-sm">
             <Card className="hover:shadow-xl transition-all duration-300 border-secondary/20">
               <CardContent className="p-8">
                 <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center mx-auto mb-6">
@@ -62,15 +62,15 @@ export function ComoFunciona() {
             </Card>
           </div>
 
-          {/* Seta */}
-          <div className="hidden md:flex items-center justify-center md:col-span-1">
-            <div className="w-full h-0.5 bg-gradient-primary relative">
+          {/* Seta 2 */}
+          <div className="hidden md:flex items-center justify-center flex-shrink-0">
+            <div className="w-16 h-0.5 bg-gradient-primary relative">
               <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-8 border-l-primary border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
             </div>
           </div>
 
-          {/* Resultado */}
-          <div className="text-center md:col-span-2">
+          {/* Passo 3 */}
+          <div className="text-center flex-1 max-w-sm">
             <Card className="hover:shadow-xl transition-all duration-300 border-rural-green/20 bg-gradient-to-r from-accent to-rural-cream">
               <CardContent className="p-8">
                 <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-6">
@@ -79,10 +79,10 @@ export function ComoFunciona() {
                 <div className="bg-rural-green text-white text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-4">
                   3
                 </div>
-                <h3 className="text-2xl font-bold text-primary mb-4">
+                <h3 className="text-xl font-bold text-primary mb-4">
                   A Experiência Acontece!
                 </h3>
-                <p className="text-foreground text-lg">
+                <p className="text-muted-foreground">
                   No dia agendado, o turista visita a propriedade rural e vive uma experiência única no campo, 
                   criando memórias especiais e contribuindo para a economia local.
                 </p>
