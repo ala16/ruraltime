@@ -103,11 +103,7 @@ export const Artesanatos = () => {
           <div className="inline-flex items-center px-4 py-2 bg-rural-secondary/10 rounded-full mb-6">
             <span className="text-rural-secondary font-medium">✨ Tradição & Arte</span>
           </div>
-          <h2 className="text-5xl lg:text-6xl font-bold mb-8">
-            <span className="bg-gradient-to-r from-rural-primary to-rural-secondary bg-clip-text text-transparent">
-              Artesanato Regional
-            </span>
-          </h2>
+          <h2 className="text-4xl font-bold text-primary mb-4">Artesanato Rural</h2>
           <div className="max-w-4xl mx-auto mb-12">
             <p className="text-xl text-rural-text-light leading-relaxed">
               O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região, 
