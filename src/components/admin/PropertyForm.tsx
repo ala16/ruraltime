@@ -39,19 +39,25 @@ const PropertyForm = ({ property, onSuccess, onCancel }) => {
   const tiposPropriedade = ['fazenda', 'sitio', 'rancho', 'estancia', 'chacara'];
   
   const atividadesDisponiveis = [
-    'Ordenha de vacas', 'Cavalgada', 'Pesca esportiva', 'Trilha ecológica',
-    'Alimentação dos animais', 'Degustação de vinhos', 'Tour pela vinícola',
-    'Colheita da uva', 'Workshop de vinicultura', 'Workshop de plantas medicinais',
-    'Colheita de ervas', 'Destilação de óleos essenciais', 'Caminhada sensorial',
-    'Oficina de reciclagem', 'Arte com sucata', 'Educação ambiental',
-    'Horta orgânica', 'Compostagem'
+    'Visita guiada à propriedade',
+    'Contato com animais / vida no campo',
+    'Trilhas ecológicas e caminhadas',
+    'Cavalgadas ou passeios de charrete',
+    'Colheita ou plantio de produtos agrícolas',
+    'Produção artesanal (queijo, pão, mel, café, etc.)',
+    'Gastronomia rural / refeições típicas',
+    'Outro'
   ];
 
   const infraestruturaDisponivel = [
-    'Piscina', 'Restaurante', 'Chalés', 'Estacionamento', 'Quadra poliesportiva',
-    'Loja de produtos', 'Área de degustação', 'Banheiros', 'Laboratório de destilação',
-    'Estufa de plantas', 'Área de convivência', 'Oficina de arte', 'Horta comunitária',
-    'Composteira', 'Banheiro ecológico'
+    'Banheiros',
+    'Acessibilidade (PCD)',
+    'Estacionamento',
+    'Restaurante',
+    'Chalés',
+    'Loja de produtos',
+    'Horta',
+    'Outro'
   ];
 
   useEffect(() => {

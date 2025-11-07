@@ -49,33 +49,25 @@ const CadastroPropriedade = () => {
   ];
 
   const atividadesDisponiveis = [
-    "Trilhas ecológicas",
-    "Passeios a cavalo",
-    "Pesca esportiva",
-    "Ordenha de vacas",
-    "Colheita de frutas",
-    "Culinária rural",
-    "Observação de aves",
-    "Camping",
-    "Hospedagem rural",
-    "Produção de queijos",
-    "Apicultura",
-    "Degustação de vinhos"
+    "Visita guiada à propriedade",
+    "Contato com animais / vida no campo",
+    "Trilhas ecológicas e caminhadas",
+    "Cavalgadas ou passeios de charrete",
+    "Colheita ou plantio de produtos agrícolas",
+    "Produção artesanal (queijo, pão, mel, café, etc.)",
+    "Gastronomia rural / refeições típicas",
+    "Outro"
   ];
 
   const infraestruturaDisponivel = [
-    "Restaurante",
-    "Lanchonete",
-    "Estacionamento",
     "Banheiros",
-    "Hospedagem",
-    "Piscina",
-    "Playground",
-    "Salão de eventos",
-    "Wi-Fi",
-    "Ar condicionado",
-    "Churrasqueira",
-    "Área de camping"
+    "Acessibilidade (PCD)",
+    "Estacionamento",
+    "Restaurante",
+    "Chalés",
+    "Loja de produtos",
+    "Horta",
+    "Outro"
   ];
 
   const handleInputChange = (field: string, value: string) => {
