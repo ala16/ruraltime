@@ -21,7 +21,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
   }, []);
 
   const navigationItems = [
-    { label: 'Início', id: 'hero', isRoute: false },
+    { label: 'Início', id: '/', isRoute: true },
     { label: 'Atrativos', id: 'atrativos', isRoute: false },
     { label: 'Artesanato', id: 'artesanatos', isRoute: false },
     { label: 'O que Oferecemos', id: 'oferecemos', isRoute: false },
