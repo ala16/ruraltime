@@ -1,21 +1,16 @@
 import ruralTimeLogo from "@/assets/rural-time-logo-new.png";
-
 interface FooterProps {
   onSectionClick: (section: string) => void;
 }
-
-export function Footer({ onSectionClick }: FooterProps) {
-  return (
-    <footer className="bg-primary text-white py-16">
+export function Footer({
+  onSectionClick
+}: FooterProps) {
+  return <footer className="bg-primary text-white py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Logo e Descrição */}
           <div className="md:col-span-2">
-            <img 
-              src={ruralTimeLogo} 
-              alt="Rural Time Logo" 
-              className="h-24 w-auto mb-4"
-            />
+            <img src={ruralTimeLogo} alt="Rural Time Logo" className="h-24 w-auto mb-4" />
             <p className="text-white/80 leading-relaxed mb-4">
               Rural Time – Plataforma de Turismo Rural e Inovação no Agro. 
               Um projeto conectado aos valores e objetivos do CNA Jovem.
@@ -31,34 +26,22 @@ export function Footer({ onSectionClick }: FooterProps) {
             <h4 className="font-semibold text-lg mb-4">Links Rápidos</h4>
             <ul className="space-y-2">
               <li>
-                <button 
-                  onClick={() => onSectionClick("inicio")}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
+                <button onClick={() => onSectionClick("inicio")} className="text-white/80 hover:text-white transition-colors">
                   Início
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => onSectionClick("quem-somos")}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
+                <button onClick={() => onSectionClick("quem-somos")} className="text-white/80 hover:text-white transition-colors">
                   Quem Somos
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => onSectionClick("parceiros")}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
+                <button onClick={() => onSectionClick("parceiros")} className="text-white/80 hover:text-white transition-colors">
                   Seja Parceiro
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => onSectionClick("contato")}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
+                <button onClick={() => onSectionClick("contato")} className="text-white/80 hover:text-white transition-colors">
                   Contato
                 </button>
               </li>
@@ -76,9 +59,7 @@ export function Footer({ onSectionClick }: FooterProps) {
                 </a>
               </li>
               <li>
-                <a href="tel:+5511963907046" className="hover:text-white transition-colors">
-                  (11) 96390-7046
-                </a>
+                
               </li>
             </ul>
           </div>
@@ -99,6 +80,5 @@ export function Footer({ onSectionClick }: FooterProps) {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 }
