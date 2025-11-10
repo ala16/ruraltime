@@ -18,9 +18,8 @@ export function Contato() {
               <CardTitle className="text-xl">Localização</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">São Paulo
-Bragança Paulista - SP - Brasil
-              <strong className="text-primary">São Paulo</strong><br />
+              <p className="text-muted-foreground">Bragança Paulista - SP - Brasil
+Conectando propriedades rurais em todo o país<br />
                 São Paulo - SP - Brasil<br />
                 Conectando propriedades rurais em todo o país
               </p>
