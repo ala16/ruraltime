@@ -15,6 +15,7 @@ import { Apoiadores } from "@/components/sections/Apoiadores";
 import { Artesanatos } from "@/components/sections/Artesanatos";
 import { ModernBookingBar } from "@/components/sections/ModernBookingBar";
 import { BrazilMap } from "@/components/sections/BrazilMap";
+import { IncluiCampo } from "@/components/sections/IncluiCampo";
 
 const Index = () => {
   const scrollToSection = (sectionId: string) => {
@@ -60,6 +61,7 @@ const Index = () => {
         <Contato />
         <QuemSomos />
         <Apoiadores />
+        <IncluiCampo />
       </main>
       
       <Footer onSectionClick={scrollToSection} />
