@@ -204,7 +204,7 @@ export const BrazilMap = () => {
   const handleCityClick = (cidade: string) => {
     setSelectedCity(cidade);
     const filtered = propriedades.filter(
-      prop => prop.estado === selectedState && prop.cidade === cidade
+      prop => prop.estado === selectedState && prop.cidade.trim() === cidade
     );
     setFilteredPropriedades(filtered);
 
@@ -266,7 +266,9 @@ export const BrazilMap = () => {
     ? propriedades
         .filter(prop => prop.estado === selectedState)
         .reduce((acc, prop) => {
-          acc[prop.cidade] = (acc[prop.cidade] || 0) + 1;
+          // Normalize city name to avoid duplicates
+          const cidadeNormalizada = prop.cidade.trim();
+          acc[cidadeNormalizada] = (acc[cidadeNormalizada] || 0) + 1;
           return acc;
         }, {} as Record<string, number>)
     : {};
