@@ -1,3 +1,9 @@
+import blogTurismoRural from '@/assets/blog-turismo-rural-crescimento.jpg';
+import blogCNADesenvolvimento from '@/assets/blog-cna-desenvolvimento.jpg';
+import blogSENARCapacitacao from '@/assets/blog-senar-capacitacao.jpg';
+import blogCNAJovem from '@/assets/blog-cna-jovem-futuro.jpg';
+import blogExperiencias from '@/assets/blog-experiencias-autenticas.jpg';
+
 export interface BlogPost {
   id: string;
   slug: string;
@@ -66,7 +72,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-01-15",
     category: "Turismo Rural",
     tags: ["turismo rural", "desenvolvimento rural", "CNA", "sustentabilidade"],
-    imageUrl: "/src/assets/blog-turismo-rural-crescimento.jpg",
+    imageUrl: blogTurismoRural,
     readTime: "5 min"
   },
   {
@@ -152,7 +158,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-01-20",
     category: "CNA",
     tags: ["CNA", "agronegócio", "desenvolvimento rural", "políticas públicas"],
-    imageUrl: "/src/assets/blog-cna-desenvolvimento.jpg",
+    imageUrl: blogCNADesenvolvimento,
     readTime: "7 min"
   },
   {
@@ -340,7 +346,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-01-25",
     category: "SENAR",
     tags: ["SENAR", "capacitação", "educação rural", "formação profissional"],
-    imageUrl: "/src/assets/blog-senar-capacitacao.jpg",
+    imageUrl: blogSENARCapacitacao,
     readTime: "8 min"
   },
   {
@@ -551,7 +557,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-01",
     category: "CNA Jovem",
     tags: ["CNA Jovem", "juventude rural", "empreendedorismo", "sucessão rural"],
-    imageUrl: "/src/assets/blog-cna-jovem-futuro.jpg",
+    imageUrl: blogCNAJovem,
     readTime: "9 min"
   },
   {
@@ -723,7 +729,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-05",
     category: "Turismo Rural",
     tags: ["experiências", "turismo rural", "autenticidade", "vivências"],
-    imageUrl: "/src/assets/blog-experiencias-autenticas.jpg",
+    imageUrl: blogExperiencias,
     readTime: "8 min"
   }
 ];
