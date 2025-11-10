@@ -4,6 +4,9 @@ import ranchoFerreiroLogo from "@/assets/apoiador-rancho-ferreiro.png";
 import saoIgnacioLogo from "@/assets/apoiador-sao-ignacio.png";
 import candidaBaptistaLogo from "@/assets/apoiador-candida-baptista.jpg";
 import adegaVicchiniLogo from "@/assets/apoiador-adega-vicchini.png";
+import incluiCampoLogo from "@/assets/apoiador-incluicampo.png";
+import sindicatoPorangabaLogo from "@/assets/apoiador-sindicato-porangaba.jpg";
+import cafeSantaSerraLogo from "@/assets/apoiador-cafe-santa-serra.png";
 
 export function Apoiadores() {
   const apoiadores = [
@@ -61,6 +64,21 @@ export function Apoiadores() {
       nome: "Adega Vicchini",
       logo: adegaVicchiniLogo,
       alt: "Logo Adega Vicchini - vinhas & vinhos"
+    },
+    {
+      nome: "IncluiCampo",
+      logo: incluiCampoLogo,
+      alt: "Logo IncluiCampo - Caminhos sem Barreiras"
+    },
+    {
+      nome: "Sindicato Rural de Porangaba",
+      logo: sindicatoPorangabaLogo,
+      alt: "Logo Sindicato Rural de Porangaba"
+    },
+    {
+      nome: "Café Santa Serra",
+      logo: cafeSantaSerraLogo,
+      alt: "Logo Café Santa Serra"
     }
   ];
 
