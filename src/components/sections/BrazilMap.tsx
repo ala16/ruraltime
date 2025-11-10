@@ -59,6 +59,8 @@ export const BrazilMap = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const [selectedState, setSelectedState] = useState<string | null>(null);
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const [showCities, setShowCities] = useState(false);
   const [propriedades, setPropriedades] = useState<Propriedade[]>([]);
   const [filteredPropriedades, setFilteredPropriedades] = useState<Propriedade[]>([]);
   const [selectedProperty, setSelectedProperty] = useState<Propriedade | null>(null);
@@ -176,16 +178,41 @@ export const BrazilMap = () => {
   }, [filteredPropriedades, navigate]);
 
   const handleStateClick = (siglaEstado: string) => {
-    setSelectedState(siglaEstado);
-    const filtered = propriedades.filter(prop => prop.estado === siglaEstado);
+    if (selectedState === siglaEstado) {
+      // Toggle cities view
+      setShowCities(!showCities);
+    } else {
+      // Select new state and show cities
+      setSelectedState(siglaEstado);
+      setSelectedCity(null);
+      setShowCities(true);
+      const filtered = propriedades.filter(prop => prop.estado === siglaEstado);
+      setFilteredPropriedades(filtered);
+
+      // Zoom to state
+      if (map.current && ESTADOS_BRASILEIROS[siglaEstado as keyof typeof ESTADOS_BRASILEIROS]) {
+        const estado = ESTADOS_BRASILEIROS[siglaEstado as keyof typeof ESTADOS_BRASILEIROS];
+        map.current.flyTo({
+          center: [estado.lng, estado.lat],
+          zoom: 7,
+          essential: true
+        });
+      }
+    }
+  };
+
+  const handleCityClick = (cidade: string) => {
+    setSelectedCity(cidade);
+    const filtered = propriedades.filter(
+      prop => prop.estado === selectedState && prop.cidade === cidade
+    );
     setFilteredPropriedades(filtered);
 
-    // Zoom to state
-    if (map.current && ESTADOS_BRASILEIROS[siglaEstado as keyof typeof ESTADOS_BRASILEIROS]) {
-      const estado = ESTADOS_BRASILEIROS[siglaEstado as keyof typeof ESTADOS_BRASILEIROS];
+    // Zoom to first property in city
+    if (filtered.length > 0 && map.current) {
       map.current.flyTo({
-        center: [estado.lng, estado.lat],
-        zoom: 7,
+        center: [filtered[0].longitude, filtered[0].latitude],
+        zoom: 10,
         essential: true
       });
     }
@@ -193,6 +220,8 @@ export const BrazilMap = () => {
 
   const handleClearFilter = () => {
     setSelectedState(null);
+    setSelectedCity(null);
+    setShowCities(false);
     setFilteredPropriedades([]);
     
     // Reset map view to Brazil
@@ -207,6 +236,8 @@ export const BrazilMap = () => {
 
   const handleShowAll = () => {
     setSelectedState(null);
+    setSelectedCity(null);
+    setShowCities(false);
     setFilteredPropriedades(propriedades);
     
     // Reset map view to Brazil
@@ -229,6 +260,16 @@ export const BrazilMap = () => {
   const estadosComPropriedades = Object.entries(ESTADOS_BRASILEIROS).filter(
     ([sigla]) => propriedadesPorEstado[sigla] > 0
   );
+
+  // Group properties by city within selected state
+  const propriedadesPorCidade = selectedState
+    ? propriedades
+        .filter(prop => prop.estado === selectedState)
+        .reduce((acc, prop) => {
+          acc[prop.cidade] = (acc[prop.cidade] || 0) + 1;
+          return acc;
+        }, {} as Record<string, number>)
+    : {};
 
   return (
     <section id="mapa-brasil" className="py-20 bg-background">
@@ -274,17 +315,44 @@ export const BrazilMap = () => {
                     
                     {estadosComPropriedades.map(([sigla, info]) => {
                       const count = propriedadesPorEstado[sigla];
+                      const isSelected = selectedState === sigla;
                       return (
-                        <Button
-                          key={sigla}
-                          variant={selectedState === sigla ? "default" : "outline"}
-                          size="sm"
-                          className="w-full justify-between"
-                          onClick={() => handleStateClick(sigla)}
-                        >
-                          <span>{sigla} - {info.nome}</span>
-                          <Badge variant="secondary">{count}</Badge>
-                        </Button>
+                        <div key={sigla}>
+                          <Button
+                            variant={isSelected && !selectedCity ? "default" : "outline"}
+                            size="sm"
+                            className="w-full justify-between"
+                            onClick={() => handleStateClick(sigla)}
+                          >
+                            <span>{sigla} - {info.nome}</span>
+                            <Badge variant="secondary">{count}</Badge>
+                          </Button>
+                          
+                          {/* Cities list */}
+                          {isSelected && showCities && (
+                            <div className="ml-4 mt-2 space-y-1">
+                              {Object.entries(propriedadesPorCidade)
+                                .sort(([a], [b]) => a.localeCompare(b))
+                                .map(([cidade, cidadeCount]) => (
+                                  <Button
+                                    key={cidade}
+                                    variant={selectedCity === cidade ? "default" : "ghost"}
+                                    size="sm"
+                                    className="w-full justify-between text-sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleCityClick(cidade);
+                                    }}
+                                  >
+                                    <span>{cidade}</span>
+                                    <Badge variant="secondary" className="text-xs">
+                                      {cidadeCount}
+                                    </Badge>
+                                  </Button>
+                                ))}
+                            </div>
+                          )}
+                        </div>
                       );
                     })}
                   </div>
@@ -297,11 +365,11 @@ export const BrazilMap = () => {
                   <div ref={mapContainer} className="w-full h-[600px]" />
                 </Card>
                 
-                {selectedState && (
+                {(selectedState || selectedCity) && (
                   <Card className="mt-4 p-4">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="font-semibold">
-                        Propriedades em {ESTADOS_BRASILEIROS[selectedState as keyof typeof ESTADOS_BRASILEIROS].nome}
+                        Propriedades em {selectedCity ? `${selectedCity} - ` : ''}{selectedState ? ESTADOS_BRASILEIROS[selectedState as keyof typeof ESTADOS_BRASILEIROS].nome : ''}
                       </h3>
                       <Badge>{filteredPropriedades.length}</Badge>
                     </div>
