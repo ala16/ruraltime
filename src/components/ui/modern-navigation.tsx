@@ -21,13 +21,22 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
   }, []);
 
   const navigationItems = [
-    { label: 'Início', id: 'hero' },
-    { label: 'Atrativos', id: 'atrativos' },
-    { label: 'Artesanato', id: 'artesanatos' },
-    { label: 'O que Oferecemos', id: 'oferecemos' },
-    { label: 'Como Funciona', id: 'como-funciona' },
-    { label: 'Contato', id: 'contato' },
+    { label: 'Início', id: 'hero', isRoute: false },
+    { label: 'Atrativos', id: 'atrativos', isRoute: false },
+    { label: 'Artesanato', id: 'artesanatos', isRoute: false },
+    { label: 'O que Oferecemos', id: 'oferecemos', isRoute: false },
+    { label: 'Como Funciona', id: 'como-funciona', isRoute: false },
+    { label: 'Blog', id: '/blog', isRoute: true },
+    { label: 'Contato', id: 'contato', isRoute: false },
   ];
+
+  const handleNavClick = (item: typeof navigationItems[0]) => {
+    if (item.isRoute) {
+      window.location.href = item.id;
+    } else {
+      onSectionClick(item.id);
+    }
+  };
 
   return (
     <>
@@ -61,7 +70,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => onSectionClick(item.id)}
+                  onClick={() => handleNavClick(item)}
                   className={`font-medium transition-all duration-200 hover:scale-105 ${
                     isScrolled 
                       ? 'text-rural-primary hover:text-rural-secondary' 
@@ -98,7 +107,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                   <button
                     key={item.id}
                     onClick={() => {
-                      onSectionClick(item.id);
+                      handleNavClick(item);
                       setIsMobileMenuOpen(false);
                     }}
                     className="block w-full text-left py-3 px-4 text-rural-primary hover:text-rural-secondary hover:bg-rural-accent/10 rounded-lg transition-all duration-200 font-medium"

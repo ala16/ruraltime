@@ -17,6 +17,8 @@ import ComprarVoucher from "./pages/ComprarVoucher";
 import VoucherSuccess from "./pages/VoucherSuccess";
 import VoucherCanceled from "./pages/VoucherCanceled";
 import ValidarVoucher from "./pages/ValidarVoucher";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import ArtesanatoDetalhes from "./pages/ArtesanatoDetalhes";
 import PropriedadeDetalhes from "./pages/PropriedadeDetalhes";
 
@@ -48,6 +50,8 @@ const App = () => (
             <Route path="/validar-voucher" element={<ValidarVoucher />} />
             <Route path="/artesanato/:id" element={<ArtesanatoDetalhes />} />
             <Route path="/propriedade/:id" element={<PropriedadeDetalhes />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
