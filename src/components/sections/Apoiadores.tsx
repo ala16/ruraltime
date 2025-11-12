@@ -1,3 +1,4 @@
+import { useEffect, useState, useRef } from "react";
 import monteMorLogo from "@/assets/apoiador-monte-mor.png";
 import aromasSaboresLogo from "@/assets/apoiador-aromas-sabores.png";
 import ranchoFerreiroLogo from "@/assets/apoiador-rancho-ferreiro.png";
@@ -9,6 +10,9 @@ import sindicatoPorangabaLogo from "@/assets/apoiador-sindicato-porangaba.jpg";
 import cafeSantaSerraLogo from "@/assets/apoiador-cafe-santa-serra.png";
 
 export function Apoiadores() {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const apoiadores = [
     {
       nome: "FAESP",
@@ -82,11 +86,54 @@ export function Apoiadores() {
     }
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (isVisible) {
+      const duration = 2000;
+      const steps = 60;
+      const increment = apoiadores.length / steps;
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= apoiadores.length) {
+          setCount(apoiadores.length);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(current));
+        }
+      }, duration / steps);
+
+      return () => clearInterval(timer);
+    }
+  }, [isVisible, apoiadores.length]);
+
   return (
-    <section id="apoiadores" className="py-20 bg-muted/30">
+    <section ref={sectionRef} id="apoiadores" className="py-20 bg-muted/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">Nossos Apoiadores</h2>
+          <div className="inline-flex items-center gap-3 mb-4">
+            <h2 className="text-4xl font-bold text-primary">Nossos Apoiadores</h2>
+            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 border-2 border-primary">
+              <span className="text-2xl font-bold text-primary">{count}</span>
+            </div>
+          </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Contamos com o apoio de importantes instituições do setor rural
           </p>
