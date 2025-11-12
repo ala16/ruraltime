@@ -25,6 +25,7 @@ export default function TodosAtrativos() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.title = "Todos os Atrativos Turísticos Rurais - Rural Time";
     
     const fetchPropriedades = async () => {

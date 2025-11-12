@@ -25,6 +25,7 @@ export default function TodosArtesanatos() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.title = "Todos os Artesanatos Rurais - Rural Time";
     
     const fetchArtesanatos = async () => {

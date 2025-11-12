@@ -87,7 +87,11 @@ export const Artesanatos = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região, que preservam tradições e agregam valor cultural às suas experiências rurais.</p>
           <div className="mt-6">
             <Button 
-              onClick={() => window.location.href = '/artesanatos'} 
+              type="button"
+              onClick={() => {
+                window.location.href = '/artesanatos';
+                window.scrollTo(0, 0);
+              }} 
               size="lg"
               className="bg-gradient-primary text-primary-foreground hover:opacity-90"
             >

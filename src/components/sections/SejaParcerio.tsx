@@ -51,6 +51,7 @@ export function SejaParceiro() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
+              type="button"
               onClick={() => navigate('/atrativos')}
               size="lg"
               className="bg-white text-primary hover:bg-white/90 font-semibold shadow-lg"
@@ -58,7 +59,8 @@ export function SejaParceiro() {
               Sou Turista
             </Button>
             <Button
-              onClick={() => window.open('https://forms.gle/UFPLAfFNQmTmD2VdA', '_blank')}
+              type="button"
+              onClick={() => window.open('https://forms.gle/hWsAQR4uZ9B9sBCx7', '_blank')}
               size="lg"
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary font-semibold transition-all duration-300"
             >

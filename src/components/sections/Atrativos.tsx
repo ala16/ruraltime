@@ -71,7 +71,11 @@ export function Atrativos() {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Viaje pelos destinos rurais do Brasil e descubra experiências autênticas, cheias de sabor, história e simplicidade.</p>
           <div className="mt-6">
             <Button 
-              onClick={() => navigate('/atrativos')} 
+              type="button"
+              onClick={() => {
+                navigate('/atrativos');
+                window.scrollTo(0, 0);
+              }} 
               size="lg"
               className="bg-gradient-primary text-primary-foreground hover:opacity-90"
             >
