@@ -33,9 +33,7 @@ export function Contato() {
               <CardTitle className="text-xl">E-mail</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground mb-4">
-                Para parcerias, dúvidas ou suporte:
-              </p>
+              
               <a href="mailto:contato@ruraltime.com.br" className="text-primary font-semibold hover:underline text-lg">
                 contato@ruraltime.com.br
               </a>
@@ -49,15 +47,11 @@ export function Contato() {
               <CardTitle className="text-xl">WhatsApp</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground mb-4">
-                Atendimento personalizado:
-              </p>
+              
               <a href="https://wa.me/5511943032251?text=Ol%C3%A1%20vi%20a%20sua%20propriedade%20de%20turismo%20rural%20no%20site%20da%20www.ruraltime.com.br%20gostaria%20de%20agendar%20uma%20visita%20tur%C3%ADstica." target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:underline text-lg">
                 (11) 94303-2251
               </a>
-              <p className="text-sm text-muted-foreground mt-2">
-                Segunda a sexta, 8h às 18h
-              </p>
+              
             </CardContent>
           </Card>
         </div>
