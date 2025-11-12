@@ -1,9 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Search, Calendar } from "lucide-react";
-
 export function ComoFunciona() {
-  return (
-    <section id="como-funciona" className="py-20 bg-background">
+  return <section id="como-funciona" className="py-20 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-primary mb-4">Como Funciona</h2>
@@ -93,22 +91,8 @@ export function ComoFunciona() {
 
         {/* CTA Section */}
         <div className="text-center mt-16">
-          <div className="bg-gradient-primary rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">Pronto para começar?</h3>
-            <p className="text-lg mb-6">
-              Faça parte da maior rede de turismo rural do Brasil
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                Sou Turista
-              </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-colors">
-                Sou Produtor
-              </button>
-            </div>
-          </div>
+          
         </div>
       </div>
-    </section>
-  );
+    </section>;
 }
