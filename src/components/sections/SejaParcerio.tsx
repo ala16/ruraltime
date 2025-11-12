@@ -50,22 +50,26 @@ export function SejaParceiro() {
             Faça parte da maior rede de turismo rural do Brasil
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              type="button"
-              onClick={() => navigate('/atrativos')}
-              size="lg"
-              className="bg-white text-primary hover:bg-white/90 font-semibold shadow-lg"
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                console.log('Botão Turista clicado');
+                navigate('/atrativos');
+              }}
+              className="h-11 px-8 rounded-md bg-white text-primary hover:bg-white/90 font-semibold shadow-lg transition-all duration-300 cursor-pointer"
             >
               Sou Turista
-            </Button>
-            <Button
-              type="button"
-              onClick={() => window.open('https://forms.gle/hWsAQR4uZ9B9sBCx7', '_blank')}
-              size="lg"
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary font-semibold transition-all duration-300"
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                console.log('Botão Produtor clicado');
+                window.open('https://forms.gle/hWsAQR4uZ9B9sBCx7', '_blank');
+              }}
+              className="h-11 px-8 rounded-md bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary font-semibold transition-all duration-300 cursor-pointer"
             >
               Sou Produtor
-            </Button>
+            </button>
           </div>
         </div>
 
