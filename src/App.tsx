@@ -21,6 +21,8 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import ArtesanatoDetalhes from "./pages/ArtesanatoDetalhes";
 import PropriedadeDetalhes from "./pages/PropriedadeDetalhes";
+import TodosAtrativos from "./pages/TodosAtrativos";
+import TodosArtesanatos from "./pages/TodosArtesanatos";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +41,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/propriedades" element={<PropriedadesRurais />} />
+            <Route path="/atrativos" element={<TodosAtrativos />} />
+            <Route path="/artesanatos" element={<TodosArtesanatos />} />
             <Route path="/cadastro-propriedade" element={<CadastroPropriedade />} />
             <Route path="/agendamento/:propriedadeId" element={<Agendamento />} />
             <Route path="/login" element={<Login />} />

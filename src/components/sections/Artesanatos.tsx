@@ -85,6 +85,15 @@ export const Artesanatos = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-primary mb-4">Artesanato Rural</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região, que preservam tradições e agregam valor cultural às suas experiências rurais.</p>
+          <div className="mt-6">
+            <Button 
+              onClick={() => window.location.href = '/artesanatos'} 
+              size="lg"
+              className="bg-gradient-primary text-primary-foreground hover:opacity-90"
+            >
+              Ver Todos os Artesanatos
+            </Button>
+          </div>
         </div>
 
         <Carousel plugins={[Autoplay({

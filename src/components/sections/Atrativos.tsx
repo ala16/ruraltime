@@ -69,6 +69,15 @@ export function Atrativos() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-primary mb-4">Atrativos de Turismo Rurais</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Viaje pelos destinos rurais do Brasil e descubra experiências autênticas, cheias de sabor, história e simplicidade.</p>
+          <div className="mt-6">
+            <Button 
+              onClick={() => navigate('/atrativos')} 
+              size="lg"
+              className="bg-gradient-primary text-primary-foreground hover:opacity-90"
+            >
+              Ver Todos os Atrativos
+            </Button>
+          </div>
         </div>
 
         <Carousel plugins={[Autoplay({
