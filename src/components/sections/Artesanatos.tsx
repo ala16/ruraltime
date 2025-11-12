@@ -107,25 +107,25 @@ export const Artesanatos = () => {
                       <h3 className="text-lg font-semibold mb-2">{artesanato.nome}</h3>
                       
                       {/* Botões de ação */}
-                      <div className="flex gap-2">
-                        <Button size="sm" onClick={() => handleViewDetails(artesanato.id)} className="flex items-center gap-1 text-xs bg-primary/90 hover:bg-primary text-primary-foreground">
-                          <Eye className="w-3 h-3" />
+                      <div className="flex gap-1.5">
+                        <Button size="sm" onClick={() => handleViewDetails(artesanato.id)} className="flex items-center gap-0.5 text-[10px] px-2 py-1 h-7 bg-primary/90 hover:bg-primary text-primary-foreground">
+                          <Eye className="w-2.5 h-2.5" />
                           Ver detalhes
                         </Button>
                         
                         {artesanato.artesao_whatsapp && <Button size="sm" variant="outline" onClick={e => {
                       e.stopPropagation();
                       window.open(`https://wa.me/${artesanato.artesao_whatsapp.replace(/\D/g, '')}`, '_blank');
-                    }} className="flex items-center gap-1 text-xs bg-green-100/90 border-green-200 text-green-700 hover:bg-green-200">
-                            <MessageCircle className="w-3 h-3" />
+                    }} className="flex items-center gap-0.5 text-[10px] px-2 py-1 h-7 bg-green-100/90 border-green-200 text-green-700 hover:bg-green-200">
+                            <MessageCircle className="w-2.5 h-2.5" />
                             WhatsApp
                           </Button>}
                         
                         {artesanato.artesao_instagram && <Button size="sm" variant="outline" onClick={e => {
                       e.stopPropagation();
                       window.open(`https://instagram.com/${artesanato.artesao_instagram.replace('@', '')}`, '_blank');
-                    }} className="flex items-center gap-1 text-xs bg-pink-100/90 border-pink-200 text-pink-700 hover:bg-pink-200">
-                            <Instagram className="w-3 h-3" />
+                    }} className="flex items-center gap-0.5 text-[10px] px-2 py-1 h-7 bg-pink-100/90 border-pink-200 text-pink-700 hover:bg-pink-200">
+                            <Instagram className="w-2.5 h-2.5" />
                             Instagram
                           </Button>}
                       </div>
