@@ -80,88 +80,62 @@ export const Artesanatos = () => {
         </div>
       </section>;
   }
-  return <section id="artesanatos" className="py-24 bg-gradient-to-br from-background via-rural-neutral to-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-20 animate-fade-in">
-          
+  return <section id="artesanatos" className="py-20 bg-background">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-primary mb-4">Artesanato Rural</h2>
-          <div className="max-w-4xl mx-auto mb-12">
-            <p className="text-xl text-rural-text-light leading-relaxed">
-              O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região, 
-              que preservam tradições e agregam valor cultural às suas experiências rurais.
-            </p>
-          </div>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região, que preservam tradições e agregam valor cultural às suas experiências rurais.</p>
         </div>
 
-        <div className="relative">
-          <Carousel className="w-full" plugins={[Autoplay({
-          delay: 4000,
-          stopOnInteraction: false
-        })]} opts={{
-          align: "start",
-          loop: true
-        }}>
-            <CarouselContent className="-ml-2 md:-ml-4">
+        <Carousel plugins={[Autoplay({
+        delay: 3000
+      })]} className="w-full" opts={{
+        align: "start",
+        loop: true
+      }}>
+          <CarouselContent className="-ml-2 md:-ml-4">
               {artesanatos.map(artesanato => <CarouselItem key={artesanato.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                  <Card className="overflow-hidden h-full group hover-lift border-0 bg-gradient-card shadow-soft">
-                    <div className="relative overflow-hidden cursor-pointer" onClick={() => handleViewDetails(artesanato.id)}>
-                      <img src={artesanato.imagens[0]} alt={artesanato.nome} className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      {artesanato.destaque && <Badge className="absolute top-4 left-4 bg-rural-secondary/90 text-rural-secondary-foreground backdrop-blur-sm border-0 shadow-glow">
-                          <Star className="w-3 h-3 mr-1" />
-                          Destaque
-                        </Badge>}
-                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <button className="p-2 rounded-full glass hover:bg-white/20 transition-colors">
-                          <Heart className="w-4 h-4 text-white hover:text-rural-secondary" />
-                        </button>
+                  <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onClick={() => handleViewDetails(artesanato.id)}>
+                    <img src={artesanato.imagens[0]} alt={artesanato.nome} className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-sm bg-white/20 px-2 py-1 rounded-full backdrop-blur-sm">
+                          {artesanato.categoria}
+                        </span>
                       </div>
-                    </div>
-                    <CardContent className="p-6">
-                      <div className="mb-4">
-                        <h3 className="font-semibold text-xl text-foreground group-hover:text-rural-primary transition-colors">
-                          {artesanato.nome}
-                        </h3>
-                      </div>
+                      <h3 className="text-lg font-semibold mb-2">{artesanato.nome}</h3>
                       
-                      <Badge variant="secondary" className="mb-4 bg-rural-accent/20 text-rural-primary border-rural-accent/30">
-                        {artesanato.categoria}
-                      </Badge>
-                      
-                      <p className="text-rural-text-light text-sm mb-6 line-clamp-2 leading-relaxed">
-                        {artesanato.descricao}
-                      </p>
-                      
-                      <div className="space-y-3">
-                        <div className="text-sm text-rural-text-light">
-                          Por: <span className="font-medium text-rural-primary">{artesanato.artesao_nome}</span>
-                        </div>
-                        
-                        <div className="flex items-center gap-2 flex-wrap">
-                          {artesanato.artesao_whatsapp && <a href={`https://wa.me/${artesanato.artesao_whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-green-500 hover:bg-green-600 text-white rounded-md text-xs transition-colors">
-                              <MessageCircle className="w-3 h-3" />
-                              WhatsApp
-                            </a>}
-                          {artesanato.artesao_instagram && <a href={`https://instagram.com/${artesanato.artesao_instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-pink-500 hover:bg-pink-600 text-white rounded-md text-xs transition-colors">
-                              <Instagram className="w-3 h-3" />
-                              Instagram
-                            </a>}
-                        </div>
-                        
-                        <Button size="sm" onClick={() => handleViewDetails(artesanato.id)} className="btn-modern bg-gradient-primary hover:bg-gradient-secondary text-primary-foreground w-full shadow-soft">
-                          <Eye className="w-4 h-4 mr-1" />
+                      {/* Botões de ação */}
+                      <div className="flex gap-2">
+                        <Button size="sm" onClick={() => handleViewDetails(artesanato.id)} className="flex items-center gap-1 text-xs bg-primary/90 hover:bg-primary text-primary-foreground">
+                          <Eye className="w-3 h-3" />
                           Ver detalhes
                         </Button>
+                        
+                        {artesanato.artesao_whatsapp && <Button size="sm" variant="outline" onClick={e => {
+                      e.stopPropagation();
+                      window.open(`https://wa.me/${artesanato.artesao_whatsapp.replace(/\D/g, '')}`, '_blank');
+                    }} className="flex items-center gap-1 text-xs bg-green-100/90 border-green-200 text-green-700 hover:bg-green-200">
+                            <MessageCircle className="w-3 h-3" />
+                            WhatsApp
+                          </Button>}
+                        
+                        {artesanato.artesao_instagram && <Button size="sm" variant="outline" onClick={e => {
+                      e.stopPropagation();
+                      window.open(`https://instagram.com/${artesanato.artesao_instagram.replace('@', '')}`, '_blank');
+                    }} className="flex items-center gap-1 text-xs bg-pink-100/90 border-pink-200 text-pink-700 hover:bg-pink-200">
+                            <Instagram className="w-3 h-3" />
+                            Instagram
+                          </Button>}
                       </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 </CarouselItem>)}
-            </CarouselContent>
-            <CarouselPrevious className="left-4 bg-white/90 border-2 shadow-lg hover:bg-white w-12 h-12" />
-            <CarouselNext className="right-4 bg-white/90 border-2 shadow-lg hover:bg-white w-12 h-12" />
-          </Carousel>
-        </div>
+          </CarouselContent>
+          <CarouselPrevious className="left-4 bg-white/90 border-2 shadow-lg hover:bg-white w-12 h-12" />
+          <CarouselNext className="right-4 bg-white/90 border-2 shadow-lg hover:bg-white w-12 h-12" />
+        </Carousel>
       </div>
     </section>;
 };
