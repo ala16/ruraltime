@@ -56,9 +56,14 @@ export function Depoimentos() {
           <p className="text-muted-foreground mb-4">
             Quer compartilhar sua experiência?
           </p>
-          <button className="text-primary font-semibold hover:underline">
+          <a 
+            href="https://forms.gle/mQMzuVsidJ1gTgZt9" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-primary font-semibold hover:underline"
+          >
             Envie seu depoimento
-          </button>
+          </a>
         </div>
       </div>
     </section>
