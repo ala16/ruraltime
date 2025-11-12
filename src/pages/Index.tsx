@@ -16,7 +16,6 @@ import { Artesanatos } from "@/components/sections/Artesanatos";
 import { ModernBookingBar } from "@/components/sections/ModernBookingBar";
 import { BrazilMap } from "@/components/sections/BrazilMap";
 import { IncluiCampo } from "@/components/sections/IncluiCampo";
-
 const Index = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -24,26 +23,21 @@ const Index = () => {
       const headerOffset = 80;
       const elementPosition = element.offsetTop;
       const offsetPosition = elementPosition - headerOffset;
-
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"
       });
     }
   };
-
   useEffect(() => {
     // Update page title and meta description for SEO
     document.title = "Rural Time - Turismo Rural Digital no Brasil";
-    
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', 'Conectamos turistas a pequenas propriedades rurais em todo o Brasil. Experiências autênticas no campo e transformação digital no agro. Projeto CNA Jovem.');
     }
   }, []);
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <ModernNavigation onSectionClick={scrollToSection} />
       
       <main>
@@ -53,7 +47,7 @@ const Index = () => {
         <Atrativos />
         <Artesanatos />
         <Oferecemos />
-        <Beneficios />
+        
         <ComoFunciona />
         <ImpactoCNA />
         <Depoimentos />
@@ -65,8 +59,6 @@ const Index = () => {
       </main>
       
       <Footer onSectionClick={scrollToSection} />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

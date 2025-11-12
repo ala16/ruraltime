@@ -72,13 +72,7 @@ export function Contato() {
         {/* Mapa conceitual ou call to action */}
         <div className="mt-16">
           <Card className="bg-gradient-secondary text-white border-0">
-            <CardContent className="p-8 text-center">
-              <h4 className="text-2xl font-bold mb-4">Brasil Rural</h4>
-              <p className="text-lg leading-relaxed max-w-3xl mx-auto">
-                Conectamos produtores e turistas em todo o Brasil, promovendo experiências 
-                autênticas do campo e valorizando as tradições rurais de cada região.
-              </p>
-            </CardContent>
+            
           </Card>
         </div>
       </div>
