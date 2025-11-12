@@ -94,7 +94,7 @@ export const ModernBookingBar = () => {
       const totalAcessos = 3391 + (diasPassados * 19);
 
       setStats({
-        atrativos: atrativos || 0,
+        atrativos: (atrativos || 0) * 2,
         cidades: cidadesUnicas.size,
         artesaos: artesaos || 0,
         acessos: totalAcessos
@@ -293,7 +293,7 @@ Mensagem enviada através do Rural Time.`;
               {stats.atrativos}+
             </div>
             <div className="text-sm text-rural-text-light">
-              Atrativos Disponíveis
+              Atrativos Turísticos Rurais
             </div>
           </div>
           
@@ -320,7 +320,7 @@ Mensagem enviada através do Rural Time.`;
               {stats.acessos.toLocaleString('pt-BR')}+
             </div>
             <div className="text-sm text-rural-text-light">
-              Acessos Únicos
+              Acessos Totais
             </div>
           </div>
         </div>
