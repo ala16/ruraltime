@@ -3,6 +3,10 @@ import blogCNADesenvolvimento from '@/assets/blog-cna-desenvolvimento.jpg';
 import blogSENARCapacitacao from '@/assets/blog-senar-capacitacao.jpg';
 import blogCNAJovem from '@/assets/blog-cna-jovem-futuro.jpg';
 import blogExperiencias from '@/assets/blog-experiencias-autenticas.jpg';
+import blogBragancaPaulista from '@/assets/blog-braganca-paulista.jpg';
+import blogPiracicaba from '@/assets/blog-piracicaba.jpg';
+import blogSerraNegra from '@/assets/blog-serra-negra.jpg';
+import blogExtrema from '@/assets/blog-extrema.jpg';
 
 export interface BlogPost {
   id: string;
@@ -731,5 +735,661 @@ export const blogPosts: BlogPost[] = [
     tags: ["experiências", "turismo rural", "autenticidade", "vivências"],
     imageUrl: blogExperiencias,
     readTime: "8 min"
+  },
+  {
+    id: "6",
+    slug: "turismo-rural-braganca-paulista",
+    title: "Turismo Rural em Bragança Paulista: Descubra os Melhores Atrativos",
+    excerpt: "Explore as belezas naturais e experiências autênticas do turismo rural em Bragança Paulista. Conheça fazendas, trilhas e gastronomia regional.",
+    content: `
+      <h1>Turismo Rural em Bragança Paulista: Descubra os Melhores Atrativos</h1>
+      
+      <p>Bragança Paulista é um destino privilegiado para quem busca turismo rural no interior de São Paulo. Localizada a apenas 90 km da capital paulista, a cidade oferece uma combinação perfeita de natureza exuberante, patrimônio histórico e experiências autênticas no campo.</p>
+      
+      <h2>Por Que Escolher Bragança Paulista para Turismo Rural?</h2>
+      
+      <p>A região de Bragança Paulista se destaca no turismo rural por diversos motivos:</p>
+      
+      <ul>
+        <li><strong>Localização privilegiada:</strong> Fácil acesso pela rodovia Fernão Dias</li>
+        <li><strong>Clima agradável:</strong> Temperaturas amenas durante todo o ano</li>
+        <li><strong>Diversidade de atrativos:</strong> Fazendas históricas, trilhas e gastronomia</li>
+        <li><strong>Paisagens deslumbrantes:</strong> Montanhas, cachoeiras e mata atlântica preservada</li>
+      </ul>
+      
+      <h2>Principais Atrativos Rurais em Bragança Paulista</h2>
+      
+      <h3>Fazendas e Sítios</h3>
+      
+      <p>O turismo rural em Bragança Paulista conta com diversas propriedades que recebem visitantes para experiências autênticas:</p>
+      
+      <ul>
+        <li><strong>Visitas guiadas:</strong> Conheça o dia a dia da produção rural</li>
+        <li><strong>Ordenha participativa:</strong> Aprenda sobre produção leiteira</li>
+        <li><strong>Colheita de produtos orgânicos:</strong> Participe da colheita e leve produtos frescos</li>
+        <li><strong>Alimentação de animais:</strong> Interaja com cavalos, vacas e outros animais</li>
+      </ul>
+      
+      <h3>Trilhas e Ecoturismo</h3>
+      
+      <p>Para os amantes da natureza, Bragança Paulista oferece:</p>
+      
+      <ul>
+        <li>Trilhas ecológicas em mata atlântica preservada</li>
+        <li>Caminhadas até cachoeiras e mirantes naturais</li>
+        <li>Observação de fauna e flora nativa</li>
+        <li>Passeios a cavalo por paisagens deslumbrantes</li>
+      </ul>
+      
+      <h3>Gastronomia Rural</h3>
+      
+      <p>A culinária caipira é um dos grandes destaques:</p>
+      
+      <ul>
+        <li><strong>Comida caseira:</strong> Pratos típicos feitos no fogão a lenha</li>
+        <li><strong>Produtos artesanais:</strong> Queijos, doces e geleias caseiras</li>
+        <li><strong>Café colonial:</strong> Fartura de quitutes da roça</li>
+        <li><strong>Alimentos orgânicos:</strong> Produtos frescos direto da horta</li>
+      </ul>
+      
+      <h2>Atividades Disponíveis</h2>
+      
+      <p>O que fazer durante sua visita ao turismo rural em Bragança Paulista:</p>
+      
+      <h3>Para Famílias</h3>
+      <ul>
+        <li>Piqueniques em áreas verdes</li>
+        <li>Passeios de charrete</li>
+        <li>Pescaria em lagos e represas</li>
+        <li>Oficinas de artesanato rural</li>
+      </ul>
+      
+      <h3>Para Aventureiros</h3>
+      <ul>
+        <li>Mountain bike em trilhas rurais</li>
+        <li>Rapel e tirolesa</li>
+        <li>Camping em fazendas</li>
+        <li>Canoagem no Rio Jaguari</li>
+      </ul>
+      
+      <h3>Para Relaxamento</h3>
+      <ul>
+        <li>Day use em propriedades rurais</li>
+        <li>Yoga ao ar livre</li>
+        <li>Contemplação da natureza</li>
+        <li>Banhos de cachoeira</li>
+      </ul>
+      
+      <h2>Como Chegar</h2>
+      
+      <p>Bragança Paulista está localizada estrategicamente:</p>
+      
+      <ul>
+        <li><strong>De São Paulo:</strong> 90 km pela Rodovia Fernão Dias (BR-381)</li>
+        <li><strong>De Campinas:</strong> 60 km pela SP-065</li>
+        <li><strong>De São José dos Campos:</strong> 90 km pela Rodovia Dom Pedro I</li>
+      </ul>
+      
+      <h2>Melhor Época para Visitar</h2>
+      
+      <p>O turismo rural em Bragança Paulista pode ser aproveitado o ano todo:</p>
+      
+      <ul>
+        <li><strong>Primavera (set-dez):</strong> Flores, clima ameno e colheitas</li>
+        <li><strong>Verão (dez-mar):</strong> Ideal para cachoeiras e banhos de rio</li>
+        <li><strong>Outono (mar-jun):</strong> Temperaturas agradáveis e menos chuvas</li>
+        <li><strong>Inverno (jun-set):</strong> Perfeito para comidas típicas e fogueiras</li>
+      </ul>
+      
+      <h2>Dicas para sua Visita</h2>
+      
+      <ul>
+        <li>Reserve com antecedência, especialmente em feriados</li>
+        <li>Use roupas confortáveis e calçados apropriados</li>
+        <li>Leve protetor solar e repelente</li>
+        <li>Respeite as regras de cada propriedade</li>
+        <li>Não se esqueça da câmera fotográfica</li>
+      </ul>
+      
+      <h2>Conclusão</h2>
+      
+      <p>O turismo rural em Bragança Paulista oferece uma experiência única de contato com a natureza e a cultura caipira. Se você busca um refúgio tranquilo perto da capital paulista, com atividades para toda a família, Bragança Paulista é o destino ideal.</p>
+      
+      <p><strong>Venha descobrir os encantos do campo em Bragança Paulista!</strong> Reserve sua visita e viva momentos inesquecíveis no interior paulista.</p>
+    `,
+    author: "Equipe Rural Time",
+    date: "2024-02-10",
+    category: "Destinos",
+    tags: ["Bragança Paulista", "turismo rural", "São Paulo", "fazendas", "ecoturismo"],
+    imageUrl: blogBragancaPaulista,
+    readTime: "10 min"
+  },
+  {
+    id: "7",
+    slug: "turismo-rural-piracicaba",
+    title: "Turismo Rural em Piracicaba: O Que Fazer e Onde Ir",
+    excerpt: "Descubra as melhores experiências de turismo rural em Piracicaba. Conheça fazendas históricas, engenhos de cana e atrativos naturais.",
+    content: `
+      <h1>Turismo Rural em Piracicaba: O Que Fazer e Onde Ir</h1>
+      
+      <p>Piracicaba, conhecida como a capital do açúcar, é um destino fascinante para o turismo rural no interior paulista. A cidade oferece uma rica combinação de história, cultura canavieira e experiências autênticas no campo.</p>
+      
+      <h2>Piracicaba: Tradição e Modernidade no Campo</h2>
+      
+      <p>O turismo rural em Piracicaba se destaca por:</p>
+      
+      <ul>
+        <li><strong>Herança canavieira:</strong> Fazendas históricas de produção de açúcar e cachaça</li>
+        <li><strong>Rio Piracicaba:</strong> Belezas naturais e atividades aquáticas</li>
+        <li><strong>Gastronomia regional:</strong> Culinária caipira autêntica</li>
+        <li><strong>Patrimônio histórico:</strong> Casarões e engenhos preservados</li>
+      </ul>
+      
+      <h2>Atrativos Rurais Imperdíveis</h2>
+      
+      <h3>Fazendas Históricas</h3>
+      
+      <p>Conheça a história da produção açucareira em fazendas centenárias:</p>
+      
+      <ul>
+        <li><strong>Visitas guiadas:</strong> Aprenda sobre o ciclo do açúcar</li>
+        <li><strong>Engenhos tradicionais:</strong> Veja como era produzida a cachaça artesanal</li>
+        <li><strong>Degustação:</strong> Prove produtos típicos da região</li>
+        <li><strong>Arquitetura colonial:</strong> Admire casarões e construções históricas</li>
+      </ul>
+      
+      <h3>Experiências no Campo</h3>
+      
+      <p>Atividades que conectam você com a vida rural:</p>
+      
+      <ul>
+        <li>Colheita de cana-de-açúcar (em temporada)</li>
+        <li>Ordenha de vacas e produção de queijos</li>
+        <li>Pesca em represas e rios</li>
+        <li>Cavalgadas por canaviais e matas ciliares</li>
+        <li>Passeios de trator pelas propriedades</li>
+      </ul>
+      
+      <h3>Ecoturismo e Natureza</h3>
+      
+      <p>Piracicaba também oferece opções para os amantes da natureza:</p>
+      
+      <ul>
+        <li>Trilhas ecológicas em áreas preservadas</li>
+        <li>Observação de pássaros nativos</li>
+        <li>Banhos de rio em locais seguros</li>
+        <li>Piqueniques em áreas verdes</li>
+      </ul>
+      
+      <h2>Gastronomia Caipira</h2>
+      
+      <p>A culinária de Piracicaba é um capítulo à parte:</p>
+      
+      <h3>Pratos Típicos</h3>
+      <ul>
+        <li>Virado à paulista</li>
+        <li>Frango caipira</li>
+        <li>Leitão à pururuca</li>
+        <li>Paçoca de carne seca</li>
+        <li>Arroz carreteiro</li>
+      </ul>
+      
+      <h3>Produtos Artesanais</h3>
+      <ul>
+        <li>Cachaça artesanal de alambique</li>
+        <li>Rapadura e melado</li>
+        <li>Queijos coloniais</li>
+        <li>Doces em compota</li>
+        <li>Pães caseiros</li>
+      </ul>
+      
+      <h2>Atividades por Perfil</h2>
+      
+      <h3>Turismo Rural Educativo</h3>
+      <p>Ideal para escolas e grupos:</p>
+      <ul>
+        <li>Aprendizado sobre agricultura sustentável</li>
+        <li>Conhecimento sobre ciclo da cana-de-açúcar</li>
+        <li>Consciência ambiental</li>
+        <li>História da região</li>
+      </ul>
+      
+      <h3>Turismo de Experiência</h3>
+      <p>Para quem busca vivências autênticas:</p>
+      <ul>
+        <li>Dia de trabalho na roça</li>
+        <li>Preparo de comida caseira no fogão a lenha</li>
+        <li>Fabricação artesanal de rapadura</li>
+        <li>Ordenha manual de vacas</li>
+      </ul>
+      
+      <h3>Turismo de Lazer</h3>
+      <p>Relaxamento e diversão no campo:</p>
+      <ul>
+        <li>Day use em fazendas</li>
+        <li>Churrascos campestres</li>
+        <li>Pescaria relaxante</li>
+        <li>Contemplação da natureza</li>
+      </ul>
+      
+      <h2>Localização e Acesso</h2>
+      
+      <p>Piracicaba está estrategicamente localizada no interior paulista:</p>
+      
+      <ul>
+        <li><strong>De São Paulo:</strong> 160 km pelas rodovias Anhanguera e Bandeirantes</li>
+        <li><strong>De Campinas:</strong> 80 km pela Rodovia SP-304</li>
+        <li><strong>De Sorocaba:</strong> 90 km pela Rodovia Castello Branco</li>
+      </ul>
+      
+      <h2>Quando Visitar</h2>
+      
+      <p>Cada estação oferece experiências únicas:</p>
+      
+      <ul>
+        <li><strong>Abril a Setembro:</strong> Época da colheita da cana, ideal para conhecer o processo</li>
+        <li><strong>Outubro a Março:</strong> Clima mais quente, perfeito para atividades aquáticas</li>
+        <li><strong>Junho:</strong> Festas juninas nas fazendas com comidas típicas</li>
+        <li><strong>Ano todo:</strong> Visitas a fazendas históricas e gastronomia</li>
+      </ul>
+      
+      <h2>Planejamento da Visita</h2>
+      
+      <p>Dicas importantes:</p>
+      
+      <ul>
+        <li>Reserve com antecedência, principalmente em fins de semana</li>
+        <li>Informe-se sobre as atividades disponíveis em cada propriedade</li>
+        <li>Leve roupas leves e calçados confortáveis</li>
+        <li>Não se esqueça do chapéu e protetor solar</li>
+        <li>Consulte sobre almoços e lanches inclusos</li>
+      </ul>
+      
+      <h2>Conclusão</h2>
+      
+      <p>O turismo rural em Piracicaba é uma excelente opção para quem busca conhecer a tradição canavieira paulista, apreciar a culinária caipira e vivenciar o autêntico modo de vida rural. A combinação de história, cultura e natureza faz de Piracicaba um destino completo para todas as idades.</p>
+      
+      <p><strong>Descubra os sabores e tradições do campo em Piracicaba!</strong> Uma experiência que une passado e presente em perfeita harmonia.</p>
+    `,
+    author: "Equipe Rural Time",
+    date: "2024-02-12",
+    category: "Destinos",
+    tags: ["Piracicaba", "turismo rural", "São Paulo", "cana-de-açúcar", "fazendas históricas"],
+    imageUrl: blogPiracicaba,
+    readTime: "12 min"
+  },
+  {
+    id: "8",
+    slug: "turismo-rural-serra-negra",
+    title: "Turismo Rural em Serra Negra: Montanhas, Café e Natureza",
+    excerpt: "Explore o turismo rural em Serra Negra e suas belezas naturais. Descubra fazendas de café, trilhas nas montanhas e atrações imperdíveis.",
+    content: `
+      <h1>Turismo Rural em Serra Negra: Montanhas, Café e Natureza</h1>
+      
+      <p>Serra Negra é uma joia do turismo rural paulista, conhecida por suas montanhas, clima ameno e tradição cafeeira. Localizada no Circuito das Águas Paulista, a cidade oferece experiências únicas que combinam natureza, cultura e gastronomia.</p>
+      
+      <h2>Por Que Serra Negra é Especial?</h2>
+      
+      <p>O turismo rural em Serra Negra se destaca por diversos aspectos:</p>
+      
+      <ul>
+        <li><strong>Altitude privilegiada:</strong> Clima de montanha com temperaturas amenas</li>
+        <li><strong>Tradição cafeeira:</strong> Fazendas produtoras de café de alta qualidade</li>
+        <li><strong>Paisagens deslumbrantes:</strong> Vistas panorâmicas das montanhas</li>
+        <li><strong>Águas termais:</strong> Propriedades terapêuticas naturais</li>
+      </ul>
+      
+      <h2>Atrativos Rurais de Serra Negra</h2>
+      
+      <h3>Fazendas de Café</h3>
+      
+      <p>O café é o grande protagonista do turismo rural em Serra Negra:</p>
+      
+      <ul>
+        <li><strong>Visitação aos cafezais:</strong> Conheça todo o processo produtivo</li>
+        <li><strong>Colheita participativa:</strong> Experimente colher café (em temporada)</li>
+        <li><strong>Degustação de cafés especiais:</strong> Prove diferentes tipos e torra</li>
+        <li><strong>Barismo artesanal:</strong> Aprenda métodos de preparo</li>
+        <li><strong>Compra direta do produtor:</strong> Leve café fresco para casa</li>
+      </ul>
+      
+      <h3>Trilhas e Montanhismo</h3>
+      
+      <p>Para os aventureiros, Serra Negra oferece:</p>
+      
+      <ul>
+        <li>Trilhas com diferentes níveis de dificuldade</li>
+        <li>Pico do Selado com vista 360 graus</li>
+        <li>Caminhadas em meio à mata atlântica</li>
+        <li>Observação de fauna e flora nativa</li>
+        <li>Mirantes naturais com vistas espetaculares</li>
+      </ul>
+      
+      <h3>Propriedades Rurais</h3>
+      
+      <p>Experiências autênticas em fazendas e sítios:</p>
+      
+      <ul>
+        <li>Hospedagem em acomodações rurais</li>
+        <li>Ordenha de vacas e produção de laticínios</li>
+        <li>Hortas orgânicas e pomares</li>
+        <li>Criação de animais de forma sustentável</li>
+        <li>Pesca esportiva em lagos naturais</li>
+      </ul>
+      
+      <h2>Gastronomia de Montanha</h2>
+      
+      <p>A culinária de Serra Negra reflete seu clima e tradições:</p>
+      
+      <h3>Pratos Típicos</h3>
+      <ul>
+        <li>Truta fresca grelhada ou frita</li>
+        <li>Fondue de queijos artesanais</li>
+        <li>Costelinha suína no bafo</li>
+        <li>Pinhão cozido (no inverno)</li>
+        <li>Caldos e sopas caseiras</li>
+      </ul>
+      
+      <h3>Produtos Locais</h3>
+      <ul>
+        <li>Café artesanal de altitude</li>
+        <li>Queijos coloniais premiados</li>
+        <li>Geleias e compotas caseiras</li>
+        <li>Mel de abelhas nativas</li>
+        <li>Linguiças artesanais</li>
+      </ul>
+      
+      <h2>Atividades para Toda Família</h2>
+      
+      <h3>Para Adultos</h3>
+      <ul>
+        <li>Rotas de café e degustações</li>
+        <li>Trekkings e caminhadas</li>
+        <li>Passeios de bicicleta</li>
+        <li>Relaxamento em águas termais</li>
+        <li>Workshops de café e queijos</li>
+      </ul>
+      
+      <h3>Para Crianças</h3>
+      <ul>
+        <li>Contato com animais da fazenda</li>
+        <li>Passeios de pônei</li>
+        <li>Parquinhos ao ar livre</li>
+        <li>Colheita de frutas</li>
+        <li>Piqueniques em áreas verdes</li>
+      </ul>
+      
+      <h3>Para Casais</h3>
+      <ul>
+        <li>Jantar romântico em fazenda</li>
+        <li>Passeio ao pôr do sol</li>
+        <li>Hospedagem em chalés rústicos</li>
+        <li>Caminhadas em meio à natureza</li>
+        <li>Degustações privadas</li>
+      </ul>
+      
+      <h2>Como Chegar em Serra Negra</h2>
+      
+      <p>Acesso facilitado do estado de São Paulo:</p>
+      
+      <ul>
+        <li><strong>De São Paulo:</strong> 150 km pela Rodovia Anhanguera</li>
+        <li><strong>De Campinas:</strong> 70 km pela Rodovia Adhemar de Barros</li>
+        <li><strong>De Jundiaí:</strong> 90 km pela SP-360</li>
+      </ul>
+      
+      <h2>Melhor Época para Visitar</h2>
+      
+      <p>Serra Negra encanta em todas as estações:</p>
+      
+      <ul>
+        <li><strong>Inverno (jun-ago):</strong> Clima frio, ideal para gastronomia e aconchego</li>
+        <li><strong>Primavera (set-nov):</strong> Flores, clima ameno e florada do café</li>
+        <li><strong>Verão (dez-fev):</strong> Perfeito para trilhas e cachoeiras</li>
+        <li><strong>Outono (mar-mai):</strong> Colheita do café e paisagens douradas</li>
+      </ul>
+      
+      <h2>Turismo Sustentável</h2>
+      
+      <p>Serra Negra valoriza práticas sustentáveis:</p>
+      
+      <ul>
+        <li>Produção orgânica de café e alimentos</li>
+        <li>Preservação da mata atlântica</li>
+        <li>Uso consciente de recursos naturais</li>
+        <li>Educação ambiental para visitantes</li>
+        <li>Valorização da cultura local</li>
+      </ul>
+      
+      <h2>Dicas Essenciais</h2>
+      
+      <ul>
+        <li>Leve agasalhos, mesmo no verão as noites são frescas</li>
+        <li>Use calçados apropriados para trilhas</li>
+        <li>Reserve hospedagens com antecedência em alta temporada</li>
+        <li>Experimente o café local, é excepcional</li>
+        <li>Respeite as trilhas demarcadas e a natureza</li>
+        <li>Aproveite para visitar as cidades vizinhas do Circuito das Águas</li>
+      </ul>
+      
+      <h2>Conclusão</h2>
+      
+      <p>O turismo rural em Serra Negra oferece uma experiência completa de montanha, combinando a tradição cafeeira com a beleza natural das serras paulistas. É o destino perfeito para quem busca tranquilidade, aventura e contato genuíno com a natureza.</p>
+      
+      <p><strong>Venha respirar o ar puro das montanhas de Serra Negra!</strong> Uma experiência que aquece o coração e renova as energias.</p>
+    `,
+    author: "Equipe Rural Time",
+    date: "2024-02-14",
+    category: "Destinos",
+    tags: ["Serra Negra", "turismo rural", "café", "montanhas", "Circuito das Águas"],
+    imageUrl: blogSerraNegra,
+    readTime: "11 min"
+  },
+  {
+    id: "9",
+    slug: "turismo-rural-extrema-mg",
+    title: "Turismo Rural em Extrema MG: Natureza e Conservação Ambiental",
+    excerpt: "Conheça o turismo rural em Extrema, Minas Gerais. Descubra propriedades sustentáveis, mata atlântica preservada e ecoturismo responsável.",
+    content: `
+      <h1>Turismo Rural em Extrema MG: Natureza e Conservação Ambiental</h1>
+      
+      <p>Extrema, localizada no sul de Minas Gerais, é referência nacional em turismo rural sustentável. A cidade é conhecida pelo projeto "Conservador das Águas" e oferece experiências únicas de contato com a natureza preservada.</p>
+      
+      <h2>Extrema: Pioneira em Sustentabilidade</h2>
+      
+      <p>O turismo rural em Extrema se diferencia por:</p>
+      
+      <ul>
+        <li><strong>Conservação ambiental:</strong> Primeiro município brasileiro com PSA (Pagamento por Serviços Ambientais)</li>
+        <li><strong>Mata Atlântica preservada:</strong> Extensas áreas de floresta nativa recuperada</li>
+        <li><strong>Nascentes protegidas:</strong> Preservação de recursos hídricos</li>
+        <li><strong>Turismo consciente:</strong> Propriedades com práticas sustentáveis</li>
+      </ul>
+      
+      <h2>Atrativos do Turismo Rural</h2>
+      
+      <h3>Propriedades Sustentáveis</h3>
+      
+      <p>Conheça fazendas e sítios modelo em sustentabilidade:</p>
+      
+      <ul>
+        <li><strong>Visitas educativas:</strong> Aprenda sobre conservação de nascentes</li>
+        <li><strong>Reflorestamento:</strong> Participe de plantios de mudas nativas</li>
+        <li><strong>Sistemas agroflorestais:</strong> Conheça agricultura integrada à floresta</li>
+        <li><strong>Produção orgânica:</strong> Veja práticas sustentáveis de cultivo</li>
+      </ul>
+      
+      <h3>Ecoturismo e Aventura</h3>
+      
+      <p>Atividades em meio à natureza preservada:</p>
+      
+      <ul>
+        <li>Trilhas ecológicas em mata atlântica</li>
+        <li>Cachoeiras cristalinas e piscinas naturais</li>
+        <li>Observação de fauna silvestre</li>
+        <li>Birdwatching (mais de 200 espécies de aves)</li>
+        <li>Rapel e arvorismo</li>
+        <li>Mountain bike em estradas rurais</li>
+      </ul>
+      
+      <h3>Experiências Educativas</h3>
+      
+      <p>Turismo rural com propósito educacional:</p>
+      
+      <ul>
+        <li>Workshops sobre conservação ambiental</li>
+        <li>Visitas ao projeto Conservador das Águas</li>
+        <li>Cursos de permacultura</li>
+        <li>Educação ambiental para estudantes</li>
+        <li>Vivências em comunidades rurais</li>
+      </ul>
+      
+      <h2>Natureza Preservada</h2>
+      
+      <p>Extrema abriga rica biodiversidade:</p>
+      
+      <h3>Flora</h3>
+      <ul>
+        <li>Mata Atlântica em recuperação</li>
+        <li>Espécies nativas raras</li>
+        <li>Jardins botânicos em propriedades</li>
+        <li>Hortos de mudas nativas</li>
+      </ul>
+      
+      <h3>Fauna</h3>
+      <ul>
+        <li>Aves endêmicas da mata atlântica</li>
+        <li>Mamíferos silvestres (macacos, quatis, pacas)</li>
+        <li>Anfíbios e répteis nativos</li>
+        <li>Peixes de águas limpas</li>
+      </ul>
+      
+      <h2>Gastronomia Mineira Rural</h2>
+      
+      <p>Sabores autênticos da roça mineira:</p>
+      
+      <h3>Pratos Típicos</h3>
+      <ul>
+        <li>Frango caipira ao molho pardo</li>
+        <li>Feijão tropeiro com torresmo</li>
+        <li>Tutu de feijão com linguiça</li>
+        <li>Angu com costelinha</li>
+        <li>Galinhada mineira</li>
+      </ul>
+      
+      <h3>Quitutes e Doces</h3>
+      <ul>
+        <li>Pão de queijo artesanal</li>
+        <li>Broa de fubá</li>
+        <li>Doce de leite caseiro</li>
+        <li>Goiabada cascão</li>
+        <li>Biscoitos de polvilho</li>
+      </ul>
+      
+      <h3>Produtos Orgânicos</h3>
+      <ul>
+        <li>Hortaliças sem agrotóxicos</li>
+        <li>Mel de abelhas nativas sem ferrão</li>
+        <li>Queijos artesanais mineiros</li>
+        <li>Cachaças de alambique</li>
+        <li>Geleias de frutas nativas</li>
+      </ul>
+      
+      <h2>Atividades por Interesse</h2>
+      
+      <h3>Para Ecologistas</h3>
+      <ul>
+        <li>Voluntariado em reflorestamento</li>
+        <li>Monitoramento de nascentes</li>
+        <li>Pesquisa de fauna e flora</li>
+        <li>Documentação fotográfica da natureza</li>
+      </ul>
+      
+      <h3>Para Famílias</h3>
+      <ul>
+        <li>Passeios educativos</li>
+        <li>Banhos de cachoeira</li>
+        <li>Piqueniques em áreas verdes</li>
+        <li>Contato com animais domésticos</li>
+        <li>Colheita de frutas orgânicas</li>
+      </ul>
+      
+      <h3>Para Aventureiros</h3>
+      <ul>
+        <li>Trilhas de longa distância</li>
+        <li>Camping em áreas preservadas</li>
+        <li>Escalada e rapel</li>
+        <li>Mountain bike técnico</li>
+      </ul>
+      
+      <h2>Localização e Acesso</h2>
+      
+      <p>Extrema está próxima a importantes centros urbanos:</p>
+      
+      <ul>
+        <li><strong>De São Paulo:</strong> 110 km pela Rodovia Fernão Dias</li>
+        <li><strong>De Belo Horizonte:</strong> 450 km pela BR-381</li>
+        <li><strong>De Campinas:</strong> 150 km pela Rodovia Dom Pedro I</li>
+        <li><strong>Divisa SP/MG:</strong> Fácil acesso a partir do sul de Minas</li>
+      </ul>
+      
+      <h2>Quando Visitar</h2>
+      
+      <p>Cada estação oferece experiências diferentes:</p>
+      
+      <ul>
+        <li><strong>Primavera/Verão (out-mar):</strong> Cachoeiras com mais volume, vegetação exuberante</li>
+        <li><strong>Outono/Inverno (abr-set):</strong> Clima mais seco, ideal para trilhas</li>
+        <li><strong>Ano todo:</strong> Atividades de educação ambiental e visitas às propriedades</li>
+      </ul>
+      
+      <h2>Projeto Conservador das Águas</h2>
+      
+      <p>Conheça o pioneiro projeto de PSA:</p>
+      
+      <ul>
+        <li>Visitas guiadas ao projeto</li>
+        <li>Entenda como funciona o pagamento por serviços ambientais</li>
+        <li>Veja resultados práticos da conservação</li>
+        <li>Aprenda sobre restauração florestal</li>
+        <li>Conheça proprietários participantes</li>
+      </ul>
+      
+      <h2>Turismo Comunitário</h2>
+      
+      <p>Interaja com comunidades rurais:</p>
+      
+      <ul>
+        <li>Hospedagem em casas de agricultores</li>
+        <li>Refeições compartilhadas</li>
+        <li>Troca de conhecimentos</li>
+        <li>Compra direta de produtos</li>
+        <li>Valorização da cultura local</li>
+      </ul>
+      
+      <h2>Recomendações para sua Visita</h2>
+      
+      <ul>
+        <li>Respeite as áreas de preservação e sinalização</li>
+        <li>Não deixe lixo nas trilhas e cachoeiras</li>
+        <li>Use repelente natural biodegradável</li>
+        <li>Prefira guias locais credenciados</li>
+        <li>Leve garrafas reutilizáveis</li>
+        <li>Apoie o comércio e produtores locais</li>
+        <li>Fotografe, mas não retire plantas ou animais</li>
+      </ul>
+      
+      <h2>Conclusão</h2>
+      
+      <p>O turismo rural em Extrema MG é uma experiência transformadora que une lazer, educação ambiental e conservação da natureza. É o destino ideal para quem busca turismo responsável, contato genuíno com a mata atlântica e conhecer um modelo de sucesso em sustentabilidade rural.</p>
+      
+      <p><strong>Venha conhecer o turismo rural que preserva!</strong> Extrema espera por você com suas florestas, águas cristalinas e gente acolhedora.</p>
+    `,
+    author: "Equipe Rural Time",
+    date: "2024-02-16",
+    category: "Destinos",
+    tags: ["Extrema", "Minas Gerais", "turismo rural", "sustentabilidade", "mata atlântica"],
+    imageUrl: blogExtrema,
+    readTime: "13 min"
   }
 ];
