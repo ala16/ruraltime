@@ -16,6 +16,8 @@ import { Artesanatos } from "@/components/sections/Artesanatos";
 import { ModernBookingBar } from "@/components/sections/ModernBookingBar";
 import { BrazilMap } from "@/components/sections/BrazilMap";
 import { IncluiCampo } from "@/components/sections/IncluiCampo";
+import { BlogCarousel } from "@/components/sections/BlogCarousel";
+
 const Index = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -50,6 +52,7 @@ const Index = () => {
         
         <ComoFunciona />
         <ImpactoCNA />
+        <BlogCarousel />
         <Depoimentos />
         <SejaParceiro />
         <Contato />
