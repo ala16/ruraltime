@@ -66,9 +66,7 @@ export function Contato() {
             <a href="https://www.facebook.com/AgroRuralTime/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center hover:opacity-80 transition-opacity" aria-label="Facebook">
               <Facebook className="w-6 h-6 text-white" />
             </a>
-            <a href="#" className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center hover:opacity-80 transition-opacity" aria-label="LinkedIn">
-              <Linkedin className="w-6 h-6 text-white" />
-            </a>
+            
           </div>
           <p className="text-muted-foreground mt-4">
             Acompanhe novidades, dicas e histórias inspiradoras do campo
