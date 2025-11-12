@@ -4,50 +4,57 @@ import { Button } from "./ui/button";
 
 export function FloatingBanner() {
   const [isVisible, setIsVisible] = useState(true);
-  const [isMinimized, setIsMinimized] = useState(false);
-  const [isActive, setIsActive] = useState(false);
+  const [isPeeking, setIsPeeking] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [scrollCount, setScrollCount] = useState(0);
 
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
+    let lastScrollY = window.scrollY;
     
     const handleScroll = () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        setIsMinimized(true);
-      }, 2000); // Minimiza após 2 segundos de scroll
+      const currentScrollY = window.scrollY;
+      
+      // Detecta se houve scroll significativo (mais de 50px)
+      if (Math.abs(currentScrollY - lastScrollY) > 50) {
+        setScrollCount(prev => {
+          const newCount = prev + 1;
+          if (newCount >= 2 && !isPeeking && !isExpanded) {
+            setIsPeeking(true);
+          }
+          return newCount;
+        });
+        lastScrollY = currentScrollY;
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout);
     };
-  }, []);
+  }, [isPeeking, isExpanded]);
 
   const handleClick = () => {
-    setIsActive(true);
-    setIsMinimized(false);
-    
-    setTimeout(() => {
-      setIsActive(false);
-    }, 3000); // Volta ao normal após 3 segundos
+    if (isPeeking && !isExpanded) {
+      setIsExpanded(true);
+    }
   };
 
   if (!isVisible) return null;
 
-  const getOpacity = () => {
-    if (isActive) return "opacity-100";
-    if (isMinimized) return "opacity-30";
-    return "opacity-70";
+  const getTransform = () => {
+    if (isExpanded) return "translateX(0)";
+    if (isPeeking) return "translateX(calc(100% - 40px))"; // Mostra apenas 40px
+    return "translateX(100%)"; // Escondido completamente
   };
 
   return (
     <div 
-      className={`fixed bottom-6 right-6 z-50 animate-fade-in transition-opacity duration-500 ${getOpacity()}`}
+      className={`fixed bottom-6 right-6 z-50 transition-transform duration-500 ease-out ${isPeeking && !isExpanded ? 'cursor-pointer' : ''}`}
+      style={{ transform: getTransform() }}
       onClick={handleClick}
     >
-    <div className="relative bg-gradient-primary text-white rounded-lg shadow-2xl p-3 w-52 cursor-pointer hover:opacity-100 transition-opacity duration-300">
+    <div className="relative bg-gradient-primary text-white rounded-lg shadow-2xl p-3 w-52 hover:shadow-xl transition-shadow duration-300">
         <button
           onClick={(e) => {
             e.stopPropagation();
