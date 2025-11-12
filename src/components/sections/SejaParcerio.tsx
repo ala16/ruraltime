@@ -45,19 +45,26 @@ export function SejaParceiro() {
     <section id="parceiros" className="py-20 bg-gradient-primary text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Seja Parceiro</h2>
+          <h2 className="text-4xl font-bold mb-4">Pronto para começar?</h2>
           <p className="text-xl opacity-90 max-w-3xl mx-auto mb-6">
-            O sucesso do Rural Time depende da força da rede. Junte-se a nós e apoie o turismo rural digital.
+            Faça parte da maior rede de turismo rural do Brasil
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              onClick={() => window.open('https://forms.gle/UFPLAfFNQmTmD2VdA', '_blank')}
+              onClick={() => navigate('/atrativos')}
               variant="hero"
               size="lg"
-              className="bg-white text-primary hover:bg-white/90"
+              className="bg-white text-primary hover:bg-white/90 font-semibold"
             >
-              <Plus className="mr-2 h-5 w-5" />
-              Cadastre sua Propriedade
+              Sou Turista
+            </Button>
+            <Button
+              onClick={() => window.open('https://forms.gle/UFPLAfFNQmTmD2VdA', '_blank')}
+              variant="outline"
+              size="lg"
+              className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold"
+            >
+              Sou Produtor
             </Button>
           </div>
         </div>
