@@ -7,6 +7,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { ArrowLeft, Star, Mail, Phone, MapPin, Instagram, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
+import { ShareButtons } from '@/components/ShareButtons';
 
 interface Artesanato {
   id: string;
@@ -218,6 +219,14 @@ const ArtesanatoDetalhes = () => {
               
               <div className="mb-4">
                 <Badge variant="secondary">{artesanato.categoria}</Badge>
+              </div>
+
+              <div className="mb-4">
+                <ShareButtons
+                  url={`/artesanato/${artesanato.id}`}
+                  title={artesanato.nome}
+                  description={`Artesanato ${artesanato.categoria} por ${artesanato.artesao_nome}`}
+                />
               </div>
             </div>
 

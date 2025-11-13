@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Autoplay from "embla-carousel-autoplay";
 import { supabase } from "@/integrations/supabase/client";
 import { Eye, MessageCircle, Instagram } from "lucide-react";
+import { ShareButtons } from "@/components/ShareButtons";
 interface Propriedade {
   id: string;
   nome: string;
@@ -104,27 +105,37 @@ export function Atrativos() {
                     <h3 className="text-lg font-semibold mb-2">{propriedade.nome}</h3>
                     
                     {/* Botões de ação */}
-                    <div className="flex gap-2">
-                      <Button size="sm" onClick={() => navigate(`/propriedade/${propriedade.id}`)} className="flex items-center gap-1 text-xs bg-primary/90 hover:bg-primary text-primary-foreground">
-                        <Eye className="w-3 h-3" />
-                        Ver mais
-                      </Button>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex gap-2">
+                        <Button size="sm" onClick={() => navigate(`/propriedade/${propriedade.id}`)} className="flex items-center gap-1 text-xs bg-primary/90 hover:bg-primary text-primary-foreground">
+                          <Eye className="w-3 h-3" />
+                          Ver mais
+                        </Button>
+                        
+                        {propriedade.whatsapp && <Button size="sm" variant="outline" onClick={e => {
+                      e.stopPropagation();
+                      window.open(`https://wa.me/${propriedade.whatsapp?.replace(/\D/g, '')}`, '_blank');
+                    }} className="flex items-center gap-1 text-xs bg-green-100/90 border-green-200 text-green-700 hover:bg-green-200">
+                            <MessageCircle className="w-3 h-3" />
+                            WhatsApp
+                          </Button>}
+                        
+                        {propriedade.instagram && <Button size="sm" variant="outline" onClick={e => {
+                      e.stopPropagation();
+                      window.open(`https://instagram.com/${propriedade.instagram?.replace('@', '')}`, '_blank');
+                    }} className="flex items-center gap-1 text-xs bg-pink-100/90 border-pink-200 text-pink-700 hover:bg-pink-200">
+                            <Instagram className="w-3 h-3" />
+                            Instagram
+                          </Button>}
+                      </div>
                       
-                      {propriedade.whatsapp && <Button size="sm" variant="outline" onClick={e => {
-                    e.stopPropagation();
-                    window.open(`https://wa.me/${propriedade.whatsapp?.replace(/\D/g, '')}`, '_blank');
-                  }} className="flex items-center gap-1 text-xs bg-green-100/90 border-green-200 text-green-700 hover:bg-green-200">
-                          <MessageCircle className="w-3 h-3" />
-                          WhatsApp
-                        </Button>}
-                      
-                      {propriedade.instagram && <Button size="sm" variant="outline" onClick={e => {
-                    e.stopPropagation();
-                    window.open(`https://instagram.com/${propriedade.instagram?.replace('@', '')}`, '_blank');
-                  }} className="flex items-center gap-1 text-xs bg-pink-100/90 border-pink-200 text-pink-700 hover:bg-pink-200">
-                          <Instagram className="w-3 h-3" />
-                          Instagram
-                        </Button>}
+                      <div onClick={(e) => e.stopPropagation()}>
+                        <ShareButtons
+                          url={`/propriedade/${propriedade.id}`}
+                          title={propriedade.nome}
+                          description={propriedade.tipo_propriedade}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

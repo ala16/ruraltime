@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { Eye, MessageCircle, Instagram, ArrowLeft } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ShareButtons } from "@/components/ShareButtons";
 
 interface Artesanato {
   id: string;
@@ -184,6 +185,14 @@ export default function TodosArtesanatos() {
                           Instagram
                         </Button>
                       )}
+                    </div>
+                    
+                    <div onClick={(e) => e.stopPropagation()}>
+                      <ShareButtons
+                        url={`/artesanato/${artesanato.id}`}
+                        title={artesanato.nome}
+                        description={artesanato.categoria}
+                      />
                     </div>
                   </div>
                 </div>

@@ -7,6 +7,7 @@ import { Heart, Star, Eye, MessageCircle, Instagram } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import Autoplay from "embla-carousel-autoplay";
+import { ShareButtons } from "@/components/ShareButtons";
 interface Artesanato {
   id: string;
   nome: string;
@@ -120,27 +121,37 @@ export const Artesanatos = () => {
                       <h3 className="text-lg font-semibold mb-2">{artesanato.nome}</h3>
                       
                       {/* Botões de ação */}
-                      <div className="flex gap-1.5">
-                        <Button size="sm" onClick={() => handleViewDetails(artesanato.id)} className="flex items-center gap-0.5 text-[10px] px-2 py-1 h-7 bg-primary/90 hover:bg-primary text-primary-foreground">
-                          <Eye className="w-2.5 h-2.5" />
-                          Ver detalhes
-                        </Button>
+                      <div className="flex flex-col gap-2">
+                        <div className="flex gap-1.5">
+                          <Button size="sm" onClick={() => handleViewDetails(artesanato.id)} className="flex items-center gap-0.5 text-[10px] px-2 py-1 h-7 bg-primary/90 hover:bg-primary text-primary-foreground">
+                            <Eye className="w-2.5 h-2.5" />
+                            Ver detalhes
+                          </Button>
+                          
+                          {artesanato.artesao_whatsapp && <Button size="sm" variant="outline" onClick={e => {
+                        e.stopPropagation();
+                        window.open(`https://wa.me/${artesanato.artesao_whatsapp.replace(/\D/g, '')}`, '_blank');
+                      }} className="flex items-center gap-0.5 text-[10px] px-2 py-1 h-7 bg-green-100/90 border-green-200 text-green-700 hover:bg-green-200">
+                              <MessageCircle className="w-2.5 h-2.5" />
+                              WhatsApp
+                            </Button>}
+                          
+                          {artesanato.artesao_instagram && <Button size="sm" variant="outline" onClick={e => {
+                        e.stopPropagation();
+                        window.open(`https://instagram.com/${artesanato.artesao_instagram.replace('@', '')}`, '_blank');
+                      }} className="flex items-center gap-0.5 text-[10px] px-2 py-1 h-7 bg-pink-100/90 border-pink-200 text-pink-700 hover:bg-pink-200">
+                              <Instagram className="w-2.5 h-2.5" />
+                              Instagram
+                            </Button>}
+                        </div>
                         
-                        {artesanato.artesao_whatsapp && <Button size="sm" variant="outline" onClick={e => {
-                      e.stopPropagation();
-                      window.open(`https://wa.me/${artesanato.artesao_whatsapp.replace(/\D/g, '')}`, '_blank');
-                    }} className="flex items-center gap-0.5 text-[10px] px-2 py-1 h-7 bg-green-100/90 border-green-200 text-green-700 hover:bg-green-200">
-                            <MessageCircle className="w-2.5 h-2.5" />
-                            WhatsApp
-                          </Button>}
-                        
-                        {artesanato.artesao_instagram && <Button size="sm" variant="outline" onClick={e => {
-                      e.stopPropagation();
-                      window.open(`https://instagram.com/${artesanato.artesao_instagram.replace('@', '')}`, '_blank');
-                    }} className="flex items-center gap-0.5 text-[10px] px-2 py-1 h-7 bg-pink-100/90 border-pink-200 text-pink-700 hover:bg-pink-200">
-                            <Instagram className="w-2.5 h-2.5" />
-                            Instagram
-                          </Button>}
+                        <div onClick={(e) => e.stopPropagation()}>
+                          <ShareButtons
+                            url={`/artesanato/${artesanato.id}`}
+                            title={artesanato.nome}
+                            description={artesanato.categoria}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
