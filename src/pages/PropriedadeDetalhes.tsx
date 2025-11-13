@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -139,8 +140,38 @@ const PropriedadeDetalhes = () => {
     );
   }
 
+  const pageUrl = `${window.location.origin}/propriedade/${id}`;
+  const imageUrl = propriedade?.imagens?.[0] 
+    ? (propriedade.imagens[0].startsWith('http') 
+        ? propriedade.imagens[0] 
+        : `${window.location.origin}${propriedade.imagens[0]}`)
+    : `${window.location.origin}/placeholder.svg`;
+  const propertyDescription = propriedade?.descricao || 'Descubra experiências autênticas de turismo rural na Rural Time';
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background">
+      <Helmet>
+        <title>{propriedade?.nome || 'Atrativo Rural'} - Rural Time</title>
+        <meta name="description" content={propertyDescription} />
+        
+        {/* Open Graph / Facebook / WhatsApp */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:title" content={`${propriedade?.nome || 'Atrativo Rural'} - Rural Time`} />
+        <meta property="og:description" content={`🌾 Conheça ${propriedade?.nome || 'este atrativo'} na Rural Time. ${propertyDescription.substring(0, 150)}... Descubra o autêntico turismo rural brasileiro!`} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Rural Time" />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={pageUrl} />
+        <meta property="twitter:title" content={`${propriedade?.nome || 'Atrativo Rural'} - Rural Time`} />
+        <meta property="twitter:description" content={`🌾 Conheça ${propriedade?.nome || 'este atrativo'} na Rural Time. ${propertyDescription.substring(0, 150)}...`} />
+        <meta property="twitter:image" content={imageUrl} />
+      </Helmet>
+      
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Button 
           variant="ghost" 
