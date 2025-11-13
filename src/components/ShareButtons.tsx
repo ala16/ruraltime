@@ -27,7 +27,8 @@ export const ShareButtons = ({ url, title, description }: ShareButtonsProps) => 
   };
 
   const handleShareWhatsApp = () => {
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + fullUrl)}`;
+    const whatsappText = `🌾 *Rural Time* 🌾\n\n${shareText}\n\nConfira mais detalhes e reserve sua experiência:\n${fullUrl}\n\n✨ Descubra o autêntico turismo rural brasileiro!`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
     window.open(whatsappUrl, '_blank');
     setIsOpen(false);
   };
