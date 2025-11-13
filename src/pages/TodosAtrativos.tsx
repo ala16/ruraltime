@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { Eye, MessageCircle, Instagram, ArrowLeft } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ShareButtons } from "@/components/ShareButtons";
 
 interface Propriedade {
   id: string;
@@ -176,6 +177,14 @@ export default function TodosAtrativos() {
                           Instagram
                         </Button>
                       )}
+                    </div>
+                    
+                    <div onClick={(e) => e.stopPropagation()}>
+                      <ShareButtons
+                        url={`/propriedade/${propriedade.id}`}
+                        title={propriedade.nome}
+                        description={propriedade.tipo_propriedade}
+                      />
                     </div>
                   </div>
                 </div>

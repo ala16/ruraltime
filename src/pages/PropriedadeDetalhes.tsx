@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Star, Mail, Phone, MapPin, Instagram, MessageCircle, Globe, TreePine, Users, Clock, Coins } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
+import { ShareButtons } from '@/components/ShareButtons';
 
 interface Propriedade {
   id: string;
@@ -211,6 +212,14 @@ const PropriedadeDetalhes = () => {
                   <MapPin className="w-4 h-4" />
                   {propriedade.cidade}, {propriedade.estado}
                 </div>
+              </div>
+
+              <div className="mb-4">
+                <ShareButtons
+                  url={`/propriedade/${propriedade.id}`}
+                  title={propriedade.nome}
+                  description={`${propriedade.tipo_propriedade} em ${propriedade.cidade}, ${propriedade.estado}`}
+                />
               </div>
             </div>
 
