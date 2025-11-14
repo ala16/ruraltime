@@ -148,11 +148,45 @@ const PropriedadeDetalhes = () => {
     : `${window.location.origin}/placeholder.svg`;
   const propertyDescription = propriedade?.descricao || 'Descubra experiências autênticas de turismo rural na Rural Time';
 
+  // Structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    "name": propriedade?.nome,
+    "description": propertyDescription,
+    "image": imageUrl,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": propriedade?.endereco,
+      "addressLocality": propriedade?.cidade,
+      "addressRegion": propriedade?.estado,
+      "addressCountry": "BR"
+    },
+    "url": pageUrl,
+    "touristType": propriedade?.tipo_propriedade,
+    "priceRange": propriedade?.preco_visita ? `R$ ${propriedade.preco_visita.toFixed(2)}` : undefined,
+    "availableLanguage": "pt-BR"
+  };
+
+  const keywords = [
+    'turismo rural',
+    propriedade?.cidade,
+    propriedade?.estado,
+    propriedade?.tipo_propriedade,
+    ...(propriedade?.atividades || []),
+    'rural time',
+    'turismo no campo',
+    'experiências rurais',
+    'agroturismo'
+  ].filter(Boolean).join(', ');
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background">
       <Helmet>
-        <title>{propriedade?.nome || 'Atrativo Rural'} - Rural Time</title>
-        <meta name="description" content={propertyDescription} />
+        <title>{propriedade?.nome || 'Atrativo Rural'} - Turismo Rural em {propriedade?.cidade}, {propriedade?.estado} | Rural Time</title>
+        <meta name="description" content={`${propertyDescription} ${propriedade?.cidade}, ${propriedade?.estado}. ${propriedade?.atividades?.slice(0, 3).join(', ')}. Reserve sua visita!`} />
+        <meta name="keywords" content={keywords} />
+        <link rel="canonical" href={pageUrl} />
         
         {/* Open Graph / Facebook / WhatsApp */}
         <meta property="og:type" content="website" />
@@ -163,6 +197,7 @@ const PropriedadeDetalhes = () => {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:site_name" content="Rural Time" />
+        <meta property="og:locale" content="pt_BR" />
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
@@ -170,6 +205,11 @@ const PropriedadeDetalhes = () => {
         <meta property="twitter:title" content={`${propriedade?.nome || 'Atrativo Rural'} - Rural Time`} />
         <meta property="twitter:description" content={`🌾 Conheça ${propriedade?.nome || 'este atrativo'} na Rural Time. ${propertyDescription.substring(0, 150)}...`} />
         <meta property="twitter:image" content={imageUrl} />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
       </Helmet>
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -190,8 +230,9 @@ const PropriedadeDetalhes = () => {
                 <div className="w-full">
                   <img
                     src={propriedade.imagens[selectedImageIndex]}
-                    alt={`${propriedade.nome} - ${selectedImageIndex + 1}`}
+                    alt={`${propriedade.nome} em ${propriedade.cidade}, ${propriedade.estado} - Turismo Rural - Imagem ${selectedImageIndex + 1}`}
                     className="w-full h-96 object-cover rounded-lg"
+                    loading="eager"
                   />
                 </div>
                 
@@ -211,6 +252,7 @@ const PropriedadeDetalhes = () => {
                           src={imagem}
                           alt={`${propriedade.nome} miniatura ${index + 1}`}
                           className="w-full h-full object-cover"
+                          loading="lazy"
                         />
                       </button>
                     ))}

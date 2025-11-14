@@ -116,14 +116,49 @@ const ArtesanatoDetalhes = () => {
     : `${window.location.origin}/placeholder.svg`;
   const artDescription = artesanato?.descricao || 'Descubra artesanatos autênticos do campo na Rural Time';
 
+  // Structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": artesanato?.nome,
+    "description": artDescription,
+    "image": imageUrl,
+    "category": artesanato?.categoria,
+    "brand": {
+      "@type": "Brand",
+      "name": "Rural Time"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "BRL"
+    },
+    "manufacturer": {
+      "@type": "Person",
+      "name": artesanato?.artesao_nome
+    }
+  };
+
+  const keywords = [
+    'artesanato rural',
+    artesanato?.categoria,
+    artesanato?.artesao_nome,
+    'artesanato brasileiro',
+    'produtos artesanais',
+    'rural time',
+    'artesanato do campo'
+  ].filter(Boolean).join(', ');
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background">
       <Helmet>
-        <title>{artesanato?.nome || 'Artesanato Rural'} - Rural Time</title>
-        <meta name="description" content={artDescription} />
+        <title>{artesanato?.nome || 'Artesanato Rural'} - Artesanato {artesanato?.categoria} por {artesanato?.artesao_nome} | Rural Time</title>
+        <meta name="description" content={`${artDescription} Artesanato ${artesanato?.categoria} feito por ${artesanato?.artesao_nome}. Produtos artesanais autênticos do campo brasileiro.`} />
+        <meta name="keywords" content={keywords} />
+        <link rel="canonical" href={pageUrl} />
         
         {/* Open Graph / Facebook / WhatsApp */}
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="product" />
         <meta property="og:url" content={pageUrl} />
         <meta property="og:title" content={`${artesanato?.nome || 'Artesanato Rural'} - Rural Time`} />
         <meta property="og:description" content={`🎨 Conheça ${artesanato?.nome || 'este artesanato'} na Rural Time. ${artDescription.substring(0, 150)}... Artesanatos autênticos do campo brasileiro!`} />
@@ -131,6 +166,7 @@ const ArtesanatoDetalhes = () => {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:site_name" content="Rural Time" />
+        <meta property="og:locale" content="pt_BR" />
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
@@ -138,6 +174,11 @@ const ArtesanatoDetalhes = () => {
         <meta property="twitter:title" content={`${artesanato?.nome || 'Artesanato Rural'} - Rural Time`} />
         <meta property="twitter:description" content={`🎨 Conheça ${artesanato?.nome || 'este artesanato'} na Rural Time. ${artDescription.substring(0, 150)}...`} />
         <meta property="twitter:image" content={imageUrl} />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
       </Helmet>
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -159,8 +200,9 @@ const ArtesanatoDetalhes = () => {
                 <div className="relative w-full">
                   <img
                     src={artesanato.imagens[selectedImageIndex]}
-                    alt={`${artesanato.nome} - ${selectedImageIndex + 1}`}
+                    alt={`${artesanato.categoria} - ${artesanato.nome} por ${artesanato.artesao_nome} - Imagem ${selectedImageIndex + 1}`}
                     className="w-full h-96 object-cover rounded-lg"
+                    loading="eager"
                   />
                   
                   {/* Botões de navegação */}
@@ -213,6 +255,7 @@ const ArtesanatoDetalhes = () => {
                             src={imagem}
                             alt={`${artesanato.nome} miniatura ${index + 1}`}
                             className="w-full h-full object-cover"
+                            loading="lazy"
                           />
                         </button>
                       ))}
