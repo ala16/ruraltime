@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import { ModernNavigation } from "@/components/ui/modern-navigation";
 import { Footer } from "@/components/sections/Footer";
 import { Button } from "@/components/ui/button";
@@ -27,7 +28,6 @@ export default function TodosAtrativos() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Todos os Atrativos Turísticos Rurais - Rural Time";
     
     const fetchPropriedades = async () => {
       try {
@@ -64,6 +64,20 @@ export default function TodosAtrativos() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Atrativos Turísticos Rurais no Brasil - Descubra o Campo | Rural Time</title>
+        <meta name="description" content="Explore todos os atrativos turísticos rurais disponíveis no Brasil. Fazendas, sítios e propriedades rurais com experiências autênticas no campo. Turismo rural de qualidade." />
+        <meta name="keywords" content="atrativos rurais, turismo rural brasil, fazendas para visitar, sítios turísticos, propriedades rurais, agroturismo, experiências no campo, turismo no interior" />
+        <link rel="canonical" href={`${window.location.origin}/propriedades-rurais`} />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Atrativos Turísticos Rurais no Brasil - Rural Time" />
+        <meta property="og:description" content="Explore destinos rurais autênticos em todo o Brasil" />
+        <meta property="og:url" content={`${window.location.origin}/propriedades-rurais`} />
+        <meta property="og:locale" content="pt_BR" />
+      </Helmet>
+      
       <ModernNavigation onSectionClick={scrollToSection} />
       
       <main className="pt-24 pb-20">
@@ -112,8 +126,9 @@ export default function TodosAtrativos() {
                 >
                   <img
                     src={propriedade.imagens[0]}
-                    alt={propriedade.nome}
+                    alt={`${propriedade.tipo_propriedade} em ${propriedade.cidade}, ${propriedade.estado} - ${propriedade.nome} - Turismo Rural`}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   
