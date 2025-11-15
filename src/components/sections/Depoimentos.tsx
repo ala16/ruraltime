@@ -27,7 +27,7 @@ export function Depoimentos() {
   ];
 
   return (
-    <section id="depoimentos" className="py-20 bg-background" ref={sectionRef}>
+    <section id="depoimentos" className="py-12 bg-background" ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`text-center mb-16 transition-all duration-700 ${
           isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'

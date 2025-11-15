@@ -125,7 +125,7 @@ export function Apoiadores() {
   }, [isVisible, apoiadores.length]);
 
   return (
-    <section ref={sectionRef} id="apoiadores" className="py-20 bg-muted/30">
+    <section ref={sectionRef} id="apoiadores" className="py-12 bg-muted/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-3 mb-4">

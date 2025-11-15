@@ -42,7 +42,7 @@ export function SejaParceiro() {
   };
 
   return (
-    <section id="parceiros" className="py-20 bg-gradient-primary text-white">
+    <section id="parceiros" className="py-12 bg-gradient-primary text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Pronto para começar?</h2>
