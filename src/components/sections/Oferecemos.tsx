@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, MapPin, TrendingUp, Network } from "lucide-react";
 export function Oferecemos() {
-  return <section id="oferecemos" className="py-20 bg-background">
+  return <section id="oferecemos" className="py-12 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-primary mb-4">O que Oferecemos</h2>

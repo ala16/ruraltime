@@ -5,7 +5,7 @@ import incluiCampoLogo from "@/assets/incluicampo-logo.png";
 
 export function IncluiCampo() {
   return (
-    <section id="incluicampo" className="py-16 bg-gradient-to-b from-background to-muted/20">
+    <section id="incluicampo" className="py-10 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <Card className="overflow-hidden border-2">
