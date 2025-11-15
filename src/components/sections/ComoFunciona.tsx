@@ -1,9 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Search, Calendar } from "lucide-react";
+import { useInView } from "@/hooks/use-in-view";
+
 export function ComoFunciona() {
-  return <section id="como-funciona" className="py-20 bg-background">
+  const { ref: sectionRef, isInView } = useInView({ threshold: 0.2 });
+  
+  return <section id="como-funciona" className="py-20 bg-background" ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-700 ${
+          isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="text-4xl font-bold text-primary mb-4">Como Funciona</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Processo simples e eficiente para conectar campo e cidade
@@ -12,10 +18,12 @@ export function ComoFunciona() {
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
           {/* Passo 1 */}
-          <div className="text-center flex-1 max-w-sm">
-            <Card className="hover:shadow-xl transition-all duration-300 border-primary/20">
+          <div className={`text-center flex-1 max-w-sm transition-all duration-700 ${
+            isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+          }`} style={{ transitionDelay: '0.2s' }}>
+            <Card className="hover:shadow-xl hover:-translate-y-2 transition-all duration-500 border-primary/20 group">
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <MapPin className="w-8 h-8 text-white" />
                 </div>
                 <div className="bg-primary text-white text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-4">
@@ -40,10 +48,12 @@ export function ComoFunciona() {
           </div>
 
           {/* Passo 2 */}
-          <div className="text-center flex-1 max-w-sm">
-            <Card className="hover:shadow-xl transition-all duration-300 border-secondary/20">
+          <div className={`text-center flex-1 max-w-sm transition-all duration-700 ${
+            isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`} style={{ transitionDelay: '0.4s' }}>
+            <Card className="hover:shadow-xl hover:-translate-y-2 transition-all duration-500 border-secondary/20 group">
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Search className="w-8 h-8 text-white" />
                 </div>
                 <div className="bg-secondary text-white text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-4">
@@ -68,10 +78,12 @@ export function ComoFunciona() {
           </div>
 
           {/* Passo 3 */}
-          <div className="text-center flex-1 max-w-sm">
-            <Card className="hover:shadow-xl transition-all duration-300 border-rural-green/20 bg-gradient-to-r from-accent to-rural-cream">
+          <div className={`text-center flex-1 max-w-sm transition-all duration-700 ${
+            isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+          }`} style={{ transitionDelay: '0.6s' }}>
+            <Card className="hover:shadow-xl hover:-translate-y-2 transition-all duration-500 border-rural-green/20 bg-gradient-to-r from-accent to-rural-cream group">
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Calendar className="w-8 h-8 text-white" />
                 </div>
                 <div className="bg-rural-green text-white text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-4">
