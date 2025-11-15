@@ -8,6 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import Autoplay from "embla-carousel-autoplay";
 import { ShareButtons } from "@/components/ShareButtons";
+import { useInView } from "@/hooks/use-in-view";
 interface Artesanato {
   id: string;
   nome: string;
@@ -23,6 +24,8 @@ interface Artesanato {
 export const Artesanatos = () => {
   const [artesanatos, setArtesanatos] = useState<Artesanato[]>([]);
   const [loading, setLoading] = useState(true);
+  const { ref: headerRef, isInView: headerInView } = useInView({ threshold: 0.2 });
+  const { ref: carouselRef, isInView: carouselInView } = useInView({ threshold: 0.1 });
   const handleViewDetails = (id: string) => {
     window.location.href = `/artesanato/${id}`;
   };
@@ -83,10 +86,15 @@ export const Artesanatos = () => {
   }
   return <section id="artesanatos" className="py-20 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">Artesanato Rural</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região, que preservam tradições e agregam valor cultural às suas experiências rurais.</p>
-          <div className="mt-6">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ${
+            headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <h2 className="text-4xl font-bold text-primary mb-4 animate-fade-in">Artesanato Rural</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região, que preservam tradições e agregam valor cultural às suas experiências rurais.</p>
+          <div className="mt-6 animate-fade-in" style={{ animationDelay: '0.4s' }}>
             <Button 
               type="button"
               onClick={() => {
@@ -94,13 +102,19 @@ export const Artesanatos = () => {
                 window.scrollTo(0, 0);
               }} 
               size="lg"
-              className="bg-gradient-primary text-primary-foreground hover:opacity-90"
+              className="bg-gradient-primary text-primary-foreground hover:opacity-90 hover:scale-105 transition-transform duration-300 shadow-glow"
             >
               Ver Todos os Artesanatos
             </Button>
           </div>
         </div>
 
+        <div 
+          ref={carouselRef}
+          className={`transition-all duration-700 ${
+            carouselInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
         <Carousel plugins={[Autoplay({
         delay: 3000
       })]} className="w-full" opts={{
@@ -108,9 +122,9 @@ export const Artesanatos = () => {
         loop: true
       }}>
           <CarouselContent className="-ml-2 md:-ml-4">
-              {artesanatos.map(artesanato => <CarouselItem key={artesanato.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                  <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onClick={() => handleViewDetails(artesanato.id)}>
-                    <img src={artesanato.imagens[0]} alt={artesanato.nome} className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
+              {artesanatos.map((artesanato, index) => <CarouselItem key={artesanato.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:scale-[1.02]" onClick={() => handleViewDetails(artesanato.id)}>
+                    <img src={artesanato.imagens[0]} alt={artesanato.nome} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                       <div className="flex items-center gap-2 mb-2">
@@ -160,6 +174,7 @@ export const Artesanatos = () => {
           <CarouselPrevious className="left-4 bg-white/90 border-2 shadow-lg hover:bg-white w-12 h-12" />
           <CarouselNext className="right-4 bg-white/90 border-2 shadow-lg hover:bg-white w-12 h-12" />
         </Carousel>
+        </div>
       </div>
     </section>;
 };
