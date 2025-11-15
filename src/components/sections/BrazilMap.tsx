@@ -274,9 +274,9 @@ export const BrazilMap = () => {
     : {};
 
   return (
-    <section id="mapa-brasil" className="py-12 bg-background">
+    <section id="mapa-brasil" className="py-8 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-4xl font-bold text-primary mb-4">
             Explore o Brasil Rural
           </h2>
@@ -304,7 +304,7 @@ export const BrazilMap = () => {
                     )}
                   </div>
                   
-                  <div className="space-y-2 max-h-[600px] overflow-y-auto">
+                  <div className="space-y-2 max-h-[500px] overflow-y-auto">
                     <Button
                       variant={!selectedState ? "default" : "outline"}
                       size="sm"
@@ -364,7 +364,7 @@ export const BrazilMap = () => {
               {/* Map */}
               <div className="lg:col-span-3">
                 <Card className="overflow-hidden">
-                  <div ref={mapContainer} className="w-full h-[600px]" />
+                  <div ref={mapContainer} className="w-full h-[500px]" />
                 </Card>
                 
                 {(selectedState || selectedCity) && (
@@ -376,7 +376,7 @@ export const BrazilMap = () => {
                       <Badge>{filteredPropriedades.length}</Badge>
                     </div>
                     
-                    <div className="grid gap-4 max-h-[400px] overflow-y-auto">
+                    <div className="grid gap-4 max-h-[300px] overflow-y-auto">
                       {filteredPropriedades.map((prop) => (
                         <div
                           key={prop.id}
