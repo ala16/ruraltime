@@ -95,6 +95,60 @@ export type Database = {
         }
         Relationships: []
       }
+      blog_posts: {
+        Row: {
+          author: string
+          category: string
+          content: string
+          cover_image: string | null
+          created_at: string
+          excerpt: string
+          id: string
+          meta_description: string | null
+          meta_title: string | null
+          published: boolean
+          slug: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+          views: number
+        }
+        Insert: {
+          author?: string
+          category: string
+          content: string
+          cover_image?: string | null
+          created_at?: string
+          excerpt: string
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          published?: boolean
+          slug: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+          views?: number
+        }
+        Update: {
+          author?: string
+          category?: string
+          content?: string
+          cover_image?: string | null
+          created_at?: string
+          excerpt?: string
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          published?: boolean
+          slug?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+          views?: number
+        }
+        Relationships: []
+      }
       categories: {
         Row: {
           created_at: string | null
@@ -695,12 +749,9 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      generate_voucher_code: {
-        Args: Record<PropertyKey, never>
-        Returns: string
-      }
+      generate_voucher_code: { Args: never; Returns: string }
       get_artesanatos_public_view: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           artesao_contato: string
           artesao_instagram: string
@@ -724,7 +775,7 @@ export type Database = {
         }[]
       }
       get_property_public_view: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           atividades: string[]
           capacidade_visitantes: number
@@ -749,10 +800,7 @@ export type Database = {
           whatsapp: string
         }[]
       }
-      is_admin: {
-        Args: { user_uuid: string }
-        Returns: boolean
-      }
+      is_admin: { Args: { user_uuid: string }; Returns: boolean }
       use_voucher: {
         Args: { used_by_name: string; voucher_code: string }
         Returns: boolean

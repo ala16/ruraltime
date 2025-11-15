@@ -8,6 +8,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { AnimatedStatCard } from '@/components/ui/animated-stat-card';
 
 interface Propriedade {
   id: string;
@@ -287,42 +288,42 @@ Mensagem enviada através do Rural Time.`;
         </Card>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-          <div className="text-center">
-            <div className="text-2xl lg:text-3xl font-bold text-rural-primary mb-1">
-              {stats.atrativos}+
-            </div>
-            <div className="text-sm text-rural-text-light">
-              Atrativos Turísticos Rurais
-            </div>
-          </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+          <AnimatedStatCard
+            value={stats.atrativos}
+            label="Atrativos Turísticos Rurais"
+            suffix="+"
+            color="hsl(142, 72%, 29%)"
+            maxValue={50}
+            delay={0}
+          />
           
-          <div className="text-center">
-            <div className="text-2xl lg:text-3xl font-bold text-rural-primary mb-1">
-              {stats.cidades}
-            </div>
-            <div className="text-sm text-rural-text-light">
-              Cidades Parceiras
-            </div>
-          </div>
+          <AnimatedStatCard
+            value={stats.cidades}
+            label="Cidades Parceiras"
+            suffix=""
+            color="hsl(142, 72%, 35%)"
+            maxValue={20}
+            delay={200}
+          />
 
-          <div className="text-center">
-            <div className="text-2xl lg:text-3xl font-bold text-rural-primary mb-1">
-              {stats.artesaos}+
-            </div>
-            <div className="text-sm text-rural-text-light">
-              Artesãos Cadastrados
-            </div>
-          </div>
+          <AnimatedStatCard
+            value={stats.artesaos}
+            label="Artesãos Cadastrados"
+            suffix="+"
+            color="hsl(142, 72%, 40%)"
+            maxValue={30}
+            delay={400}
+          />
 
-          <div className="text-center">
-            <div className="text-2xl lg:text-3xl font-bold text-rural-primary mb-1">
-              {stats.acessos.toLocaleString('pt-BR')}+
-            </div>
-            <div className="text-sm text-rural-text-light">
-              Acessos Totais
-            </div>
-          </div>
+          <AnimatedStatCard
+            value={stats.acessos}
+            label="Acessos Totais"
+            suffix="+"
+            color="hsl(142, 72%, 45%)"
+            maxValue={15000}
+            delay={600}
+          />
         </div>
       </div>
     </section>
