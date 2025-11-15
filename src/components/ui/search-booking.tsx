@@ -21,6 +21,7 @@ interface Propriedade {
   nome: string;
   cidade: string;
   telefone?: string;
+  whatsapp?: string;
 }
 
 export function SearchBooking({ className }: SearchBookingProps) {
@@ -41,7 +42,7 @@ export function SearchBooking({ className }: SearchBookingProps) {
     try {
       const { data: props, error } = await supabase
         .from('propriedades')
-        .select('id, nome, cidade, telefone')
+        .select('id, nome, cidade, telefone, whatsapp')
         .eq('ativo', true)
         .order('nome');
 
@@ -102,10 +103,12 @@ export function SearchBooking({ className }: SearchBookingProps) {
         return;
       }
 
-      if (!propriedadeSelecionada.telefone) {
+      const contatoWhatsApp = propriedadeSelecionada.whatsapp || propriedadeSelecionada.telefone;
+      
+      if (!contatoWhatsApp) {
         toast({
           title: "Contato não disponível",
-          description: "Esta propriedade não tem telefone cadastrado.",
+          description: "Esta propriedade não tem telefone ou WhatsApp cadastrado.",
           variant: "destructive",
         });
         return;
@@ -124,7 +127,7 @@ Poderia me informar sobre disponibilidade e valores?
 
 Mensagem enviada através do Rural Time.`;
 
-      const telefone = propriedadeSelecionada.telefone.replace(/\D/g, '');
+      const telefone = contatoWhatsApp.replace(/\D/g, '');
       const mensagemEncoded = encodeURIComponent(mensagem);
       const whatsappUrl = `https://wa.me/55${telefone}?text=${mensagemEncoded}`;
       
