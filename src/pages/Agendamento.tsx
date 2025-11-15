@@ -26,6 +26,7 @@ interface Propriedade {
   id: string;
   nome: string;
   telefone: string;
+  whatsapp: string;
   atividades: string[];
   cidade: string;
   estado: string;
@@ -63,7 +64,7 @@ const Agendamento = () => {
     try {
       const { data, error } = await supabase
         .from('propriedades')
-        .select('id, nome, telefone, atividades, cidade, estado')
+        .select('id, nome, telefone, whatsapp, atividades, cidade, estado')
         .eq('id', propriedadeId)
         .eq('ativo', true)
         .single();
@@ -116,7 +117,7 @@ Gostaria de confirmar a disponibilidade para essa data e horário.
 
 Obrigado!`;
 
-    const telefoneFormatado = propriedade?.telefone?.replace(/\D/g, '') || '';
+    const telefoneFormatado = (propriedade?.whatsapp || propriedade?.telefone)?.replace(/\D/g, '') || '';
     const whatsappUrl = `https://wa.me/55${telefoneFormatado}?text=${encodeURIComponent(mensagem)}`;
     
     window.open(whatsappUrl, '_blank');

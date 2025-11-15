@@ -772,6 +772,7 @@ export type Database = {
           email: string
           telefone: string
           website: string
+          whatsapp: string
         }[]
       }
       get_property_public_view: {

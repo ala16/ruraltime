@@ -133,10 +133,12 @@ export const ModernBookingBar = () => {
       const { data: contactInfo, error } = await supabase
         .rpc('get_property_contact_info', { property_id: propriedadeSelecionada.id });
 
-      if (error || !contactInfo?.[0]?.telefone) {
+      const contatoWhatsApp = contactInfo?.[0]?.whatsapp || contactInfo?.[0]?.telefone;
+      
+      if (error || !contatoWhatsApp) {
         toast({
           title: "Contato não disponível",
-          description: "Esta propriedade não tem telefone cadastrado.",
+          description: "Esta propriedade não tem telefone ou WhatsApp cadastrado.",
           variant: "destructive",
         });
         return;
@@ -155,7 +157,7 @@ Poderia me informar sobre disponibilidade, horários e valores?
 
 Mensagem enviada através do Rural Time.`;
 
-      const telefone = contactInfo[0].telefone.replace(/\D/g, '');
+      const telefone = contatoWhatsApp.replace(/\D/g, '');
       const mensagemEncoded = encodeURIComponent(mensagem);
       const whatsappUrl = `https://wa.me/55${telefone}?text=${mensagemEncoded}`;
       
