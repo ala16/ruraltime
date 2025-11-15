@@ -15,6 +15,7 @@ interface Propriedade {
   nome: string;
   cidade: string;
   telefone?: string;
+  whatsapp?: string;
 }
 
 interface Stats {
