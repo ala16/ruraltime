@@ -8,7 +8,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import Autoplay from "embla-carousel-autoplay";
 import { ShareButtons } from "@/components/ShareButtons";
-import { useInView } from "@/hooks/use-in-view";
 interface Artesanato {
   id: string;
   nome: string;
@@ -24,8 +23,7 @@ interface Artesanato {
 export const Artesanatos = () => {
   const [artesanatos, setArtesanatos] = useState<Artesanato[]>([]);
   const [loading, setLoading] = useState(true);
-  const { ref: headerRef, isInView: headerInView } = useInView({ threshold: 0.2 });
-  const { ref: carouselRef, isInView: carouselInView } = useInView({ threshold: 0.1 });
+  // Removed animation hooks for simpler rendering
   const handleViewDetails = (id: string) => {
     window.location.href = `/artesanato/${id}`;
   };
@@ -43,6 +41,7 @@ export const Artesanatos = () => {
 
         // Filter only handicrafts with images
         const artesanatosWithImages = data?.filter((artesanato: Artesanato) => artesanato.imagens && artesanato.imagens.length > 0) || [];
+        console.log('✅ ARTESANATOS carregados:', artesanatosWithImages.length, 'artesanatos');
         setArtesanatos(artesanatosWithImages);
       } catch (error) {
         console.error('Erro ao carregar artesanatos:', error);
@@ -86,15 +85,10 @@ export const Artesanatos = () => {
   }
   return <section id="artesanatos" className="py-12 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div 
-          ref={headerRef}
-          className={`text-center mb-16 transition-all duration-700 ${
-            headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <h2 className="text-4xl font-bold text-primary mb-4 animate-fade-in">Artesanato Rural</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região, que preservam tradições e agregam valor cultural às suas experiências rurais.</p>
-          <div className="mt-6 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-primary mb-4">Artesanato Rural</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região, que preservam tradições e agregam valor cultural às suas experiências rurais.</p>
+          <div>
             <Button 
               type="button"
               onClick={() => {
@@ -109,12 +103,7 @@ export const Artesanatos = () => {
           </div>
         </div>
 
-        <div 
-          ref={carouselRef}
-          className={`transition-all duration-700 ${
-            carouselInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
+        <div>
         <Carousel plugins={[Autoplay({
         delay: 3000
       })]} className="w-full" opts={{

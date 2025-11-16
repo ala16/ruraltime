@@ -6,7 +6,6 @@ import Autoplay from "embla-carousel-autoplay";
 import { supabase } from "@/integrations/supabase/client";
 import { Eye, MessageCircle, Instagram } from "lucide-react";
 import { ShareButtons } from "@/components/ShareButtons";
-import { useInView } from "@/hooks/use-in-view";
 interface Propriedade {
   id: string;
   nome: string;
@@ -19,8 +18,7 @@ export function Atrativos() {
   const navigate = useNavigate();
   const [propriedades, setPropriedades] = useState<Propriedade[]>([]);
   const [loading, setLoading] = useState(true);
-  const { ref: headerRef, isInView: headerInView } = useInView({ threshold: 0.2 });
-  const { ref: carouselRef, isInView: carouselInView } = useInView({ threshold: 0.1 });
+  // Removed animation hooks for simpler rendering
   useEffect(() => {
     const fetchPropriedades = async () => {
       try {
@@ -35,6 +33,7 @@ export function Atrativos() {
 
         // Filtrar apenas propriedades que têm imagens
         const propriedadesComImagens = (data || []).filter((prop: any) => prop.imagens && prop.imagens.length > 0);
+        console.log('✅ ATRATIVOS carregados:', propriedadesComImagens.length, 'propriedades');
         setPropriedades(propriedadesComImagens);
       } catch (error) {
         console.error('Erro:', error);
@@ -70,15 +69,10 @@ export function Atrativos() {
   }
   return <section id="atrativos" className="py-20 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div 
-          ref={headerRef}
-          className={`text-center mb-16 transition-all duration-700 ${
-            headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <h2 className="text-4xl font-bold text-primary mb-4 animate-fade-in">Atrativos de Turismo Rurais</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>Viaje pelos destinos rurais do Brasil e descubra experiências autênticas, cheias de sabor, história e simplicidade.</p>
-          <div className="mt-6 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-primary mb-4">Atrativos de Turismo Rurais</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">Viaje pelos destinos rurais do Brasil e descubra experiências autênticas, cheias de sabor, história e simplicidade.</p>
+          <div>
             <Button 
               type="button"
               onClick={() => {
@@ -93,12 +87,7 @@ export function Atrativos() {
           </div>
         </div>
 
-        <div 
-          ref={carouselRef}
-          className={`transition-all duration-700 ${
-            carouselInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
+        <div>
         <Carousel plugins={[Autoplay({
         delay: 3000
       })]} className="w-full" opts={{
