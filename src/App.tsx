@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import { FloatingBanner } from "@/components/FloatingBanner";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -34,10 +35,11 @@ const App = () => (
       enableSystem
       disableTransitionOnChange
     >
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
+      <LanguageProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/propriedades" element={<PropriedadesRurais />} />
@@ -61,7 +63,8 @@ const App = () => (
           </Routes>
           <FloatingBanner />
         </BrowserRouter>
-      </TooltipProvider>
+        </TooltipProvider>
+      </LanguageProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );
