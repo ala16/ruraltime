@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { 
   ArrowRight, 
   Leaf, 
@@ -20,21 +21,23 @@ interface ModernHeroProps {
 }
 
 export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
+  const { t } = useLanguage();
+  
   const features = [
     {
       icon: TreePine,
-      title: 'Turismo Rural',
-      description: 'Experiências autênticas no campo'
+      title: t('hero.feature1.title'),
+      description: t('hero.feature1.desc')
     },
     {
       icon: Palette,
-      title: 'Artesanato Local',
-      description: 'Peças únicas da região'
+      title: t('hero.feature2.title'),
+      description: t('hero.feature2.desc')
     },
     {
       icon: Users,
-      title: 'Conexão Humana',
-      description: 'Conhecendo produtores locais'
+      title: t('hero.feature3.title'),
+      description: t('hero.feature3.desc')
     }
   ];
 
@@ -61,20 +64,19 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
               {/* Hero Badge */}
               <Badge className="bg-rural-secondary/20 text-rural-secondary border-rural-secondary/30 backdrop-blur-sm px-4 py-2 text-sm font-medium">
                 <Leaf className="w-4 h-4 mr-2" />
-                Turismo Rural e Artesanato Brasileiro
+                {t('hero.badge')}
               </Badge>
 
               {/* Main Heading */}
               <div className="space-y-4">
                 <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
-                  Descubra o
+                  {t('hero.title')}
                   <span className="block bg-gradient-to-r from-rural-secondary to-rural-accent bg-clip-text text-transparent">
-                    Campo Autêntico
+                    {t('hero.titleHighlight')}
                   </span>
                 </h1>
                 <p className="text-xl lg:text-2xl text-white/90 leading-relaxed max-w-xl">
-                  Conectamos você às melhores experiências rurais e ao artesanato autêntico do Brasil. 
-                  Viva momentos inesquecíveis no campo.
+                  {t('hero.subtitle')}
                 </p>
               </div>
 
@@ -85,7 +87,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                   onClick={() => onSectionClick('atrativos')}
                   className="btn-modern bg-rural-secondary hover:bg-rural-secondary/90 text-rural-secondary-foreground px-8 py-4 text-lg font-semibold shadow-glow group"
                 >
-                  Explorar Experiências
+                  {t('hero.ctaExplore')}
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button 
@@ -95,7 +97,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                   className="glass border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm"
                 >
                   <Palette className="mr-2 h-5 w-5" />
-                  Ver Artesanato
+                  {t('hero.ctaCrafts')}
                 </Button>
               </div>
 
@@ -129,7 +131,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                   <div className="flex items-center space-x-3 mb-4">
                     <MapPin className="w-5 h-5 text-rural-secondary" />
                     <h3 className="text-lg font-semibold text-white">
-                      Brasil Rural
+                      {t('hero.location')}
                     </h3>
                     <div className="flex space-x-1">
                       {[1, 2, 3, 4, 5].map((star) => (
@@ -138,8 +140,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                     </div>
                   </div>
                   <p className="text-white/90 text-sm leading-relaxed">
-                    Um país rico em tradições, cultura e belezas naturais. 
-                    Conecte-se com a essência do campo brasileiro através de experiências únicas.
+                    {t('hero.locationDesc')}
                   </p>
                 </CardContent>
               </Card>

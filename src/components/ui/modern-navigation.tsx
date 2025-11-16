@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './button';
-import { Menu, X, MapPin, Phone, Mail } from 'lucide-react';
+import { Menu, X, MapPin, Phone, Mail, Moon, Sun, Globe } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { useLanguage } from '@/contexts/LanguageContext';
 import ruralTimeLogo from "@/assets/rural-time-logo-new.png";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface ModernNavigationProps {
   onSectionClick: (sectionId: string) => void;
@@ -10,6 +18,8 @@ interface ModernNavigationProps {
 export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,13 +31,19 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
   }, []);
 
   const navigationItems = [
-    { label: 'Início', id: '/', isRoute: true },
-    { label: 'Atrativos', id: 'atrativos', isRoute: false },
-    { label: 'Artesanato', id: 'artesanatos', isRoute: false },
-    { label: 'O que Oferecemos', id: 'oferecemos', isRoute: false },
-    { label: 'Como Funciona', id: 'como-funciona', isRoute: false },
-    { label: 'Blog', id: '/blog', isRoute: true },
-    { label: 'Contato', id: 'contato', isRoute: false },
+    { label: t('nav.home'), id: '/', isRoute: true },
+    { label: t('nav.attractions'), id: 'atrativos', isRoute: false },
+    { label: t('nav.crafts'), id: 'artesanatos', isRoute: false },
+    { label: t('nav.offer'), id: 'oferecemos', isRoute: false },
+    { label: t('nav.howItWorks'), id: 'como-funciona', isRoute: false },
+    { label: t('nav.blog'), id: '/blog', isRoute: true },
+    { label: t('nav.contact'), id: 'contato', isRoute: false },
+  ];
+
+  const languages = [
+    { code: 'pt' as const, label: 'PT', flag: '🇧🇷' },
+    { code: 'en' as const, label: 'EN', flag: '🇺🇸' },
+    { code: 'es' as const, label: 'ES', flag: '🇪🇸' },
   ];
 
   const handleNavClick = (item: typeof navigationItems[0]) => {
@@ -66,7 +82,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center space-x-6">
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
@@ -80,10 +96,62 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                   {item.label}
                 </button>
               ))}
+              
+              {/* Language Selector */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className={`transition-colors ${
+                      isScrolled ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
+                    }`}
+                  >
+                    <Globe className="h-4 w-4 mr-1" />
+                    {languages.find(l => l.code === language)?.label}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-background/95 backdrop-blur-lg border-border z-[100]">
+                  {languages.map((lang) => (
+                    <DropdownMenuItem
+                      key={lang.code}
+                      onClick={() => setLanguage(lang.code)}
+                      className={language === lang.code ? 'bg-accent' : ''}
+                    >
+                      <span className="mr-2">{lang.flag}</span>
+                      {lang.label}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Theme Toggle */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className={`transition-colors ${
+                  isScrolled ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
+                }`}
+              >
+                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="lg:hidden">
+            <div className="lg:hidden flex items-center gap-2">
+              {/* Theme Toggle Mobile */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className={`transition-colors ${
+                  isScrolled ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
+                }`}
+              >
+                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
+              
               <Button
                 variant="ghost"
                 size="sm"
@@ -101,7 +169,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden">
-            <div className="bg-white/95 backdrop-blur-lg border-t border-rural-accent/20 shadow-xl">
+            <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-rural-accent/20 shadow-xl">
               <div className="px-4 py-6 space-y-4">
                 {navigationItems.map((item) => (
                   <button
@@ -115,6 +183,25 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                     {item.label}
                   </button>
                 ))}
+                
+                {/* Language Selector Mobile */}
+                <div className="pt-4 border-t border-rural-accent/20">
+                  <p className="text-sm text-muted-foreground mb-2 px-4">Idioma / Language</p>
+                  <div className="flex gap-2">
+                    {languages.map((lang) => (
+                      <Button
+                        key={lang.code}
+                        variant={language === lang.code ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setLanguage(lang.code)}
+                        className="flex-1"
+                      >
+                        <span className="mr-1">{lang.flag}</span>
+                        {lang.label}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
