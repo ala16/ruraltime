@@ -68,7 +68,7 @@ export function Atrativos() {
         </div>
       </section>;
   }
-  return <section id="atrativos" className="pt-0 pb-12 bg-background -mt-4">
+  return <section id="atrativos" className="py-20 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div 
           ref={headerRef}
