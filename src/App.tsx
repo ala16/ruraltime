@@ -25,6 +25,9 @@ import PropriedadeDetalhes from "./pages/PropriedadeDetalhes";
 import TodosAtrativos from "./pages/TodosAtrativos";
 import TodosArtesanatos from "./pages/TodosArtesanatos";
 import Roadmap from "./pages/Roadmap";
+import TurismoRuralIndex from "./pages/TurismoRuralIndex";
+import TurismoRuralEstado from "./pages/TurismoRuralEstado";
+import TurismoRuralCidade from "./pages/TurismoRuralCidade";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +63,9 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/roadmap" element={<Roadmap />} />
+            <Route path="/turismo-rural" element={<TurismoRuralIndex />} />
+            <Route path="/turismo-rural/:estado" element={<TurismoRuralEstado />} />
+            <Route path="/turismo-rural/:estado/:cidade" element={<TurismoRuralCidade />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
