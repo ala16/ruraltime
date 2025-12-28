@@ -37,6 +37,45 @@ interface TouristAttractionSchemaProps {
   };
 }
 
+interface TouristDestinationSchemaProps {
+  type: 'touristDestination';
+  name: string;
+  description: string;
+  address: {
+    city?: string;
+    state: string;
+  };
+  image?: string;
+  attractions?: string[];
+}
+
+interface FAQSchemaProps {
+  type: 'faq';
+  questions: Array<{
+    question: string;
+    answer: string;
+  }>;
+}
+
+interface ImageObjectSchemaProps {
+  type: 'imageObject';
+  url: string;
+  caption: string;
+  description?: string;
+  contentLocation?: string;
+}
+
+interface VideoObjectSchemaProps {
+  type: 'videoObject';
+  name: string;
+  description: string;
+  thumbnailUrl: string;
+  uploadDate: string;
+  contentUrl?: string;
+  embedUrl?: string;
+  duration?: string;
+}
+
 interface ArticleSchemaProps {
   type: 'article';
   headline: string;
@@ -75,14 +114,23 @@ interface WebPageSchemaProps {
   url: string;
 }
 
+interface WebSiteSchemaProps {
+  type: 'webSite';
+}
+
 type SchemaProps = 
   | OrganizationSchemaProps 
   | LocalBusinessSchemaProps 
   | TouristAttractionSchemaProps 
+  | TouristDestinationSchemaProps
+  | FAQSchemaProps
+  | ImageObjectSchemaProps
+  | VideoObjectSchemaProps
   | ArticleSchemaProps
   | NewsArticleSchemaProps
   | BreadcrumbSchemaProps
-  | WebPageSchemaProps;
+  | WebPageSchemaProps
+  | WebSiteSchemaProps;
 
 const siteUrl = 'https://ruraltime.com.br';
 
@@ -174,6 +222,78 @@ const getTouristAttractionSchema = (props: TouristAttractionSchemaProps) => ({
   "isAccessibleForFree": false
 });
 
+const getTouristDestinationSchema = (props: TouristDestinationSchemaProps) => ({
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  "name": props.name,
+  "description": props.description,
+  "image": props.image,
+  "address": {
+    "@type": "PostalAddress",
+    ...(props.address.city && { "addressLocality": props.address.city }),
+    "addressRegion": props.address.state,
+    "addressCountry": "BR"
+  },
+  "touristType": ["Rural Tourism", "Eco Tourism", "Agritourism"],
+  ...(props.attractions && props.attractions.length > 0 && {
+    "includesAttraction": props.attractions.map(attraction => ({
+      "@type": "TouristAttraction",
+      "name": attraction
+    }))
+  })
+});
+
+const getFAQSchema = (props: FAQSchemaProps) => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": props.questions.map(q => ({
+    "@type": "Question",
+    "name": q.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": q.answer
+    }
+  }))
+});
+
+const getImageObjectSchema = (props: ImageObjectSchemaProps) => ({
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "url": props.url.startsWith('http') ? props.url : `${siteUrl}${props.url}`,
+  "caption": props.caption,
+  "description": props.description || props.caption,
+  ...(props.contentLocation && {
+    "contentLocation": {
+      "@type": "Place",
+      "name": props.contentLocation
+    }
+  }),
+  "creator": {
+    "@type": "Organization",
+    "name": "Rural Time"
+  }
+});
+
+const getVideoObjectSchema = (props: VideoObjectSchemaProps) => ({
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": props.name,
+  "description": props.description,
+  "thumbnailUrl": props.thumbnailUrl.startsWith('http') ? props.thumbnailUrl : `${siteUrl}${props.thumbnailUrl}`,
+  "uploadDate": props.uploadDate,
+  ...(props.contentUrl && { "contentUrl": props.contentUrl }),
+  ...(props.embedUrl && { "embedUrl": props.embedUrl }),
+  ...(props.duration && { "duration": props.duration }),
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rural Time",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/lovable-uploads/rural-time-logo-new.png`
+    }
+  }
+});
+
 const getArticleSchema = (props: ArticleSchemaProps) => ({
   "@context": "https://schema.org",
   "@type": "Article",
@@ -255,6 +375,28 @@ const getWebPageSchema = (props: WebPageSchemaProps) => ({
   }
 });
 
+const getWebSiteSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  "name": "Rural Time",
+  "alternateName": "Rural Time - Turismo Rural Digital",
+  "description": "O maior portal de turismo rural do Brasil",
+  "url": siteUrl,
+  "publisher": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${siteUrl}/turismo-rural?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "inLanguage": "pt-BR"
+});
+
 export const SchemaMarkup = (props: SchemaProps) => {
   let schema: object;
   
@@ -268,6 +410,18 @@ export const SchemaMarkup = (props: SchemaProps) => {
     case 'touristAttraction':
       schema = getTouristAttractionSchema(props);
       break;
+    case 'touristDestination':
+      schema = getTouristDestinationSchema(props);
+      break;
+    case 'faq':
+      schema = getFAQSchema(props);
+      break;
+    case 'imageObject':
+      schema = getImageObjectSchema(props);
+      break;
+    case 'videoObject':
+      schema = getVideoObjectSchema(props);
+      break;
     case 'article':
       schema = getArticleSchema(props);
       break;
@@ -279,6 +433,9 @@ export const SchemaMarkup = (props: SchemaProps) => {
       break;
     case 'webPage':
       schema = getWebPageSchema(props);
+      break;
+    case 'webSite':
+      schema = getWebSiteSchema();
       break;
     default:
       return null;

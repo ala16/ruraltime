@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
+import { FAQSection } from "@/components/seo/FAQSection";
+import { RelatedContent } from "@/components/seo/RelatedContent";
 import { ModernNavigation } from "@/components/ui/modern-navigation";
 import { Footer } from "@/components/sections/Footer";
 import { ShareButtons } from "@/components/ShareButtons";
@@ -380,6 +382,59 @@ const TurismoRuralCidade = () => {
               </div>
             )}
           </div>
+        </section>
+        
+        {/* FAQ Section for SGE */}
+        <section className="py-12 container mx-auto px-4">
+          <FAQSection 
+            title={`Perguntas Frequentes sobre Turismo Rural em ${cidadeNome}`}
+            faqs={[
+              {
+                question: `O que fazer em ${cidadeNome} para turismo rural?`,
+                answer: `${cidadeNome} oferece diversas experiências de turismo rural, incluindo visitas a fazendas, trilhas ecológicas, degustação de produtos artesanais, hospedagem rural e contato direto com a natureza e a cultura do campo.`
+              },
+              {
+                question: `Quais são as melhores propriedades rurais em ${cidadeNome}?`,
+                answer: `Na Rural Time você encontra ${propriedades.length > 0 ? propriedades.length : 'diversas'} propriedades rurais em ${cidadeNome}, ${estadoNome}. Cada uma oferece experiências únicas como agroturismo, ecoturismo e vivências no campo.`
+              },
+              {
+                question: `Como chegar às fazendas de ${cidadeNome}?`,
+                answer: `As propriedades rurais em ${cidadeNome} geralmente estão localizadas na zona rural do município. Recomendamos entrar em contato direto com a propriedade escolhida para obter orientações de acesso e verificar disponibilidade.`
+              },
+              {
+                question: `Turismo rural em ${cidadeNome} é adequado para crianças?`,
+                answer: `Sim! Muitas propriedades em ${cidadeNome} oferecem atividades especialmente pensadas para crianças, como contato com animais, colheita de frutas e atividades educativas sobre a vida no campo.`
+              }
+            ]}
+          />
+        </section>
+        
+        {/* Related Content for UX SEO */}
+        <section className="py-12 container mx-auto px-4">
+          <RelatedContent 
+            title="Explore Mais Destinos de Turismo Rural"
+            items={[
+              {
+                title: `Turismo Rural em ${estadoNome}`,
+                description: `Descubra todas as cidades com turismo rural no estado de ${estadoNome}`,
+                url: `/turismo-rural/${estado}`,
+                type: 'estado'
+              },
+              {
+                title: "Agroturismo no Brasil",
+                description: "Conheça as melhores experiências de agroturismo em todo o país",
+                url: "/agroturismo",
+                type: 'cluster'
+              },
+              {
+                title: "Turismo de Fazenda",
+                description: "Fazendas históricas e tradicionais para visitar",
+                url: "/turismo-de-fazenda",
+                type: 'cluster'
+              }
+            ]}
+            variant="list"
+          />
         </section>
         
         {/* CTA Section */}
