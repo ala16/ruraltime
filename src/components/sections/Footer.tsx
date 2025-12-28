@@ -1,6 +1,6 @@
 import ruralTimeLogo from "@/assets/rural-time-logo-new.png";
 interface FooterProps {
-  onSectionClick: (section: string) => void;
+  onSectionClick?: (section: string) => void;
 }
 export function Footer({
   onSectionClick
@@ -26,22 +26,22 @@ export function Footer({
             <h4 className="font-semibold text-lg mb-4">Links Rápidos</h4>
             <ul className="space-y-2">
               <li>
-                <button onClick={() => onSectionClick("inicio")} className="text-white/80 hover:text-white transition-colors">
+                <button onClick={() => onSectionClick?.("inicio")} className="text-white/80 hover:text-white transition-colors">
                   Início
                 </button>
               </li>
               <li>
-                <button onClick={() => onSectionClick("quem-somos")} className="text-white/80 hover:text-white transition-colors">
+                <button onClick={() => onSectionClick?.("quem-somos")} className="text-white/80 hover:text-white transition-colors">
                   Quem Somos
                 </button>
               </li>
               <li>
-                <button onClick={() => onSectionClick("parceiros")} className="text-white/80 hover:text-white transition-colors">
+                <button onClick={() => onSectionClick?.("parceiros")} className="text-white/80 hover:text-white transition-colors">
                   Seja Parceiro
                 </button>
               </li>
               <li>
-                <button onClick={() => onSectionClick("contato")} className="text-white/80 hover:text-white transition-colors">
+                <button onClick={() => onSectionClick?.("contato")} className="text-white/80 hover:text-white transition-colors">
                   Contato
                 </button>
               </li>

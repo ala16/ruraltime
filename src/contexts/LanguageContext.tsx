@@ -16,6 +16,7 @@ const translations = {
     'nav.crafts': 'Artesanato',
     'nav.offer': 'O que Oferecemos',
     'nav.howItWorks': 'Como Funciona',
+    'nav.roadmap': 'Roadmap',
     'nav.blog': 'Blog',
     'nav.contact': 'Contato',
     
@@ -42,6 +43,7 @@ const translations = {
     'nav.crafts': 'Handicrafts',
     'nav.offer': 'What We Offer',
     'nav.howItWorks': 'How It Works',
+    'nav.roadmap': 'Roadmap',
     'nav.blog': 'Blog',
     'nav.contact': 'Contact',
     
@@ -68,6 +70,7 @@ const translations = {
     'nav.crafts': 'Artesanía',
     'nav.offer': 'Qué Ofrecemos',
     'nav.howItWorks': 'Cómo Funciona',
+    'nav.roadmap': 'Hoja de Ruta',
     'nav.blog': 'Blog',
     'nav.contact': 'Contacto',
     
