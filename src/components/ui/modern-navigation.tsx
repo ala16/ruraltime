@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 interface ModernNavigationProps {
-  onSectionClick: (sectionId: string) => void;
+  onSectionClick?: (sectionId: string) => void;
 }
 
 export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionClick }) => {
@@ -36,6 +36,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
     { label: t('nav.crafts'), id: 'artesanatos', isRoute: false },
     { label: t('nav.offer'), id: 'oferecemos', isRoute: false },
     { label: t('nav.howItWorks'), id: 'como-funciona', isRoute: false },
+    { label: t('nav.roadmap'), id: '/roadmap', isRoute: true },
     { label: t('nav.blog'), id: '/blog', isRoute: true },
     { label: t('nav.contact'), id: 'contato', isRoute: false },
   ];
@@ -50,7 +51,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
     if (item.isRoute) {
       window.location.href = item.id;
     } else {
-      onSectionClick(item.id);
+      onSectionClick?.(item.id);
     }
   };
 

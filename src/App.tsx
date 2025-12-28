@@ -24,6 +24,7 @@ import ArtesanatoDetalhes from "./pages/ArtesanatoDetalhes";
 import PropriedadeDetalhes from "./pages/PropriedadeDetalhes";
 import TodosAtrativos from "./pages/TodosAtrativos";
 import TodosArtesanatos from "./pages/TodosArtesanatos";
+import Roadmap from "./pages/Roadmap";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/propriedade/:id" element={<PropriedadeDetalhes />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/roadmap" element={<Roadmap />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
