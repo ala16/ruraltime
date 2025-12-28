@@ -28,6 +28,11 @@ import Roadmap from "./pages/Roadmap";
 import TurismoRuralIndex from "./pages/TurismoRuralIndex";
 import TurismoRuralEstado from "./pages/TurismoRuralEstado";
 import TurismoRuralCidade from "./pages/TurismoRuralCidade";
+import Agroturismo from "./pages/clusters/Agroturismo";
+import TurismoDeFazenda from "./pages/clusters/TurismoDeFazenda";
+import ExperienciasCampo from "./pages/clusters/ExperienciasCampo";
+import TurismoSustentavel from "./pages/clusters/TurismoSustentavel";
+import Sobre from "./pages/Sobre";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +71,11 @@ const App = () => (
             <Route path="/turismo-rural" element={<TurismoRuralIndex />} />
             <Route path="/turismo-rural/:estado" element={<TurismoRuralEstado />} />
             <Route path="/turismo-rural/:estado/:cidade" element={<TurismoRuralCidade />} />
+            <Route path="/agroturismo" element={<Agroturismo />} />
+            <Route path="/turismo-de-fazenda" element={<TurismoDeFazenda />} />
+            <Route path="/experiencia-no-campo" element={<ExperienciasCampo />} />
+            <Route path="/turismo-rural-sustentavel" element={<TurismoSustentavel />} />
+            <Route path="/sobre" element={<Sobre />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
