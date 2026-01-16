@@ -5,16 +5,14 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { 
-  MessageCircle, 
   Send, 
-  Sparkles, 
   MapPin, 
   Palette,
   ChevronRight,
   Bot,
   User,
   Loader2,
-  X
+  RotateCcw
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -29,6 +27,7 @@ interface Recommendation {
   name: string;
   reason: string;
   type: "property" | "artesanato";
+  image?: string;
 }
 
 interface ParsedResponse {
@@ -38,9 +37,20 @@ interface ParsedResponse {
   artesanatos?: Recommendation[];
 }
 
+interface PropertyData {
+  id: string;
+  nome: string;
+  imagens: string[] | null;
+}
+
+interface ArtesanatoData {
+  id: string;
+  nome: string;
+  imagens: string[] | null;
+}
+
 export function AIRecommendationChat() {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -48,45 +58,63 @@ export function AIRecommendationChat() {
     attractions: Recommendation[];
     artesanatos: Recommendation[];
   } | null>(null);
+  const [propertiesData, setPropertiesData] = useState<PropertyData[]>([]);
+  const [artesanatosData, setArtesanatosData] = useState<ArtesanatoData[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Load properties and artesanatos data for images
+  useEffect(() => {
+    const fetchData = async () => {
+      const [propsRes, artesRes] = await Promise.all([
+        supabase.from('propriedades').select('id, nome, imagens').eq('ativo', true),
+        supabase.from('artesanatos').select('id, nome, imagens').eq('disponivel', true)
+      ]);
+      
+      if (propsRes.data) setPropertiesData(propsRes.data);
+      if (artesRes.data) setArtesanatosData(artesRes.data);
+    };
+    fetchData();
+  }, []);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, recommendations]);
 
-  // Focus input when chat opens
+  // Focus input on mount and start conversation
   useEffect(() => {
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isOpen]);
+    startConversation();
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 100);
+  }, []);
 
-  // Start conversation when chat opens
-  useEffect(() => {
-    if (isOpen && messages.length === 0) {
-      startConversation();
-    }
-  }, [isOpen]);
-
-  const startConversation = async () => {
+  const startConversation = () => {
     setMessages([{ 
       role: "assistant", 
       content: "Quais experiências você mais curte? (ex: natureza, gastronomia, aventura, relaxamento, animais)" 
     }]);
   };
 
+  const getPropertyImage = (id: string): string | undefined => {
+    const prop = propertiesData.find(p => p.id === id);
+    return prop?.imagens?.[0];
+  };
+
+  const getArtesanatoImage = (id: string): string | undefined => {
+    const art = artesanatosData.find(a => a.id === id);
+    return art?.imagens?.[0];
+  };
+
   const parseAIResponse = (response: string): ParsedResponse => {
     try {
-      // Try to parse as JSON
       const cleaned = response.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
       const parsed = JSON.parse(cleaned);
       return parsed;
     } catch {
-      // If not JSON, treat as regular message
       return {
         type: "question",
         message: response
@@ -127,9 +155,19 @@ export function AIRecommendationChat() {
       const parsed = parseAIResponse(data.response);
       
       if (parsed.type === "recommendations") {
+        // Add images to recommendations
+        const attractionsWithImages = (parsed.attractions || []).map(item => ({
+          ...item,
+          image: getPropertyImage(item.id)
+        }));
+        const artesanatosWithImages = (parsed.artesanatos || []).map(item => ({
+          ...item,
+          image: getArtesanatoImage(item.id)
+        }));
+        
         setRecommendations({
-          attractions: parsed.attractions || [],
-          artesanatos: parsed.artesanatos || []
+          attractions: attractionsWithImages,
+          artesanatos: artesanatosWithImages
         });
       }
       
@@ -166,79 +204,41 @@ export function AIRecommendationChat() {
     setMessages([]);
     setRecommendations(null);
     startConversation();
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 100);
   };
 
-  if (!isOpen) {
-    return (
-      <section className="py-12 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
-        <div className="max-w-4xl mx-auto px-4">
-          <Card 
-            className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-background to-secondary/10"
-            onClick={() => setIsOpen(true)}
-          >
-            <CardContent className="p-8">
-              <div className="flex items-center gap-6">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center animate-pulse">
-                    <Sparkles className="w-8 h-8 text-primary-foreground" />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-primary mb-2">
-                    🌾 Descubra sua Experiência Rural Ideal
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Converse com nossa IA e receba recomendações personalizadas de atrativos turísticos e artesanatos baseados no seu perfil e preferências!
-                  </p>
-                </div>
-                <ChevronRight className="w-8 h-8 text-primary" />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section className="py-12 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+    <section id="ai-chat" className="py-8 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
       <div className="max-w-4xl mx-auto px-4">
         <Card className="border-2 border-primary/20 shadow-xl overflow-hidden">
-          <CardHeader className="bg-gradient-primary text-primary-foreground py-4">
+          <CardHeader className="bg-gradient-primary text-primary-foreground py-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                  <Bot className="w-6 h-6" />
+                <div className="w-9 h-9 bg-white/20 rounded-full flex items-center justify-center">
+                  <Bot className="w-5 h-5" />
                 </div>
                 <div>
-                  <CardTitle className="text-lg">Assistente Rural Time</CardTitle>
-                  <p className="text-sm opacity-80">IA para recomendações personalizadas</p>
+                  <CardTitle className="text-base">🌾 Descubra sua Experiência Rural Ideal</CardTitle>
+                  <p className="text-xs opacity-80">IA para recomendações personalizadas</p>
                 </div>
               </div>
-              <div className="flex gap-2">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={resetChat}
-                  className="text-primary-foreground hover:bg-white/20"
-                >
-                  Recomeçar
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="icon"
-                  onClick={() => setIsOpen(false)}
-                  className="text-primary-foreground hover:bg-white/20"
-                >
-                  <X className="w-5 h-5" />
-                </Button>
-              </div>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={resetChat}
+                className="text-primary-foreground hover:bg-white/20 gap-1"
+              >
+                <RotateCcw className="w-4 h-4" />
+                Recomeçar
+              </Button>
             </div>
           </CardHeader>
           
           <CardContent className="p-0">
             {/* Messages Area */}
-            <ScrollArea className="h-[400px] p-4" ref={scrollRef}>
+            <ScrollArea className="h-[350px] p-4" ref={scrollRef}>
               <div className="space-y-4">
                 {messages.map((message, index) => (
                   <div
@@ -280,7 +280,7 @@ export function AIRecommendationChat() {
 
                 {/* Recommendations Cards */}
                 {recommendations && (recommendations.attractions.length > 0 || recommendations.artesanatos.length > 0) && (
-                  <div className="space-y-4 mt-6">
+                  <div className="space-y-4 mt-4">
                     {recommendations.attractions.length > 0 && (
                       <div>
                         <h4 className="text-sm font-semibold text-primary flex items-center gap-2 mb-3">
@@ -291,16 +291,25 @@ export function AIRecommendationChat() {
                           {recommendations.attractions.map((item) => (
                             <Card 
                               key={item.id}
-                              className="cursor-pointer hover:shadow-md transition-all hover:border-primary/40"
+                              className="cursor-pointer hover:shadow-md transition-all hover:border-primary/40 overflow-hidden"
                               onClick={() => navigateToProperty(item.id)}
                             >
-                              <CardContent className="p-3">
-                                <div className="flex items-center justify-between">
-                                  <div>
+                              <CardContent className="p-0">
+                                <div className="flex items-center gap-3">
+                                  {item.image && (
+                                    <div className="w-16 h-16 flex-shrink-0">
+                                      <img 
+                                        src={item.image} 
+                                        alt={item.name}
+                                        className="w-full h-full object-cover"
+                                      />
+                                    </div>
+                                  )}
+                                  <div className="flex-1 py-2 pr-3">
                                     <p className="font-medium text-sm">{item.name}</p>
-                                    <p className="text-xs text-muted-foreground">{item.reason}</p>
+                                    <p className="text-xs text-muted-foreground line-clamp-1">{item.reason}</p>
                                   </div>
-                                  <ChevronRight className="w-4 h-4 text-primary" />
+                                  <ChevronRight className="w-4 h-4 text-primary mr-3" />
                                 </div>
                               </CardContent>
                             </Card>
@@ -319,16 +328,25 @@ export function AIRecommendationChat() {
                           {recommendations.artesanatos.map((item) => (
                             <Card 
                               key={item.id}
-                              className="cursor-pointer hover:shadow-md transition-all hover:border-accent/40"
+                              className="cursor-pointer hover:shadow-md transition-all hover:border-accent/40 overflow-hidden"
                               onClick={() => navigateToArtesanato(item.id)}
                             >
-                              <CardContent className="p-3">
-                                <div className="flex items-center justify-between">
-                                  <div>
+                              <CardContent className="p-0">
+                                <div className="flex items-center gap-3">
+                                  {item.image && (
+                                    <div className="w-16 h-16 flex-shrink-0">
+                                      <img 
+                                        src={item.image} 
+                                        alt={item.name}
+                                        className="w-full h-full object-cover"
+                                      />
+                                    </div>
+                                  )}
+                                  <div className="flex-1 py-2 pr-3">
                                     <p className="font-medium text-sm">{item.name}</p>
-                                    <p className="text-xs text-muted-foreground">{item.reason}</p>
+                                    <p className="text-xs text-muted-foreground line-clamp-1">{item.reason}</p>
                                   </div>
-                                  <ChevronRight className="w-4 h-4 text-accent" />
+                                  <ChevronRight className="w-4 h-4 text-accent mr-3" />
                                 </div>
                               </CardContent>
                             </Card>
