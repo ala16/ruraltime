@@ -20,6 +20,7 @@ import { IncluiCampo } from "@/components/sections/IncluiCampo";
 import { BlogCarousel } from "@/components/sections/BlogCarousel";
 import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
 import { FAQSection } from "@/components/seo/FAQSection";
+import { AIRecommendationChat } from "@/components/sections/AIRecommendationChat";
 
 const homeFAQs = [
   {
@@ -93,6 +94,7 @@ const Index = () => {
         <ModernBookingBar />
         <BrazilMap />
         <Atrativos />
+        <AIRecommendationChat />
         <Artesanatos />
         <Oferecemos />
         

@@ -61,3 +61,6 @@ verify_jwt = false
 
 [functions.create-voucher]
 verify_jwt = false
+
+[functions.recommend-attractions]
+verify_jwt = false
