@@ -84,12 +84,9 @@ export function AIRecommendationChat() {
     }
   }, [messages, recommendations]);
 
-  // Focus input on mount and start conversation
+  // Start conversation on mount (without auto-focus to prevent scroll)
   useEffect(() => {
     startConversation();
-    setTimeout(() => {
-      inputRef.current?.focus();
-    }, 100);
   }, []);
 
   const startConversation = () => {
