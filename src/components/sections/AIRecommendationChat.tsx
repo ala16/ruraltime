@@ -73,28 +73,10 @@ export function AIRecommendationChat() {
   }, [isOpen]);
 
   const startConversation = async () => {
-    setIsLoading(true);
-    try {
-      const { data, error } = await supabase.functions.invoke('recommend-attractions', {
-        body: { 
-          conversationHistory: [],
-          userProfile: null
-        }
-      });
-
-      if (error) throw error;
-
-      const parsed = parseAIResponse(data.response);
-      setMessages([{ role: "assistant", content: parsed.message }]);
-    } catch (error) {
-      console.error('Error starting conversation:', error);
-      setMessages([{ 
-        role: "assistant", 
-        content: "Olá! Sou seu assistente de turismo rural. Como posso ajudar você a encontrar as melhores experiências no campo? Me conte: você prefere viajar sozinho, em casal, com família ou em grupo?" 
-      }]);
-    } finally {
-      setIsLoading(false);
-    }
+    setMessages([{ 
+      role: "assistant", 
+      content: "Quais experiências você mais curte? (ex: natureza, gastronomia, aventura, relaxamento, animais)" 
+    }]);
   };
 
   const parseAIResponse = (response: string): ParsedResponse => {
