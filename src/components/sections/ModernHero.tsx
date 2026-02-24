@@ -109,8 +109,8 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                 <Card key={index} className="bg-black/20 backdrop-blur-md border-white/20 hover-lift">
                   <CardContent className="p-4">
                     <div className="flex items-center space-x-3">
-                      <div className="p-3 bg-gradient-primary rounded-xl">
-                        <feature.icon className="w-6 h-6 text-primary-foreground" />
+                      <div className="p-2 bg-gradient-primary rounded-lg">
+                        <feature.icon className="w-5 h-5 text-primary-foreground" />
                       </div>
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold text-white mb-2">
