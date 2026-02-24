@@ -40,8 +40,8 @@ export function ImpactoCNA() {
           </Card>
 
           <Card className="text-center hover:shadow-lg transition-shadow bg-white">
-            <CardHeader className="pb-4">
-              <Network className="w-12 h-12 text-rural-green mx-auto mb-2" />
+            <CardHeader className="pb-2">
+              <Network className="w-8 h-8 text-rural-green mx-auto mb-1" />
               <CardTitle className="text-lg">Colaboração</CardTitle>
             </CardHeader>
             <CardContent>
