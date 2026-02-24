@@ -3,11 +3,11 @@ import { TrendingUp, Users, Network, Smartphone } from "lucide-react";
 
 export function ImpactoCNA() {
   return (
-    <section id="impacto" className="py-12 bg-rural-cream">
+    <section id="impacto" className="py-8 bg-rural-cream">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">Impacto CNA Jovem</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-primary mb-2">Impacto CNA Jovem</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Alinhado aos objetivos do programa, gerando transformação real no agronegócio
           </p>
         </div>
