@@ -71,7 +71,7 @@ export function ImpactoCNA() {
           <Card className="bg-gradient-primary text-white border-0">
             <CardContent className="p-6 text-center">
               <h3 className="text-xl font-bold mb-2">CNA Jovem - 6ª Edição São Paulo</h3>
-              <p className="text-lg leading-relaxed max-w-4xl mx-auto">
+              <p className="text-base leading-relaxed max-w-4xl mx-auto">
                 O Rural Time representa o espírito inovador e empreendedor do Programa CNA Jovem, 
                 combinando tradição rural com tecnologia moderna para criar soluções que beneficiam 
                 toda a cadeia produtiva do agronegócio brasileiro.
