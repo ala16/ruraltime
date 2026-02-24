@@ -139,7 +139,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-white/90 text-sm leading-relaxed">
+                  <p className="text-white/90 text-xs leading-relaxed">
                     {t('hero.locationDesc')}
                   </p>
                 </CardContent>
