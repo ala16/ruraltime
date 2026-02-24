@@ -116,7 +116,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                         <h3 className="text-sm font-semibold text-white">
                           {feature.title}
                         </h3>
-                        <p className="text-sm text-white/80">
+                        <p className="text-xs text-white/80">
                           {feature.description}
                         </p>
                       </div>
