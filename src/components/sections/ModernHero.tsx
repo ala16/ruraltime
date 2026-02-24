@@ -107,7 +107,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
             <div className="space-y-2 animate-slide-up">
               {features.map((feature, index) => (
                 <Card key={index} className="bg-black/20 backdrop-blur-md border-white/20 hover-lift">
-                  <CardContent className="p-4">
+                  <CardContent className="p-3">
                     <div className="flex items-center space-x-3">
                       <div className="p-2 bg-gradient-primary rounded-lg">
                         <feature.icon className="w-5 h-5 text-primary-foreground" />
