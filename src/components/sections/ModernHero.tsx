@@ -56,8 +56,8 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
 
       {/* Content */}
       <div className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="grid lg:grid-cols-2 gap-6 items-center">
             
             {/* Left Column - Text Content */}
             <div className="space-y-5 animate-fade-in">
