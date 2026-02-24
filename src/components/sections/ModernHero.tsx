@@ -43,7 +43,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
 
 
   return (
-    <section id="hero" className="relative min-h-[75vh] flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-[60vh] flex items-center overflow-hidden">
       {/* Background with overlay */}
       <div className="absolute inset-0">
         <img 
@@ -56,11 +56,11 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
 
       {/* Content */}
       <div className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             
             {/* Left Column - Text Content */}
-            <div className="space-y-8 animate-fade-in">
+            <div className="space-y-5 animate-fade-in">
               {/* Hero Badge */}
               <Badge className="bg-rural-secondary/20 text-rural-secondary border-rural-secondary/30 backdrop-blur-sm px-4 py-2 text-sm font-medium">
                 <Leaf className="w-4 h-4 mr-2" />
@@ -68,14 +68,14 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
               </Badge>
 
               {/* Main Heading */}
-              <div className="space-y-4">
-                <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+              <div className="space-y-3">
+                <h1 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
                   {t('hero.title')}
                   <span className="block bg-gradient-to-r from-rural-secondary to-rural-accent bg-clip-text text-transparent">
                     {t('hero.titleHighlight')}
                   </span>
                 </h1>
-                <p className="text-xl lg:text-2xl text-white/90 leading-relaxed max-w-xl">
+                <p className="text-lg lg:text-xl text-white/90 leading-relaxed max-w-xl">
                   {t('hero.subtitle')}
                 </p>
               </div>
@@ -104,19 +104,19 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
             </div>
 
             {/* Right Column - Feature Cards */}
-            <div className="space-y-6 animate-slide-up">
+            <div className="space-y-3 animate-slide-up">
               {features.map((feature, index) => (
                 <Card key={index} className="bg-black/20 backdrop-blur-md border-white/20 hover-lift">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="p-3 bg-gradient-primary rounded-xl">
-                        <feature.icon className="w-6 h-6 text-primary-foreground" />
+                  <CardContent className="p-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-gradient-primary rounded-lg">
+                        <feature.icon className="w-5 h-5 text-primary-foreground" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-white mb-2">
+                        <h3 className="text-base font-semibold text-white">
                           {feature.title}
                         </h3>
-                        <p className="text-white/90">
+                        <p className="text-sm text-white/80">
                           {feature.description}
                         </p>
                       </div>
@@ -127,8 +127,8 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
 
               {/* Location Card */}
               <Card className="bg-black/30 backdrop-blur-md border-white/20 hover-lift">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3 mb-4">
+                <CardContent className="p-4">
+                  <div className="flex items-center space-x-3 mb-2">
                     <MapPin className="w-5 h-5 text-rural-secondary" />
                     <h3 className="text-lg font-semibold text-white">
                       {t('hero.location')}
