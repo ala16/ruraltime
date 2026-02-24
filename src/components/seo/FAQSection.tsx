@@ -23,12 +23,12 @@ export const FAQSection = ({
   if (faqs.length === 0) return null;
 
   return (
-    <section className="py-12" itemScope itemType="https://schema.org/FAQPage">
+    <section className="py-6" itemScope itemType="https://schema.org/FAQPage">
       {showSchema && (
         <SchemaMarkup type="faq" questions={faqs} />
       )}
       
-      <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">{title}</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center">{title}</h2>
       
       <div className="max-w-3xl mx-auto space-y-4">
         {faqs.map((faq, index) => (
