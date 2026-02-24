@@ -27,8 +27,8 @@ export function ImpactoCNA() {
           </Card>
 
           <Card className="text-center hover:shadow-lg transition-shadow bg-white">
-            <CardHeader className="pb-4">
-              <Users className="w-12 h-12 text-secondary mx-auto mb-2" />
+            <CardHeader className="pb-2">
+              <Users className="w-8 h-8 text-secondary mx-auto mb-1" />
               <CardTitle className="text-lg">Diversificação</CardTitle>
             </CardHeader>
             <CardContent>
