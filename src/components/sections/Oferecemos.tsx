@@ -10,12 +10,12 @@ export function Oferecemos() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8">
           {/* Para Turistas */}
-          <div className="space-y-6">
-            <div className="text-center mb-8">
-              <Users className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-primary">Para Turistas</h3>
+          <div className="space-y-4">
+            <div className="text-center mb-4">
+              <Users className="w-10 h-10 text-primary mx-auto mb-2" />
+              <h3 className="text-xl font-bold text-primary">Para Turistas</h3>
             </div>
             
             <div className="space-y-4">
