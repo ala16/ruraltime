@@ -68,8 +68,8 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
               </Badge>
 
               {/* Main Heading */}
-              <div className="space-y-3">
-                <h1 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
+              <div className="space-y-2">
+                <h1 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
                   {t('hero.title')}
                   <span className="block bg-gradient-to-r from-rural-secondary to-rural-accent bg-clip-text text-transparent">
                     {t('hero.titleHighlight')}
