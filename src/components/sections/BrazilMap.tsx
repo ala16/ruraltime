@@ -274,13 +274,13 @@ export const BrazilMap = () => {
     : {};
 
   return (
-    <section id="mapa-brasil" className="pt-8 pb-0 bg-background">
+    <section id="mapa-brasil" className="pt-4 pb-0 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold text-primary mb-4">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl font-bold text-primary mb-2">
             Explore o Brasil Rural
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Descubra propriedades rurais em todo o Brasil. Clique em um estado para ver as propriedades disponíveis.
           </p>
         </div>

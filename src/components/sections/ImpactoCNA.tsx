@@ -3,19 +3,19 @@ import { TrendingUp, Users, Network, Smartphone } from "lucide-react";
 
 export function ImpactoCNA() {
   return (
-    <section id="impacto" className="py-12 bg-rural-cream">
+    <section id="impacto" className="py-8 bg-rural-cream">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">Impacto CNA Jovem</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-primary mb-2">Impacto CNA Jovem</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Alinhado aos objetivos do programa, gerando transformação real no agronegócio
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <Card className="text-center hover:shadow-lg transition-shadow bg-white">
-            <CardHeader className="pb-4">
-              <TrendingUp className="w-12 h-12 text-primary mx-auto mb-2" />
+            <CardHeader className="pb-2">
+              <TrendingUp className="w-8 h-8 text-primary mx-auto mb-1" />
               <CardTitle className="text-lg">Aumento da Oferta</CardTitle>
             </CardHeader>
             <CardContent>
@@ -27,8 +27,8 @@ export function ImpactoCNA() {
           </Card>
 
           <Card className="text-center hover:shadow-lg transition-shadow bg-white">
-            <CardHeader className="pb-4">
-              <Users className="w-12 h-12 text-secondary mx-auto mb-2" />
+            <CardHeader className="pb-2">
+              <Users className="w-8 h-8 text-secondary mx-auto mb-1" />
               <CardTitle className="text-lg">Diversificação</CardTitle>
             </CardHeader>
             <CardContent>
@@ -40,8 +40,8 @@ export function ImpactoCNA() {
           </Card>
 
           <Card className="text-center hover:shadow-lg transition-shadow bg-white">
-            <CardHeader className="pb-4">
-              <Network className="w-12 h-12 text-rural-green mx-auto mb-2" />
+            <CardHeader className="pb-2">
+              <Network className="w-8 h-8 text-rural-green mx-auto mb-1" />
               <CardTitle className="text-lg">Colaboração</CardTitle>
             </CardHeader>
             <CardContent>
@@ -53,8 +53,8 @@ export function ImpactoCNA() {
           </Card>
 
           <Card className="text-center hover:shadow-lg transition-shadow bg-white">
-            <CardHeader className="pb-4">
-              <Smartphone className="w-12 h-12 text-rural-green-light mx-auto mb-2" />
+            <CardHeader className="pb-2">
+              <Smartphone className="w-8 h-8 text-rural-green-light mx-auto mb-1" />
               <CardTitle className="text-lg">Tecnologia</CardTitle>
             </CardHeader>
             <CardContent>
@@ -67,16 +67,16 @@ export function ImpactoCNA() {
         </div>
 
         {/* Destaque CNA Jovem */}
-        <div className="mt-16">
+        <div className="mt-8">
           <Card className="bg-gradient-primary text-white border-0">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold mb-4">CNA Jovem - 6ª Edição São Paulo</h3>
-              <p className="text-lg leading-relaxed max-w-4xl mx-auto">
+            <CardContent className="p-6 text-center">
+              <h3 className="text-xl font-bold mb-2">CNA Jovem - 6ª Edição São Paulo</h3>
+              <p className="text-base leading-relaxed max-w-4xl mx-auto">
                 O Rural Time representa o espírito inovador e empreendedor do Programa CNA Jovem, 
                 combinando tradição rural com tecnologia moderna para criar soluções que beneficiam 
                 toda a cadeia produtiva do agronegócio brasileiro.
               </p>
-              <div className="mt-6 inline-flex items-center gap-2 bg-white/20 rounded-full px-6 py-2">
+              <div className="mt-4 inline-flex items-center gap-2 bg-white/20 rounded-full px-6 py-2">
                 <span className="font-semibold">Um projeto</span>
                 <span className="bg-white text-primary px-3 py-1 rounded-full text-sm font-bold">
                   CNA JOVEM

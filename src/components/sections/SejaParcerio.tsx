@@ -42,11 +42,11 @@ export function SejaParceiro() {
   };
 
   return (
-    <section id="parceiros" className="py-12 bg-gradient-primary text-white">
+    <section id="parceiros" className="py-8 bg-gradient-primary text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Pronto para começar?</h2>
-          <p className="text-xl opacity-90 max-w-3xl mx-auto mb-6">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold mb-2">Pronto para começar?</h2>
+          <p className="text-lg opacity-90 max-w-3xl mx-auto mb-4">
             Faça parte da maior rede de turismo rural do Brasil
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -73,7 +73,7 @@ export function SejaParceiro() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Informações sobre Parcerias */}
           <div className="space-y-8">
             <h3 className="text-2xl font-bold mb-6">Por que ser nosso parceiro?</h3>

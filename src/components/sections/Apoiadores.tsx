@@ -125,30 +125,30 @@ export function Apoiadores() {
   }, [isVisible, apoiadores.length]);
 
   return (
-    <section ref={sectionRef} id="apoiadores" className="py-12 bg-muted/30">
+    <section ref={sectionRef} id="apoiadores" className="py-8 bg-muted/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <h2 className="text-4xl font-bold text-primary">Nossos Apoiadores</h2>
-            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 border-2 border-primary">
-              <span className="text-2xl font-bold text-primary">{count}</span>
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-3 mb-2">
+            <h2 className="text-3xl font-bold text-primary">Nossos Apoiadores</h2>
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 border-2 border-primary">
+              <span className="text-xl font-bold text-primary">{count}</span>
             </div>
           </div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Contamos com o apoio de importantes instituições do setor rural
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 items-center justify-items-center">
           {apoiadores.map((apoiador, index) => (
             <div
               key={index}
-              className="flex items-center justify-center p-6 bg-background rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="flex items-center justify-center p-4 bg-background rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <img
                 src={apoiador.logo}
                 alt={apoiador.alt}
-                className="max-h-24 md:max-h-28 w-auto object-contain filter hover:brightness-110 transition-all duration-300"
+                className="max-h-20 md:max-h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300"
               />
             </div>
           ))}

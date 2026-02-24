@@ -27,13 +27,13 @@ export function Depoimentos() {
   ];
 
   return (
-    <section id="depoimentos" className="py-12 bg-background" ref={sectionRef}>
+    <section id="depoimentos" className="py-8 bg-background" ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`text-center mb-16 transition-all duration-700 ${
+        <div className={`text-center mb-8 transition-all duration-700 ${
           isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-4xl font-bold text-primary mb-4">Depoimentos</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-primary mb-2">Depoimentos</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Histórias reais de quem já faz parte da família Rural Time
           </p>
         </div>
@@ -63,7 +63,7 @@ export function Depoimentos() {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-6">
           <p className="text-muted-foreground mb-4">
             Quer compartilhar sua experiência?
           </p>

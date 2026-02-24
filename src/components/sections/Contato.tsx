@@ -1,11 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Mail, MessageCircle, Instagram, Facebook, Linkedin } from "lucide-react";
 export function Contato() {
-  return <section id="contato" className="py-12 bg-accent">
+  return <section id="contato" className="py-8 bg-accent">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">Contato</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-primary mb-2">Contato</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Entre em contato conosco e faça parte da transformação do turismo rural
           </p>
         </div>
@@ -14,7 +14,7 @@ export function Contato() {
           {/* Localização */}
           <Card className="text-center hover:shadow-lg transition-shadow">
             <CardHeader>
-              <MapPin className="w-12 h-12 text-primary mx-auto mb-2" />
+              <MapPin className="w-8 h-8 text-primary mx-auto mb-2" />
               <CardTitle className="text-xl">Localização</CardTitle>
             </CardHeader>
             <CardContent>
@@ -25,7 +25,7 @@ export function Contato() {
           {/* E-mail */}
           <Card className="text-center hover:shadow-lg transition-shadow">
             <CardHeader>
-              <Mail className="w-12 h-12 text-primary mx-auto mb-2" />
+              <Mail className="w-8 h-8 text-primary mx-auto mb-2" />
               <CardTitle className="text-xl">E-mail</CardTitle>
             </CardHeader>
             <CardContent>
@@ -39,7 +39,7 @@ export function Contato() {
           {/* WhatsApp */}
           <Card className="text-center hover:shadow-lg transition-shadow">
             <CardHeader>
-              <MessageCircle className="w-12 h-12 text-primary mx-auto mb-2" />
+              <MessageCircle className="w-8 h-8 text-primary mx-auto mb-2" />
               <CardTitle className="text-xl">WhatsApp</CardTitle>
             </CardHeader>
             <CardContent>
@@ -53,8 +53,8 @@ export function Contato() {
         </div>
 
         {/* Redes Sociais */}
-        <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold text-primary mb-8">Siga-nos nas Redes Sociais</h3>
+        <div className="mt-8 text-center">
+          <h3 className="text-xl font-bold text-primary mb-4">Siga-nos nas Redes Sociais</h3>
           <div className="flex justify-center space-x-6">
             <a href="https://www.instagram.com/agroruraltime/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center hover:opacity-80 transition-opacity" aria-label="Instagram">
               <Instagram className="w-6 h-6 text-white" />
@@ -70,7 +70,7 @@ export function Contato() {
         </div>
 
         {/* Mapa conceitual ou call to action */}
-        <div className="mt-16">
+        <div className="mt-8">
           <Card className="bg-gradient-secondary text-white border-0">
             
           </Card>

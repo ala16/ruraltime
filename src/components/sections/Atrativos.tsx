@@ -69,9 +69,9 @@ export function Atrativos() {
   }
   return <section id="atrativos" className="py-10 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-primary mb-4">Atrativos de Turismo Rurais</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">Viaje pelos destinos rurais do Brasil e descubra experiências autênticas, cheias de sabor, história e simplicidade.</p>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-primary mb-2">Atrativos de Turismo Rurais</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-4">Viaje pelos destinos rurais do Brasil e descubra experiências autênticas.</p>
           <div>
             <Button 
               type="button"
