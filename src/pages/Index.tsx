@@ -96,19 +96,17 @@ const Index = () => {
       
       <main>
         <ModernHero onSectionClick={scrollToSection} />
-        <ModernBookingBar />
-        <BrazilMap />
         <Atrativos />
         <AIRecommendationChat />
+        <ModernBookingBar />
+        <BrazilMap />
         <Artesanatos />
         <Oferecemos />
-        
         <ComoFunciona />
         <ImpactoCNA />
         <BlogCarousel />
         <Depoimentos />
         
-        {/* FAQ Section for SGE and Featured Snippets */}
         <div className="container mx-auto px-4">
           <FAQSection 
             title="Perguntas Frequentes sobre Turismo Rural"
