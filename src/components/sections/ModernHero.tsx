@@ -113,10 +113,10 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                         <feature.icon className="w-5 h-5 text-primary-foreground" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-white mb-2">
+                        <h3 className="text-base font-semibold text-white">
                           {feature.title}
                         </h3>
-                        <p className="text-white/90">
+                        <p className="text-sm text-white/80">
                           {feature.description}
                         </p>
                       </div>
