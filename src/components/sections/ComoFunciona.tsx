@@ -89,7 +89,7 @@ export function ComoFunciona() {
                 <div className="bg-rural-green text-white text-sm font-bold rounded-full w-7 h-7 flex items-center justify-center mx-auto mb-3">
                   3
                 </div>
-                <h3 className="text-xl font-bold text-primary mb-4">
+                <h3 className="text-lg font-bold text-primary mb-2">
                   A Experiência Acontece!
                 </h3>
                 <p className="text-muted-foreground">
