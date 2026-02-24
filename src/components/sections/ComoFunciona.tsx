@@ -5,13 +5,13 @@ import { useInView } from "@/hooks/use-in-view";
 export function ComoFunciona() {
   const { ref: sectionRef, isInView } = useInView({ threshold: 0.2 });
   
-  return <section id="como-funciona" className="py-12 bg-background" ref={sectionRef}>
+  return <section id="como-funciona" className="py-8 bg-background" ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`text-center mb-16 transition-all duration-700 ${
+        <div className={`text-center mb-8 transition-all duration-700 ${
           isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-4xl font-bold text-primary mb-4">Como Funciona</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-primary mb-2">Como Funciona</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Processo simples e eficiente para conectar campo e cidade
           </p>
         </div>
