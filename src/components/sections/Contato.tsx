@@ -14,7 +14,7 @@ export function Contato() {
           {/* Localização */}
           <Card className="text-center hover:shadow-lg transition-shadow">
             <CardHeader>
-              <MapPin className="w-12 h-12 text-primary mx-auto mb-2" />
+              <MapPin className="w-8 h-8 text-primary mx-auto mb-2" />
               <CardTitle className="text-xl">Localização</CardTitle>
             </CardHeader>
             <CardContent>
