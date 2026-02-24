@@ -44,11 +44,11 @@ export function Atrativos() {
     fetchPropriedades();
   }, []);
   if (loading) {
-    return <section id="atrativos" className="py-20 bg-background">
+    return <section id="atrativos" className="py-6 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="animate-pulse">
-              <div className="h-8 bg-muted rounded w-1/3 mx-auto mb-4"></div>
+              <div className="h-6 bg-muted rounded w-1/3 mx-auto mb-2"></div>
               <div className="h-4 bg-muted rounded w-1/2 mx-auto"></div>
             </div>
           </div>
