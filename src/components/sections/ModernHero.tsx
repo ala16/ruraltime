@@ -81,22 +81,22 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Button 
-                  size="lg"
+                  size="default"
                   onClick={() => onSectionClick('atrativos')}
-                  className="btn-modern bg-rural-secondary hover:bg-rural-secondary/90 text-rural-secondary-foreground px-8 py-4 text-lg font-semibold shadow-glow group"
+                  className="btn-modern bg-rural-secondary hover:bg-rural-secondary/90 text-rural-secondary-foreground px-6 py-2 font-semibold shadow-glow group"
                 >
                   {t('hero.ctaExplore')}
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button 
                   variant="outline"
-                  size="lg"
+                  size="default"
                   onClick={() => onSectionClick('artesanatos')}
-                  className="glass border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm"
+                  className="glass border-white/30 text-white hover:bg-white/10 px-6 py-2 font-semibold backdrop-blur-sm"
                 >
-                  <Palette className="mr-2 h-5 w-5" />
+                  <Palette className="mr-2 h-4 w-4" />
                   {t('hero.ctaCrafts')}
                 </Button>
               </div>
