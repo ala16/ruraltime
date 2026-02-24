@@ -60,7 +60,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             
             {/* Left Column - Text Content */}
-            <div className="space-y-8 animate-fade-in">
+            <div className="space-y-5 animate-fade-in">
               {/* Hero Badge */}
               <Badge className="bg-rural-secondary/20 text-rural-secondary border-rural-secondary/30 backdrop-blur-sm px-4 py-2 text-sm font-medium">
                 <Leaf className="w-4 h-4 mr-2" />
