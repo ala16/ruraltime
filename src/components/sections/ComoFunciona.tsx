@@ -59,7 +59,7 @@ export function ComoFunciona() {
                 <div className="bg-secondary text-white text-sm font-bold rounded-full w-7 h-7 flex items-center justify-center mx-auto mb-3">
                   2
                 </div>
-                <h3 className="text-xl font-bold text-primary mb-4">
+                <h3 className="text-lg font-bold text-primary mb-2">
                   Turista Encontra
                 </h3>
                 <p className="text-muted-foreground">
