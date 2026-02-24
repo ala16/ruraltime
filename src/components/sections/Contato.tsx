@@ -53,8 +53,8 @@ export function Contato() {
         </div>
 
         {/* Redes Sociais */}
-        <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold text-primary mb-8">Siga-nos nas Redes Sociais</h3>
+        <div className="mt-8 text-center">
+          <h3 className="text-xl font-bold text-primary mb-4">Siga-nos nas Redes Sociais</h3>
           <div className="flex justify-center space-x-6">
             <a href="https://www.instagram.com/agroruraltime/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center hover:opacity-80 transition-opacity" aria-label="Instagram">
               <Instagram className="w-6 h-6 text-white" />
