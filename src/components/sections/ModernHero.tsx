@@ -75,7 +75,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                     {t('hero.titleHighlight')}
                   </span>
                 </h1>
-                <p className="text-lg lg:text-xl text-white/90 leading-relaxed max-w-xl">
+                <p className="text-base text-white/90 leading-relaxed max-w-xl">
                   {t('hero.subtitle')}
                 </p>
               </div>
