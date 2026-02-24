@@ -102,7 +102,7 @@ export function ComoFunciona() {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-8">
           
         </div>
       </div>
