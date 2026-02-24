@@ -39,7 +39,7 @@ export function Contato() {
           {/* WhatsApp */}
           <Card className="text-center hover:shadow-lg transition-shadow">
             <CardHeader>
-              <MessageCircle className="w-12 h-12 text-primary mx-auto mb-2" />
+              <MessageCircle className="w-8 h-8 text-primary mx-auto mb-2" />
               <CardTitle className="text-xl">WhatsApp</CardTitle>
             </CardHeader>
             <CardContent>
