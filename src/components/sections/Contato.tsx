@@ -1,11 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Mail, MessageCircle, Instagram, Facebook, Linkedin } from "lucide-react";
 export function Contato() {
-  return <section id="contato" className="py-12 bg-accent">
+  return <section id="contato" className="py-8 bg-accent">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">Contato</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-primary mb-2">Contato</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Entre em contato conosco e faça parte da transformação do turismo rural
           </p>
         </div>
