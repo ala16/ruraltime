@@ -43,7 +43,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
 
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-[75vh] flex items-center overflow-hidden">
       {/* Background with overlay */}
       <div className="absolute inset-0">
         <img 
