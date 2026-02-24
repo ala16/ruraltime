@@ -179,19 +179,19 @@ Mensagem enviada através do Rural Time.`;
   };
 
   return (
-    <section className="py-10 bg-gradient-to-br from-rural-neutral to-background">
+    <section className="py-6 bg-gradient-to-br from-rural-neutral to-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center mb-12 animate-fade-in">
-          <div className="inline-flex items-center px-4 py-2 bg-rural-secondary/10 rounded-full mb-4">
+        <div className="text-center mb-6 animate-fade-in">
+          <div className="inline-flex items-center px-4 py-1.5 bg-rural-secondary/10 rounded-full mb-2">
             <Calendar className="w-4 h-4 text-rural-secondary mr-2" />
-            <span className="text-rural-secondary font-medium">Reserve sua Experiência</span>
+            <span className="text-rural-secondary font-medium text-sm">Reserve sua Experiência</span>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-rural-primary mb-4">
+          <h2 className="text-2xl lg:text-3xl font-bold text-rural-primary mb-2">
             Agende seus Atrativos Turísticos
           </h2>
-          <p className="text-rural-text-light text-lg max-w-2xl mx-auto">
+          <p className="text-rural-text-light max-w-2xl mx-auto">
             Encontre e reserve as melhores experiências rurais do Brasil
           </p>
         </div>
