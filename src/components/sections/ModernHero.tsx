@@ -43,7 +43,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
 
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-[75vh] flex items-center overflow-hidden">
       {/* Background with overlay */}
       <div className="absolute inset-0">
         <img 
@@ -56,8 +56,8 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
 
       {/* Content */}
       <div className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             
             {/* Left Column - Text Content */}
             <div className="space-y-8 animate-fade-in">
