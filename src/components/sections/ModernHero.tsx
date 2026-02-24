@@ -127,10 +127,10 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
 
               {/* Location Card */}
               <Card className="bg-black/30 backdrop-blur-md border-white/20 hover-lift">
-                <CardContent className="p-4">
-                  <div className="flex items-center space-x-3 mb-2">
-                    <MapPin className="w-5 h-5 text-rural-secondary" />
-                    <h3 className="text-lg font-semibold text-white">
+                <CardContent className="p-3">
+                  <div className="flex items-center space-x-2 mb-1">
+                    <MapPin className="w-4 h-4 text-rural-secondary" />
+                    <h3 className="text-sm font-semibold text-white">
                       {t('hero.location')}
                     </h3>
                     <div className="flex space-x-1">
