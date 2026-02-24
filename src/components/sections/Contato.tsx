@@ -25,7 +25,7 @@ export function Contato() {
           {/* E-mail */}
           <Card className="text-center hover:shadow-lg transition-shadow">
             <CardHeader>
-              <Mail className="w-12 h-12 text-primary mx-auto mb-2" />
+              <Mail className="w-8 h-8 text-primary mx-auto mb-2" />
               <CardTitle className="text-xl">E-mail</CardTitle>
             </CardHeader>
             <CardContent>
