@@ -30,7 +30,7 @@ export const FAQSection = ({
       
       <h2 className="text-2xl font-bold mb-4 text-center">{title}</h2>
       
-      <div className="max-w-3xl mx-auto space-y-4">
+      <div className="max-w-3xl mx-auto space-y-2">
         {faqs.map((faq, index) => (
           <div 
             key={index}
