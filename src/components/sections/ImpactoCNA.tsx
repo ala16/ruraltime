@@ -14,8 +14,8 @@ export function ImpactoCNA() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <Card className="text-center hover:shadow-lg transition-shadow bg-white">
-            <CardHeader className="pb-4">
-              <TrendingUp className="w-12 h-12 text-primary mx-auto mb-2" />
+            <CardHeader className="pb-2">
+              <TrendingUp className="w-8 h-8 text-primary mx-auto mb-1" />
               <CardTitle className="text-lg">Aumento da Oferta</CardTitle>
             </CardHeader>
             <CardContent>
