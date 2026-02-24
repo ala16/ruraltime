@@ -22,8 +22,8 @@ export function ComoFunciona() {
             isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
           }`} style={{ transitionDelay: '0.2s' }}>
             <Card className="hover:shadow-xl hover:-translate-y-2 transition-all duration-500 border-primary/20 group">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                   <MapPin className="w-8 h-8 text-white" />
                 </div>
                 <div className="bg-primary text-white text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-4">
