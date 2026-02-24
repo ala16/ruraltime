@@ -11,7 +11,7 @@ export function QuemSomos() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold text-primary mb-4">
               Nossa História

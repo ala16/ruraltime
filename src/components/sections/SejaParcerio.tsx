@@ -73,7 +73,7 @@ export function SejaParceiro() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Informações sobre Parcerias */}
           <div className="space-y-8">
             <h3 className="text-2xl font-bold mb-6">Por que ser nosso parceiro?</h3>

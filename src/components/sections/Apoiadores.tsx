@@ -143,12 +143,12 @@ export function Apoiadores() {
           {apoiadores.map((apoiador, index) => (
             <div
               key={index}
-              className="flex items-center justify-center p-6 bg-background rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="flex items-center justify-center p-4 bg-background rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <img
                 src={apoiador.logo}
                 alt={apoiador.alt}
-                className="max-h-24 md:max-h-28 w-auto object-contain filter hover:brightness-110 transition-all duration-300"
+                className="max-h-20 md:max-h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300"
               />
             </div>
           ))}

@@ -291,7 +291,7 @@ Mensagem enviada através do Rural Time.`;
         </Card>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
           <AnimatedStatCard
             value={stats.atrativos}
             label="Atrativos Turísticos Rurais"

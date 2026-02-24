@@ -76,7 +76,7 @@ export function ImpactoCNA() {
                 combinando tradição rural com tecnologia moderna para criar soluções que beneficiam 
                 toda a cadeia produtiva do agronegócio brasileiro.
               </p>
-              <div className="mt-6 inline-flex items-center gap-2 bg-white/20 rounded-full px-6 py-2">
+              <div className="mt-4 inline-flex items-center gap-2 bg-white/20 rounded-full px-6 py-2">
                 <span className="font-semibold">Um projeto</span>
                 <span className="bg-white text-primary px-3 py-1 rounded-full text-sm font-bold">
                   CNA JOVEM

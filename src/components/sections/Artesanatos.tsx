@@ -83,11 +83,11 @@ export const Artesanatos = () => {
         </div>
       </section>;
   }
-  return <section id="artesanatos" className="py-12 bg-background">
+  return <section id="artesanatos" className="py-8 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-primary mb-4">Artesanato Rural</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região, que preservam tradições e agregam valor cultural às suas experiências rurais.</p>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-primary mb-2">Artesanato Rural</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-4">O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região.</p>
           <div>
             <Button 
               type="button"

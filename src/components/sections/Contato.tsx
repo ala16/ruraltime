@@ -70,7 +70,7 @@ export function Contato() {
         </div>
 
         {/* Mapa conceitual ou call to action */}
-        <div className="mt-16">
+        <div className="mt-8">
           <Card className="bg-gradient-secondary text-white border-0">
             
           </Card>

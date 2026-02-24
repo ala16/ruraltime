@@ -63,7 +63,7 @@ export function Depoimentos() {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-6">
           <p className="text-muted-foreground mb-4">
             Quer compartilhar sua experiência?
           </p>
