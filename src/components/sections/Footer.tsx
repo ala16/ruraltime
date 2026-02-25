@@ -75,9 +75,9 @@ export function Footer({
             </p>
             <div className="flex items-center space-x-4">
               <span className="text-white/70 text-sm">Powered by</span>
-              <div className="bg-white/20 rounded-full px-3 py-1">
-                <span className="text-white font-bold text-sm">CNA JOVEM</span>
-              </div>
+              <a href="https://rbitengenharia.com.br/" target="_blank" rel="noopener noreferrer" className="bg-white/20 rounded-full px-3 py-1">
+                <span className="text-white font-bold text-sm">RBIT HUB</span>
+              </a>
             </div>
           </div>
         </div>
