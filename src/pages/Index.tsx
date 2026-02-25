@@ -74,8 +74,8 @@ const Index = () => {
         <Atrativos />
         <AIRecommendationChat />
         <BrazilMap />
-        <Artesanatos />
         <PlataformaResumo />
+        <Artesanatos />
         <BlogCarousel />
         <Depoimentos />
         
