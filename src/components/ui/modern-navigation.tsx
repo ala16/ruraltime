@@ -38,7 +38,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
     { label: t('nav.howItWorks'), id: 'como-funciona', isRoute: false },
     { label: t('nav.roadmap'), id: '/roadmap', isRoute: true },
     { label: t('nav.blog'), id: '/blog', isRoute: true },
-    { label: t('nav.contact'), id: 'contato', isRoute: false },
+    { label: t('nav.contact'), id: 'https://linktr.ee/ricardorodrigues173', isRoute: false, isExternal: true },
   ];
 
   const languages = [
@@ -48,7 +48,9 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
   ];
 
   const handleNavClick = (item: typeof navigationItems[0]) => {
-    if (item.isRoute) {
+    if ('isExternal' in item && item.isExternal) {
+      window.open(item.id, '_blank', 'noopener,noreferrer');
+    } else if (item.isRoute) {
       window.location.href = item.id;
     } else {
       onSectionClick?.(item.id);
