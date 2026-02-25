@@ -3,11 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { ModernNavigation } from "@/components/ui/modern-navigation";
 import { ModernHero } from "@/components/sections/ModernHero";
 import { QuemSomos } from "@/components/sections/QuemSomos";
-import { Oferecemos } from "@/components/sections/Oferecemos";
 import { Atrativos } from "@/components/sections/Atrativos";
-import { Beneficios } from "@/components/sections/Beneficios";
-import { ComoFunciona } from "@/components/sections/ComoFunciona";
-import { ImpactoCNA } from "@/components/sections/ImpactoCNA";
+import { PlataformaResumo } from "@/components/sections/PlataformaResumo";
 import { Depoimentos } from "@/components/sections/Depoimentos";
 import { SejaParceiro } from "@/components/sections/SejaParcerio";
 import { Contato } from "@/components/sections/Contato";
@@ -101,9 +98,7 @@ const Index = () => {
         <ModernBookingBar />
         <BrazilMap />
         <Artesanatos />
-        <Oferecemos />
-        <ComoFunciona />
-        <ImpactoCNA />
+        <PlataformaResumo />
         <BlogCarousel />
         <Depoimentos />
         
