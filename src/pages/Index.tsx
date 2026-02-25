@@ -13,6 +13,7 @@ import { Apoiadores } from "@/components/sections/Apoiadores";
 import { Artesanatos } from "@/components/sections/Artesanatos";
 import { ModernBookingBar } from "@/components/sections/ModernBookingBar";
 import { BrazilMap } from "@/components/sections/BrazilMap";
+import { BookingStats } from "@/components/sections/BookingStats";
 import { IncluiCampo } from "@/components/sections/IncluiCampo";
 import { BlogCarousel } from "@/components/sections/BlogCarousel";
 import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
@@ -74,6 +75,7 @@ const Index = () => {
         <Atrativos />
         <AIRecommendationChat />
         <BrazilMap />
+        <BookingStats />
         <PlataformaResumo />
         <Artesanatos />
         <BlogCarousel />
