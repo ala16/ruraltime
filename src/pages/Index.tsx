@@ -16,31 +16,8 @@ import { BrazilMap } from "@/components/sections/BrazilMap";
 import { IncluiCampo } from "@/components/sections/IncluiCampo";
 import { BlogCarousel } from "@/components/sections/BlogCarousel";
 import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
-import { FAQSection } from "@/components/seo/FAQSection";
 import { AIRecommendationChat } from "@/components/sections/AIRecommendationChat";
 
-const homeFAQs = [
-  {
-    question: "O que é turismo rural?",
-    answer: "Turismo rural é uma modalidade de turismo que permite ao visitante experienciar a vida no campo, conhecer propriedades rurais, participar de atividades agrícolas, degustar produtos artesanais e conectar-se com a natureza. É uma forma sustentável de turismo que beneficia comunidades rurais."
-  },
-  {
-    question: "Como encontrar fazendas para visitar no Brasil?",
-    answer: "Na Rural Time você encontra centenas de propriedades rurais cadastradas em todo o Brasil. Use nossa busca por estado ou cidade para encontrar fazendas, sítios e chácaras que oferecem experiências de turismo rural, hospedagem e atividades no campo."
-  },
-  {
-    question: "Quais atividades posso fazer em uma propriedade rural?",
-    answer: "As atividades variam conforme a propriedade, mas geralmente incluem: trilhas ecológicas, cavalgadas, ordenha de vacas, colheita de frutas, degustação de produtos artesanais como queijos e vinhos, pesca, observação de aves, e vivências culturais do campo."
-  },
-  {
-    question: "O turismo rural é adequado para famílias com crianças?",
-    answer: "Sim! O turismo rural é excelente para famílias. As crianças podem ter contato com animais, aprender sobre a produção de alimentos, brincar ao ar livre e conhecer a vida no campo. Muitas propriedades oferecem atividades específicas para crianças."
-  },
-  {
-    question: "Como cadastrar minha propriedade rural na Rural Time?",
-    answer: "Para cadastrar sua fazenda, sítio ou chácara, acesse nossa página de cadastro de propriedades. Preencha as informações sobre sua propriedade, adicione fotos e descreva as experiências oferecidas. Nossa equipe analisará o cadastro e entrará em contato."
-  }
-];
 
 const Index = () => {
   // Scroll to top on page load
@@ -102,12 +79,7 @@ const Index = () => {
         <BlogCarousel />
         <Depoimentos />
         
-        <div className="container mx-auto px-4">
-          <FAQSection 
-            title="Perguntas Frequentes sobre Turismo Rural"
-            faqs={homeFAQs}
-          />
-        </div>
+        
         
         
         <QuemSomos />
