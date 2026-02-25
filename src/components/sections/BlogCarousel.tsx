@@ -1,4 +1,3 @@
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -16,87 +15,63 @@ export const BlogCarousel = () => {
   const latestPosts = blogPosts.slice(0, 6);
 
   return (
-    <section className="py-8 bg-gradient-to-b from-background to-muted/20">
-      <div className="container mx-auto px-4">
+    <section className="py-8 bg-background">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-2 text-foreground">
-            Últimas do Blog
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Descubra dicas, roteiros e informações sobre turismo rural em diversas cidades brasileiras
+          <h2 className="text-3xl font-bold text-primary mb-2">Últimas do Blog</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-4">
+            Dicas, roteiros e informações sobre turismo rural
           </p>
-        </div>
-
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          plugins={[
-            Autoplay({
-              delay: 4000,
-            }),
-          ]}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-2 md:-ml-4">
-            {latestPosts.map((post) => (
-              <CarouselItem key={post.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                <Card className="h-full flex flex-col hover:shadow-xl transition-shadow duration-300">
-                  <CardHeader className="p-0">
-                    <div className="relative h-48 overflow-hidden rounded-t-lg">
-                      <img
-                        src={post.imageUrl}
-                        alt={post.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                          {post.category}
-                        </span>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex-grow p-6">
-                    <h3 className="text-xl font-bold mb-3 line-clamp-2 text-foreground hover:text-primary transition-colors">
-                      <Link to={`/blog/${post.slug}`}>{post.title}</Link>
-                    </h3>
-                    <p className="text-muted-foreground mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        <span>{new Date(post.date).toLocaleDateString('pt-BR')}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        <span>{post.readTime}</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter className="p-6 pt-0">
-                    <Link to={`/blog/${post.slug}`} className="w-full">
-                      <Button variant="outline" className="w-full">
-                        Ler mais
-                      </Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
-        </Carousel>
-
-        <div className="text-center mt-8">
           <Link to="/blog">
-            <Button size="lg" variant="default">
+            <Button size="lg" className="bg-gradient-primary text-primary-foreground hover:opacity-90 hover:scale-105 transition-transform duration-300 shadow-glow">
               Ver Todos os Posts
             </Button>
           </Link>
         </div>
+
+        <Carousel
+          plugins={[Autoplay({ delay: 4000 })]}
+          className="w-full"
+          opts={{ align: "start", loop: true }}
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {latestPosts.map((post, index) => (
+              <CarouselItem key={post.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                <Link to={`/blog/${post.slug}`}>
+                  <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:scale-[1.02]">
+                    <img
+                      src={post.imageUrl}
+                      alt={post.title}
+                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                    <div className="absolute top-3 left-3">
+                      <span className="text-sm bg-primary text-primary-foreground px-2 py-1 rounded-full font-semibold">
+                        {post.category}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                      <h3 className="text-lg font-semibold mb-1 line-clamp-2">{post.title}</h3>
+                      <div className="flex items-center gap-3 text-xs text-white/80">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          <span>{new Date(post.date).toLocaleDateString('pt-BR')}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          <span>{post.readTime}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-4 bg-white/90 border-2 shadow-lg hover:bg-white w-12 h-12" />
+          <CarouselNext className="right-4 bg-white/90 border-2 shadow-lg hover:bg-white w-12 h-12" />
+        </Carousel>
       </div>
     </section>
   );
