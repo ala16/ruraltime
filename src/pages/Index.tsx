@@ -114,8 +114,7 @@ const Index = () => {
           />
         </div>
         
-        <SejaParceiro />
-        <Contato />
+        
         <QuemSomos />
         <Apoiadores />
       </main>
