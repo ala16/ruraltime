@@ -70,9 +70,9 @@ const Index = () => {
       
       <main>
         <ModernHero onSectionClick={scrollToSection} />
+        <ModernBookingBar />
         <Atrativos />
         <AIRecommendationChat />
-        <ModernBookingBar />
         <BrazilMap />
         <Artesanatos />
         <PlataformaResumo />
