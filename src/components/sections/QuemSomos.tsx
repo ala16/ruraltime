@@ -14,20 +14,7 @@ export function QuemSomos() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-primary mb-4">
-              Nossa História
-            </h3>
-            <p className="text-lg text-foreground leading-relaxed">
-              O Rural Time surge como uma resposta inovadora aos desafios do turismo rural no Brasil. 
-              Nossa plataforma digital conecta pequenos produtores rurais a turistas em busca de experiências 
-              autênticas no campo.
-            </p>
-            <p className="text-lg text-foreground leading-relaxed">
-              <strong className="text-primary">Nossa missão:</strong> Aumentar a oferta de turismo rural, 
-              diversificar a renda dos produtores e aproximar cidade e campo por meio da tecnologia.
-            </p>
-            
+          <div>
             <Card className="bg-gradient-primary text-white border-0">
               <CardContent className="p-6">
                 <h4 className="font-semibold mb-2">Fundador</h4>
