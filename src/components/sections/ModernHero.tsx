@@ -13,7 +13,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
   const { t } = useLanguage();
 
   return (
-    <section id="hero" className="relative min-h-[30vh] flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-[35vh] flex items-center overflow-hidden pt-20">
       <div className="absolute inset-0">
         <img src={heroImage} alt="Paisagem rural brasileira" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-hero" />
