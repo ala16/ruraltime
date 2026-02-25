@@ -41,9 +41,9 @@ export function Footer({
                 </button>
               </li>
               <li>
-                <button onClick={() => onSectionClick?.("contato")} className="text-white/80 hover:text-white transition-colors">
+              <a href="https://linktr.ee/ricardorodrigues173" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
                   Contato
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -52,14 +52,16 @@ export function Footer({
           <div>
             <h4 className="font-semibold text-lg mb-4">Contato</h4>
             <ul className="space-y-2 text-white/80">
-              <li>São Paulo - SP - Brasil</li>
+              <li>Bragança Paulista - SP - Brasil</li>
               <li>
-                <a href="mailto:contato@ruraltime.com.br" className="hover:text-white transition-colors">
-                  contato@ruraltime.com.br
+                <a href="mailto:contato@rbitengenharia.com.br" className="hover:text-white transition-colors">
+                  contato@rbitengenharia.com.br
                 </a>
               </li>
               <li>
-                
+                <a href="https://wa.me/5511943032251" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  (11) 94303-2251
+                </a>
               </li>
             </ul>
           </div>
