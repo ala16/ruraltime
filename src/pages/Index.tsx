@@ -118,7 +118,6 @@ const Index = () => {
         <Contato />
         <QuemSomos />
         <Apoiadores />
-        <IncluiCampo />
       </main>
       
       <Footer onSectionClick={scrollToSection} />
