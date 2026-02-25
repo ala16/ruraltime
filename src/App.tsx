@@ -33,6 +33,7 @@ import TurismoDeFazenda from "./pages/clusters/TurismoDeFazenda";
 import ExperienciasCampo from "./pages/clusters/ExperienciasCampo";
 import TurismoSustentavel from "./pages/clusters/TurismoSustentavel";
 import Sobre from "./pages/Sobre";
+import FAQ from "./pages/FAQ";
 
 const queryClient = new QueryClient();
 
@@ -76,6 +77,7 @@ const App = () => (
             <Route path="/experiencia-no-campo" element={<ExperienciasCampo />} />
             <Route path="/turismo-rural-sustentavel" element={<TurismoSustentavel />} />
             <Route path="/sobre" element={<Sobre />} />
+            <Route path="/faq" element={<FAQ />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
