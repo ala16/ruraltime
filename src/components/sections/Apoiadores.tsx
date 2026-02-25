@@ -47,7 +47,7 @@ export function Apoiadores() {
                 <img
                   src={apoiador.logo}
                   alt={apoiador.alt}
-                  className="h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
+                  className="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-all duration-300"
                 />
               </div>
             ))}
