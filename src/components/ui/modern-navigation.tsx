@@ -88,17 +88,27 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-6">
               {navigationItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item)}
-                  className={`font-medium transition-all duration-200 hover:scale-105 ${
-                    isScrolled 
-                      ? 'text-rural-primary hover:text-rural-secondary' 
-                      : 'text-white hover:text-rural-secondary'
-                  }`}
-                >
-                  {item.label}
-                </button>
+                'highlight' in item && item.highlight ? (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item)}
+                    className="bg-rural-secondary text-rural-secondary-foreground px-3 py-1.5 rounded-full text-sm font-semibold hover:opacity-90 transition-all duration-200 hover:scale-105 shadow-md"
+                  >
+                    {item.label}
+                  </button>
+                ) : (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item)}
+                    className={`font-medium transition-all duration-200 hover:scale-105 ${
+                      isScrolled 
+                        ? 'text-rural-primary hover:text-rural-secondary' 
+                        : 'text-white hover:text-rural-secondary'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                )
               ))}
               
               {/* Language Selector */}
