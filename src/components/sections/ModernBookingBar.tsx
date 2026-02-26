@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -21,6 +21,11 @@ interface Propriedade {
 
 export const ModernBookingBar = () => {
   const [propriedades, setPropriedades] = useState<Propriedade[]>([]);
+  const [destinoText, setDestinoText] = useState('');
+  const [selectedPropId, setSelectedPropId] = useState('');
+  const [sugestoes, setSugestoes] = useState<Propriedade[]>([]);
+  const [showSugestoes, setShowSugestoes] = useState(false);
+  const suggestionsRef = useRef<HTMLDivElement>(null);
   const [searchData, setSearchData] = useState({
     destination: '',
     date: '',
