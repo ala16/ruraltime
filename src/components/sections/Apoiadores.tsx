@@ -8,6 +8,8 @@ import adegaVicchiniLogo from "@/assets/apoiador-adega-vicchini.png";
 import incluiCampoLogo from "@/assets/apoiador-incluicampo.png";
 import sindicatoPorangabaLogo from "@/assets/apoiador-sindicato-porangaba.jpg";
 import cafeSantaSerraLogo from "@/assets/apoiador-cafe-santa-serra.png";
+import cachacaTradeFairLogo from "@/assets/apoiador-cachaca-trade-fair.jpg";
+import wineTradeFairLogo from "@/assets/apoiador-wine-trade-fair.jpg";
 
 export function Apoiadores() {
   const apoiadores = [
