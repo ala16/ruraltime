@@ -1,89 +1,59 @@
-import { X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { X, Plus } from "lucide-react";
+import { useState } from "react";
 import { Button } from "./ui/button";
 
 export function FloatingBanner() {
-  const [isVisible, setIsVisible] = useState(true);
-  const [isPeeking, setIsPeeking] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [scrollCount, setScrollCount] = useState(0);
+  const [isDismissed, setIsDismissed] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-    
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // Detecta se houve scroll significativo (mais de 50px)
-      if (Math.abs(currentScrollY - lastScrollY) > 50) {
-        setScrollCount(prev => {
-          const newCount = prev + 1;
-          if (newCount >= 2 && !isPeeking && !isExpanded) {
-            setIsPeeking(true);
-          }
-          return newCount;
-        });
-        lastScrollY = currentScrollY;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isPeeking, isExpanded]);
-
-  const handleClick = () => {
-    if (isPeeking && !isExpanded) {
-      setIsExpanded(true);
-    }
-  };
-
-  if (!isVisible) return null;
-
-  const getTransform = () => {
-    if (isExpanded) return "translateX(0)";
-    if (isPeeking) return "translateX(calc(100% - 40px))"; // Mostra apenas 40px
-    return "translateX(100%)"; // Escondido completamente
-  };
+  if (isDismissed) return null;
 
   return (
-    <div 
-      className={`fixed bottom-6 right-6 z-50 transition-transform duration-500 ease-out ${isPeeking && !isExpanded ? 'cursor-pointer' : ''}`}
-      style={{ transform: getTransform() }}
-      onClick={handleClick}
-    >
-    <div className="relative bg-gradient-primary text-white rounded-lg shadow-2xl p-3 w-52 hover:shadow-xl transition-shadow duration-300">
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsVisible(false);
-          }}
-          className="absolute top-1 right-1 text-white/80 hover:text-white transition-colors"
-          aria-label="Fechar"
-        >
-          <X size={16} />
-        </button>
-        
-        <div className="pt-4">
-          <p className="text-xs font-medium mb-2 leading-tight">
-            Cadastre sua propriedade ou artesanato rural
-          </p>
-          
-          <Button
-            variant="secondary"
-            size="sm"
-            className="w-full text-xs h-8"
-            onClick={(e) => {
-              e.stopPropagation();
-              window.open('https://forms.gle/UFPLAfFNQmTmD2VdA', '_blank');
-            }}
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+      {/* Expanded Card */}
+      {isOpen && (
+        <div className="relative bg-background border-2 border-primary/20 rounded-2xl shadow-2xl p-5 w-72 animate-fade-in">
+          <button
+            onClick={() => setIsDismissed(true)}
+            className="absolute top-3 right-3 text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Fechar"
           >
-            Cadastrar
-          </Button>
+            <X size={18} />
+          </button>
+
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <Plus className="h-4 w-4 text-primary" />
+              </div>
+              <h3 className="text-sm font-bold text-foreground">Seja um parceiro</h3>
+            </div>
+
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Cadastre sua propriedade rural ou artesanato e apareça para milhares de turistas.
+            </p>
+
+            <Button
+              size="sm"
+              className="w-full text-sm font-semibold"
+              onClick={() => {
+                window.open('https://forms.gle/UFPLAfFNQmTmD2VdA', '_blank');
+              }}
+            >
+              Cadastrar agora
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* FAB Button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-xl hover:shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110"
+        aria-label="Cadastrar propriedade"
+      >
+        <Plus className={`h-6 w-6 transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`} />
+      </button>
     </div>
   );
 }
