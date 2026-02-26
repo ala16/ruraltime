@@ -8,6 +8,8 @@ import adegaVicchiniLogo from "@/assets/apoiador-adega-vicchini.png";
 import incluiCampoLogo from "@/assets/apoiador-incluicampo.png";
 import sindicatoPorangabaLogo from "@/assets/apoiador-sindicato-porangaba.jpg";
 import cafeSantaSerraLogo from "@/assets/apoiador-cafe-santa-serra.png";
+import cachacaTradeFairLogo from "@/assets/apoiador-cachaca-trade-fair.jpg";
+import wineTradeFairLogo from "@/assets/apoiador-wine-trade-fair.jpg";
 
 export function Apoiadores() {
   const apoiadores = [
@@ -25,6 +27,8 @@ export function Apoiadores() {
     { nome: "IncluiCampo", logo: incluiCampoLogo, alt: "Logo IncluiCampo" },
     { nome: "Sindicato Rural de Porangaba", logo: sindicatoPorangabaLogo, alt: "Logo Sindicato Rural de Porangaba" },
     { nome: "Café Santa Serra", logo: cafeSantaSerraLogo, alt: "Logo Café Santa Serra" },
+    { nome: "Cachaça Trade Fair", logo: cachacaTradeFairLogo, alt: "Logo Cachaça Trade Fair" },
+    { nome: "Wine Trade Fair", logo: wineTradeFairLogo, alt: "Logo São Paulo International Wine Trade Fair" },
   ];
 
   // Duplicate for seamless infinite scroll
