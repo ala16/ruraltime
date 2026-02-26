@@ -27,6 +27,8 @@ export function Apoiadores() {
     { nome: "IncluiCampo", logo: incluiCampoLogo, alt: "Logo IncluiCampo" },
     { nome: "Sindicato Rural de Porangaba", logo: sindicatoPorangabaLogo, alt: "Logo Sindicato Rural de Porangaba" },
     { nome: "Café Santa Serra", logo: cafeSantaSerraLogo, alt: "Logo Café Santa Serra" },
+    { nome: "Cachaça Trade Fair", logo: cachacaTradeFairLogo, alt: "Logo Cachaça Trade Fair" },
+    { nome: "Wine Trade Fair", logo: wineTradeFairLogo, alt: "Logo São Paulo International Wine Trade Fair" },
   ];
 
   // Duplicate for seamless infinite scroll
