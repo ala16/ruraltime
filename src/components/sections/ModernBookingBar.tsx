@@ -191,26 +191,41 @@ Mensagem enviada através do Rural Time.`;
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-end">
               
               {/* Destino */}
-              <div className="space-y-2">
+              <div className="space-y-2 relative" ref={suggestionsRef}>
                 <label className="text-sm font-medium text-white/90 flex items-center">
                   <MapPin className="w-4 h-4 mr-2" />
                   Destino
                 </label>
-                <Select onValueChange={(value) => setSearchData({...searchData, destination: value})}>
-                  <SelectTrigger className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/20 h-12">
-                    <SelectValue placeholder="Escolha a propriedade" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-background border-border z-50 max-h-64 overflow-y-auto">
-                    {propriedades.map((propriedade) => (
-                      <SelectItem key={propriedade.id} value={propriedade.id} className="cursor-pointer">
-                        <div className="flex flex-col">
-                          <div className="font-medium text-foreground">{propriedade.nome}</div>
-                          <div className="text-sm text-muted-foreground">{propriedade.cidade}</div>
-                        </div>
-                      </SelectItem>
+                <Input
+                  placeholder="Digite o nome da propriedade..."
+                  value={destinoText}
+                  onChange={(e) => handleDestinoChange(e.target.value)}
+                  onFocus={() => {
+                    if (destinoText.length >= 2) {
+                      const filtradas = propriedades.filter(prop =>
+                        prop.nome.toLowerCase().includes(destinoText.toLowerCase()) ||
+                        prop.cidade.toLowerCase().includes(destinoText.toLowerCase())
+                      );
+                      setSugestoes(filtradas);
+                      setShowSugestoes(filtradas.length > 0);
+                    }
+                  }}
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/20 h-12"
+                />
+                {showSugestoes && sugestoes.length > 0 && (
+                  <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-popover border border-border rounded-md shadow-lg max-h-60 overflow-auto">
+                    {sugestoes.map((prop) => (
+                      <button
+                        key={prop.id}
+                        onClick={() => selecionarDestino(prop)}
+                        className="w-full text-left px-4 py-2.5 hover:bg-muted transition-colors border-b border-border/50 last:border-b-0"
+                      >
+                        <div className="font-medium text-popover-foreground text-sm">{prop.nome}</div>
+                        <div className="text-xs text-muted-foreground">{prop.cidade}</div>
+                      </button>
                     ))}
-                  </SelectContent>
-                </Select>
+                  </div>
+                )}
               </div>
 
               {/* Data */}
