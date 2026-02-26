@@ -59,6 +59,41 @@ export const ModernBookingBar = () => {
     }
   };
 
+  // Close suggestions on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (suggestionsRef.current && !suggestionsRef.current.contains(e.target as Node)) {
+        setShowSugestoes(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleDestinoChange = (value: string) => {
+    setDestinoText(value);
+    setSelectedPropId('');
+    setSearchData(prev => ({ ...prev, destination: '' }));
+
+    if (value.length >= 2) {
+      const filtradas = propriedades.filter(prop =>
+        prop.nome.toLowerCase().includes(value.toLowerCase()) ||
+        prop.cidade.toLowerCase().includes(value.toLowerCase())
+      );
+      setSugestoes(filtradas);
+      setShowSugestoes(filtradas.length > 0);
+    } else {
+      setShowSugestoes(false);
+    }
+  };
+
+  const selecionarDestino = (prop: Propriedade) => {
+    setDestinoText(prop.nome);
+    setSelectedPropId(prop.id);
+    setSearchData(prev => ({ ...prev, destination: prop.id }));
+    setShowSugestoes(false);
+  };
+
 
   const handleSearch = async () => {
     if (!searchData.destination || !searchData.date || !searchData.guests) {
