@@ -1,33 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Users, MapPin, TrendingUp, Network, Smartphone, Search, Calendar } from "lucide-react";
+import { Users, MapPin, TrendingUp, Network, Smartphone } from "lucide-react";
 
 export function PlataformaResumo() {
   return (
     <section id="oferecemos" className="py-8 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-primary mb-1">Como a Rural Time Funciona</h2>
+          <h2 className="text-2xl font-bold text-primary mb-1">O que Oferecemos</h2>
           <p className="text-sm text-muted-foreground">
-            Conectamos turistas a produtores rurais em 3 passos simples
+            Conectamos turistas a produtores rurais de forma simples e segura
           </p>
-        </div>
-
-        {/* Como Funciona - 3 passos em linha */}
-        <div className="grid grid-cols-3 gap-3 mb-8">
-          {[
-            { step: 1, icon: MapPin, title: "Produtor Cadastra", desc: "Cadastra propriedade e experiências oferecidas", color: "bg-primary" },
-            { step: 2, icon: Search, title: "Turista Encontra", desc: "Busca e reserva experiências na plataforma", color: "bg-secondary" },
-            { step: 3, icon: Calendar, title: "Experiência Acontece", desc: "Visita a propriedade e vive momentos únicos", color: "bg-primary" },
-          ].map((item) => (
-            <div key={item.step} className="text-center">
-              <div className={`w-10 h-10 ${item.color} rounded-full flex items-center justify-center mx-auto mb-2`}>
-                <item.icon className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xs font-bold text-muted-foreground">Passo {item.step}</span>
-              <h3 className="text-sm font-bold text-foreground">{item.title}</h3>
-              <p className="text-xs text-muted-foreground hidden sm:block">{item.desc}</p>
-            </div>
-          ))}
         </div>
 
         {/* O que oferecemos - grid compacto */}
