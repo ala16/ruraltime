@@ -26,10 +26,6 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                 <MapPin className="w-3 h-3" />
                 Turismo Rural
               </span>
-              <span className="inline-flex items-center gap-1.5 bg-rural-secondary/20 backdrop-blur-md border border-rural-secondary/30 text-rural-secondary rounded-full px-3 py-1 text-xs font-medium tracking-wide uppercase">
-                <Star className="w-3 h-3" />
-                100% Brasileiro
-              </span>
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.15] tracking-tight">
