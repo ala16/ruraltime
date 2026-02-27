@@ -70,8 +70,8 @@ export function Atrativos() {
   return <section id="atrativos" className="py-6 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-primary mb-2">Atrativos de Turismo Rurais</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-4">Viaje pelos destinos rurais do Brasil e descubra experiências autênticas.</p>
+          <h2 className="text-3xl font-bold text-primary mb-2">Atrativos Turísticos Rurais</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-4">Fazendas para visitar, sítios e propriedades rurais em todo o Brasil — descubra experiências autênticas no campo.</p>
           <div>
             <Button 
               type="button"
@@ -97,7 +97,7 @@ export function Atrativos() {
           <CarouselContent className="-ml-2 md:-ml-4">
             {propriedades.map((propriedade, index) => <CarouselItem key={propriedade.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:scale-[1.02]" onClick={() => navigate(`/propriedade/${propriedade.id}`)}>
-                  <img src={propriedade.imagens[0]} alt={propriedade.nome} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                  <img src={propriedade.imagens[0]} alt={`${propriedade.nome} - ${propriedade.tipo_propriedade} para turismo rural no Brasil`} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                     <div className="flex items-center gap-2 mb-2">
@@ -110,7 +110,7 @@ export function Atrativos() {
                     {/* Botões de ação */}
                     <div className="flex flex-col gap-2">
                       <div className="flex gap-2">
-                        <Button size="sm" onClick={() => navigate(`/propriedade/${propriedade.id}`)} className="flex items-center gap-1 text-xs bg-primary/90 hover:bg-primary text-primary-foreground">
+                        <Button size="sm" onClick={() => navigate(`/propriedade/${propriedade.id}`)} className="flex items-center gap-1 text-xs bg-primary/90 hover:bg-primary text-primary-foreground" aria-label={`Ver mais sobre ${propriedade.nome}`}>
                           <Eye className="w-3 h-3" />
                           Ver mais
                         </Button>

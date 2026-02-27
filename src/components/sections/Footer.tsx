@@ -10,7 +10,7 @@ export function Footer({
         <div className="grid md:grid-cols-4 gap-8">
           {/* Logo e Descrição */}
           <div className="md:col-span-2">
-            <img src={ruralTimeLogo} alt="Rural Time Logo" className="h-24 w-auto mb-4" />
+            <img src={ruralTimeLogo} alt="Rural Time - Plataforma de Turismo Rural no Brasil" className="h-24 w-auto mb-4" loading="lazy" />
             <p className="text-white/80 leading-relaxed mb-4">
               Rural Time – Plataforma de Turismo Rural e Inovação no Agro. 
               Um projeto conectado aos valores e objetivos do CNA Jovem.

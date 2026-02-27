@@ -29,12 +29,12 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.15] tracking-tight">
-              Descubra o melhor do{' '}
-              <span className="text-rural-secondary">campo brasileiro</span>
+              Turismo Rural e Experiências{' '}
+              <span className="text-rural-secondary">Autênticas no Brasil</span>
             </h1>
 
             <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-md">
-              Propriedades rurais, experiências autênticas e artesanato regional — tudo em um só lugar.
+              Descubra fazendas para visitar, sítios, experiências no campo e artesanato regional — tudo em um só lugar.
             </p>
 
             <div className="pt-2">
@@ -42,6 +42,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                 size="lg"
                 onClick={() => onSectionClick('atrativos')}
                 className="bg-rural-secondary hover:bg-rural-secondary/90 text-rural-secondary-foreground font-semibold shadow-xl group text-base px-6"
+                aria-label="Explorar atrativos de turismo rural no Brasil"
               >
                 Explorar atrativos
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

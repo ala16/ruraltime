@@ -18,9 +18,9 @@ export const BlogCarousel = () => {
     <section className="py-8 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-primary mb-2">Últimas do Blog</h2>
+          <h2 className="text-3xl font-bold text-primary mb-2">Blog de Turismo Rural</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-4">
-            Dicas, roteiros e informações sobre turismo rural
+            Dicas, roteiros e guias sobre experiências no campo brasileiro
           </p>
           <Link to="/blog">
             <Button size="lg" className="bg-gradient-primary text-primary-foreground hover:opacity-90 hover:scale-105 transition-transform duration-300 shadow-glow">

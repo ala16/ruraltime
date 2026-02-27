@@ -86,8 +86,8 @@ export const Artesanatos = () => {
   return <section id="artesanatos" className="py-8 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-primary mb-2">Artesanato Rural</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-4">O turismo também é artesanato! Descubra peças únicas criadas por talentosos artesãos da região.</p>
+          <h2 className="text-3xl font-bold text-primary mb-2">Artesanato Rural Brasileiro</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-4">Descubra peças únicas de artesanato local criadas por talentosos artesãos do campo brasileiro.</p>
           <div>
             <Button 
               type="button"
@@ -113,7 +113,7 @@ export const Artesanatos = () => {
           <CarouselContent className="-ml-2 md:-ml-4">
               {artesanatos.map((artesanato, index) => <CarouselItem key={artesanato.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:scale-[1.02]" onClick={() => handleViewDetails(artesanato.id)}>
-                    <img src={artesanato.imagens[0]} alt={artesanato.nome} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                    <img src={artesanato.imagens[0]} alt={`${artesanato.nome} - Artesanato rural ${artesanato.categoria}`} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                       <div className="flex items-center gap-2 mb-2">
