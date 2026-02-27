@@ -111,6 +111,14 @@ const Index = () => {
         
         
         <QuemSomos />
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FAQSection 
+            title="Perguntas Frequentes sobre Turismo Rural" 
+            faqs={homeFAQs} 
+          />
+        </div>
+        
         <Apoiadores />
       </main>
       
