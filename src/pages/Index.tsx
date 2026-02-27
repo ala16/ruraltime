@@ -18,7 +18,30 @@ import { IncluiCampo } from "@/components/sections/IncluiCampo";
 import { BlogCarousel } from "@/components/sections/BlogCarousel";
 import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
 import { AIRecommendationChat } from "@/components/sections/AIRecommendationChat";
+import { FAQSection } from "@/components/seo/FAQSection";
 
+const homeFAQs = [
+  {
+    question: "O que é turismo rural?",
+    answer: "Turismo rural é uma modalidade de turismo que acontece em áreas rurais, como fazendas, sítios e chácaras. Inclui experiências autênticas no campo, como ordenha, trilhas, gastronomia regional e contato com a natureza."
+  },
+  {
+    question: "Como funciona a Rural Time?",
+    answer: "A Rural Time conecta turistas a propriedades rurais em todo o Brasil. Você pode explorar atrativos, conhecer artesanatos locais e encontrar fazendas para visitar. Basta navegar pelo mapa ou usar nossa IA de recomendações."
+  },
+  {
+    question: "Quais tipos de propriedades posso visitar?",
+    answer: "Na Rural Time você encontra fazendas, sítios, chácaras, vinícolas, cachaçarias, pesqueiros e muito mais. Cada propriedade oferece experiências únicas como trilhas ecológicas, degustações, hospedagem rural e atividades educativas."
+  },
+  {
+    question: "O turismo rural é indicado para famílias com crianças?",
+    answer: "Sim! O turismo rural é uma excelente opção para famílias. As crianças podem ter contato com animais, aprender sobre a origem dos alimentos, brincar ao ar livre e viver experiências educativas que não encontram na cidade."
+  },
+  {
+    question: "Como cadastrar minha propriedade rural na plataforma?",
+    answer: "O cadastro é gratuito. Acesse a área 'Seja Parceiro', preencha os dados da sua propriedade, adicione fotos e descrições. Sua propriedade aparecerá no mapa e nos resultados de busca para turistas de todo o Brasil."
+  }
+];
 
 const Index = () => {
   // Scroll to top on page load
