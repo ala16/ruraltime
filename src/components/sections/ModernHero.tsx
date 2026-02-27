@@ -42,6 +42,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                 size="lg"
                 onClick={() => onSectionClick('atrativos')}
                 className="bg-rural-secondary hover:bg-rural-secondary/90 text-rural-secondary-foreground font-semibold shadow-xl group text-base px-6"
+                aria-label="Explorar atrativos de turismo rural no Brasil"
               >
                 Explorar atrativos
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

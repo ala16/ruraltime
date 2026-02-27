@@ -41,26 +41,29 @@ const Index = () => {
 
   return <div className="min-h-screen">
       <Helmet>
-        <title>Rural Time - Turismo Rural Digital no Brasil | Experiências Autênticas no Campo</title>
-        <meta name="description" content="O maior portal de turismo rural do Brasil. Conectamos turistas a pequenas propriedades rurais, fazendas, sítios e chácaras em todo o país. Descubra experiências autênticas no campo." />
-        <meta name="keywords" content="turismo rural, agroturismo, turismo no campo, hospedagem rural, fazendas para visitar, experiências rurais, artesanato rural, turismo rural brasil, fazendas turísticas, ecoturismo" />
+        <title>Turismo Rural no Brasil | Experiências no Campo e Artesanato - Rural Time</title>
+        <meta name="description" content="Descubra as melhores experiências de turismo rural no Brasil. Reserve fazendas, sítios e conheça o autêntico artesanato local na Rural Time." />
+        <meta name="keywords" content="turismo rural, turismo rural no Brasil, experiências no campo, fazendas para visitar, agroturismo, artesanato rural, hospedagem rural, sítios turísticos, ecoturismo, turismo de fazenda" />
         <link rel="canonical" href="https://ruraltime.com.br" />
         
         {/* Open Graph / Facebook / WhatsApp */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://ruraltime.com.br" />
-        <meta property="og:title" content="Rural Time - O Maior Portal de Turismo Rural do Brasil" />
-        <meta property="og:description" content="Conectamos turistas a pequenas propriedades rurais. Descubra fazendas, sítios e experiências autênticas no campo brasileiro!" />
+        <meta property="og:title" content="Turismo Rural no Brasil | Fazendas, Experiências e Artesanato - Rural Time" />
+        <meta property="og:description" content="Descubra as melhores experiências de turismo rural no Brasil. Reserve fazendas, sítios e conheça o autêntico artesanato local." />
         <meta property="og:image" content="https://ruraltime.com.br/lovable-uploads/rural-time-logo-new.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta property="og:site_name" content="Rural Time" />
         <meta property="og:locale" content="pt_BR" />
         
         {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://ruraltime.com.br" />
-        <meta property="twitter:title" content="Rural Time - O Maior Portal de Turismo Rural do Brasil" />
-        <meta property="twitter:description" content="Conectamos turistas a pequenas propriedades rurais. Experiências autênticas no campo!" />
-        <meta property="twitter:image" content="https://ruraltime.com.br/lovable-uploads/rural-time-logo-new.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://ruraltime.com.br" />
+        <meta name="twitter:title" content="Turismo Rural no Brasil | Fazendas e Experiências no Campo" />
+        <meta name="twitter:description" content="Descubra as melhores experiências de turismo rural no Brasil. Reserve fazendas e sítios na Rural Time." />
+        <meta name="twitter:image" content="https://ruraltime.com.br/lovable-uploads/rural-time-logo-new.png" />
+        <meta name="twitter:site" content="@ruraltime" />
       </Helmet>
       
       {/* Schema Markups for Entity SEO */}

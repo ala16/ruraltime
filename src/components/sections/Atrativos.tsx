@@ -110,7 +110,7 @@ export function Atrativos() {
                     {/* Botões de ação */}
                     <div className="flex flex-col gap-2">
                       <div className="flex gap-2">
-                        <Button size="sm" onClick={() => navigate(`/propriedade/${propriedade.id}`)} className="flex items-center gap-1 text-xs bg-primary/90 hover:bg-primary text-primary-foreground">
+                        <Button size="sm" onClick={() => navigate(`/propriedade/${propriedade.id}`)} className="flex items-center gap-1 text-xs bg-primary/90 hover:bg-primary text-primary-foreground" aria-label={`Ver mais sobre ${propriedade.nome}`}>
                           <Eye className="w-3 h-3" />
                           Ver mais
                         </Button>

@@ -32,9 +32,9 @@ export function Depoimentos() {
         <div className={`text-center mb-8 transition-all duration-700 ${
           isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-3xl font-bold text-primary mb-2">Depoimentos</h2>
+          <h2 className="text-3xl font-bold text-primary mb-2">Depoimentos de Turismo Rural</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Histórias reais de quem já faz parte da família Rural Time
+            Histórias reais de turistas e produtores rurais que fazem parte da Rural Time
           </p>
         </div>
 

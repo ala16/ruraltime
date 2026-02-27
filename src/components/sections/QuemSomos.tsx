@@ -7,9 +7,9 @@ export function QuemSomos() {
     <section id="quem-somos" className="py-8 bg-accent">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-primary mb-2">Quem Somos</h2>
+          <h2 className="text-3xl font-bold text-primary mb-2">Sobre a Rural Time — Turismo Rural Digital</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Uma iniciativa que nasceu da paixão pelo campo e pela inovação
+            Uma iniciativa que nasceu da paixão pelo campo e pela inovação no agro brasileiro
           </p>
         </div>
 

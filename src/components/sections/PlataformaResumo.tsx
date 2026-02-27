@@ -6,7 +6,7 @@ export function PlataformaResumo() {
     <section id="oferecemos" className="py-8 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-primary mb-1">O que Oferecemos</h2>
+          <h2 className="text-2xl font-bold text-primary mb-1">Como Funciona o Turismo Rural na Rural Time</h2>
           <p className="text-sm text-muted-foreground">
             Conectamos turistas a produtores rurais de forma simples e segura
           </p>

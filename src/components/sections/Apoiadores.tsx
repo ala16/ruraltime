@@ -52,6 +52,7 @@ export function Apoiadores() {
                   src={apoiador.logo}
                   alt={apoiador.alt}
                   className="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-all duration-300"
+                  loading="lazy"
                 />
               </div>
             ))}
