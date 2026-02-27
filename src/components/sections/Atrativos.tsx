@@ -97,7 +97,7 @@ export function Atrativos() {
           <CarouselContent className="-ml-2 md:-ml-4">
             {propriedades.map((propriedade, index) => <CarouselItem key={propriedade.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:scale-[1.02]" onClick={() => navigate(`/propriedade/${propriedade.id}`)}>
-                  <img src={propriedade.imagens[0]} alt={propriedade.nome} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                  <img src={propriedade.imagens[0]} alt={`${propriedade.nome} - ${propriedade.tipo_propriedade} para turismo rural no Brasil`} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                     <div className="flex items-center gap-2 mb-2">
