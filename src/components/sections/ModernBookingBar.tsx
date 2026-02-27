@@ -277,20 +277,6 @@ Mensagem enviada através do Rural Time.`;
               </div>
             </div>
 
-            {/* Quick Links */}
-            <div className="mt-8 pt-6 border-t border-white/20">
-              <div className="flex flex-wrap gap-3 justify-center">
-                <span className="text-white/70 text-sm">Buscar por:</span>
-                {['Trilhas', 'Fazendas', 'Artesanato', 'Gastronomia'].map((tag) => (
-                  <button
-                    key={tag}
-                    className="px-3 py-1 bg-white/10 hover:bg-white/20 text-white/90 text-sm rounded-full transition-colors border border-white/20"
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
-            </div>
           </CardContent>
         </Card>
 
