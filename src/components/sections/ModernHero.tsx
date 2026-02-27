@@ -41,7 +41,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
               Propriedades rurais, experiências autênticas e artesanato regional — tudo em um só lugar.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+            <div className="pt-2">
               <Button
                 size="lg"
                 onClick={() => onSectionClick('atrativos')}
@@ -49,14 +49,6 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
               >
                 Explorar atrativos
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => onSectionClick('como-funciona')}
-                className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm text-base px-6"
-              >
-                Como funciona
               </Button>
             </div>
           </div>
