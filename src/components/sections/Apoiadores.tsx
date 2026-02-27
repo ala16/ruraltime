@@ -35,11 +35,11 @@ export function Apoiadores() {
   const duplicated = [...apoiadores, ...apoiadores];
 
   return (
-    <section id="apoiadores" className="py-4 bg-muted/30 overflow-hidden">
+    <section id="apoiadores" className="py-4 bg-muted/30 overflow-hidden" aria-label="Apoiadores e parceiros do turismo rural">
       <div className="max-w-6xl mx-auto px-4">
-        <p className="text-center text-sm text-muted-foreground mb-3">
+        <h2 className="text-center text-sm text-muted-foreground mb-3">
           Nossos <strong className="text-foreground">{apoiadores.length} apoiadores</strong> — instituições do setor rural
-        </p>
+        </h2>
 
         <div className="relative">
           <div className="flex gap-8 animate-marquee">
