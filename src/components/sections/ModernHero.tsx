@@ -12,36 +12,34 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
   const { t } = useLanguage();
 
   return (
-    <section id="hero" className="relative h-[22vh] min-h-[180px] max-h-[220px] flex items-center overflow-hidden pt-20">
+    <section id="hero" className="relative min-h-[320px] md:min-h-[380px] flex items-end overflow-hidden">
       <div className="absolute inset-0">
         <img src={heroImage} alt="Paisagem rural brasileira" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
       </div>
 
-      <div className="relative z-10 w-full">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2 md:py-3">
-          <div className="max-w-xl space-y-2 animate-fade-in scale-[0.8] md:scale-[0.9] origin-left">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-md border border-white/20 text-white/90 rounded-full px-3 py-1 text-xs font-medium tracking-wide uppercase">
-                <MapPin className="w-3 h-3" />
-                Turismo Rural
-              </span>
-            </div>
+      <div className="relative z-10 w-full pb-10 pt-28 md:pt-32">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl space-y-4">
+            <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white/90 rounded-full px-4 py-1.5 text-xs font-medium tracking-widest uppercase">
+              <MapPin className="w-3.5 h-3.5" />
+              Turismo Rural
+            </span>
 
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-[1.15] tracking-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
               Turismo Rural e Experiências{' '}
               <span className="text-rural-secondary">Autênticas no Brasil</span>
             </h1>
 
-            <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-md">
+            <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-lg">
               Descubra fazendas para visitar, sítios, experiências no campo e artesanato regional — tudo em um só lugar.
             </p>
 
-            <div className="pt-1">
+            <div className="pt-2">
               <Button
-                size="default"
+                size="lg"
                 onClick={() => onSectionClick('atrativos')}
-                className="bg-rural-secondary hover:bg-rural-secondary/90 text-rural-secondary-foreground font-semibold shadow-xl group text-sm px-5"
+                className="bg-rural-secondary hover:bg-rural-secondary/90 text-rural-secondary-foreground font-semibold shadow-xl group"
                 aria-label="Explorar atrativos de turismo rural no Brasil"
               >
                 Explorar atrativos
