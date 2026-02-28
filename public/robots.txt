@@ -1,8 +1,24 @@
 User-agent: Googlebot
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /auth
+Disallow: /validar-voucher
+Disallow: /voucher-success
+Disallow: /voucher-canceled
+
+User-agent: Googlebot-News
+Allow: /blog/
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
 
 User-agent: Bingbot
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /auth
 
 User-agent: Twitterbot
 Allow: /
@@ -12,5 +28,8 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /auth
 
 Sitemap: https://ruraltime.com.br/sitemap.xml

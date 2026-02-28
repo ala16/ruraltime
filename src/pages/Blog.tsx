@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, Tag, ArrowRight } from 'lucide-react';
 import { ModernNavigation } from '@/components/ui/modern-navigation';
@@ -7,20 +7,11 @@ import { blogPosts } from '@/data/blogPosts';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { SEOHead } from '@/components/seo/SEOHead';
+import { SchemaMarkup } from '@/components/seo/SchemaMarkup';
 
 export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
-
-  useEffect(() => {
-    document.title = 'Blog - Rural Time | Turismo Rural, CNA, SENAR e CNA Jovem';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        'content',
-        'Blog sobre turismo rural no Brasil, CNA, SENAR, CNA Jovem e desenvolvimento do campo. Artigos informativos sobre experiências rurais, capacitação e agronegócio.'
-      );
-    }
-  }, []);
 
   const categories = ['Todos', ...Array.from(new Set(blogPosts.map(post => post.category)))];
 
@@ -44,6 +35,29 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Blog sobre Turismo Rural no Brasil | Artigos e Notícias"
+        description="Blog sobre turismo rural no Brasil, CNA, SENAR, CNA Jovem e desenvolvimento do campo. Artigos informativos sobre experiências rurais, capacitação e agronegócio."
+        keywords="blog turismo rural, turismo rural brasil, CNA, SENAR, CNA jovem, agronegócio, desenvolvimento rural, experiências rurais"
+        canonicalUrl="/blog"
+        ogType="website"
+      />
+
+      <SchemaMarkup
+        type="webPage"
+        name="Blog sobre Turismo Rural no Brasil"
+        description="Artigos e notícias sobre turismo rural, CNA, SENAR e desenvolvimento do campo brasileiro."
+        url="/blog"
+      />
+
+      <SchemaMarkup
+        type="breadcrumb"
+        items={[
+          { name: 'Rural Time', url: '/' },
+          { name: 'Blog', url: '/blog' }
+        ]}
+      />
+      
       <ModernNavigation onSectionClick={scrollToSection} />
       
       {/* Hero Section */}
@@ -88,8 +102,9 @@ export default function Blog() {
                 <div className="relative overflow-hidden rounded-t-lg">
                   <img
                     src={post.imageUrl}
-                    alt={post.title}
+                    alt={`${post.title} - Artigo sobre turismo rural no Brasil`}
                     className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                   <div className="absolute top-4 right-4">
                     <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm">
@@ -102,7 +117,7 @@ export default function Blog() {
                   <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
                     <div className="flex items-center gap-1">
                       <Calendar size={16} />
-                      <span>{new Date(post.date).toLocaleDateString('pt-BR')}</span>
+                      <time dateTime={post.date}>{new Date(post.date).toLocaleDateString('pt-BR')}</time>
                     </div>
                     <div className="flex items-center gap-1">
                       <Clock size={16} />
@@ -111,7 +126,7 @@ export default function Blog() {
                   </div>
                   
                   <CardTitle className="text-xl group-hover:text-primary transition-colors line-clamp-2">
-                    {post.title}
+                    <Link to={`/blog/${post.slug}`}>{post.title}</Link>
                   </CardTitle>
                 </CardHeader>
                 

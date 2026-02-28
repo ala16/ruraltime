@@ -7,6 +7,8 @@ import { blogPosts } from '@/data/blogPosts';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
+import { SEOHead } from '@/components/seo/SEOHead';
+import { SchemaMarkup } from '@/components/seo/SchemaMarkup';
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -15,31 +17,20 @@ export default function BlogPost() {
   const post = blogPosts.find(p => p.slug === slug);
 
   useEffect(() => {
-    if (post) {
-      document.title = `${post.title} - Rural Time`;
-      const metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) {
-        metaDescription.setAttribute('content', post.excerpt);
-      }
-    }
-  }, [post]);
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   const scrollToSection = (sectionId: string) => {
-    if (sectionId === 'hero') {
-      navigate('/');
-      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
-    } else {
-      navigate('/');
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const offset = 80;
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - offset;
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }
-      }, 100);
-    }
+    navigate('/');
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   const handleShare = async () => {
@@ -79,8 +70,45 @@ export default function BlogPost() {
     .filter(p => p.category === post.category && p.id !== post.id)
     .slice(0, 3);
 
+  const articleUrl = `https://ruraltime.com.br/blog/${post.slug}`;
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title={post.title}
+        description={post.excerpt}
+        keywords={post.tags.join(', ')}
+        canonicalUrl={`/blog/${post.slug}`}
+        ogType="article"
+        ogImage={typeof post.imageUrl === 'string' && post.imageUrl.startsWith('http') ? post.imageUrl : `https://ruraltime.com.br${post.imageUrl}`}
+        author={post.author}
+        publishedTime={post.date}
+        modifiedTime={post.date}
+        section={post.category}
+        tags={post.tags}
+      />
+
+      <SchemaMarkup
+        type="newsArticle"
+        headline={post.title}
+        description={post.excerpt}
+        image={typeof post.imageUrl === 'string' && post.imageUrl.startsWith('http') ? post.imageUrl : `https://ruraltime.com.br${post.imageUrl}`}
+        datePublished={post.date}
+        dateModified={post.date}
+        author={post.author}
+        url={articleUrl}
+        section={post.category}
+      />
+
+      <SchemaMarkup
+        type="breadcrumb"
+        items={[
+          { name: 'Rural Time', url: '/' },
+          { name: 'Blog', url: '/blog' },
+          { name: post.title, url: `/blog/${post.slug}` }
+        ]}
+      />
+
       <ModernNavigation onSectionClick={scrollToSection} />
       
       {/* Hero Section */}
@@ -107,11 +135,13 @@ export default function BlogPost() {
             <div className="flex flex-wrap items-center gap-6 text-muted-foreground mb-8">
               <div className="flex items-center gap-2">
                 <Calendar size={18} />
-                <span>{new Date(post.date).toLocaleDateString('pt-BR', { 
-                  day: '2-digit', 
-                  month: 'long', 
-                  year: 'numeric' 
-                })}</span>
+                <time dateTime={post.date}>
+                  {new Date(post.date).toLocaleDateString('pt-BR', { 
+                    day: '2-digit', 
+                    month: 'long', 
+                    year: 'numeric' 
+                  })}
+                </time>
               </div>
               <div className="flex items-center gap-2">
                 <Clock size={18} />
@@ -139,13 +169,14 @@ export default function BlogPost() {
           </header>
 
           {/* Featured Image */}
-          <div className="max-w-5xl mx-auto mb-12">
+          <figure className="max-w-5xl mx-auto mb-12">
             <img
               src={post.imageUrl}
-              alt={post.title}
+              alt={`${post.title} - Artigo sobre ${post.category} no turismo rural brasileiro`}
               className="w-full rounded-xl shadow-lg"
+              loading="eager"
             />
-          </div>
+          </figure>
 
           {/* Content */}
           <div className="max-w-3xl mx-auto">
@@ -191,8 +222,9 @@ export default function BlogPost() {
                   <div className="bg-background rounded-lg overflow-hidden shadow-md group-hover:shadow-xl transition-shadow duration-300">
                     <img
                       src={relatedPost.imageUrl}
-                      alt={relatedPost.title}
+                      alt={`${relatedPost.title} - Artigo sobre turismo rural`}
                       className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
                     />
                     <div className="p-6">
                       <Badge className="mb-3">{relatedPost.category}</Badge>
