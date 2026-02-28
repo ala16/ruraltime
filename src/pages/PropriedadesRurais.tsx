@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
 import { 
   Carousel,
   CarouselContent,
@@ -110,7 +112,6 @@ const PropriedadesRurais = () => {
   };
 
   const handleContactAction = async (propriedadeId: string, type: 'phone' | 'email' | 'website') => {
-    // First ensure we have contact info
     if (!contactInfo[propriedadeId]) {
       await buscarContato(propriedadeId);
     }
@@ -123,8 +124,7 @@ const PropriedadesRurais = () => {
     switch (type) {
       case 'phone':
         if (contact.telefone) {
-          // Format phone number for WhatsApp (remove special characters and add country code if needed)
-          const phoneNumber = contact.telefone.replace(/\D/g, ''); // Remove non-digits
+          const phoneNumber = contact.telefone.replace(/\D/g, '');
           const formattedNumber = phoneNumber.startsWith('55') ? phoneNumber : `55${phoneNumber}`;
           window.open(`https://wa.me/${formattedNumber}?text=${whatsappMessage}`, '_blank');
         }
@@ -153,6 +153,14 @@ const PropriedadesRurais = () => {
     }
   };
 
+  const scrollToSection = (sectionId: string) => {
+    navigate('/');
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-rural-cream flex items-center justify-center">
@@ -166,6 +174,29 @@ const PropriedadesRurais = () => {
 
   return (
     <div className="min-h-screen bg-rural-cream py-8">
+      <SEOHead
+        title="Propriedades Rurais para Visitar no Brasil | Fazendas e Sítios"
+        description="Encontre as melhores propriedades rurais para visitar no Brasil. Fazendas, sítios, chácaras e vinícolas com experiências autênticas de turismo rural."
+        keywords="propriedades rurais, fazendas para visitar, sítios turísticos, turismo rural brasil, agroturismo, hospedagem rural, chácaras"
+        canonicalUrl="/propriedades"
+        ogType="website"
+      />
+
+      <SchemaMarkup
+        type="webPage"
+        name="Propriedades Rurais para Visitar no Brasil"
+        description="Encontre fazendas, sítios e chácaras para experiências de turismo rural autêntico no Brasil."
+        url="/propriedades"
+      />
+
+      <SchemaMarkup
+        type="breadcrumb"
+        items={[
+          { name: 'Rural Time', url: '/' },
+          { name: 'Propriedades Rurais', url: '/propriedades' }
+        ]}
+      />
+
       <div className="container mx-auto px-4">
         <div className="mb-8">
           <Button
@@ -215,8 +246,9 @@ const PropriedadesRurais = () => {
                       <div className="aspect-video relative overflow-hidden">
                         <img 
                           src={propriedade.imagens[0]} 
-                          alt={`${propriedade.nome} - Imagem principal`}
+                          alt={`${propriedade.nome} - ${propriedade.tipo_propriedade} para turismo rural em ${propriedade.cidade}, ${propriedade.estado}`}
                           className="w-full h-full object-cover"
+                          loading="lazy"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             target.style.display = 'none';
@@ -232,8 +264,9 @@ const PropriedadesRurais = () => {
                               <div className="aspect-video relative overflow-hidden">
                                 <img 
                                   src={imagem} 
-                                  alt={`${propriedade.nome} - Imagem ${index + 1}`}
+                                  alt={`${propriedade.nome} - Imagem ${index + 1} da propriedade rural em ${propriedade.cidade}`}
                                   className="w-full h-full object-cover"
+                                  loading="lazy"
                                   onError={(e) => {
                                     const target = e.target as HTMLImageElement;
                                     target.style.display = 'none';
