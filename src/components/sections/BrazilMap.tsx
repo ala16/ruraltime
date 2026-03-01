@@ -58,6 +58,7 @@ const ESTADOS_BRASILEIROS = {
 export const BrazilMap = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
+  const [mapActive, setMapActive] = useState(false);
   const [selectedState, setSelectedState] = useState<string | null>(null);
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [showCities, setShowCities] = useState(false);
@@ -107,6 +108,7 @@ export const BrazilMap = () => {
       style: 'mapbox://styles/mapbox/streets-v12',
       center: [-54, -14], // Brazil center
       zoom: 3.5,
+      interactive: false,
     });
 
     // Add navigation controls
@@ -363,8 +365,30 @@ export const BrazilMap = () => {
 
               {/* Map */}
               <div className="lg:col-span-3">
-                <Card className="overflow-hidden">
+                <Card className="overflow-hidden relative">
                   <div ref={mapContainer} className="w-full h-[500px]" />
+                  {!mapActive && (
+                    <div
+                      className="absolute inset-0 flex items-center justify-center bg-black/20 cursor-pointer z-10"
+                      onClick={() => {
+                        setMapActive(true);
+                        if (map.current) {
+                          map.current.scrollZoom.enable();
+                          map.current.boxZoom.enable();
+                          map.current.dragRotate.enable();
+                          map.current.dragPan.enable();
+                          map.current.keyboard.enable();
+                          map.current.doubleClickZoom.enable();
+                          map.current.touchZoomRotate.enable();
+                        }
+                      }}
+                    >
+                      <Badge className="bg-primary text-primary-foreground px-4 py-2 text-sm shadow-lg pointer-events-none">
+                        <MapPin className="w-4 h-4 mr-2" />
+                        Clique para navegar no mapa
+                      </Badge>
+                    </div>
+                  )}
                 </Card>
                 
                 {(selectedState || selectedCity) && (
