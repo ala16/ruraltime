@@ -42,6 +42,9 @@ interface ContactInfo {
 const PropriedadeDetalhes = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const bookingDate = searchParams.get('date');
+  const bookingGuests = searchParams.get('guests');
   const [propriedade, setPropriedade] = useState<Propriedade | null>(null);
   const [contactInfo, setContactInfo] = useState<ContactInfo | null>(null);
   const [loading, setLoading] = useState(true);
