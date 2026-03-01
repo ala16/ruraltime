@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Star, Mail, Phone, MapPin, Instagram, MessageCircle, Globe, TreePine, Users, Clock, Coins } from 'lucide-react';
+import { ArrowLeft, Star, Mail, Phone, MapPin, Instagram, MessageCircle, Globe, TreePine, Users, Clock, Coins, CalendarDays } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ShareButtons } from '@/components/ShareButtons';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 interface Propriedade {
   id: string;
@@ -40,6 +42,9 @@ interface ContactInfo {
 const PropriedadeDetalhes = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const bookingDate = searchParams.get('date');
+  const bookingGuests = searchParams.get('guests');
   const [propriedade, setPropriedade] = useState<Propriedade | null>(null);
   const [contactInfo, setContactInfo] = useState<ContactInfo | null>(null);
   const [loading, setLoading] = useState(true);
@@ -80,8 +85,9 @@ const PropriedadeDetalhes = () => {
     fetchPropriedade();
   }, [id]);
 
-  const handleContactAction = (type: 'phone' | 'email' | 'website' | 'whatsapp' | 'instagram', value: string) => {
-    const whatsappMessage = encodeURIComponent('Olá vi a sua propriedade de turismo rural no site da www.ruraltime.com.br gostaria de agendar uma visita turística.');
+  const handleContactAction = (type: 'phone' | 'email' | 'website' | 'whatsapp' | 'instagram', value: string, customMessage?: string) => {
+    const defaultMessage = 'Olá vi a sua propriedade de turismo rural no site da www.ruraltime.com.br gostaria de agendar uma visita turística.';
+    const whatsappMessage = encodeURIComponent(customMessage || defaultMessage);
     
     switch (type) {
       case 'phone':
@@ -104,6 +110,31 @@ const PropriedadeDetalhes = () => {
         window.open(`https://instagram.com/${value.replace('@', '')}`, '_blank');
         break;
     }
+  };
+
+  const handleBookingWhatsApp = () => {
+    const whatsappNumber = contactInfo?.whatsapp || propriedade?.whatsapp || contactInfo?.telefone;
+    if (!whatsappNumber || !propriedade) return;
+
+    let dataFormatada = '';
+    if (bookingDate) {
+      try {
+        const dateObj = new Date(bookingDate + 'T12:00:00');
+        dataFormatada = format(dateObj, "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
+      } catch {
+        dataFormatada = bookingDate;
+      }
+    }
+
+    const mensagem = `Olá! Gostaria de agendar uma visita no *${propriedade.nome}*.
+${dataFormatada ? `\n📅 Data: ${dataFormatada}` : ''}
+${bookingGuests ? `👥 Número de pessoas: ${bookingGuests}` : ''}
+
+Poderia me informar sobre disponibilidade, horários e valores?
+
+Mensagem enviada através do Rural Time.`;
+
+    handleContactAction('whatsapp', whatsappNumber, mensagem);
   };
 
   if (loading) {
@@ -221,6 +252,37 @@ const PropriedadeDetalhes = () => {
           <ArrowLeft className="w-4 h-4 mr-2" />
           Voltar
         </Button>
+
+        {/* Banner de agendamento quando vem da busca */}
+        {(bookingDate || bookingGuests) && (contactInfo?.whatsapp || propriedade?.whatsapp || contactInfo?.telefone) && (
+          <Card className="mb-6 border-primary/30 bg-primary/5">
+            <CardContent className="p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-start gap-3">
+                <CalendarDays className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-foreground">Agendar visita</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {bookingDate && (() => {
+                      try {
+                        const dateObj = new Date(bookingDate + 'T12:00:00');
+                        return `📅 ${format(dateObj, "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}`;
+                      } catch { return `📅 ${bookingDate}`; }
+                    })()}
+                    {bookingDate && bookingGuests && ' · '}
+                    {bookingGuests && `👥 ${bookingGuests} pessoa${Number(bookingGuests) > 1 ? 's' : ''}`}
+                  </p>
+                </div>
+              </div>
+              <Button 
+                onClick={handleBookingWhatsApp}
+                className="bg-green-600 hover:bg-green-700 text-white flex-shrink-0"
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Enviar via WhatsApp
+              </Button>
+            </CardContent>
+          </Card>
+        )}
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Imagens */}
