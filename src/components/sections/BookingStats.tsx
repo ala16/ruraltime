@@ -61,7 +61,7 @@ export const BookingStats = () => {
   return (
     <section className="py-8 bg-gradient-to-br from-rural-neutral to-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <AnimatedStatCard
             value={stats.atrativos}
             label="Atrativos Turísticos Rurais"
@@ -87,15 +87,6 @@ export const BookingStats = () => {
             color="hsl(142, 72%, 40%)"
             maxValue={30}
             delay={400}
-          />
-
-          <AnimatedStatCard
-            value={stats.acessos}
-            label="Acessos Totais"
-            suffix="+"
-            color="hsl(142, 72%, 45%)"
-            maxValue={15000}
-            delay={600}
           />
         </div>
       </div>
