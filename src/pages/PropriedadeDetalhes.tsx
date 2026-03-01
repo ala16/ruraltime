@@ -85,8 +85,9 @@ const PropriedadeDetalhes = () => {
     fetchPropriedade();
   }, [id]);
 
-  const handleContactAction = (type: 'phone' | 'email' | 'website' | 'whatsapp' | 'instagram', value: string) => {
-    const whatsappMessage = encodeURIComponent('Olá vi a sua propriedade de turismo rural no site da www.ruraltime.com.br gostaria de agendar uma visita turística.');
+  const handleContactAction = (type: 'phone' | 'email' | 'website' | 'whatsapp' | 'instagram', value: string, customMessage?: string) => {
+    const defaultMessage = 'Olá vi a sua propriedade de turismo rural no site da www.ruraltime.com.br gostaria de agendar uma visita turística.';
+    const whatsappMessage = encodeURIComponent(customMessage || defaultMessage);
     
     switch (type) {
       case 'phone':
@@ -109,6 +110,31 @@ const PropriedadeDetalhes = () => {
         window.open(`https://instagram.com/${value.replace('@', '')}`, '_blank');
         break;
     }
+  };
+
+  const handleBookingWhatsApp = () => {
+    const whatsappNumber = contactInfo?.whatsapp || propriedade?.whatsapp || contactInfo?.telefone;
+    if (!whatsappNumber || !propriedade) return;
+
+    let dataFormatada = '';
+    if (bookingDate) {
+      try {
+        const dateObj = new Date(bookingDate + 'T12:00:00');
+        dataFormatada = format(dateObj, "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
+      } catch {
+        dataFormatada = bookingDate;
+      }
+    }
+
+    const mensagem = `Olá! Gostaria de agendar uma visita no *${propriedade.nome}*.
+${dataFormatada ? `\n📅 Data: ${dataFormatada}` : ''}
+${bookingGuests ? `👥 Número de pessoas: ${bookingGuests}` : ''}
+
+Poderia me informar sobre disponibilidade, horários e valores?
+
+Mensagem enviada através do Rural Time.`;
+
+    handleContactAction('whatsapp', whatsappNumber, mensagem);
   };
 
   if (loading) {
