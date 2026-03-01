@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Star, Mail, Phone, MapPin, Instagram, MessageCircle, Globe, TreePine, Users, Clock, Coins } from 'lucide-react';
+import { ArrowLeft, Star, Mail, Phone, MapPin, Instagram, MessageCircle, Globe, TreePine, Users, Clock, Coins, CalendarDays } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ShareButtons } from '@/components/ShareButtons';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 interface Propriedade {
   id: string;
