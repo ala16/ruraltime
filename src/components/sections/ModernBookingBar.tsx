@@ -19,6 +19,7 @@ interface Propriedade {
 
 
 export const ModernBookingBar = () => {
+  const navigate = useNavigate();
   const [propriedades, setPropriedades] = useState<Propriedade[]>([]);
   const [destinoText, setDestinoText] = useState('');
   const [selectedPropId, setSelectedPropId] = useState('');
