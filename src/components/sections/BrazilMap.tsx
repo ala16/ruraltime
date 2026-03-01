@@ -365,8 +365,30 @@ export const BrazilMap = () => {
 
               {/* Map */}
               <div className="lg:col-span-3">
-                <Card className="overflow-hidden">
+                <Card className="overflow-hidden relative">
                   <div ref={mapContainer} className="w-full h-[500px]" />
+                  {!mapActive && (
+                    <div
+                      className="absolute inset-0 flex items-center justify-center bg-black/20 cursor-pointer z-10"
+                      onClick={() => {
+                        setMapActive(true);
+                        if (map.current) {
+                          map.current.scrollZoom.enable();
+                          map.current.boxZoom.enable();
+                          map.current.dragRotate.enable();
+                          map.current.dragPan.enable();
+                          map.current.keyboard.enable();
+                          map.current.doubleClickZoom.enable();
+                          map.current.touchZoomRotate.enable();
+                        }
+                      }}
+                    >
+                      <Badge className="bg-primary text-primary-foreground px-4 py-2 text-sm shadow-lg pointer-events-none">
+                        <MapPin className="w-4 h-4 mr-2" />
+                        Clique para navegar no mapa
+                      </Badge>
+                    </div>
+                  )}
                 </Card>
                 
                 {(selectedState || selectedCity) && (
