@@ -108,6 +108,7 @@ export const BrazilMap = () => {
       style: 'mapbox://styles/mapbox/streets-v12',
       center: [-54, -14], // Brazil center
       zoom: 3.5,
+      interactive: false,
     });
 
     // Add navigation controls
