@@ -253,6 +253,37 @@ Mensagem enviada através do Rural Time.`;
           Voltar
         </Button>
 
+        {/* Banner de agendamento quando vem da busca */}
+        {(bookingDate || bookingGuests) && (contactInfo?.whatsapp || propriedade?.whatsapp || contactInfo?.telefone) && (
+          <Card className="mb-6 border-primary/30 bg-primary/5">
+            <CardContent className="p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-start gap-3">
+                <CalendarDays className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-foreground">Agendar visita</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {bookingDate && (() => {
+                      try {
+                        const dateObj = new Date(bookingDate + 'T12:00:00');
+                        return `📅 ${format(dateObj, "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}`;
+                      } catch { return `📅 ${bookingDate}`; }
+                    })()}
+                    {bookingDate && bookingGuests && ' · '}
+                    {bookingGuests && `👥 ${bookingGuests} pessoa${Number(bookingGuests) > 1 ? 's' : ''}`}
+                  </p>
+                </div>
+              </div>
+              <Button 
+                onClick={handleBookingWhatsApp}
+                className="bg-green-600 hover:bg-green-700 text-white flex-shrink-0"
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Enviar via WhatsApp
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Imagens */}
           <div className="space-y-4">
