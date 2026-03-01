@@ -95,76 +95,22 @@ export const ModernBookingBar = () => {
   };
 
 
-  const handleSearch = async () => {
-    if (!searchData.destination || !searchData.date || !searchData.guests) {
+  const handleSearch = () => {
+    if (!searchData.destination) {
       toast({
-        title: "Campos obrigatórios",
-        description: "Por favor, preencha todos os campos para continuar.",
+        title: "Selecione um destino",
+        description: "Por favor, selecione uma propriedade da lista.",
         variant: "destructive",
       });
       return;
     }
 
-    try {
-      // Buscar a propriedade selecionada
-      const propriedadeSelecionada = propriedades.find(prop => prop.id === searchData.destination);
-
-      if (!propriedadeSelecionada) {
-        toast({
-          title: "Propriedade não encontrada",
-          description: "Por favor, selecione uma propriedade da lista.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      // Buscar informações de contato da propriedade
-      const { data: contactInfo, error } = await supabase
-        .rpc('get_property_contact_info', { property_id: propriedadeSelecionada.id });
-
-      const contatoWhatsApp = contactInfo?.[0]?.whatsapp || contactInfo?.[0]?.telefone;
-      
-      if (error || !contatoWhatsApp) {
-        toast({
-          title: "Contato não disponível",
-          description: "Esta propriedade não tem telefone ou WhatsApp cadastrado.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      // Gerar mensagem personalizada
-      const dataObj = new Date(searchData.date);
-      const dataFormatada = format(dataObj, "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
-      
-      const mensagem = `Olá! Gostaria de agendar uma visita no *${propriedadeSelecionada.nome}*.
-
-📅 Data: ${dataFormatada}
-👥 Número de pessoas: ${searchData.guests}
-
-Poderia me informar sobre disponibilidade, horários e valores?
-
-Mensagem enviada através do Rural Time.`;
-
-      const telefone = contatoWhatsApp.replace(/\D/g, '');
-      const mensagemEncoded = encodeURIComponent(mensagem);
-      const whatsappUrl = `https://wa.me/55${telefone}?text=${mensagemEncoded}`;
-      
-      window.open(whatsappUrl, '_blank');
-
-      toast({
-        title: "Mensagem enviada!",
-        description: `Sua solicitação foi enviada para ${propriedadeSelecionada.nome} via WhatsApp.`,
-      });
-
-    } catch (error) {
-      console.error('Erro ao processar busca:', error);
-      toast({
-        title: "Erro",
-        description: "Erro ao processar sua solicitação. Tente novamente.",
-        variant: "destructive",
-      });
-    }
+    const params = new URLSearchParams();
+    if (searchData.date) params.set('date', searchData.date);
+    if (searchData.guests) params.set('guests', searchData.guests);
+    
+    const queryString = params.toString();
+    navigate(`/propriedade/${searchData.destination}${queryString ? `?${queryString}` : ''}`);
   };
 
   return (
