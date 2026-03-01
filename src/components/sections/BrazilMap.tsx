@@ -58,6 +58,7 @@ const ESTADOS_BRASILEIROS = {
 export const BrazilMap = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
+  const [mapActive, setMapActive] = useState(false);
   const [selectedState, setSelectedState] = useState<string | null>(null);
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [showCities, setShowCities] = useState(false);
