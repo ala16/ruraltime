@@ -281,8 +281,8 @@ const ArtesanatoDetalhes = () => {
           {/* Detalhes */}
           <div className="space-y-6">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <h1 className="text-3xl font-bold">{artesanato.nome}</h1>
+              <div className="flex flex-wrap items-start gap-2 mb-2">
+                <h1 className="text-2xl sm:text-3xl font-bold break-words">{artesanato.nome}</h1>
                 {artesanato.destaque && (
                   <Badge className="bg-primary/90 text-primary-foreground">
                     <Star className="w-3 h-3 mr-1" />
