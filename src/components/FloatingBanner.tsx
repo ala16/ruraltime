@@ -9,7 +9,7 @@ export function FloatingBanner() {
   if (isDismissed) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end gap-3">
       {/* Expanded Card */}
       {isOpen && (
         <div className="relative bg-background border-2 border-primary/20 rounded-2xl shadow-2xl p-5 w-72 animate-fade-in">
