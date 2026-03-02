@@ -69,8 +69,6 @@ export const BlogCarousel = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-4 bg-transparent border border-white/30 backdrop-blur-sm text-foreground hover:bg-white/20 w-12 h-12" />
-          <CarouselNext className="right-4 bg-transparent border border-white/30 backdrop-blur-sm text-foreground hover:bg-white/20 w-12 h-12" />
         </Carousel>
       </div>
     </section>

@@ -276,8 +276,6 @@ const PropriedadesRurais = () => {
                             </CarouselItem>
                           ))}
                         </CarouselContent>
-                        <CarouselPrevious className="left-2" />
-                        <CarouselNext className="right-2" />
                       </Carousel>
                     )}
                   </div>
