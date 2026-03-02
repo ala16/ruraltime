@@ -212,7 +212,7 @@ const ArtesanatoDetalhes = () => {
                         variant="ghost"
                         size="icon"
                         onClick={handlePreviousImage}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white w-12 h-12 rounded-full shadow-lg"
+                        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white w-9 h-9 sm:w-12 sm:h-12 rounded-full shadow-lg"
                       >
                         <ChevronLeft className="w-6 h-6" />
                       </Button>
