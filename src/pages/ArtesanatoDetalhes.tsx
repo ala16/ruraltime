@@ -242,10 +242,10 @@ const ArtesanatoDetalhes = () => {
                       msOverflowStyle: 'none'
                     }}>
                       {artesanato.imagens.map((imagem, index) => (
-                        <button
+                      <button
                           key={index}
                           onClick={() => setSelectedImageIndex(index)}
-                          className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
+                          className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
                             selectedImageIndex === index 
                               ? 'border-primary shadow-lg ring-2 ring-primary/30' 
                               : 'border-muted hover:border-muted-foreground/50'
