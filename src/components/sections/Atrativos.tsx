@@ -144,8 +144,6 @@ export function Atrativos() {
                 </div>
               </CarouselItem>)}
           </CarouselContent>
-          <CarouselPrevious className="left-4 bg-transparent border border-white/30 backdrop-blur-sm text-white hover:bg-white/20 w-12 h-12" />
-          <CarouselNext className="right-4 bg-transparent border border-white/30 backdrop-blur-sm text-white hover:bg-white/20 w-12 h-12" />
         </Carousel>
         </div>
       </div>
