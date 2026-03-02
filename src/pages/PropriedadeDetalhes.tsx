@@ -284,9 +284,9 @@ Mensagem enviada através do Rural Time.`;
           </Card>
         )}
 
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 min-w-0">
           {/* Imagens */}
-          <div className="space-y-3">
+          <div className="space-y-3 min-w-0">
             {propriedade.imagens && propriedade.imagens.length > 0 ? (
               <>
                 <div className="w-full">
