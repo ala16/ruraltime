@@ -362,7 +362,7 @@ Mensagem enviada através do Rural Time.`;
               <Card className="overflow-hidden">
                 <CardContent className="p-4 sm:p-6">
                   <h3 className="font-semibold mb-3">Sobre</h3>
-                  <p className="text-muted-foreground leading-relaxed break-words overflow-wrap-anywhere">
+                  <p className="text-muted-foreground leading-relaxed break-words" style={{ overflowWrap: 'anywhere' }}>
                     {propriedade.descricao}
                   </p>
                 </CardContent>
