@@ -243,7 +243,7 @@ Mensagem enviada através do Rural Time.`;
         </script>
       </Helmet>
       
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
         <Button 
           variant="ghost" 
           onClick={() => navigate('/')}
@@ -284,27 +284,27 @@ Mensagem enviada através do Rural Time.`;
           </Card>
         )}
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
           {/* Imagens */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             {propriedade.imagens && propriedade.imagens.length > 0 ? (
               <>
                 <div className="w-full">
                   <img
                     src={propriedade.imagens[selectedImageIndex]}
                     alt={`${propriedade.nome} em ${propriedade.cidade}, ${propriedade.estado} - Turismo Rural - Imagem ${selectedImageIndex + 1}`}
-                    className="w-full h-96 object-cover rounded-lg"
+                    className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover rounded-lg"
                     loading="eager"
                   />
                 </div>
                 
                 {propriedade.imagens.length > 1 && (
-                  <div className="flex gap-2 overflow-x-auto pb-2">
+                  <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1">
                     {propriedade.imagens.map((imagem, index) => (
                       <button
                         key={index}
                         onClick={() => setSelectedImageIndex(index)}
-                        className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                        className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${
                           selectedImageIndex === index 
                             ? 'border-primary shadow-lg' 
                             : 'border-transparent hover:border-muted-foreground/50'
@@ -322,17 +322,17 @@ Mensagem enviada através do Rural Time.`;
                 )}
               </>
             ) : (
-              <div className="w-full h-96 bg-muted rounded-lg flex items-center justify-center">
+              <div className="w-full h-56 sm:h-72 lg:h-96 bg-muted rounded-lg flex items-center justify-center">
                 <span className="text-muted-foreground">Sem imagem</span>
               </div>
             )}
           </div>
 
           {/* Detalhes */}
-          <div className="space-y-6">
+          <div className="space-y-4 lg:space-y-6">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <h1 className="text-3xl font-bold">{propriedade.nome}</h1>
+              <div className="flex flex-wrap items-start gap-2 mb-2">
+                <h1 className="text-2xl sm:text-3xl font-bold break-words">{propriedade.nome}</h1>
                 {propriedade.destaque && (
                   <Badge className="bg-primary/90 text-primary-foreground">
                     <Star className="w-3 h-3 mr-1" />
@@ -370,7 +370,7 @@ Mensagem enviada através do Rural Time.`;
             )}
 
             {/* Informações da propriedade */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               {propriedade.tamanho_hectares && (
                 <Card>
                   <CardContent className="p-4 flex items-center gap-3">

@@ -181,7 +181,7 @@ const ArtesanatoDetalhes = () => {
         </script>
       </Helmet>
       
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
         <Button 
           variant="ghost" 
           onClick={() => navigate('/')}
@@ -201,7 +201,7 @@ const ArtesanatoDetalhes = () => {
                   <img
                     src={artesanato.imagens[selectedImageIndex]}
                     alt={`${artesanato.categoria} - ${artesanato.nome} por ${artesanato.artesao_nome} - Imagem ${selectedImageIndex + 1}`}
-                    className="w-full h-96 object-cover rounded-lg"
+                    className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover rounded-lg"
                     loading="eager"
                   />
                   
@@ -212,7 +212,7 @@ const ArtesanatoDetalhes = () => {
                         variant="ghost"
                         size="icon"
                         onClick={handlePreviousImage}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white w-12 h-12 rounded-full shadow-lg"
+                        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white w-9 h-9 sm:w-12 sm:h-12 rounded-full shadow-lg"
                       >
                         <ChevronLeft className="w-6 h-6" />
                       </Button>
@@ -221,7 +221,7 @@ const ArtesanatoDetalhes = () => {
                         variant="ghost"
                         size="icon"
                         onClick={handleNextImage}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white w-12 h-12 rounded-full shadow-lg"
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white w-9 h-9 sm:w-12 sm:h-12 rounded-full shadow-lg"
                       >
                         <ChevronRight className="w-6 h-6" />
                       </Button>
@@ -242,10 +242,10 @@ const ArtesanatoDetalhes = () => {
                       msOverflowStyle: 'none'
                     }}>
                       {artesanato.imagens.map((imagem, index) => (
-                        <button
+                      <button
                           key={index}
                           onClick={() => setSelectedImageIndex(index)}
-                          className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
+                          className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
                             selectedImageIndex === index 
                               ? 'border-primary shadow-lg ring-2 ring-primary/30' 
                               : 'border-muted hover:border-muted-foreground/50'
@@ -272,7 +272,7 @@ const ArtesanatoDetalhes = () => {
                 )}
               </>
             ) : (
-              <div className="w-full h-96 bg-muted rounded-lg flex items-center justify-center">
+              <div className="w-full h-56 sm:h-72 lg:h-96 bg-muted rounded-lg flex items-center justify-center">
                 <span className="text-muted-foreground">Sem imagem</span>
               </div>
             )}
@@ -281,8 +281,8 @@ const ArtesanatoDetalhes = () => {
           {/* Detalhes */}
           <div className="space-y-6">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <h1 className="text-3xl font-bold">{artesanato.nome}</h1>
+              <div className="flex flex-wrap items-start gap-2 mb-2">
+                <h1 className="text-2xl sm:text-3xl font-bold break-words">{artesanato.nome}</h1>
                 {artesanato.destaque && (
                   <Badge className="bg-primary/90 text-primary-foreground">
                     <Star className="w-3 h-3 mr-1" />
