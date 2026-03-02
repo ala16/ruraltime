@@ -370,7 +370,7 @@ Mensagem enviada através do Rural Time.`;
             )}
 
             {/* Informações da propriedade */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               {propriedade.tamanho_hectares && (
                 <Card>
                   <CardContent className="p-4 flex items-center gap-3">

@@ -272,7 +272,7 @@ const ArtesanatoDetalhes = () => {
                 )}
               </>
             ) : (
-              <div className="w-full h-96 bg-muted rounded-lg flex items-center justify-center">
+              <div className="w-full h-56 sm:h-72 lg:h-96 bg-muted rounded-lg flex items-center justify-center">
                 <span className="text-muted-foreground">Sem imagem</span>
               </div>
             )}
