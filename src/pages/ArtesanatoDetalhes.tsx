@@ -150,7 +150,7 @@ const ArtesanatoDetalhes = () => {
   ].filter(Boolean).join(', ');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background overflow-x-hidden">
       <Helmet>
         <title>{artesanato?.nome || 'Artesanato Rural'} - Artesanato {artesanato?.categoria} por {artesanato?.artesao_nome} | Rural Time</title>
         <meta name="description" content={`${artDescription} Artesanato ${artesanato?.categoria} feito por ${artesanato?.artesao_nome}. Produtos artesanais autênticos do campo brasileiro.`} />

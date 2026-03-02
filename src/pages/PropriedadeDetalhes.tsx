@@ -212,7 +212,7 @@ Mensagem enviada através do Rural Time.`;
   ].filter(Boolean).join(', ');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background overflow-x-hidden">
       <Helmet>
         <title>{propriedade?.nome || 'Atrativo Rural'} - Turismo Rural em {propriedade?.cidade}, {propriedade?.estado} | Rural Time</title>
         <meta name="description" content={`${propertyDescription} ${propriedade?.cidade}, ${propriedade?.estado}. ${propriedade?.atividades?.slice(0, 3).join(', ')}. Reserve sua visita!`} />
