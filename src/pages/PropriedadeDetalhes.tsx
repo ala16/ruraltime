@@ -212,7 +212,7 @@ Mensagem enviada através do Rural Time.`;
   ].filter(Boolean).join(', ');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background overflow-x-hidden">
       <Helmet>
         <title>{propriedade?.nome || 'Atrativo Rural'} - Turismo Rural em {propriedade?.cidade}, {propriedade?.estado} | Rural Time</title>
         <meta name="description" content={`${propertyDescription} ${propriedade?.cidade}, ${propriedade?.estado}. ${propriedade?.atividades?.slice(0, 3).join(', ')}. Reserve sua visita!`} />
@@ -284,9 +284,9 @@ Mensagem enviada através do Rural Time.`;
           </Card>
         )}
 
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 min-w-0">
           {/* Imagens */}
-          <div className="space-y-3">
+          <div className="space-y-3 min-w-0">
             {propriedade.imagens && propriedade.imagens.length > 0 ? (
               <>
                 <div className="w-full">
@@ -329,7 +329,7 @@ Mensagem enviada através do Rural Time.`;
           </div>
 
           {/* Detalhes */}
-          <div className="space-y-4 lg:space-y-6">
+          <div className="space-y-4 lg:space-y-6 min-w-0">
             <div>
               <div className="flex flex-wrap items-start gap-2 mb-2">
                 <h1 className="text-2xl sm:text-3xl font-bold break-words">{propriedade.nome}</h1>
@@ -359,10 +359,10 @@ Mensagem enviada através do Rural Time.`;
             </div>
 
             {propriedade.descricao && (
-              <Card>
-                <CardContent className="p-6">
+              <Card className="overflow-hidden">
+                <CardContent className="p-4 sm:p-6">
                   <h3 className="font-semibold mb-3">Sobre</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed break-words" style={{ overflowWrap: 'anywhere' }}>
                     {propriedade.descricao}
                   </p>
                 </CardContent>
