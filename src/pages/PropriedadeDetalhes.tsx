@@ -403,14 +403,7 @@ Mensagem enviada através do Rural Time.`;
             </div>
 
             {propriedade.descricao && (
-              <Card className="overflow-hidden">
-                <CardContent className="p-4 sm:p-6">
-                  <h3 className="font-semibold mb-3">Sobre</h3>
-                  <p className="text-muted-foreground leading-relaxed break-words" style={{ overflowWrap: 'anywhere' }}>
-                    {propriedade.descricao}
-                  </p>
-                </CardContent>
-              </Card>
+              <DescricaoCard descricao={propriedade.descricao} />
             )}
 
             {/* Informações da propriedade */}
