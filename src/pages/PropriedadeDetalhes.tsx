@@ -51,6 +51,22 @@ const PropriedadeDetalhes = () => {
   const [contactInfo, setContactInfo] = useState<ContactInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, dragFree: false },
+    [Autoplay({ delay: 4000, stopOnInteraction: true })]
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedImageIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on('select', onSelect);
+    return () => { emblaApi.off('select', onSelect); };
+  }, [emblaApi, onSelect]);
 
   useEffect(() => {
     const fetchPropriedade = async () => {
