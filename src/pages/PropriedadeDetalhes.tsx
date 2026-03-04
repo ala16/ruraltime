@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent } from '@/components/ui/card';
@@ -10,6 +10,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { ShareButtons } from '@/components/ShareButtons';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 
 interface Propriedade {
   id: string;
