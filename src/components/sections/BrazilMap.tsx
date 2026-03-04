@@ -306,61 +306,108 @@ export const BrazilMap = () => {
                       </Button>
                     )}
                   </div>
-                  
-                  <div className="space-y-2 max-h-[500px] overflow-y-auto">
+
+                  {/* Botão para mostrar/ocultar lista de estados */}
+                  {!showEstados && !selectedState && (
                     <Button
-                      variant={!selectedState ? "default" : "outline"}
-                      size="sm"
-                      className="w-full justify-between"
-                      onClick={handleShowAll}
+                      variant="outline"
+                      className="w-full justify-center gap-2"
+                      onClick={() => setShowEstados(true)}
                     >
-                      <span>Todas</span>
-                      <Badge variant="secondary">{propriedades.length}</Badge>
+                      <MapPin className="w-4 h-4" />
+                      Ver todos os estados
                     </Button>
-                    
-                    {estadosComPropriedades.map(([sigla, info]) => {
-                      const count = propriedadesPorEstado[sigla];
-                      const isSelected = selectedState === sigla;
-                      return (
-                        <div key={sigla}>
+                  )}
+
+                  {/* Estado selecionado */}
+                  {selectedState && (
+                    <div className="space-y-2">
+                      <Button
+                        variant="default"
+                        size="sm"
+                        className="w-full justify-between"
+                      >
+                        <span>{selectedState} - {ESTADOS_BRASILEIROS[selectedState as keyof typeof ESTADOS_BRASILEIROS]?.nome}</span>
+                        <Badge variant="secondary">{propriedadesPorEstado[selectedState] || 0}</Badge>
+                      </Button>
+
+                      {/* Cities list */}
+                      {showCities && Object.keys(propriedadesPorCidade).length > 0 && (
+                        <div className="ml-4 mt-2 space-y-1">
+                          {Object.entries(propriedadesPorCidade)
+                            .sort(([a], [b]) => a.localeCompare(b))
+                            .map(([cidade, cidadeCount]) => (
+                              <Button
+                                key={cidade}
+                                variant={selectedCity === cidade ? "default" : "ghost"}
+                                size="sm"
+                                className="w-full justify-between text-sm"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleCityClick(cidade);
+                                }}
+                              >
+                                <span>{cidade}</span>
+                                <Badge variant="secondary" className="text-xs">
+                                  {cidadeCount}
+                                </Badge>
+                              </Button>
+                            ))}
+                        </div>
+                      )}
+
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full mt-2"
+                        onClick={() => { setShowEstados(true); handleClearFilter(); }}
+                      >
+                        Trocar estado
+                      </Button>
+                    </div>
+                  )}
+                  
+                  {/* Lista completa de estados */}
+                  {showEstados && !selectedState && (
+                    <div className="space-y-2 max-h-[500px] overflow-y-auto">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full justify-between"
+                        onClick={handleShowAll}
+                      >
+                        <span>Todas as propriedades</span>
+                        <Badge variant="secondary">{propriedades.length}</Badge>
+                      </Button>
+                      
+                      {todosEstados.map(([sigla, info]) => {
+                        const count = propriedadesPorEstado[sigla] || 0;
+                        return (
                           <Button
-                            variant={isSelected && !selectedCity ? "default" : "outline"}
+                            key={sigla}
+                            variant="outline"
                             size="sm"
                             className="w-full justify-between"
-                            onClick={() => handleStateClick(sigla)}
+                            onClick={() => { handleStateClick(sigla); setShowEstados(false); }}
                           >
                             <span>{sigla} - {info.nome}</span>
-                            <Badge variant="secondary">{count}</Badge>
+                            <Badge variant={count > 0 ? "secondary" : "outline"} className="text-xs">
+                              {count}
+                            </Badge>
                           </Button>
-                          
-                          {/* Cities list */}
-                          {isSelected && showCities && (
-                            <div className="ml-4 mt-2 space-y-1">
-                              {Object.entries(propriedadesPorCidade)
-                                .sort(([a], [b]) => a.localeCompare(b))
-                                .map(([cidade, cidadeCount]) => (
-                                  <Button
-                                    key={cidade}
-                                    variant={selectedCity === cidade ? "default" : "ghost"}
-                                    size="sm"
-                                    className="w-full justify-between text-sm"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleCityClick(cidade);
-                                    }}
-                                  >
-                                    <span>{cidade}</span>
-                                    <Badge variant="secondary" className="text-xs">
-                                      {cidadeCount}
-                                    </Badge>
-                                  </Button>
-                                ))}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
+                        );
+                      })}
+
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full mt-2"
+                        onClick={() => setShowEstados(false)}
+                      >
+                        Fechar
+                      </Button>
+                    </div>
+                  )}
                 </Card>
               </div>
 
