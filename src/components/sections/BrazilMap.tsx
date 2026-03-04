@@ -258,10 +258,11 @@ export const BrazilMap = () => {
     return acc;
   }, {} as Record<string, number>);
   
-  // Filtrar apenas estados com propriedades
-  const estadosComPropriedades = Object.entries(ESTADOS_BRASILEIROS).filter(
-    ([sigla]) => propriedadesPorEstado[sigla] > 0
-  );
+  // Todos os estados, ordenados por nome
+  const todosEstados = Object.entries(ESTADOS_BRASILEIROS)
+    .sort(([, a], [, b]) => a.nome.localeCompare(b.nome));
+  
+  const [showEstados, setShowEstados] = useState(false);
 
   // Group properties by city within selected state
   const propriedadesPorCidade = selectedState
