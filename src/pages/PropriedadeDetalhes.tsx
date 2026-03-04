@@ -41,6 +41,36 @@ interface ContactInfo {
   instagram?: string;
 }
 
+const DESCRICAO_LIMIT = 400;
+
+function DescricaoCard({ descricao }: { descricao: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const needsTruncation = descricao.length > DESCRICAO_LIMIT;
+  const displayText = !expanded && needsTruncation
+    ? descricao.slice(0, DESCRICAO_LIMIT) + '...'
+    : descricao;
+
+  return (
+    <Card className="overflow-hidden">
+      <CardContent className="p-4 sm:p-6">
+        <h3 className="font-semibold mb-3">Sobre</h3>
+        <p className="text-muted-foreground leading-relaxed break-words" style={{ overflowWrap: 'anywhere' }}>
+          {displayText}
+        </p>
+        {needsTruncation && (
+          <Button
+            variant="link"
+            className="p-0 h-auto mt-2"
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? 'Ver menos' : 'Ver mais'}
+          </Button>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
 const PropriedadeDetalhes = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
