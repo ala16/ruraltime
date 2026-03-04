@@ -307,24 +307,50 @@ Mensagem enviada através do Rural Time.`;
           <div className="space-y-3 min-w-0">
             {propriedade.imagens && propriedade.imagens.length > 0 ? (
               <>
-                <div className="w-full">
-                  <img
-                    src={propriedade.imagens[selectedImageIndex]}
-                    alt={`${propriedade.nome} em ${propriedade.cidade}, ${propriedade.estado} - Turismo Rural - Imagem ${selectedImageIndex + 1}`}
-                    className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover rounded-lg"
-                    loading="eager"
-                  />
+                {/* Embla Carousel */}
+                <div className="overflow-hidden rounded-lg" ref={emblaRef}>
+                  <div className="flex">
+                    {propriedade.imagens.map((imagem, index) => (
+                      <div key={index} className="flex-[0_0_100%] min-w-0">
+                        <img
+                          src={imagem}
+                          alt={`${propriedade.nome} em ${propriedade.cidade}, ${propriedade.estado} - Imagem ${index + 1}`}
+                          className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover"
+                          loading={index === 0 ? "eager" : "lazy"}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                
+
+                {/* Dots indicator */}
+                {propriedade.imagens.length > 1 && (
+                  <div className="flex justify-center gap-2 pt-1">
+                    {propriedade.imagens.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => emblaApi?.scrollTo(index)}
+                        className={`w-2.5 h-2.5 rounded-full transition-all ${
+                          selectedImageIndex === index
+                            ? 'bg-primary scale-125'
+                            : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                        }`}
+                        aria-label={`Ir para imagem ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {/* Thumbnails */}
                 {propriedade.imagens.length > 1 && (
                   <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1">
                     {propriedade.imagens.map((imagem, index) => (
                       <button
                         key={index}
-                        onClick={() => setSelectedImageIndex(index)}
+                        onClick={() => emblaApi?.scrollTo(index)}
                         className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                          selectedImageIndex === index 
-                            ? 'border-primary shadow-lg' 
+                          selectedImageIndex === index
+                            ? 'border-primary shadow-lg'
                             : 'border-transparent hover:border-muted-foreground/50'
                         }`}
                       >
