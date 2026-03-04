@@ -260,6 +260,7 @@ export const BrazilMap = () => {
   
   // Todos os estados, ordenados por nome
   const todosEstados = Object.entries(ESTADOS_BRASILEIROS)
+    .filter(([sigla]) => propriedadesPorEstado[sigla] > 0)
     .sort(([, a], [, b]) => a.nome.localeCompare(b.nome));
   
   const [showEstados, setShowEstados] = useState(false);
