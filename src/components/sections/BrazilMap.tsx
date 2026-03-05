@@ -188,7 +188,7 @@ export const BrazilMap = () => {
       setSelectedState(siglaEstado);
       setSelectedCity(null);
       setShowCities(true);
-      const filtered = propriedades.filter(prop => prop.estado === siglaEstado);
+      const filtered = propriedades.filter(prop => prop.estado?.trim().toUpperCase() === siglaEstado);
       setFilteredPropriedades(filtered);
 
       // Zoom to state
