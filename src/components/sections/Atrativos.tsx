@@ -115,13 +115,7 @@ export function Atrativos() {
                           Ver mais
                         </Button>
                         
-                        {propriedade.whatsapp && <Button size="sm" variant="outline" onClick={e => {
-                      e.stopPropagation();
-                      window.open(`https://wa.me/${propriedade.whatsapp?.replace(/\D/g, '')}`, '_blank');
-                    }} className="flex items-center gap-1 text-xs bg-green-100/90 border-green-200 text-green-700 hover:bg-green-200">
-                            <MessageCircle className="w-3 h-3" />
-                            WhatsApp
-                          </Button>}
+                        
                         
                         {propriedade.instagram && <Button size="sm" variant="outline" onClick={e => {
                       e.stopPropagation();
