@@ -494,15 +494,9 @@ export const BrazilMap = () => {
                 </DialogHeader>
                 
                 <div className="space-y-4">
-                  {/* Property Image */}
+                  {/* Property Image Carousel */}
                   {selectedProperty.imagens && selectedProperty.imagens.length > 0 && (
-                    <div className="relative w-full h-64 rounded-lg overflow-hidden">
-                      <img
-                        src={selectedProperty.imagens[0]}
-                        alt={selectedProperty.nome}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    <PropertyPreviewCarousel images={selectedProperty.imagens} nome={selectedProperty.nome} />
                   )}
                   
                   {/* Property Details */}
