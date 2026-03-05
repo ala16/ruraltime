@@ -206,7 +206,7 @@ export const BrazilMap = () => {
   const handleCityClick = (cidade: string) => {
     setSelectedCity(cidade);
     const filtered = propriedades.filter(
-      prop => prop.estado === selectedState && prop.cidade.trim() === cidade
+      prop => prop.estado?.trim().toUpperCase() === selectedState && prop.cidade.trim() === cidade
     );
     setFilteredPropriedades(filtered);
 
