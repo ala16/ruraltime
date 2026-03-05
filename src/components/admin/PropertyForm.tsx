@@ -444,16 +444,6 @@ const PropertyForm = ({ property, onSuccess, onCancel }) => {
           </CardContent>
         </Card>
 
-        {/* Details */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Atividades e Infraestrutura</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            </div>
-          </CardContent>
-        </Card>
-
         {/* Activities */}
         <Card>
           <CardHeader>
