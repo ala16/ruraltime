@@ -530,16 +530,6 @@ Mensagem enviada através do Rural Time.`;
                   </div>
                   
                   <div className="flex flex-wrap gap-3">
-                    {(propriedade.whatsapp || contactInfo?.whatsapp) && (
-                      <button 
-                        onClick={() => handleContactAction('whatsapp', propriedade.whatsapp || contactInfo?.whatsapp || '')}
-                        className="flex items-center gap-2 px-3 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors text-sm"
-                      >
-                        <MessageCircle className="w-4 h-4" />
-                        WhatsApp
-                      </button>
-                    )}
-                    
                     {(propriedade.instagram || contactInfo?.instagram) && (
                       <button 
                         onClick={() => handleContactAction('instagram', propriedade.instagram || contactInfo?.instagram || '')}
@@ -550,16 +540,6 @@ Mensagem enviada através do Rural Time.`;
                       </button>
                     )}
                     
-                    {contactInfo?.telefone && (
-                      <button 
-                        onClick={() => handleContactAction('phone', contactInfo.telefone!)}
-                        className="flex items-center gap-2 px-3 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors text-sm"
-                      >
-                        <MessageCircle className="w-4 h-4" />
-                        WhatsApp
-                      </button>
-                    )}
-                    
                     {contactInfo?.email && (
                       <button 
                         onClick={() => handleContactAction('email', contactInfo.email!)}
@@ -567,16 +547,6 @@ Mensagem enviada através do Rural Time.`;
                       >
                         <Mail className="w-4 h-4" />
                         Email
-                      </button>
-                    )}
-                    
-                    {contactInfo?.website && (
-                      <button 
-                        onClick={() => handleContactAction('website', contactInfo.website!)}
-                        className="flex items-center gap-2 px-3 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors text-sm"
-                      >
-                        <Globe className="w-4 h-4" />
-                        Website
                       </button>
                     )}
                   </div>
