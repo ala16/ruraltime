@@ -188,7 +188,7 @@ export const BrazilMap = () => {
       setSelectedState(siglaEstado);
       setSelectedCity(null);
       setShowCities(true);
-      const filtered = propriedades.filter(prop => prop.estado === siglaEstado);
+      const filtered = propriedades.filter(prop => prop.estado?.trim().toUpperCase() === siglaEstado);
       setFilteredPropriedades(filtered);
 
       // Zoom to state
@@ -206,7 +206,7 @@ export const BrazilMap = () => {
   const handleCityClick = (cidade: string) => {
     setSelectedCity(cidade);
     const filtered = propriedades.filter(
-      prop => prop.estado === selectedState && prop.cidade.trim() === cidade
+      prop => prop.estado?.trim().toUpperCase() === selectedState && prop.cidade.trim() === cidade
     );
     setFilteredPropriedades(filtered);
 
@@ -254,7 +254,7 @@ export const BrazilMap = () => {
 
   // Group properties by state
   const propriedadesPorEstado = propriedades.reduce((acc, prop) => {
-    const estado = prop.estado?.trim();
+    const estado = prop.estado?.trim().toUpperCase();
     if (estado) {
       acc[estado] = (acc[estado] || 0) + 1;
     }
@@ -271,7 +271,7 @@ export const BrazilMap = () => {
   // Group properties by city within selected state
   const propriedadesPorCidade = selectedState
     ? propriedades
-        .filter(prop => prop.estado === selectedState)
+        .filter(prop => prop.estado?.trim().toUpperCase() === selectedState)
         .reduce((acc, prop) => {
           // Normalize city name to avoid duplicates
           const cidadeNormalizada = prop.cidade.trim();
