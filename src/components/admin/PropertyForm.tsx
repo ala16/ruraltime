@@ -447,57 +447,9 @@ const PropertyForm = ({ property, onSuccess, onCancel }) => {
         {/* Details */}
         <Card>
           <CardHeader>
-            <CardTitle>Detalhes da Propriedade</CardTitle>
+            <CardTitle>Atividades e Infraestrutura</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="horario_funcionamento">Horário de Funcionamento</Label>
-              <Input
-                id="horario_funcionamento"
-                value={formData.horario_funcionamento}
-                onChange={(e) => handleInputChange('horario_funcionamento', e.target.value)}
-              />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <Label htmlFor="preco_visita">Preço da Visita (R$)</Label>
-                <Input
-                  id="preco_visita"
-                  type="number"
-                  step="0.01"
-                  value={formData.preco_visita}
-                  onChange={(e) => handleInputChange('preco_visita', e.target.value)}
-                />
-              </div>
-              <div>
-                <Label htmlFor="capacidade_visitantes">Capacidade de Visitantes</Label>
-                <Input
-                  id="capacidade_visitantes"
-                  type="number"
-                  value={formData.capacidade_visitantes}
-                  onChange={(e) => handleInputChange('capacidade_visitantes', e.target.value)}
-                />
-              </div>
-              <div>
-                <Label htmlFor="tamanho_hectares">Tamanho (Hectares)</Label>
-                <Input
-                  id="tamanho_hectares"
-                  type="number"
-                  step="0.1"
-                  value={formData.tamanho_hectares}
-                  onChange={(e) => handleInputChange('tamanho_hectares', e.target.value)}
-                />
-              </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                id="destaque"
-                checked={formData.destaque}
-                onChange={(e) => handleInputChange('destaque', e.target.checked)}
-                className="rounded"
-              />
-              <Label htmlFor="destaque">Propriedade em destaque</Label>
             </div>
           </CardContent>
         </Card>
