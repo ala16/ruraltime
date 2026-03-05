@@ -56,6 +56,54 @@ const ESTADOS_BRASILEIROS = {
   'TO': { nome: 'Tocantins', lat: -10.25, lng: -48.25 },
 };
 
+const PropertyPreviewCarousel = ({ images, nome }: { images: string[]; nome: string }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on('select', onSelect);
+    return () => { emblaApi.off('select', onSelect); };
+  }, [emblaApi, onSelect]);
+
+  return (
+    <div className="relative w-full rounded-lg overflow-hidden">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {images.map((img, idx) => (
+            <div key={idx} className="flex-[0_0_100%] min-w-0">
+              <img
+                src={img}
+                alt={`${nome} - ${idx + 1}`}
+                className="w-full h-64 object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      {images.length > 1 && (
+        <div className="flex justify-center gap-1.5 mt-2">
+          {images.map((_, idx) => (
+            <button
+              key={idx}
+              className={`w-2 h-2 rounded-full transition-colors ${
+                idx === selectedIndex ? 'bg-primary' : 'bg-muted-foreground/30'
+              }`}
+              onClick={() => emblaApi?.scrollTo(idx)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 export const BrazilMap = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
