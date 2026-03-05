@@ -254,7 +254,7 @@ export const BrazilMap = () => {
 
   // Group properties by state
   const propriedadesPorEstado = propriedades.reduce((acc, prop) => {
-    const estado = prop.estado?.trim();
+    const estado = prop.estado?.trim().toUpperCase();
     if (estado) {
       acc[estado] = (acc[estado] || 0) + 1;
     }
