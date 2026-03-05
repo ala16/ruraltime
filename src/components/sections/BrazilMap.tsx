@@ -271,7 +271,7 @@ export const BrazilMap = () => {
   // Group properties by city within selected state
   const propriedadesPorCidade = selectedState
     ? propriedades
-        .filter(prop => prop.estado === selectedState)
+        .filter(prop => prop.estado?.trim().toUpperCase() === selectedState)
         .reduce((acc, prop) => {
           // Normalize city name to avoid duplicates
           const cidadeNormalizada = prop.cidade.trim();
