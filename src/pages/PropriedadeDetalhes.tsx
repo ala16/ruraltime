@@ -305,7 +305,7 @@ Mensagem enviada através do Rural Time.`;
           className="mb-6"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Voltar
+          {t('detail.back')}
         </Button>
 
         {/* Barra de agendamento inline */}
