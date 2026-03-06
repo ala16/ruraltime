@@ -5,36 +5,21 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Handshake, Building, Users, Heart, Plus } from "lucide-react";
+import { Handshake, Building, Users, Heart } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function SejaParceiro() {
   const { toast } = useToast();
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    nome: "",
-    email: "",
-    telefone: "",
-    organizacao: "",
-    tipo: "",
-    mensagem: ""
-  });
+  const { t } = useLanguage();
+  const [formData, setFormData] = useState({ nome: "", email: "", telefone: "", organizacao: "", tipo: "", mensagem: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Mensagem enviada!",
-      description: "Entraremos em contato em breve para discutir a parceria.",
-    });
-    setFormData({
-      nome: "",
-      email: "",
-      telefone: "",
-      organizacao: "",
-      tipo: "",
-      mensagem: ""
-    });
+    toast({ title: t('partner.successTitle'), description: t('partner.successDesc') });
+    setFormData({ nome: "", email: "", telefone: "", organizacao: "", tipo: "", mensagem: "" });
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -45,173 +30,60 @@ export function SejaParceiro() {
     <section id="parceiros" className="py-8 bg-gradient-primary text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-2">Pronto para começar?</h2>
-          <p className="text-lg opacity-90 max-w-3xl mx-auto mb-4">
-            Faça parte da maior rede de turismo rural do Brasil
-          </p>
+          <h2 className="text-3xl font-bold mb-2">{t('partner.title')}</h2>
+          <p className="text-lg opacity-90 max-w-3xl mx-auto mb-4">{t('partner.subtitle')}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                console.log('Botão Turista clicado');
-                navigate('/atrativos');
-              }}
-              className="h-11 px-8 rounded-md bg-white text-primary hover:bg-white/90 font-semibold shadow-lg transition-all duration-300 cursor-pointer"
-            >
-              Sou Turista
+            <button onClick={() => navigate('/atrativos')} className="h-11 px-8 rounded-md bg-white text-primary hover:bg-white/90 font-semibold shadow-lg transition-all duration-300 cursor-pointer">
+              {t('partner.iamTourist')}
             </button>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                console.log('Botão Produtor clicado');
-                window.open('https://forms.gle/hWsAQR4uZ9B9sBCx7', '_blank');
-              }}
-              className="h-11 px-8 rounded-md bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary font-semibold transition-all duration-300 cursor-pointer"
-            >
-              Sou Produtor
+            <button onClick={() => window.open('https://forms.gle/hWsAQR4uZ9B9sBCx7', '_blank')} className="h-11 px-8 rounded-md bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary font-semibold transition-all duration-300 cursor-pointer">
+              {t('partner.iamProducer')}
             </button>
           </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 items-start">
-          {/* Informações sobre Parcerias */}
           <div className="space-y-8">
-            <h3 className="text-2xl font-bold mb-6">Por que ser nosso parceiro?</h3>
-            
+            <h3 className="text-2xl font-bold mb-6">{t('partner.why')}</h3>
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <Handshake className="w-8 h-8 text-rural-green-light flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-lg mb-2">Sindicatos Rurais</h4>
-                  <p className="text-white/80">
-                    Ampliem o alcance dos serviços aos associados e fortaleçam a economia local.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <Building className="w-8 h-8 text-rural-green-light flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-lg mb-2">Cooperativas</h4>
-                  <p className="text-white/80">
-                    Oferecemos oportunidades de diversificação de negócios para cooperados.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <Users className="w-8 h-8 text-rural-green-light flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-lg mb-2">Instituições</h4>
-                  <p className="text-white/80">
-                    Apoiem projetos que promovem sustentabilidade e desenvolvimento rural.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <Heart className="w-8 h-8 text-rural-green-light flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-lg mb-2">Apoiadores</h4>
-                  <p className="text-white/80">
-                    Contribuam para a transformação digital do agronegócio brasileiro.
-                  </p>
-                </div>
-              </div>
+              <div className="flex items-start gap-4"><Handshake className="w-8 h-8 text-rural-green-light flex-shrink-0 mt-1" /><div><h4 className="font-semibold text-lg mb-2">{t('partner.unions')}</h4><p className="text-white/80">{t('partner.unionsDesc')}</p></div></div>
+              <div className="flex items-start gap-4"><Building className="w-8 h-8 text-rural-green-light flex-shrink-0 mt-1" /><div><h4 className="font-semibold text-lg mb-2">{t('partner.cooperatives')}</h4><p className="text-white/80">{t('partner.cooperativesDesc')}</p></div></div>
+              <div className="flex items-start gap-4"><Users className="w-8 h-8 text-rural-green-light flex-shrink-0 mt-1" /><div><h4 className="font-semibold text-lg mb-2">{t('partner.institutions')}</h4><p className="text-white/80">{t('partner.institutionsDesc')}</p></div></div>
+              <div className="flex items-start gap-4"><Heart className="w-8 h-8 text-rural-green-light flex-shrink-0 mt-1" /><div><h4 className="font-semibold text-lg mb-2">{t('partner.supporters')}</h4><p className="text-white/80">{t('partner.supportersDesc')}</p></div></div>
             </div>
           </div>
 
-          {/* Formulário */}
           <Card className="bg-white/10 backdrop-blur-sm border-white/20">
-            <CardHeader>
-              <CardTitle className="text-white text-xl">Entre em Contato</CardTitle>
-            </CardHeader>
+            <CardHeader><CardTitle className="text-white text-xl">{t('partner.contactTitle')}</CardTitle></CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="nome" className="text-white">Nome completo</Label>
-                    <Input 
-                      id="nome"
-                      value={formData.nome}
-                      onChange={(e) => handleInputChange("nome", e.target.value)}
-                      className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
-                      placeholder="Seu nome"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="email" className="text-white">E-mail</Label>
-                    <Input 
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
-                      className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
-                      placeholder="seu@email.com"
-                      required
-                    />
-                  </div>
+                  <div><Label htmlFor="nome" className="text-white">{t('partner.fullName')}</Label><Input id="nome" value={formData.nome} onChange={(e) => handleInputChange("nome", e.target.value)} className="bg-white/20 border-white/30 text-white placeholder:text-white/60" placeholder={t('partner.namePlaceholder')} required /></div>
+                  <div><Label htmlFor="email" className="text-white">{t('contact.email')}</Label><Input id="email" type="email" value={formData.email} onChange={(e) => handleInputChange("email", e.target.value)} className="bg-white/20 border-white/30 text-white placeholder:text-white/60" placeholder={t('partner.emailPlaceholder')} required /></div>
                 </div>
-
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="telefone" className="text-white">Telefone</Label>
-                    <Input 
-                      id="telefone"
-                      value={formData.telefone}
-                      onChange={(e) => handleInputChange("telefone", e.target.value)}
-                      className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
-                      placeholder="(11) 99999-9999"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="organizacao" className="text-white">Organização</Label>
-                    <Input 
-                      id="organizacao"
-                      value={formData.organizacao}
-                      onChange={(e) => handleInputChange("organizacao", e.target.value)}
-                      className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
-                      placeholder="Nome da organização"
-                    />
-                  </div>
+                  <div><Label htmlFor="telefone" className="text-white">{t('partner.phone')}</Label><Input id="telefone" value={formData.telefone} onChange={(e) => handleInputChange("telefone", e.target.value)} className="bg-white/20 border-white/30 text-white placeholder:text-white/60" placeholder="(11) 99999-9999" /></div>
+                  <div><Label htmlFor="organizacao" className="text-white">{t('partner.organization')}</Label><Input id="organizacao" value={formData.organizacao} onChange={(e) => handleInputChange("organizacao", e.target.value)} className="bg-white/20 border-white/30 text-white placeholder:text-white/60" placeholder={t('partner.orgPlaceholder')} /></div>
                 </div>
-
                 <div>
-                  <Label htmlFor="tipo" className="text-white">Tipo de parceria</Label>
+                  <Label htmlFor="tipo" className="text-white">{t('partner.partnershipType')}</Label>
                   <Select value={formData.tipo} onValueChange={(value) => handleInputChange("tipo", value)}>
-                    <SelectTrigger className="bg-white/20 border-white/30 text-white">
-                      <SelectValue placeholder="Selecione o tipo" />
-                    </SelectTrigger>
+                    <SelectTrigger className="bg-white/20 border-white/30 text-white"><SelectValue placeholder={t('partner.selectType')} /></SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="sindicato">Sindicato Rural</SelectItem>
-                      <SelectItem value="cooperativa">Cooperativa</SelectItem>
-                      <SelectItem value="instituicao">Instituição</SelectItem>
-                      <SelectItem value="empresa">Empresa</SelectItem>
-                      <SelectItem value="apoiador">Apoiador</SelectItem>
-                      <SelectItem value="outro">Outro</SelectItem>
+                      <SelectItem value="sindicato">{t('partner.typeUnion')}</SelectItem>
+                      <SelectItem value="cooperativa">{t('partner.typeCooperative')}</SelectItem>
+                      <SelectItem value="instituicao">{t('partner.typeInstitution')}</SelectItem>
+                      <SelectItem value="empresa">{t('partner.typeCompany')}</SelectItem>
+                      <SelectItem value="apoiador">{t('partner.typeSupporter')}</SelectItem>
+                      <SelectItem value="outro">{t('partner.typeOther')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
-
                 <div>
-                  <Label htmlFor="mensagem" className="text-white">Mensagem</Label>
-                  <Textarea 
-                    id="mensagem"
-                    value={formData.mensagem}
-                    onChange={(e) => handleInputChange("mensagem", e.target.value)}
-                    className="bg-white/20 border-white/30 text-white placeholder:text-white/60 min-h-[100px]"
-                    placeholder="Conte-nos mais sobre sua proposta de parceria..."
-                  />
+                  <Label htmlFor="mensagem" className="text-white">{t('partner.message')}</Label>
+                  <Textarea id="mensagem" value={formData.mensagem} onChange={(e) => handleInputChange("mensagem", e.target.value)} className="bg-white/20 border-white/30 text-white placeholder:text-white/60 min-h-[100px]" placeholder={t('partner.messagePlaceholder')} />
                 </div>
-
-                <Button 
-                  type="submit" 
-                  variant="hero"
-                  className="w-full bg-white text-primary hover:bg-white/90"
-                >
-                  Enviar Proposta
-                </Button>
+                <Button type="submit" variant="hero" className="w-full bg-white text-primary hover:bg-white/90">{t('partner.submit')}</Button>
               </form>
             </CardContent>
           </Card>
