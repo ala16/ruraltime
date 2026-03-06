@@ -85,6 +85,8 @@ const PropriedadeDetalhes = () => {
   const [contactInfo, setContactInfo] = useState<ContactInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(bookingDate ? new Date(bookingDate + 'T12:00:00') : undefined);
+  const [guests, setGuests] = useState(bookingGuests ? Number(bookingGuests) : 1);
   
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, dragFree: false },
