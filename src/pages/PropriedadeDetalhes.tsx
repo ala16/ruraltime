@@ -48,7 +48,7 @@ interface ContactInfo {
 
 const DESCRICAO_LIMIT = 400;
 
-function DescricaoCard({ descricao }: { descricao: string }) {
+function DescricaoCard({ descricao, t }: { descricao: string; t: (key: string) => string }) {
   const [expanded, setExpanded] = useState(false);
   const needsTruncation = descricao.length > DESCRICAO_LIMIT;
   const displayText = !expanded && needsTruncation
@@ -58,7 +58,7 @@ function DescricaoCard({ descricao }: { descricao: string }) {
   return (
     <Card className="overflow-hidden">
       <CardContent className="p-4 sm:p-6">
-        <h3 className="font-semibold mb-3">Sobre</h3>
+        <h3 className="font-semibold mb-3">{t('detail.about')}</h3>
         <p className="text-muted-foreground leading-relaxed break-words" style={{ overflowWrap: 'anywhere' }}>
           {displayText}
         </p>
@@ -68,7 +68,7 @@ function DescricaoCard({ descricao }: { descricao: string }) {
             className="p-0 h-auto mt-2"
             onClick={() => setExpanded(!expanded)}
           >
-            {expanded ? 'Ver menos' : 'Ver mais'}
+            {expanded ? t('detail.viewLess') : t('detail.viewMore')}
           </Button>
         )}
       </CardContent>
