@@ -488,7 +488,7 @@ Mensagem enviada através do Rural Time.`;
             </div>
 
             {propriedade.descricao && (
-              <DescricaoCard descricao={propriedade.descricao} />
+              <DescricaoCard descricao={propriedade.descricao} t={t} />
             )}
 
             {/* Informações da propriedade */}
