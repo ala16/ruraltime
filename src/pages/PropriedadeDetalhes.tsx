@@ -79,6 +79,7 @@ function DescricaoCard({ descricao }: { descricao: string }) {
 const PropriedadeDetalhes = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [searchParams] = useSearchParams();
   const bookingDate = searchParams.get('date');
   const bookingGuests = searchParams.get('guests');
