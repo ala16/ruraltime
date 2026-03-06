@@ -171,18 +171,17 @@ const PropriedadeDetalhes = () => {
     if (!whatsappNumber || !propriedade) return;
 
     let dataFormatada = '';
-    if (bookingDate) {
+    if (selectedDate) {
       try {
-        const dateObj = new Date(bookingDate + 'T12:00:00');
-        dataFormatada = format(dateObj, "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
+        dataFormatada = format(selectedDate, "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
       } catch {
-        dataFormatada = bookingDate;
+        dataFormatada = '';
       }
     }
 
     const mensagem = `Olá! Gostaria de agendar uma visita no *${propriedade.nome}*.
 ${dataFormatada ? `\n📅 Data: ${dataFormatada}` : ''}
-${bookingGuests ? `👥 Número de pessoas: ${bookingGuests}` : ''}
+${guests ? `👥 Número de pessoas: ${guests}` : ''}
 
 Poderia me informar sobre disponibilidade, horários e valores?
 
