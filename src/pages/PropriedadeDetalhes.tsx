@@ -314,7 +314,7 @@ Mensagem enviada através do Rural Time.`;
             <CardContent className="p-4 sm:p-5">
               <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
                 <CalendarDays className="w-5 h-5 text-primary" />
-                Agendar visita
+                {t('detail.bookVisit')}
               </h3>
               <div className="flex flex-col sm:flex-row items-stretch sm:items-end gap-3">
                 {/* Data */}
