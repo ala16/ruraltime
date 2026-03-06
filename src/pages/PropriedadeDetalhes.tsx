@@ -306,33 +306,81 @@ Mensagem enviada através do Rural Time.`;
           Voltar
         </Button>
 
-        {/* Banner de agendamento quando vem da busca */}
-        {(bookingDate || bookingGuests) && (contactInfo?.whatsapp || propriedade?.whatsapp || contactInfo?.telefone) && (
+        {/* Barra de agendamento inline */}
+        {(contactInfo?.whatsapp || propriedade?.whatsapp || contactInfo?.telefone) && (
           <Card className="mb-6 border-primary/30 bg-primary/5">
-            <CardContent className="p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex items-start gap-3">
-                <CalendarDays className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold text-foreground">Agendar visita</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {bookingDate && (() => {
-                      try {
-                        const dateObj = new Date(bookingDate + 'T12:00:00');
-                        return `📅 ${format(dateObj, "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}`;
-                      } catch { return `📅 ${bookingDate}`; }
-                    })()}
-                    {bookingDate && bookingGuests && ' · '}
-                    {bookingGuests && `👥 ${bookingGuests} pessoa${Number(bookingGuests) > 1 ? 's' : ''}`}
-                  </p>
+            <CardContent className="p-4 sm:p-5">
+              <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <CalendarDays className="w-5 h-5 text-primary" />
+                Agendar visita
+              </h3>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-end gap-3">
+                {/* Data */}
+                <div className="flex-1">
+                  <label className="text-sm text-muted-foreground mb-1 block">Data</label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full justify-start text-left font-normal",
+                          !selectedDate && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {selectedDate ? format(selectedDate, "dd/MM/yyyy") : "Selecione a data"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={selectedDate}
+                        onSelect={setSelectedDate}
+                        disabled={(date) => date < new Date()}
+                        initialFocus
+                        className={cn("p-3 pointer-events-auto")}
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </div>
+
+                {/* Quantidade de pessoas */}
+                <div className="flex-1">
+                  <label className="text-sm text-muted-foreground mb-1 block">Pessoas</label>
+                  <div className="flex items-center border rounded-md h-10">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      className="h-full rounded-r-none"
+                      onClick={() => setGuests(Math.max(1, guests - 1))}
+                    >
+                      <Minus className="w-4 h-4" />
+                    </Button>
+                    <span className="flex-1 text-center font-medium text-sm">
+                      {guests} {guests === 1 ? 'pessoa' : 'pessoas'}
+                    </span>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      className="h-full rounded-l-none"
+                      onClick={() => setGuests(guests + 1)}
+                    >
+                      <Plus className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Botão enviar */}
+                <Button
+                  onClick={handleBookingWhatsApp}
+                  className="bg-green-600 hover:bg-green-700 text-white h-10 sm:px-6"
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Enviar via WhatsApp
+                </Button>
               </div>
-              <Button 
-                onClick={handleBookingWhatsApp}
-                className="bg-green-600 hover:bg-green-700 text-white flex-shrink-0"
-              >
-                <MessageCircle className="w-4 h-4 mr-2" />
-                Enviar via WhatsApp
-              </Button>
             </CardContent>
           </Card>
         )}
