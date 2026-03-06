@@ -319,68 +319,29 @@ Mensagem enviada através do Rural Time.`;
               <div className="flex flex-col sm:flex-row items-stretch sm:items-end gap-3">
                 {/* Data */}
                 <div className="flex-1">
-                  <label className="text-sm text-muted-foreground mb-1 block">Data</label>
+                  <label className="text-sm text-muted-foreground mb-1 block">{t('detail.date')}</label>
                   <Popover>
                     <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          "w-full justify-start text-left font-normal",
-                          !selectedDate && "text-muted-foreground"
-                        )}
-                      >
+                      <Button variant="outline" className={cn("w-full justify-start text-left font-normal", !selectedDate && "text-muted-foreground")}>
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {selectedDate ? format(selectedDate, "dd/MM/yyyy") : "Selecione a data"}
+                        {selectedDate ? format(selectedDate, "dd/MM/yyyy") : t('detail.selectDate')}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={selectedDate}
-                        onSelect={setSelectedDate}
-                        disabled={(date) => date < new Date()}
-                        initialFocus
-                        className={cn("p-3 pointer-events-auto")}
-                      />
+                      <Calendar mode="single" selected={selectedDate} onSelect={setSelectedDate} disabled={(date) => date < new Date()} initialFocus className={cn("p-3 pointer-events-auto")} />
                     </PopoverContent>
                   </Popover>
                 </div>
-
-                {/* Quantidade de pessoas */}
                 <div className="flex-1">
-                  <label className="text-sm text-muted-foreground mb-1 block">Pessoas</label>
+                  <label className="text-sm text-muted-foreground mb-1 block">{t('detail.people')}</label>
                   <div className="flex items-center border rounded-md h-10">
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon"
-                      className="h-full rounded-r-none"
-                      onClick={() => setGuests(Math.max(1, guests - 1))}
-                    >
-                      <Minus className="w-4 h-4" />
-                    </Button>
-                    <span className="flex-1 text-center font-medium text-sm">
-                      {guests} {guests === 1 ? 'pessoa' : 'pessoas'}
-                    </span>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon"
-                      className="h-full rounded-l-none"
-                      onClick={() => setGuests(guests + 1)}
-                    >
-                      <Plus className="w-4 h-4" />
-                    </Button>
+                    <Button type="button" variant="ghost" size="icon" className="h-full rounded-r-none" onClick={() => setGuests(Math.max(1, guests - 1))}><Minus className="w-4 h-4" /></Button>
+                    <span className="flex-1 text-center font-medium text-sm">{guests} {guests === 1 ? t('detail.person') : t('detail.persons')}</span>
+                    <Button type="button" variant="ghost" size="icon" className="h-full rounded-l-none" onClick={() => setGuests(guests + 1)}><Plus className="w-4 h-4" /></Button>
                   </div>
                 </div>
-
-                {/* Botão enviar */}
-                <Button
-                  onClick={handleBookingWhatsApp}
-                  className="bg-green-600 hover:bg-green-700 text-white h-10 sm:px-6"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Enviar via WhatsApp
+                <Button onClick={handleBookingWhatsApp} className="bg-green-600 hover:bg-green-700 text-white h-10 sm:px-6">
+                  <MessageCircle className="w-4 h-4 mr-2" />{t('detail.sendWhatsapp')}
                 </Button>
               </div>
             </CardContent>
