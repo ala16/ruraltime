@@ -199,7 +199,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                 
                 {/* Language Selector Mobile */}
                 <div className="pt-4 border-t border-rural-accent/20">
-                  <p className="text-sm text-muted-foreground mb-2 px-4">Idioma / Language</p>
+                  <p className="text-sm text-muted-foreground mb-2 px-4">{t('nav.languageLabel')}</p>
                   <div className="flex gap-2">
                     {languages.map((lang) => (
                       <Button
