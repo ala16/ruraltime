@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { ArrowRight, MapPin, Star } from 'lucide-react';
+import { ArrowRight, MapPin } from 'lucide-react';
 import heroImage from '@/assets/hero-banner.jpg';
 
 interface ModernHeroProps {
@@ -23,16 +23,16 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
           <div className="max-w-2xl space-y-4">
             <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white/90 rounded-full px-4 py-1.5 text-xs font-medium tracking-widest uppercase">
               <MapPin className="w-3.5 h-3.5" />
-              Turismo Rural
+              {t('hero.badge')}
             </span>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
-              Turismo Rural e Experiências{' '}
-              <span className="text-rural-secondary">Autênticas no Brasil</span>
+              {t('hero.title')}{' '}
+              <span className="text-rural-secondary">{t('hero.titleHighlight')}</span>
             </h1>
 
             <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-lg">
-              Descubra fazendas para visitar, sítios, experiências no campo e artesanato regional — tudo em um só lugar.
+              {t('hero.subtitle')}
             </p>
 
             <div className="pt-2">
@@ -40,9 +40,9 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
                 size="lg"
                 onClick={() => onSectionClick('atrativos')}
                 className="bg-rural-secondary hover:bg-rural-secondary/90 text-rural-secondary-foreground font-semibold shadow-xl group"
-                aria-label="Explorar atrativos de turismo rural no Brasil"
+                aria-label={t('hero.ctaExplore')}
               >
-                Explorar atrativos
+                {t('hero.ctaExplore')}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>

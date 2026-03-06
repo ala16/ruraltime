@@ -34,9 +34,8 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
     { label: t('nav.home'), id: '/', isRoute: true },
     { label: t('nav.attractions'), id: 'atrativos', isRoute: false },
     { label: t('nav.crafts'), id: 'artesanatos', isRoute: false },
-    { label: 'Cadastre sua Propriedade', id: 'https://forms.gle/fn15tZpH65TJZRaf6', isRoute: false, isExternal: true, highlight: true },
+    { label: t('nav.registerProperty'), id: 'https://forms.gle/fn15tZpH65TJZRaf6', isRoute: false, isExternal: true, highlight: true },
     { label: t('nav.offer'), id: 'oferecemos', isRoute: false },
-    
     { label: t('nav.roadmap'), id: '/roadmap', isRoute: true },
     { label: t('nav.blog'), id: '/blog', isRoute: true },
     { label: t('nav.contact'), id: 'https://linktr.ee/ricardorodrigues173', isRoute: false, isExternal: true },
@@ -81,7 +80,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                 }`}>Rural Time</h1>
                 <p className={`text-sm transition-colors ${
                   isScrolled ? 'text-rural-text-light' : 'text-white/90'
-                }`}>Turismo Rural e Artesanato Brasileiro</p>
+                }`}>{t('nav.subtitle')}</p>
               </div>
             </div>
 
@@ -200,7 +199,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                 
                 {/* Language Selector Mobile */}
                 <div className="pt-4 border-t border-rural-accent/20">
-                  <p className="text-sm text-muted-foreground mb-2 px-4">Idioma / Language</p>
+                  <p className="text-sm text-muted-foreground mb-2 px-4">{t('nav.languageLabel')}</p>
                   <div className="flex gap-2">
                     {languages.map((lang) => (
                       <Button

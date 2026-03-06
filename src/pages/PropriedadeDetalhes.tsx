@@ -16,6 +16,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Propriedade {
   id: string;
@@ -47,7 +48,7 @@ interface ContactInfo {
 
 const DESCRICAO_LIMIT = 400;
 
-function DescricaoCard({ descricao }: { descricao: string }) {
+function DescricaoCard({ descricao, t }: { descricao: string; t: (key: string) => string }) {
   const [expanded, setExpanded] = useState(false);
   const needsTruncation = descricao.length > DESCRICAO_LIMIT;
   const displayText = !expanded && needsTruncation
@@ -57,7 +58,7 @@ function DescricaoCard({ descricao }: { descricao: string }) {
   return (
     <Card className="overflow-hidden">
       <CardContent className="p-4 sm:p-6">
-        <h3 className="font-semibold mb-3">Sobre</h3>
+        <h3 className="font-semibold mb-3">{t('detail.about')}</h3>
         <p className="text-muted-foreground leading-relaxed break-words" style={{ overflowWrap: 'anywhere' }}>
           {displayText}
         </p>
@@ -67,7 +68,7 @@ function DescricaoCard({ descricao }: { descricao: string }) {
             className="p-0 h-auto mt-2"
             onClick={() => setExpanded(!expanded)}
           >
-            {expanded ? 'Ver menos' : 'Ver mais'}
+            {expanded ? t('detail.viewLess') : t('detail.viewMore')}
           </Button>
         )}
       </CardContent>
@@ -78,6 +79,7 @@ function DescricaoCard({ descricao }: { descricao: string }) {
 const PropriedadeDetalhes = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [searchParams] = useSearchParams();
   const bookingDate = searchParams.get('date');
   const bookingGuests = searchParams.get('guests');
@@ -303,7 +305,7 @@ Mensagem enviada através do Rural Time.`;
           className="mb-6"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Voltar
+          {t('detail.back')}
         </Button>
 
         {/* Barra de agendamento inline */}
@@ -312,73 +314,34 @@ Mensagem enviada através do Rural Time.`;
             <CardContent className="p-4 sm:p-5">
               <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
                 <CalendarDays className="w-5 h-5 text-primary" />
-                Agendar visita
+                {t('detail.bookVisit')}
               </h3>
               <div className="flex flex-col sm:flex-row items-stretch sm:items-end gap-3">
                 {/* Data */}
                 <div className="flex-1">
-                  <label className="text-sm text-muted-foreground mb-1 block">Data</label>
+                  <label className="text-sm text-muted-foreground mb-1 block">{t('detail.date')}</label>
                   <Popover>
                     <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          "w-full justify-start text-left font-normal",
-                          !selectedDate && "text-muted-foreground"
-                        )}
-                      >
+                      <Button variant="outline" className={cn("w-full justify-start text-left font-normal", !selectedDate && "text-muted-foreground")}>
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {selectedDate ? format(selectedDate, "dd/MM/yyyy") : "Selecione a data"}
+                        {selectedDate ? format(selectedDate, "dd/MM/yyyy") : t('detail.selectDate')}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={selectedDate}
-                        onSelect={setSelectedDate}
-                        disabled={(date) => date < new Date()}
-                        initialFocus
-                        className={cn("p-3 pointer-events-auto")}
-                      />
+                      <Calendar mode="single" selected={selectedDate} onSelect={setSelectedDate} disabled={(date) => date < new Date()} initialFocus className={cn("p-3 pointer-events-auto")} />
                     </PopoverContent>
                   </Popover>
                 </div>
-
-                {/* Quantidade de pessoas */}
                 <div className="flex-1">
-                  <label className="text-sm text-muted-foreground mb-1 block">Pessoas</label>
+                  <label className="text-sm text-muted-foreground mb-1 block">{t('detail.people')}</label>
                   <div className="flex items-center border rounded-md h-10">
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon"
-                      className="h-full rounded-r-none"
-                      onClick={() => setGuests(Math.max(1, guests - 1))}
-                    >
-                      <Minus className="w-4 h-4" />
-                    </Button>
-                    <span className="flex-1 text-center font-medium text-sm">
-                      {guests} {guests === 1 ? 'pessoa' : 'pessoas'}
-                    </span>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon"
-                      className="h-full rounded-l-none"
-                      onClick={() => setGuests(guests + 1)}
-                    >
-                      <Plus className="w-4 h-4" />
-                    </Button>
+                    <Button type="button" variant="ghost" size="icon" className="h-full rounded-r-none" onClick={() => setGuests(Math.max(1, guests - 1))}><Minus className="w-4 h-4" /></Button>
+                    <span className="flex-1 text-center font-medium text-sm">{guests} {guests === 1 ? t('detail.person') : t('detail.persons')}</span>
+                    <Button type="button" variant="ghost" size="icon" className="h-full rounded-l-none" onClick={() => setGuests(guests + 1)}><Plus className="w-4 h-4" /></Button>
                   </div>
                 </div>
-
-                {/* Botão enviar */}
-                <Button
-                  onClick={handleBookingWhatsApp}
-                  className="bg-green-600 hover:bg-green-700 text-white h-10 sm:px-6"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Enviar via WhatsApp
+                <Button onClick={handleBookingWhatsApp} className="bg-green-600 hover:bg-green-700 text-white h-10 sm:px-6">
+                  <MessageCircle className="w-4 h-4 mr-2" />{t('detail.sendWhatsapp')}
                 </Button>
               </div>
             </CardContent>
@@ -486,7 +449,7 @@ Mensagem enviada através do Rural Time.`;
             </div>
 
             {propriedade.descricao && (
-              <DescricaoCard descricao={propriedade.descricao} />
+              <DescricaoCard descricao={propriedade.descricao} t={t} />
             )}
 
             {/* Informações da propriedade */}
