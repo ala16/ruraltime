@@ -4,6 +4,7 @@ import { Menu, X, MapPin, Phone, Mail, Moon, Sun, Globe } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ruralTimeLogo from "@/assets/rural-time-logo-new.png";
+import { NavSearch } from './nav-search';
 import {
   DropdownMenu,
   DropdownMenuContent,
