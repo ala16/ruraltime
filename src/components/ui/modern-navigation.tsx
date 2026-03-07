@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './button';
-import { Menu, X, MapPin, Phone, Mail, Moon, Sun, Globe } from 'lucide-react';
+import { Menu, X, MapPin, Phone, Mail, Moon, Sun, Globe, MoreHorizontal } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ruralTimeLogo from "@/assets/rural-time-logo-new.png";
