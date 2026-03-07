@@ -586,7 +586,11 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.languageLabel': 'Idioma',
     'nav.subtitle': 'Turismo Rural y Artesanía Brasileña',
 
-    // Hero
+    // Search
+    'search.placeholder': 'Buscar atractivo o ciudad...',
+    'search.searching': 'Buscando...',
+    'search.noResults': 'Ningún atractivo encontrado.',
+
     'hero.badge': 'Turismo Rural',
     'hero.title': 'Turismo Rural y Experiencias',
     'hero.titleHighlight': 'Auténticas en Brasil',
