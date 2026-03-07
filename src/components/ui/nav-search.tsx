@@ -10,6 +10,7 @@ interface SearchResult {
   cidade: string;
   estado: string;
   tipo_propriedade: string;
+  imagem: string | null;
 }
 
 interface NavSearchProps {
@@ -20,7 +21,6 @@ export const NavSearch: React.FC<NavSearchProps> = ({ isScrolled }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,12 +31,11 @@ export const NavSearch: React.FC<NavSearchProps> = ({ isScrolled }) => {
     const handleClickOutside = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsOpen(false);
-        if (!query) setIsExpanded(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [query]);
+  }, []);
 
   const searchProperties = async (searchQuery: string) => {
     if (!searchQuery.trim()) {
@@ -67,6 +66,7 @@ export const NavSearch: React.FC<NavSearchProps> = ({ isScrolled }) => {
           cidade: p.cidade,
           estado: p.estado,
           tipo_propriedade: p.tipo_propriedade,
+          imagem: p.imagens && p.imagens.length > 0 ? p.imagens[0] : null,
         }));
 
       setResults(filtered);
@@ -84,76 +84,53 @@ export const NavSearch: React.FC<NavSearchProps> = ({ isScrolled }) => {
     }
     if (e.key === 'Escape') {
       setIsOpen(false);
-      setIsExpanded(false);
       setQuery('');
     }
   };
 
   const handleResultClick = (id: string) => {
     setIsOpen(false);
-    setIsExpanded(false);
     setQuery('');
     navigate(`/propriedade/${id}`);
   };
 
-  const handleExpandClick = () => {
-    setIsExpanded(true);
-    setTimeout(() => inputRef.current?.focus(), 100);
-  };
-
   return (
     <div ref={containerRef} className="relative">
-      {!isExpanded ? (
-        <button
-          onClick={handleExpandClick}
-          className={`p-2 rounded-full transition-colors ${
+      <div className={`flex items-center rounded-full px-3 py-1.5 transition-all ${
+        isScrolled
+          ? 'bg-rural-accent/30 border border-rural-primary/20'
+          : 'bg-white/20 border border-white/30'
+      }`}>
+        <Search className={`h-4 w-4 mr-2 flex-shrink-0 ${
+          isScrolled ? 'text-rural-primary' : 'text-white'
+        }`} />
+        <input
+          ref={inputRef}
+          type="text"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            if (e.target.value.length >= 2) searchProperties(e.target.value);
+            else { setResults([]); setIsOpen(false); }
+          }}
+          onKeyDown={handleKeyDown}
+          placeholder={t('search.placeholder')}
+          className={`bg-transparent outline-none text-sm w-36 lg:w-44 placeholder:opacity-60 ${
             isScrolled
-              ? 'text-rural-primary hover:bg-rural-accent/20'
-              : 'text-white hover:bg-white/20'
+              ? 'text-rural-primary placeholder:text-rural-primary/50'
+              : 'text-white placeholder:text-white/60'
           }`}
-          aria-label={t('search.placeholder')}
-        >
-          <Search className="h-5 w-5" />
-        </button>
-      ) : (
-        <div className="flex items-center gap-1">
-          <div className={`flex items-center rounded-full px-3 py-1.5 transition-all ${
-            isScrolled
-              ? 'bg-rural-accent/30 border border-rural-primary/20'
-              : 'bg-white/20 border border-white/30'
-          }`}>
-            <Search className={`h-4 w-4 mr-2 flex-shrink-0 ${
-              isScrolled ? 'text-rural-primary' : 'text-white'
-            }`} />
-            <input
-              ref={inputRef}
-              type="text"
-              value={query}
-              onChange={(e) => {
-                setQuery(e.target.value);
-                if (e.target.value.length >= 2) searchProperties(e.target.value);
-                else { setResults([]); setIsOpen(false); }
-              }}
-              onKeyDown={handleKeyDown}
-              placeholder={t('search.placeholder')}
-              className={`bg-transparent outline-none text-sm w-36 lg:w-44 placeholder:opacity-60 ${
-                isScrolled
-                  ? 'text-rural-primary placeholder:text-rural-primary/50'
-                  : 'text-white placeholder:text-white/60'
-              }`}
-            />
-            {query && (
-              <button onClick={() => { setQuery(''); setResults([]); setIsOpen(false); }}>
-                <X className={`h-4 w-4 ${isScrolled ? 'text-rural-primary/60' : 'text-white/60'}`} />
-              </button>
-            )}
-          </div>
-        </div>
-      )}
+        />
+        {query && (
+          <button onClick={() => { setQuery(''); setResults([]); setIsOpen(false); }}>
+            <X className={`h-4 w-4 ${isScrolled ? 'text-rural-primary/60' : 'text-white/60'}`} />
+          </button>
+        )}
+      </div>
 
       {/* Results Dropdown */}
       {isOpen && (
-        <div className="absolute top-full mt-2 left-0 w-72 bg-background/95 backdrop-blur-lg border border-border rounded-xl shadow-2xl z-[200] overflow-hidden">
+        <div className="absolute top-full mt-2 left-0 w-80 bg-background/95 backdrop-blur-lg border border-border rounded-xl shadow-2xl z-[200] overflow-hidden">
           {loading ? (
             <div className="p-4 text-center text-sm text-muted-foreground">
               {t('search.searching')}
@@ -164,12 +141,24 @@ export const NavSearch: React.FC<NavSearchProps> = ({ isScrolled }) => {
                 <button
                   key={r.id}
                   onClick={() => handleResultClick(r.id)}
-                  className="w-full text-left px-4 py-3 hover:bg-accent/50 transition-colors flex items-start gap-3"
+                  className="w-full text-left px-3 py-2.5 hover:bg-accent/50 transition-colors flex items-center gap-3"
                 >
-                  <MapPin className="h-4 w-4 text-rural-secondary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-medium text-foreground">{r.nome}</p>
-                    <p className="text-xs text-muted-foreground">
+                  <div className="h-12 w-12 rounded-lg overflow-hidden flex-shrink-0 bg-muted">
+                    {r.imagem ? (
+                      <img
+                        src={r.imagem}
+                        alt={r.nome}
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className="h-full w-full flex items-center justify-center">
+                        <MapPin className="h-5 w-5 text-muted-foreground/50" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-foreground truncate">{r.nome}</p>
+                    <p className="text-xs text-muted-foreground truncate">
                       {r.cidade}, {r.estado} · {r.tipo_propriedade}
                     </p>
                   </div>
