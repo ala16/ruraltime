@@ -93,7 +93,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-4">
               <NavSearch isScrolled={isScrolled} />
-              {navigationItems.map((item) => (
+              {primaryItems.map((item) => (
                 'highlight' in item && item.highlight ? (
                   <button
                     key={item.id}
@@ -106,7 +106,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`font-medium transition-all duration-200 hover:scale-105 ${
+                    className={`text-sm font-medium transition-all duration-200 hover:scale-105 ${
                       isScrolled 
                         ? 'text-rural-primary hover:text-rural-secondary' 
                         : 'text-white hover:text-rural-secondary'
@@ -116,6 +116,32 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                   </button>
                 )
               ))}
+
+              {/* More dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className={`transition-colors ${
+                      isScrolled ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
+                    }`}
+                  >
+                    <MoreHorizontal className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-background/95 backdrop-blur-lg border-border z-[100]">
+                  {secondaryItems.map((item) => (
+                    <DropdownMenuItem
+                      key={item.id}
+                      onClick={() => handleNavClick(item)}
+                      className="cursor-pointer"
+                    >
+                      {item.label}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
               
               {/* Language Selector */}
               <DropdownMenu>
