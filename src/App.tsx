@@ -34,6 +34,7 @@ import ExperienciasCampo from "./pages/clusters/ExperienciasCampo";
 import TurismoSustentavel from "./pages/clusters/TurismoSustentavel";
 import Sobre from "./pages/Sobre";
 import FAQ from "./pages/FAQ";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/propriedades" element={<PropriedadesRurais />} />
