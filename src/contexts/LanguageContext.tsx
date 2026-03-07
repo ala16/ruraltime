@@ -23,6 +23,11 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.languageLabel': 'Idioma / Language',
     'nav.subtitle': 'Turismo Rural e Artesanato Brasileiro',
 
+    // Search
+    'search.placeholder': 'Buscar atrativo ou cidade...',
+    'search.searching': 'Buscando...',
+    'search.noResults': 'Nenhum atrativo encontrado.',
+
     // Hero
     'hero.badge': 'Turismo Rural',
     'hero.title': 'Turismo Rural e Experiências',
@@ -300,7 +305,11 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.languageLabel': 'Language',
     'nav.subtitle': 'Rural Tourism and Brazilian Handicrafts',
 
-    // Hero
+    // Search
+    'search.placeholder': 'Search attraction or city...',
+    'search.searching': 'Searching...',
+    'search.noResults': 'No attractions found.',
+
     'hero.badge': 'Rural Tourism',
     'hero.title': 'Rural Tourism and Authentic',
     'hero.titleHighlight': 'Experiences in Brazil',
@@ -577,7 +586,11 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.languageLabel': 'Idioma',
     'nav.subtitle': 'Turismo Rural y Artesanía Brasileña',
 
-    // Hero
+    // Search
+    'search.placeholder': 'Buscar atractivo o ciudad...',
+    'search.searching': 'Buscando...',
+    'search.noResults': 'Ningún atractivo encontrado.',
+
     'hero.badge': 'Turismo Rural',
     'hero.title': 'Turismo Rural y Experiencias',
     'hero.titleHighlight': 'Auténticas en Brasil',

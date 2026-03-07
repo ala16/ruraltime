@@ -4,6 +4,7 @@ import { Menu, X, MapPin, Phone, Mail, Moon, Sun, Globe } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ruralTimeLogo from "@/assets/rural-time-logo-new.png";
+import { NavSearch } from './nav-search';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -85,7 +86,8 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-6">
+            <div className="hidden lg:flex items-center space-x-4">
+              <NavSearch isScrolled={isScrolled} />
               {navigationItems.map((item) => (
                 'highlight' in item && item.highlight ? (
                   <button
@@ -184,6 +186,9 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
           <div className="lg:hidden">
             <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-rural-accent/20 shadow-xl">
               <div className="px-4 py-6 space-y-4">
+                <div className="pb-2">
+                  <NavSearch isScrolled={true} />
+                </div>
                 {navigationItems.map((item) => (
                   <button
                     key={item.id}
