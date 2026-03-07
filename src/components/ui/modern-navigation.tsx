@@ -31,16 +31,21 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navigationItems = [
+  const primaryItems = [
     { label: t('nav.home'), id: '/', isRoute: true },
     { label: t('nav.attractions'), id: 'atrativos', isRoute: false },
     { label: t('nav.crafts'), id: 'artesanatos', isRoute: false },
     { label: t('nav.registerProperty'), id: 'https://forms.gle/fn15tZpH65TJZRaf6', isRoute: false, isExternal: true, highlight: true },
+  ];
+
+  const secondaryItems = [
     { label: t('nav.offer'), id: 'oferecemos', isRoute: false },
     { label: t('nav.roadmap'), id: '/roadmap', isRoute: true },
     { label: t('nav.blog'), id: '/blog', isRoute: true },
     { label: t('nav.contact'), id: 'https://linktr.ee/ricardorodrigues173', isRoute: false, isExternal: true },
   ];
+
+  const navigationItems = [...primaryItems, ...secondaryItems];
 
   const languages = [
     { code: 'pt' as const, label: 'PT', flag: '🇧🇷' },
