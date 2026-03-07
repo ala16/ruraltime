@@ -86,8 +86,8 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-6">
-              {navigationItems.map((item) => (
+            <div className="hidden lg:flex items-center space-x-4">
+              <NavSearch isScrolled={isScrolled} />
                 'highlight' in item && item.highlight ? (
                   <button
                     key={item.id}
