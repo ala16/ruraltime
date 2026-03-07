@@ -186,6 +186,9 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
           <div className="lg:hidden">
             <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-rural-accent/20 shadow-xl">
               <div className="px-4 py-6 space-y-4">
+                <div className="pb-2">
+                  <NavSearch isScrolled={true} />
+                </div>
                 {navigationItems.map((item) => (
                   <button
                     key={item.id}
