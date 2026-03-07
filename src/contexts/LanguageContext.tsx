@@ -305,7 +305,11 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.languageLabel': 'Language',
     'nav.subtitle': 'Rural Tourism and Brazilian Handicrafts',
 
-    // Hero
+    // Search
+    'search.placeholder': 'Search attraction or city...',
+    'search.searching': 'Searching...',
+    'search.noResults': 'No attractions found.',
+
     'hero.badge': 'Rural Tourism',
     'hero.title': 'Rural Tourism and Authentic',
     'hero.titleHighlight': 'Experiences in Brazil',
