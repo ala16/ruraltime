@@ -98,6 +98,7 @@ const PropertyPreviewCarousel = ({ images, nome }: { images: string[]; nome: str
                 idx === selectedIndex ? 'bg-primary' : 'bg-muted-foreground/30'
               }`}
               onClick={() => emblaApi?.scrollTo(idx)}
+              aria-label={`Ir para foto ${idx + 1}`}
             />
           ))}
         </div>
