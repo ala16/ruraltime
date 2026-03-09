@@ -72,7 +72,7 @@ export const Artesanatos = () => {
           <CarouselContent className="-ml-2 md:-ml-4">
             {artesanatos.map((artesanato, index) => <CarouselItem key={artesanato.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
               <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:scale-[1.02]" onClick={() => handleViewDetails(artesanato.id)}>
-                <img src={artesanato.imagens[0]} alt={`${artesanato.nome} - ${artesanato.categoria}`} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                <img src={artesanato.imagens[0]} alt={`${artesanato.nome} - ${artesanato.categoria}`} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" width={400} height={256} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                   <div className="flex items-center gap-2 mb-2">

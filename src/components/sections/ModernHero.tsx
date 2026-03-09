@@ -14,7 +14,7 @@ export const ModernHero: React.FC<ModernHeroProps> = ({ onSectionClick }) => {
   return (
     <section id="hero" className="relative min-h-[320px] md:min-h-[380px] flex items-end overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroImage} alt="Paisagem rural brasileira" className="w-full h-full object-cover" />
+        <img src={heroImage} alt="Paisagem rural brasileira" className="w-full h-full object-cover" width={1920} height={1080} fetchPriority="high" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
       </div>
 

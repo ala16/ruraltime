@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,37 +7,45 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { FloatingBanner } from "@/components/FloatingBanner";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import CadastroPropriedade from "./pages/CadastroPropriedade";
-import Agendamento from "./pages/Agendamento";
-import PropriedadesRurais from "./pages/PropriedadesRurais";
-import Login from "./pages/Login";
-import Admin from "./pages/Admin";
-import AuthPage from "./pages/AuthPage";
-import ComprarVoucher from "./pages/ComprarVoucher";
-import VoucherSuccess from "./pages/VoucherSuccess";
-import VoucherCanceled from "./pages/VoucherCanceled";
-import ValidarVoucher from "./pages/ValidarVoucher";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import ArtesanatoDetalhes from "./pages/ArtesanatoDetalhes";
-import PropriedadeDetalhes from "./pages/PropriedadeDetalhes";
-import TodosAtrativos from "./pages/TodosAtrativos";
-import TodosArtesanatos from "./pages/TodosArtesanatos";
-import Roadmap from "./pages/Roadmap";
-import TurismoRuralIndex from "./pages/TurismoRuralIndex";
-import TurismoRuralEstado from "./pages/TurismoRuralEstado";
-import TurismoRuralCidade from "./pages/TurismoRuralCidade";
-import Agroturismo from "./pages/clusters/Agroturismo";
-import TurismoDeFazenda from "./pages/clusters/TurismoDeFazenda";
-import ExperienciasCampo from "./pages/clusters/ExperienciasCampo";
-import TurismoSustentavel from "./pages/clusters/TurismoSustentavel";
-import Sobre from "./pages/Sobre";
-import FAQ from "./pages/FAQ";
 import { ScrollToTop } from "./components/ScrollToTop";
+import Index from "./pages/Index";
+
+// Lazy-loaded routes
+const NotFound = lazy(() => import("./pages/NotFound"));
+const CadastroPropriedade = lazy(() => import("./pages/CadastroPropriedade"));
+const Agendamento = lazy(() => import("./pages/Agendamento"));
+const PropriedadesRurais = lazy(() => import("./pages/PropriedadesRurais"));
+const Login = lazy(() => import("./pages/Login"));
+const Admin = lazy(() => import("./pages/Admin"));
+const AuthPage = lazy(() => import("./pages/AuthPage"));
+const ComprarVoucher = lazy(() => import("./pages/ComprarVoucher"));
+const VoucherSuccess = lazy(() => import("./pages/VoucherSuccess"));
+const VoucherCanceled = lazy(() => import("./pages/VoucherCanceled"));
+const ValidarVoucher = lazy(() => import("./pages/ValidarVoucher"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const ArtesanatoDetalhes = lazy(() => import("./pages/ArtesanatoDetalhes"));
+const PropriedadeDetalhes = lazy(() => import("./pages/PropriedadeDetalhes"));
+const TodosAtrativos = lazy(() => import("./pages/TodosAtrativos"));
+const TodosArtesanatos = lazy(() => import("./pages/TodosArtesanatos"));
+const Roadmap = lazy(() => import("./pages/Roadmap"));
+const TurismoRuralIndex = lazy(() => import("./pages/TurismoRuralIndex"));
+const TurismoRuralEstado = lazy(() => import("./pages/TurismoRuralEstado"));
+const TurismoRuralCidade = lazy(() => import("./pages/TurismoRuralCidade"));
+const Agroturismo = lazy(() => import("./pages/clusters/Agroturismo"));
+const TurismoDeFazenda = lazy(() => import("./pages/clusters/TurismoDeFazenda"));
+const ExperienciasCampo = lazy(() => import("./pages/clusters/ExperienciasCampo"));
+const TurismoSustentavel = lazy(() => import("./pages/clusters/TurismoSustentavel"));
+const Sobre = lazy(() => import("./pages/Sobre"));
+const FAQ = lazy(() => import("./pages/FAQ"));
 
 const queryClient = new QueryClient();
+
+const PageFallback = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="animate-pulse text-primary font-semibold">Carregando...</div>
+  </div>
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -52,6 +61,7 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
           <ScrollToTop />
+          <Suspense fallback={<PageFallback />}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/propriedades" element={<PropriedadesRurais />} />
@@ -83,6 +93,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
           <FloatingBanner />
         </BrowserRouter>
         </TooltipProvider>

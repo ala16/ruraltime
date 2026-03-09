@@ -37,7 +37,7 @@ export function QuemSomos() {
 
           <div className="flex justify-center">
             <div className="relative">
-              <img src={ricardoPhoto} alt="Ricardo Rodrigues Filho - Fundador da Rural Time" className="w-80 h-80 object-cover rounded-2xl shadow-2xl" />
+              <img src={ricardoPhoto} alt="Ricardo Rodrigues Filho - Fundador da Rural Time" className="w-80 h-80 object-cover rounded-2xl shadow-2xl" width={320} height={320} loading="lazy" />
               <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-xs text-center leading-tight">Forbes<br/>U30</span>
               </div>
