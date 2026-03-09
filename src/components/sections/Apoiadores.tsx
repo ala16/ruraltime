@@ -45,7 +45,7 @@ export function Apoiadores() {
           <div className="flex gap-8 animate-marquee">
             {duplicated.map((apoiador, index) => (
               <div key={index} className="flex-shrink-0 flex items-center justify-center h-12">
-                <img src={apoiador.logo} alt={apoiador.alt} className="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-all duration-300" loading="lazy" />
+                <img src={apoiador.logo} alt={apoiador.alt} className="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-all duration-300" loading="lazy" width={120} height={56} />
               </div>
             ))}
           </div>

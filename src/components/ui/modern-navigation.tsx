@@ -79,6 +79,8 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                 src={ruralTimeLogo} 
                 alt="Rural Time Logo" 
                 className="h-16 w-auto"
+                width={160}
+                height={64}
               />
               <div>
                 <h1 className={`text-xl font-bold transition-colors ${

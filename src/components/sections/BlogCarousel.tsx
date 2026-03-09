@@ -29,7 +29,7 @@ export const BlogCarousel = () => {
               <CarouselItem key={post.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                 <Link to={`/blog/${post.slug}`}>
                   <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:scale-[1.02]">
-                    <img src={post.imageUrl} alt={post.title} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                    <img src={post.imageUrl} alt={post.title} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" width={400} height={256} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                     <div className="absolute top-3 left-3">
                       <span className="text-sm bg-primary text-primary-foreground px-2 py-1 rounded-full font-semibold">{post.category}</span>

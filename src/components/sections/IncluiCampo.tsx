@@ -15,7 +15,7 @@ export function IncluiCampo() {
             <CardContent className="p-0">
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 flex items-center justify-center">
-                  <img src={incluiCampoLogo} alt="IncluiCampo - Caminhos sem Barreiras" className="w-full max-w-xs" />
+                  <img src={incluiCampoLogo} alt="IncluiCampo - Caminhos sem Barreiras" className="w-full max-w-xs" width={320} height={160} loading="lazy" />
                 </div>
                 <div className="p-8 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-4">
