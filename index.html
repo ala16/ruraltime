@@ -26,8 +26,9 @@
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     
-    <!-- Modern fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Modern fonts - swap to avoid render blocking -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
     <meta property="og:title" content="Turismo Rural no Brasil | Fazendas, Experiências e Artesanato - Rural Time" />
     <meta property="og:description" content="Descubra as melhores experiências de turismo rural no Brasil. Reserve fazendas, sítios e conheça o autêntico artesanato local." />
