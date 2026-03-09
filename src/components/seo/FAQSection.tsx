@@ -23,7 +23,7 @@ export const FAQSection = ({
   if (faqs.length === 0) return null;
 
   return (
-    <section className="py-6" itemScope itemType="https://schema.org/FAQPage">
+    <section className="py-6">
       {showSchema && (
         <SchemaMarkup type="faq" questions={faqs} />
       )}
@@ -35,19 +35,13 @@ export const FAQSection = ({
           <div 
             key={index}
             className="border rounded-lg overflow-hidden"
-            itemScope 
-            itemProp="mainEntity" 
-            itemType="https://schema.org/Question"
           >
             <button
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
               className="w-full flex items-center justify-between p-4 text-left hover:bg-muted/50 transition-colors"
               aria-expanded={openIndex === index}
             >
-              <h3 
-                className="font-semibold text-lg pr-4"
-                itemProp="name"
-              >
+              <h3 className="font-semibold text-lg pr-4">
                 {faq.question}
               </h3>
               {openIndex === index ? (
@@ -61,14 +55,8 @@ export const FAQSection = ({
               className={`overflow-hidden transition-all duration-300 ${
                 openIndex === index ? 'max-h-96' : 'max-h-0'
               }`}
-              itemScope 
-              itemProp="acceptedAnswer" 
-              itemType="https://schema.org/Answer"
             >
-              <div 
-                className="p-4 pt-0 text-muted-foreground leading-relaxed"
-                itemProp="text"
-              >
+              <div className="p-4 pt-0 text-muted-foreground leading-relaxed">
                 {faq.answer}
               </div>
             </div>
