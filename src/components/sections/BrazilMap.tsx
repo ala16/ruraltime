@@ -79,9 +79,11 @@ const PropertyPreviewCarousel = ({ images, nome }: { images: string[]; nome: str
             <div key={idx} className="flex-[0_0_100%] min-w-0">
               <img
                 src={img}
-                alt={`${nome} - ${idx + 1}`}
+                alt={`${nome} - foto ${idx + 1}`}
                 className="w-full h-64 object-cover"
                 loading="lazy"
+                width={400}
+                height={256}
               />
             </div>
           ))}
