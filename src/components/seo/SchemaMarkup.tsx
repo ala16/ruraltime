@@ -118,6 +118,20 @@ interface WebSiteSchemaProps {
   type: 'webSite';
 }
 
+interface ItemListSchemaProps {
+  type: 'itemList';
+  name: string;
+  description: string;
+  url: string;
+  items: Array<{
+    name: string;
+    url: string;
+    image?: string;
+    description?: string;
+    position?: number;
+  }>;
+}
+
 type SchemaProps = 
   | OrganizationSchemaProps 
   | LocalBusinessSchemaProps 
@@ -130,7 +144,8 @@ type SchemaProps =
   | NewsArticleSchemaProps
   | BreadcrumbSchemaProps
   | WebPageSchemaProps
-  | WebSiteSchemaProps;
+  | WebSiteSchemaProps
+  | ItemListSchemaProps;
 
 const siteUrl = 'https://ruraltime.com.br';
 
