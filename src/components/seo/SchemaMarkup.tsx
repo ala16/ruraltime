@@ -412,6 +412,26 @@ const getWebSiteSchema = () => ({
   "inLanguage": "pt-BR"
 });
 
+const getItemListSchema = (props: ItemListSchemaProps) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": props.name,
+  "description": props.description,
+  "url": props.url.startsWith('http') ? props.url : `${siteUrl}${props.url}`,
+  "numberOfItems": props.items.length,
+  "itemListElement": props.items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": item.position || index + 1,
+    "item": {
+      "@type": "TouristAttraction",
+      "name": item.name,
+      "url": item.url.startsWith('http') ? item.url : `${siteUrl}${item.url}`,
+      ...(item.image && { "image": item.image }),
+      ...(item.description && { "description": item.description })
+    }
+  }))
+});
+
 export const SchemaMarkup = (props: SchemaProps) => {
   let schema: object;
   
