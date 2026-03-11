@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { SEOHead } from '@/components/seo/SEOHead';
+import { SchemaMarkup } from '@/components/seo/SchemaMarkup';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -226,33 +227,14 @@ Mensagem enviada através do Rural Time.`;
     );
   }
 
-  const pageUrl = `${window.location.origin}/propriedade/${id}`;
+  const siteUrl = 'https://ruraltime.com.br';
+  const pageUrl = `${siteUrl}/propriedade/${id}`;
   const imageUrl = propriedade?.imagens?.[0] 
     ? (propriedade.imagens[0].startsWith('http') 
         ? propriedade.imagens[0] 
-        : `${window.location.origin}${propriedade.imagens[0]}`)
-    : `${window.location.origin}/placeholder.svg`;
+        : `${siteUrl}${propriedade.imagens[0]}`)
+    : `${siteUrl}/placeholder.svg`;
   const propertyDescription = propriedade?.descricao || 'Descubra experiências autênticas de turismo rural na Rural Time';
-
-  // Structured data for SEO
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "TouristAttraction",
-    "name": propriedade?.nome,
-    "description": propertyDescription,
-    "image": imageUrl,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": propriedade?.endereco,
-      "addressLocality": propriedade?.cidade,
-      "addressRegion": propriedade?.estado,
-      "addressCountry": "BR"
-    },
-    "url": pageUrl,
-    "touristType": propriedade?.tipo_propriedade,
-    "priceRange": propriedade?.preco_visita ? `R$ ${propriedade.preco_visita.toFixed(2)}` : undefined,
-    "availableLanguage": "pt-BR"
-  };
 
   const keywords = [
     'turismo rural',
@@ -266,39 +248,82 @@ Mensagem enviada através do Rural Time.`;
     'agroturismo'
   ].filter(Boolean).join(', ');
 
+  // Enhanced structured data for SEO - TouristAttraction + LocalBusiness
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": ["TouristAttraction", "LocalBusiness"],
+    "name": propriedade?.nome,
+    "description": propertyDescription,
+    "image": propriedade?.imagens?.map(img => 
+      img.startsWith('http') ? img : `${siteUrl}${img}`
+    ) || [imageUrl],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": propriedade?.endereco,
+      "addressLocality": propriedade?.cidade,
+      "addressRegion": propriedade?.estado,
+      "addressCountry": "BR"
+    },
+    "url": pageUrl,
+    "touristType": ["Rural Tourism", "Eco Tourism", "Agritourism"],
+    "priceRange": propriedade?.preco_visita ? `R$ ${propriedade.preco_visita.toFixed(2)}` : "$$",
+    "availableLanguage": "pt-BR",
+    "isAccessibleForFree": false,
+    "publicAccess": true,
+    ...(propriedade?.horario_funcionamento && {
+      "openingHours": propriedade.horario_funcionamento
+    }),
+    ...(propriedade?.capacidade_visitantes && {
+      "maximumAttendeeCapacity": propriedade.capacidade_visitantes
+    }),
+    ...(propriedade?.atividades && propriedade.atividades.length > 0 && {
+      "amenityFeature": propriedade.atividades.map(ativ => ({
+        "@type": "LocationFeatureSpecification",
+        "name": ativ,
+        "value": true
+      }))
+    }),
+    "provider": {
+      "@type": "Organization",
+      "name": "Rural Time",
+      "url": siteUrl
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background overflow-x-hidden">
-      <Helmet>
-        <title>{propriedade?.nome || 'Atrativo Rural'} - Turismo Rural em {propriedade?.cidade}, {propriedade?.estado} | Rural Time</title>
-        <meta name="description" content={`${propertyDescription} ${propriedade?.cidade}, ${propriedade?.estado}. ${propriedade?.atividades?.slice(0, 3).join(', ')}. Reserve sua visita!`} />
-        <meta name="keywords" content={keywords} />
-        <link rel="canonical" href={pageUrl} />
-        
-        {/* Open Graph / Facebook / WhatsApp */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={pageUrl} />
-        <meta property="og:title" content={`${propriedade?.nome || 'Atrativo Rural'} - Rural Time`} />
-        <meta property="og:description" content={`🌾 Conheça ${propriedade?.nome || 'este atrativo'} na Rural Time. ${propertyDescription.substring(0, 150)}... Descubra o autêntico turismo rural brasileiro!`} />
-        <meta property="og:image" content={imageUrl} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="Rural Time" />
-        <meta property="og:locale" content="pt_BR" />
-        
-        {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={pageUrl} />
-        <meta property="twitter:title" content={`${propriedade?.nome || 'Atrativo Rural'} - Rural Time`} />
-        <meta property="twitter:description" content={`🌾 Conheça ${propriedade?.nome || 'este atrativo'} na Rural Time. ${propertyDescription.substring(0, 150)}...`} />
-        <meta property="twitter:image" content={imageUrl} />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
-      </Helmet>
+      <SEOHead
+        title={`${propriedade?.nome || 'Atrativo Rural'} - Turismo Rural em ${propriedade?.cidade}, ${propriedade?.estado}`}
+        description={`${propertyDescription.substring(0, 120)}. ${propriedade?.cidade}, ${propriedade?.estado}. ${propriedade?.atividades?.slice(0, 3).join(', ')}. Reserve sua visita!`}
+        keywords={keywords}
+        canonicalUrl={`/propriedade/${id}`}
+        ogImage={imageUrl}
+      />
+
+      {/* Breadcrumb Schema */}
+      <SchemaMarkup
+        type="breadcrumb"
+        items={[
+          { name: 'Início', url: '/' },
+          { name: 'Atrativos', url: '/atrativos' },
+          { name: propriedade?.nome || 'Atrativo', url: `/propriedade/${id}` }
+        ]}
+      />
+
+      {/* Enhanced TouristAttraction structured data */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       
       <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
+        {/* Visual breadcrumb */}
+        <nav aria-label="Breadcrumb" className="mb-4">
+          <ol className="flex items-center gap-2 text-sm text-muted-foreground">
+            <li><a href="/" className="hover:text-primary transition-colors">Início</a></li>
+            <li aria-hidden="true">/</li>
+            <li><a href="/atrativos" className="hover:text-primary transition-colors">Atrativos</a></li>
+            <li aria-hidden="true">/</li>
+            <li><span className="text-foreground font-medium">{propriedade?.nome}</span></li>
+          </ol>
+        </nav>
         <Button 
           variant="ghost" 
           onClick={() => navigate('/')}

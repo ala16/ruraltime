@@ -118,6 +118,20 @@ interface WebSiteSchemaProps {
   type: 'webSite';
 }
 
+interface ItemListSchemaProps {
+  type: 'itemList';
+  name: string;
+  description: string;
+  url: string;
+  items: Array<{
+    name: string;
+    url: string;
+    image?: string;
+    description?: string;
+    position?: number;
+  }>;
+}
+
 type SchemaProps = 
   | OrganizationSchemaProps 
   | LocalBusinessSchemaProps 
@@ -130,7 +144,8 @@ type SchemaProps =
   | NewsArticleSchemaProps
   | BreadcrumbSchemaProps
   | WebPageSchemaProps
-  | WebSiteSchemaProps;
+  | WebSiteSchemaProps
+  | ItemListSchemaProps;
 
 const siteUrl = 'https://ruraltime.com.br';
 
@@ -397,6 +412,26 @@ const getWebSiteSchema = () => ({
   "inLanguage": "pt-BR"
 });
 
+const getItemListSchema = (props: ItemListSchemaProps) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": props.name,
+  "description": props.description,
+  "url": props.url.startsWith('http') ? props.url : `${siteUrl}${props.url}`,
+  "numberOfItems": props.items.length,
+  "itemListElement": props.items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": item.position || index + 1,
+    "item": {
+      "@type": "TouristAttraction",
+      "name": item.name,
+      "url": item.url.startsWith('http') ? item.url : `${siteUrl}${item.url}`,
+      ...(item.image && { "image": item.image }),
+      ...(item.description && { "description": item.description })
+    }
+  }))
+});
+
 export const SchemaMarkup = (props: SchemaProps) => {
   let schema: object;
   
@@ -436,6 +471,9 @@ export const SchemaMarkup = (props: SchemaProps) => {
       break;
     case 'webSite':
       schema = getWebSiteSchema();
+      break;
+    case 'itemList':
+      schema = getItemListSchema(props);
       break;
     default:
       return null;
