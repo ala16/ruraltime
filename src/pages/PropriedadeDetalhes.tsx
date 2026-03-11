@@ -314,6 +314,16 @@ Mensagem enviada através do Rural Time.`;
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       
       <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
+        {/* Visual breadcrumb */}
+        <nav aria-label="Breadcrumb" className="mb-4">
+          <ol className="flex items-center gap-2 text-sm text-muted-foreground">
+            <li><a href="/" className="hover:text-primary transition-colors">Início</a></li>
+            <li aria-hidden="true">/</li>
+            <li><a href="/atrativos" className="hover:text-primary transition-colors">Atrativos</a></li>
+            <li aria-hidden="true">/</li>
+            <li><span className="text-foreground font-medium">{propriedade?.nome}</span></li>
+          </ol>
+        </nav>
         <Button 
           variant="ghost" 
           onClick={() => navigate('/')}
