@@ -472,6 +472,9 @@ export const SchemaMarkup = (props: SchemaProps) => {
     case 'webSite':
       schema = getWebSiteSchema();
       break;
+    case 'itemList':
+      schema = getItemListSchema(props);
+      break;
     default:
       return null;
   }
