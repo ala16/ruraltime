@@ -38,6 +38,7 @@ const ExperienciasCampo = lazy(() => import("./pages/clusters/ExperienciasCampo"
 const TurismoSustentavel = lazy(() => import("./pages/clusters/TurismoSustentavel"));
 const Sobre = lazy(() => import("./pages/Sobre"));
 const FAQ = lazy(() => import("./pages/FAQ"));
+const CityLandingPage = lazy(() => import("./pages/CityLandingPage"));
 
 const queryClient = new QueryClient();
 
