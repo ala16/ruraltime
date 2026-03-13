@@ -91,6 +91,7 @@ const App = () => (
             <Route path="/turismo-rural-sustentavel" element={<TurismoSustentavel />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/destinos/:estado/:cidade" element={<CityLandingPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
