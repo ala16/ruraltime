@@ -285,11 +285,12 @@ const TurismoRuralCidade = () => {
                     
                     <div className="aspect-video relative overflow-hidden">
                       {propriedade.imagens?.[0] ? (
-                        <img 
+                        <OptimizedImage
                           src={propriedade.imagens[0]} 
                           alt={`${propriedade.nome} - Turismo Rural em ${cidadeNome}`}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          loading="lazy"
+                          width={400}
+                          height={225}
                         />
                       ) : (
                         <div className="w-full h-full bg-muted flex items-center justify-center">
