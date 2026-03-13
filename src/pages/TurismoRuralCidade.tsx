@@ -11,6 +11,7 @@ import { RelatedContent } from "@/components/seo/RelatedContent";
 import { ModernNavigation } from "@/components/ui/modern-navigation";
 import { Footer } from "@/components/sections/Footer";
 import { ShareButtons } from "@/components/ShareButtons";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { 
   ArrowLeft, 
   MapPin, 
