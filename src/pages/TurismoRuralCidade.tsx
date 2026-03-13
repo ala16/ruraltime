@@ -11,6 +11,7 @@ import { RelatedContent } from "@/components/seo/RelatedContent";
 import { ModernNavigation } from "@/components/ui/modern-navigation";
 import { Footer } from "@/components/sections/Footer";
 import { ShareButtons } from "@/components/ShareButtons";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { 
   ArrowLeft, 
   MapPin, 
@@ -284,11 +285,12 @@ const TurismoRuralCidade = () => {
                     
                     <div className="aspect-video relative overflow-hidden">
                       {propriedade.imagens?.[0] ? (
-                        <img 
+                        <OptimizedImage
                           src={propriedade.imagens[0]} 
                           alt={`${propriedade.nome} - Turismo Rural em ${cidadeNome}`}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          loading="lazy"
+                          width={400}
+                          height={225}
                         />
                       ) : (
                         <div className="w-full h-full bg-muted flex items-center justify-center">
