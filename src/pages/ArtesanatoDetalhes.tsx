@@ -31,6 +31,8 @@ interface RelatedArtesanato {
   artesao_nome: string;
   imagens: string[];
 }
+
+const ArtesanatoDetalhes = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [artesanato, setArtesanato] = useState<Artesanato | null>(null);
