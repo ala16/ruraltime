@@ -1,5 +1,6 @@
 import ruralTimeLogo from "@/assets/rural-time-logo-new.png";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { CrawlableCityNav } from "@/components/seo/CrawlableCityNav";
 
 interface FooterProps {
   onSectionClick?: (section: string) => void;
