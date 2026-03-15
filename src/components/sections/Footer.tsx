@@ -1,5 +1,6 @@
 import ruralTimeLogo from "@/assets/rural-time-logo-new.png";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { CrawlableCityNav } from "@/components/seo/CrawlableCityNav";
 
 interface FooterProps {
   onSectionClick?: (section: string) => void;
@@ -49,6 +50,8 @@ export function Footer({ onSectionClick }: FooterProps) {
           </div>
         </div>
       </div>
+
+      <CrawlableCityNav />
 
       <div className="border-t border-white/20 mt-12 pt-8">
         <div className="flex flex-col md:flex-row justify-between items-center">

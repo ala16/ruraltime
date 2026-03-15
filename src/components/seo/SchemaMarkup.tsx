@@ -132,6 +132,17 @@ interface ItemListSchemaProps {
   }>;
 }
 
+interface ProductSchemaProps {
+  type: 'product';
+  name: string;
+  description: string;
+  image: string;
+  category: string;
+  manufacturer: string;
+  price?: number;
+  currency?: string;
+}
+
 type SchemaProps = 
   | OrganizationSchemaProps 
   | LocalBusinessSchemaProps 
@@ -145,7 +156,8 @@ type SchemaProps =
   | BreadcrumbSchemaProps
   | WebPageSchemaProps
   | WebSiteSchemaProps
-  | ItemListSchemaProps;
+  | ItemListSchemaProps
+  | ProductSchemaProps;
 
 const siteUrl = 'https://ruraltime.com.br';
 
@@ -432,6 +444,39 @@ const getItemListSchema = (props: ItemListSchemaProps) => ({
   }))
 });
 
+const getProductSchema = (props: ProductSchemaProps) => ({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": props.name,
+  "description": props.description,
+  "image": props.image.startsWith('http') ? props.image : `${siteUrl}${props.image}`,
+  "category": props.category,
+  "brand": {
+    "@type": "Brand",
+    "name": "Rural Time"
+  },
+  "manufacturer": {
+    "@type": "Person",
+    "name": props.manufacturer
+  },
+  ...(props.price && {
+    "offers": {
+      "@type": "Offer",
+      "price": props.price,
+      "priceCurrency": props.currency || "BRL",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Rural Time"
+      }
+    }
+  }),
+  "isRelatedTo": {
+    "@type": "Thing",
+    "name": "Artesanato Rural Brasileiro"
+  }
+});
+
 export const SchemaMarkup = (props: SchemaProps) => {
   let schema: object;
   
@@ -474,6 +519,9 @@ export const SchemaMarkup = (props: SchemaProps) => {
       break;
     case 'itemList':
       schema = getItemListSchema(props);
+      break;
+    case 'product':
+      schema = getProductSchema(props);
       break;
     default:
       return null;
