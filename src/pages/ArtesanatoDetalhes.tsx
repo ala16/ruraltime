@@ -24,7 +24,13 @@ interface Artesanato {
   destaque: boolean;
 }
 
-const ArtesanatoDetalhes = () => {
+interface RelatedArtesanato {
+  id: string;
+  nome: string;
+  categoria: string;
+  artesao_nome: string;
+  imagens: string[];
+}
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [artesanato, setArtesanato] = useState<Artesanato | null>(null);
