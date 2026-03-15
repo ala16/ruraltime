@@ -132,6 +132,17 @@ interface ItemListSchemaProps {
   }>;
 }
 
+interface ProductSchemaProps {
+  type: 'product';
+  name: string;
+  description: string;
+  image: string;
+  category: string;
+  manufacturer: string;
+  price?: number;
+  currency?: string;
+}
+
 type SchemaProps = 
   | OrganizationSchemaProps 
   | LocalBusinessSchemaProps 
@@ -145,7 +156,8 @@ type SchemaProps =
   | BreadcrumbSchemaProps
   | WebPageSchemaProps
   | WebSiteSchemaProps
-  | ItemListSchemaProps;
+  | ItemListSchemaProps
+  | ProductSchemaProps;
 
 const siteUrl = 'https://ruraltime.com.br';
 
