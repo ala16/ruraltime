@@ -520,6 +520,9 @@ export const SchemaMarkup = (props: SchemaProps) => {
     case 'itemList':
       schema = getItemListSchema(props);
       break;
+    case 'product':
+      schema = getProductSchema(props);
+      break;
     default:
       return null;
   }
