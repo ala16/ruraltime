@@ -403,8 +403,19 @@ const ArtesanatoDetalhes = () => {
             </Card>
           </div>
         </div>
+
+        {/* Related artesanatos */}
+        <RelatedContent
+          title="Outros Artesanatos que Você Pode Gostar"
+          items={[
+            { title: 'Artesanato Rural Brasileiro', description: 'Explore todos os artesanatos disponíveis na Rural Time', url: '/artesanatos', type: 'propriedade' as const },
+            { title: 'Turismo Rural no Brasil', description: 'Descubra propriedades e experiências rurais autênticas', url: '/atrativos', type: 'propriedade' as const },
+            { title: 'Agroturismo', description: 'Conheça fazendas e sítios com atividades agrícolas', url: '/agroturismo', type: 'cluster' as const },
+          ]}
+          variant="list"
+        />
       </div>
-    </div>
+    </article>
   );
 };
 
