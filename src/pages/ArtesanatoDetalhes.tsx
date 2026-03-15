@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { SchemaMarkup } from '@/components/seo/SchemaMarkup';
+import { RelatedContent } from '@/components/seo/RelatedContent';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -9,7 +10,6 @@ import { ArrowLeft, Star, Mail, Phone, MapPin, Instagram, MessageCircle, Chevron
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ShareButtons } from '@/components/ShareButtons';
-import { RelatedContent } from '@/components/seo/RelatedContent';
 
 interface Artesanato {
   id: string;
@@ -22,14 +22,6 @@ interface Artesanato {
   artesao_whatsapp?: string;
   imagens: string[];
   destaque: boolean;
-}
-
-interface RelatedArtesanato {
-  id: string;
-  nome: string;
-  categoria: string;
-  artesao_nome: string;
-  imagens: string[];
 }
 
 const ArtesanatoDetalhes = () => {
@@ -58,7 +50,6 @@ const ArtesanatoDetalhes = () => {
   useEffect(() => {
     const fetchArtesanato = async () => {
       if (!id) return;
-
       try {
         const { data, error } = await supabase
           .from('artesanatos')
@@ -66,12 +57,10 @@ const ArtesanatoDetalhes = () => {
           .eq('id', id)
           .eq('disponivel', true)
           .single();
-
         if (error) {
           console.error('Erro ao carregar artesanato:', error);
           return;
         }
-
         setArtesanato(data);
       } catch (error) {
         console.error('Erro ao carregar artesanato:', error);
@@ -79,7 +68,6 @@ const ArtesanatoDetalhes = () => {
         setLoading(false);
       }
     };
-
     fetchArtesanato();
   }, [id]);
 
@@ -117,166 +105,105 @@ const ArtesanatoDetalhes = () => {
     );
   }
 
-  const pageUrl = `${window.location.origin}/artesanato/${id}`;
-  const imageUrl = artesanato?.imagens?.[0] 
-    ? (artesanato.imagens[0].startsWith('http') 
-        ? artesanato.imagens[0] 
-        : `${window.location.origin}${artesanato.imagens[0]}`)
-    : `${window.location.origin}/placeholder.svg`;
-  const artDescription = artesanato?.descricao || 'Descubra artesanatos autênticos do campo na Rural Time';
-
-  // Structured data for SEO
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": artesanato?.nome,
-    "description": artDescription,
-    "image": imageUrl,
-    "category": artesanato?.categoria,
-    "brand": {
-      "@type": "Brand",
-      "name": "Rural Time"
-    },
-    "offers": {
-      "@type": "Offer",
-      "availability": "https://schema.org/InStock",
-      "priceCurrency": "BRL"
-    },
-    "manufacturer": {
-      "@type": "Person",
-      "name": artesanato?.artesao_nome
-    }
-  };
-
-  const keywords = [
-    'artesanato rural',
-    artesanato?.categoria,
-    artesanato?.artesao_nome,
-    'artesanato brasileiro',
-    'produtos artesanais',
-    'rural time',
-    'artesanato do campo'
-  ].filter(Boolean).join(', ');
+  const siteUrl = 'https://ruraltime.com.br';
+  const imageUrl = artesanato.imagens?.[0]
+    ? (artesanato.imagens[0].startsWith('http')
+        ? artesanato.imagens[0]
+        : `${siteUrl}${artesanato.imagens[0]}`)
+    : `${siteUrl}/placeholder.svg`;
+  const artDescription = artesanato.descricao || 'Descubra artesanatos autênticos do campo na Rural Time';
+  const metaDesc = `${artDescription.substring(0, 100)}. Artesanato ${artesanato.categoria} por ${artesanato.artesao_nome}.`.substring(0, 160);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background overflow-x-hidden">
-      <Helmet>
-        <title>{artesanato?.nome || 'Artesanato Rural'} - Artesanato {artesanato?.categoria} por {artesanato?.artesao_nome} | Rural Time</title>
-        <meta name="description" content={`${artDescription} Artesanato ${artesanato?.categoria} feito por ${artesanato?.artesao_nome}. Produtos artesanais autênticos do campo brasileiro.`} />
-        <meta name="keywords" content={keywords} />
-        <link rel="canonical" href={pageUrl} />
-        
-        {/* Open Graph / Facebook / WhatsApp */}
-        <meta property="og:type" content="product" />
-        <meta property="og:url" content={pageUrl} />
-        <meta property="og:title" content={`${artesanato?.nome || 'Artesanato Rural'} - Rural Time`} />
-        <meta property="og:description" content={`🎨 Conheça ${artesanato?.nome || 'este artesanato'} na Rural Time. ${artDescription.substring(0, 150)}... Artesanatos autênticos do campo brasileiro!`} />
-        <meta property="og:image" content={imageUrl} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="Rural Time" />
-        <meta property="og:locale" content="pt_BR" />
-        
-        {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={pageUrl} />
-        <meta property="twitter:title" content={`${artesanato?.nome || 'Artesanato Rural'} - Rural Time`} />
-        <meta property="twitter:description" content={`🎨 Conheça ${artesanato?.nome || 'este artesanato'} na Rural Time. ${artDescription.substring(0, 150)}...`} />
-        <meta property="twitter:image" content={imageUrl} />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
-      </Helmet>
-      
+    <article className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background overflow-x-hidden">
+      <SEOHead
+        title={`${artesanato.nome} - Artesanato ${artesanato.categoria} | Rural Time`}
+        description={metaDesc}
+        keywords={`artesanato rural, ${artesanato.categoria}, ${artesanato.artesao_nome}, artesanato brasileiro, produtos artesanais`}
+        canonicalUrl={`/artesanato/${id}`}
+        ogImage={imageUrl}
+      />
+
+      <SchemaMarkup
+        type="product"
+        name={artesanato.nome}
+        description={artDescription}
+        image={imageUrl}
+        category={artesanato.categoria}
+        manufacturer={artesanato.artesao_nome}
+      />
+
+      <SchemaMarkup
+        type="breadcrumb"
+        items={[
+          { name: 'Início', url: '/' },
+          { name: 'Artesanatos', url: '/artesanatos' },
+          { name: artesanato.nome, url: `/artesanato/${id}` }
+        ]}
+      />
+
       <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate('/')}
-          className="mb-6"
-        >
+        {/* Breadcrumb visual */}
+        <nav aria-label="Breadcrumb" className="mb-4">
+          <ol className="flex items-center gap-2 text-sm text-muted-foreground">
+            <li><a href="/" className="hover:text-primary transition-colors">Início</a></li>
+            <li aria-hidden="true">/</li>
+            <li><a href="/artesanatos" className="hover:text-primary transition-colors">Artesanatos</a></li>
+            <li aria-hidden="true">/</li>
+            <li><span className="text-foreground font-medium">{artesanato.nome}</span></li>
+          </ol>
+        </nav>
+
+        <Button variant="ghost" onClick={() => navigate('/')} className="mb-6">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Voltar
         </Button>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Imagens */}
-          <div className="space-y-4">
+          <section className="space-y-4">
             {artesanato.imagens && artesanato.imagens.length > 0 ? (
               <>
-                {/* Carrossel Principal */}
                 <div className="relative w-full">
                   <img
                     src={artesanato.imagens[selectedImageIndex]}
                     alt={`${artesanato.categoria} - ${artesanato.nome} por ${artesanato.artesao_nome} - Imagem ${selectedImageIndex + 1}`}
                     className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover rounded-lg"
+                    width={800}
+                    height={600}
                     loading="eager"
                   />
-                  
-                  {/* Botões de navegação */}
                   {artesanato.imagens.length > 1 && (
                     <>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={handlePreviousImage}
-                        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white w-9 h-9 sm:w-12 sm:h-12 rounded-full shadow-lg"
-                      >
+                      <Button variant="ghost" size="icon" onClick={handlePreviousImage} className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-background/90 hover:bg-background w-9 h-9 sm:w-12 sm:h-12 rounded-full shadow-lg" aria-label="Imagem anterior">
                         <ChevronLeft className="w-6 h-6" />
                       </Button>
-                      
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={handleNextImage}
-                        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white w-9 h-9 sm:w-12 sm:h-12 rounded-full shadow-lg"
-                      >
+                      <Button variant="ghost" size="icon" onClick={handleNextImage} className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-background/90 hover:bg-background w-9 h-9 sm:w-12 sm:h-12 rounded-full shadow-lg" aria-label="Próxima imagem">
                         <ChevronRight className="w-6 h-6" />
                       </Button>
-                      
-                      {/* Indicador de posição */}
-                      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-foreground/50 text-background px-3 py-1 rounded-full text-sm">
                         {selectedImageIndex + 1} / {artesanato.imagens.length}
                       </div>
                     </>
                   )}
                 </div>
-                
-                {/* Miniaturas */}
                 {artesanato.imagens.length > 1 && (
                   <div className="relative">
-                    <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-2" style={{
-                      scrollbarWidth: 'none',
-                      msOverflowStyle: 'none'
-                    }}>
+                    <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                       {artesanato.imagens.map((imagem, index) => (
-                      <button
+                        <button
                           key={index}
                           onClick={() => setSelectedImageIndex(index)}
                           className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
-                            selectedImageIndex === index 
-                              ? 'border-primary shadow-lg ring-2 ring-primary/30' 
+                            selectedImageIndex === index
+                              ? 'border-primary shadow-lg ring-2 ring-primary/30'
                               : 'border-muted hover:border-muted-foreground/50'
                           }`}
                         >
-                          <img
-                            src={imagem}
-                            alt={`${artesanato.nome} miniatura ${index + 1}`}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                          />
+                          <img src={imagem} alt={`${artesanato.nome} miniatura ${index + 1}`} className="w-full h-full object-cover" loading="lazy" width={80} height={80} />
                         </button>
                       ))}
                     </div>
-                    
-                    {/* Gradientes para indicar scroll quando há muitas imagens */}
-                    {artesanato.imagens.length > 6 && (
-                      <>
-                        <div className="absolute left-0 top-0 bottom-2 w-4 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
-                        <div className="absolute right-0 top-0 bottom-2 w-4 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
-                      </>
-                    )}
                   </div>
                 )}
               </>
@@ -285,10 +212,10 @@ const ArtesanatoDetalhes = () => {
                 <span className="text-muted-foreground">Sem imagem</span>
               </div>
             )}
-          </div>
+          </section>
 
           {/* Detalhes */}
-          <div className="space-y-6">
+          <section className="space-y-6">
             <div>
               <div className="flex flex-wrap items-start gap-2 mb-2">
                 <h1 className="text-2xl sm:text-3xl font-bold break-words">{artesanato.nome}</h1>
@@ -299,86 +226,45 @@ const ArtesanatoDetalhes = () => {
                   </Badge>
                 )}
               </div>
-              
               <div className="mb-4">
                 <Badge variant="secondary">{artesanato.categoria}</Badge>
               </div>
-
               <div className="mb-4">
-                <ShareButtons
-                  url={`/artesanato/${artesanato.id}`}
-                  title={artesanato.nome}
-                  description={`Artesanato ${artesanato.categoria} por ${artesanato.artesao_nome}`}
-                />
+                <ShareButtons url={`/artesanato/${artesanato.id}`} title={artesanato.nome} description={`Artesanato ${artesanato.categoria} por ${artesanato.artesao_nome}`} />
               </div>
             </div>
 
             {artesanato.descricao && (
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="font-semibold mb-3">Descrição</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {artesanato.descricao}
-                  </p>
+                  <h2 className="font-semibold mb-3">Descrição</h2>
+                  <p className="text-muted-foreground leading-relaxed">{artesanato.descricao}</p>
                 </CardContent>
               </Card>
             )}
 
             <Card>
               <CardContent className="p-6">
-                <h3 className="font-semibold mb-3">Artesão</h3>
+                <h2 className="font-semibold mb-3">Artesão</h2>
                 <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium">{artesanato.artesao_nome}</span>
-                  </div>
-                  
+                  <span className="font-medium">{artesanato.artesao_nome}</span>
                   <div className="flex flex-wrap gap-3">
                     {artesanato.artesao_whatsapp && (
-                      <a 
-                        href={`https://wa.me/${artesanato.artesao_whatsapp.replace(/\D/g, '')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-3 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors text-sm"
-                      >
-                        <MessageCircle className="w-4 h-4" />
-                        WhatsApp
+                      <a href={`https://wa.me/${artesanato.artesao_whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2 bg-accent text-accent-foreground rounded-lg hover:opacity-80 transition-colors text-sm">
+                        <MessageCircle className="w-4 h-4" /> WhatsApp
                       </a>
                     )}
-                    
                     {artesanato.artesao_instagram && (
-                      <a 
-                        href={`https://instagram.com/${artesanato.artesao_instagram.replace('@', '')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-3 py-2 bg-pink-100 text-pink-700 rounded-lg hover:bg-pink-200 transition-colors text-sm"
-                      >
-                        <Instagram className="w-4 h-4" />
-                        Instagram
+                      <a href={`https://instagram.com/${artesanato.artesao_instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2 bg-secondary text-secondary-foreground rounded-lg hover:opacity-80 transition-colors text-sm">
+                        <Instagram className="w-4 h-4" /> Instagram
                       </a>
                     )}
-                    
                     {artesanato.artesao_contato && (
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         {artesanato.artesao_contato.includes('@') ? (
-                          <>
-                            <Mail className="w-4 h-4" />
-                            <a 
-                              href={`mailto:${artesanato.artesao_contato}`}
-                              className="hover:text-primary transition-colors"
-                            >
-                              {artesanato.artesao_contato}
-                            </a>
-                          </>
+                          <><Mail className="w-4 h-4" /><a href={`mailto:${artesanato.artesao_contato}`} className="hover:text-primary transition-colors">{artesanato.artesao_contato}</a></>
                         ) : (
-                          <>
-                            <Phone className="w-4 h-4" />
-                            <a 
-                              href={`tel:${artesanato.artesao_contato}`}
-                              className="hover:text-primary transition-colors"
-                            >
-                              {artesanato.artesao_contato}
-                            </a>
-                          </>
+                          <><Phone className="w-4 h-4" /><a href={`tel:${artesanato.artesao_contato}`} className="hover:text-primary transition-colors">{artesanato.artesao_contato}</a></>
                         )}
                       </div>
                     )}
@@ -394,23 +280,22 @@ const ArtesanatoDetalhes = () => {
                   <div>
                     <h3 className="font-semibold mb-2">Artesanato Brasileiro</h3>
                     <p className="text-sm text-muted-foreground">
-                      Peça única criada por talentosos artesãos brasileiros, 
-                      preservando tradições e agregando valor cultural às experiências rurais.
+                      Peça única criada por talentosos artesãos brasileiros, preservando tradições e agregando valor cultural às experiências rurais.
                     </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </section>
         </div>
 
-        {/* Related artesanatos */}
+        {/* Cross-selling / Related content */}
         <RelatedContent
-          title="Outros Artesanatos que Você Pode Gostar"
+          title="Explore Mais na Rural Time"
           items={[
-            { title: 'Artesanato Rural Brasileiro', description: 'Explore todos os artesanatos disponíveis na Rural Time', url: '/artesanatos', type: 'propriedade' as const },
-            { title: 'Turismo Rural no Brasil', description: 'Descubra propriedades e experiências rurais autênticas', url: '/atrativos', type: 'propriedade' as const },
-            { title: 'Agroturismo', description: 'Conheça fazendas e sítios com atividades agrícolas', url: '/agroturismo', type: 'cluster' as const },
+            { title: 'Todos os Artesanatos', description: 'Veja a coleção completa de artesanatos rurais brasileiros', url: '/artesanatos', type: 'propriedade' as const },
+            { title: 'Atrativos de Turismo Rural', description: 'Descubra propriedades e experiências rurais autênticas', url: '/atrativos', type: 'propriedade' as const },
+            { title: 'Agroturismo no Brasil', description: 'Conheça fazendas e sítios com atividades agrícolas', url: '/agroturismo', type: 'cluster' as const },
           ]}
           variant="list"
         />
