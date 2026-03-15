@@ -597,6 +597,13 @@ Mensagem enviada através do Rural Time.`;
             </Card>
           </div>
         </div>
+
+        {/* Cross-selling: propriedades relacionadas */}
+        <RelatedProperties
+          currentPropertyId={id || ''}
+          cidade={propriedade.cidade}
+          estado={propriedade.estado}
+        />
       </div>
     </div>
   );
