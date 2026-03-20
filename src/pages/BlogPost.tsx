@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { SchemaMarkup } from '@/components/seo/SchemaMarkup';
+import { getOgShareUrl } from '@/lib/og-share';
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
