@@ -35,20 +35,26 @@ export default function BlogPost() {
   };
 
   const handleShare = async () => {
-    const url = window.location.href;
+    const ogUrl = getOgShareUrl({
+      type: 'blog',
+      id: post?.slug || '',
+      title: post?.title,
+      description: post?.excerpt,
+      image: typeof post?.imageUrl === 'string' && post.imageUrl.startsWith('http') ? post.imageUrl : undefined,
+    });
     
     if (navigator.share) {
       try {
         await navigator.share({
           title: post?.title,
           text: post?.excerpt,
-          url: url,
+          url: ogUrl,
         });
       } catch (err) {
         console.log('Erro ao compartilhar:', err);
       }
     } else {
-      navigator.clipboard.writeText(url);
+      navigator.clipboard.writeText(ogUrl);
       toast.success('Link copiado para a área de transferência!');
     }
   };
