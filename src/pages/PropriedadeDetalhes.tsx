@@ -470,6 +470,9 @@ Mensagem enviada através do Rural Time.`;
                   url={`/propriedade/${propriedade.id}`}
                   title={propriedade.nome}
                   description={`${propriedade.tipo_propriedade} em ${propriedade.cidade}, ${propriedade.estado}`}
+                  ogType="propriedade"
+                  ogId={propriedade.id}
+                  ogImage={propriedade.imagens?.[0]}
                 />
               </div>
             </div>

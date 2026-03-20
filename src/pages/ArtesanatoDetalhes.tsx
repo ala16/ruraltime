@@ -230,7 +230,7 @@ const ArtesanatoDetalhes = () => {
                 <Badge variant="secondary">{artesanato.categoria}</Badge>
               </div>
               <div className="mb-4">
-                <ShareButtons url={`/artesanato/${artesanato.id}`} title={artesanato.nome} description={`Artesanato ${artesanato.categoria} por ${artesanato.artesao_nome}`} />
+                <ShareButtons url={`/artesanato/${artesanato.id}`} title={artesanato.nome} description={`Artesanato ${artesanato.categoria} por ${artesanato.artesao_nome}`} ogType="artesanato" ogId={artesanato.id} ogImage={artesanato.imagens?.[0]} />
               </div>
             </div>
 
