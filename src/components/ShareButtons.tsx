@@ -7,18 +7,29 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { getOgShareUrl } from "@/lib/og-share";
 
 interface ShareButtonsProps {
   url: string;
   title: string;
   description?: string;
+  ogType?: 'blog' | 'propriedade' | 'artesanato' | 'page';
+  ogId?: string;
+  ogImage?: string;
 }
 
-export const ShareButtons = ({ url, title, description }: ShareButtonsProps) => {
+export const ShareButtons = ({ url, title, description, ogType, ogId, ogImage }: ShareButtonsProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const fullUrl = url.startsWith('http') ? url : `${window.location.origin}${url}`;
   
   const shareText = description ? `${title} - ${description}` : title;
+
+  // Generate OG-friendly URL for social sharing (crawlers will see proper meta tags)
+  const socialShareUrl = ogType && ogId
+    ? getOgShareUrl({ type: ogType, id: ogId, title, description, image: ogImage })
+    : ogType === 'page'
+    ? getOgShareUrl({ type: 'page', path: url, title, description, image: ogImage })
+    : fullUrl;
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(fullUrl);
@@ -27,20 +38,19 @@ export const ShareButtons = ({ url, title, description }: ShareButtonsProps) => 
   };
 
   const handleShareWhatsApp = () => {
-    const whatsappText = `🌾 *Rural Time* 🌾\n\n${shareText}\n\nConfira mais detalhes e reserve sua experiência:\n${fullUrl}\n\n✨ Descubra o autêntico turismo rural brasileiro!`;
+    const whatsappText = `🌾 *Rural Time* 🌾\n\n${shareText}\n\nConfira mais detalhes e reserve sua experiência:\n${socialShareUrl}\n\n✨ Descubra o autêntico turismo rural brasileiro!`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
     window.open(whatsappUrl, '_blank');
     setIsOpen(false);
   };
 
   const handleShareFacebook = () => {
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`;
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(socialShareUrl)}`;
     window.open(facebookUrl, '_blank');
     setIsOpen(false);
   };
 
   const handleShareInstagram = () => {
-    // Instagram doesn't have a direct share URL, so we copy the link and show a message
     navigator.clipboard.writeText(fullUrl);
     toast.success("Link copiado! Cole na bio ou stories do Instagram");
     setIsOpen(false);
