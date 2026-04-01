@@ -108,8 +108,7 @@ const Index = () => {
         <BlogCarousel />
         <Depoimentos />
         
-        
-        
+        <AICallToAction />
         
         <QuemSomos />
         
