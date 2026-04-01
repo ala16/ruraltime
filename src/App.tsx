@@ -39,6 +39,7 @@ const TurismoSustentavel = lazy(() => import("./pages/clusters/TurismoSustentave
 const Sobre = lazy(() => import("./pages/Sobre"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const CityLandingPage = lazy(() => import("./pages/CityLandingPage"));
+const RuralTimeAI = lazy(() => import("./pages/RuralTimeAI"));
 
 const queryClient = new QueryClient();
 
@@ -92,6 +93,7 @@ const App = () => (
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/destinos/:estado/:cidade" element={<CityLandingPage />} />
+            <Route path="/ia" element={<RuralTimeAI />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
