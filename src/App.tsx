@@ -39,6 +39,7 @@ const TurismoSustentavel = lazy(() => import("./pages/clusters/TurismoSustentave
 const Sobre = lazy(() => import("./pages/Sobre"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const CityLandingPage = lazy(() => import("./pages/CityLandingPage"));
+const RuralTimeAI = lazy(() => import("./pages/RuralTimeAI"));
 
 const queryClient = new QueryClient();
 
