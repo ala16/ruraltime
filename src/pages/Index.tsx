@@ -19,6 +19,7 @@ import { BlogCarousel } from "@/components/sections/BlogCarousel";
 import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
 import { AIRecommendationChat } from "@/components/sections/AIRecommendationChat";
 import { FAQSection } from "@/components/seo/FAQSection";
+import { AICallToAction } from "@/components/sections/AICallToAction";
 
 const homeFAQs = [
   {
