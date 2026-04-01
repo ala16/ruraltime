@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { FloatingBanner } from "@/components/FloatingBanner";
+
 import { ScrollToTop } from "./components/ScrollToTop";
 import Index from "./pages/Index";
 
