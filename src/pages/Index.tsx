@@ -124,6 +124,7 @@ const Index = () => {
       </main>
       
       <Footer onSectionClick={scrollToSection} />
+      <FloatingBanner />
     </div>;
 };
 export default Index;
