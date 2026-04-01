@@ -103,6 +103,7 @@ const Agendamento = () => {
 
     const dataFormatada = format(date, "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
     
+    const propertyUrl = propriedade ? `https://www.ruraltime.com.br/propriedade/${propriedade.id}` : '';
     const mensagem = `Olá! Gostaria de agendar uma atividade rural.
 
 *Dados do agendamento:*
@@ -114,8 +115,8 @@ const Agendamento = () => {
 ${formData.telefoneContato ? `• Telefone: ${formData.telefoneContato}` : ''}
 
 Gostaria de confirmar a disponibilidade para essa data e horário.
-
-Obrigado!`;
+${propertyUrl ? `\n🔗 Veja mais sobre este atrativo: ${propertyUrl}` : ''}
+🌾 Conheça a Rural Time: https://www.ruraltime.com.br`;
 
     const telefoneFormatado = (propriedade?.whatsapp || propriedade?.telefone)?.replace(/\D/g, '') || '';
     const whatsappUrl = `https://wa.me/55${telefoneFormatado}?text=${encodeURIComponent(mensagem)}`;

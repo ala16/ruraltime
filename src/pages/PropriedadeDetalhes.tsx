@@ -144,7 +144,7 @@ const PropriedadeDetalhes = () => {
   }, [id]);
 
   const handleContactAction = (type: 'phone' | 'email' | 'website' | 'whatsapp' | 'instagram', value: string, customMessage?: string) => {
-    const defaultMessage = 'Olá vi a sua propriedade de turismo rural no site da www.ruraltime.com.br gostaria de agendar uma visita turística.';
+    const defaultMessage = `Olá vi a sua propriedade de turismo rural no site da www.ruraltime.com.br gostaria de agendar uma visita turística.\n\n🔗 Veja mais: https://www.ruraltime.com.br/propriedade/${id}\n🌾 Conheça a Rural Time: https://www.ruraltime.com.br`;
     const whatsappMessage = encodeURIComponent(customMessage || defaultMessage);
     
     switch (type) {
@@ -183,13 +183,15 @@ const PropriedadeDetalhes = () => {
       }
     }
 
+    const propertyUrl = `https://www.ruraltime.com.br/propriedade/${propriedade.id}`;
     const mensagem = `Olá! Gostaria de agendar uma visita no *${propriedade.nome}*.
 ${dataFormatada ? `\n📅 Data: ${dataFormatada}` : ''}
 ${guests ? `👥 Número de pessoas: ${guests}` : ''}
 
 Poderia me informar sobre disponibilidade, horários e valores?
 
-Mensagem enviada através do Rural Time.`;
+🔗 Veja mais sobre este atrativo: ${propertyUrl}
+🌾 Conheça a Rural Time: https://www.ruraltime.com.br`;
 
     handleContactAction('whatsapp', whatsappNumber, mensagem);
   };
