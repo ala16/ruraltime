@@ -20,6 +20,7 @@ import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
 import { AIRecommendationChat } from "@/components/sections/AIRecommendationChat";
 import { FAQSection } from "@/components/seo/FAQSection";
 import { AICallToAction } from "@/components/sections/AICallToAction";
+import { FloatingBanner } from "@/components/FloatingBanner";
 
 const homeFAQs = [
   {
@@ -123,6 +124,7 @@ const Index = () => {
       </main>
       
       <Footer onSectionClick={scrollToSection} />
+      <FloatingBanner />
     </div>;
 };
 export default Index;
