@@ -73,7 +73,7 @@ const CityLandingPage = () => {
   const estadoUF = estado?.toUpperCase() || '';
   const estadoNome = estadosNomes[estadoUF] || estado;
   const cidadeSlug = cidade || '';
-  const cidadeNomeDisplay = cidadeSlug.split('-').map(word =>
+  const realCidadeNomeDisplay = cidadeSlug.split('-').map(word =>
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(' ');
 
@@ -86,7 +86,7 @@ const CityLandingPage = () => {
       .replace(/[^a-z0-9-]/g, "");
 
   // We'll store the real city name from the first matched property
-  const [realCidadeNome, setRealCidadeNome] = useState(cidadeNomeDisplay);
+  const [realCidadeNome, setRealCidadeNome] = useState(realCidadeNomeDisplay);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -120,10 +120,10 @@ const CityLandingPage = () => {
     };
 
     fetchData();
-  }, [cidadeNome, estadoUF]);
+  }, [realCidadeNome, estadoUF]);
 
-  const pageTitle = `Turismo Rural em ${cidadeNome} - Passeios e Fazendas | Rural Time`;
-  const pageDescription = `Descubra ${propriedades.length > 0 ? propriedades.length + ' propriedades rurais' : 'experiências autênticas'} de turismo rural em ${cidadeNome}, ${estadoNome}. Fazendas, sítios, trilhas ecológicas, gastronomia do campo e artesanato local.`;
+  const pageTitle = `Turismo Rural em ${realCidadeNome} - Passeios e Fazendas | Rural Time`;
+  const pageDescription = `Descubra ${propriedades.length > 0 ? propriedades.length + ' propriedades rurais' : 'experiências autênticas'} de turismo rural em ${realCidadeNome}, ${estadoNome}. Fazendas, sítios, trilhas ecológicas, gastronomia do campo e artesanato local.`;
   const pageUrl = `/destinos/${estado}/${cidade}`;
 
   const scrollToSection = (sectionId: string) => {
@@ -141,7 +141,7 @@ const CityLandingPage = () => {
       <SEOHead
         title={pageTitle}
         description={pageDescription}
-        keywords={`turismo rural ${cidadeNome}, fazendas ${cidadeNome}, agroturismo ${estadoNome}, experiências rurais ${cidadeNome}, hospedagem rural ${cidadeNome}, passeios ${cidadeNome}, artesanato ${cidadeNome}`}
+        keywords={`turismo rural ${realCidadeNome}, fazendas ${realCidadeNome}, agroturismo ${estadoNome}, experiências rurais ${realCidadeNome}, hospedagem rural ${realCidadeNome}, passeios ${realCidadeNome}, artesanato ${realCidadeNome}`}
         canonicalUrl={pageUrl}
         ogType="website"
       />
@@ -149,9 +149,9 @@ const CityLandingPage = () => {
       {/* Schema: TouristDestination */}
       <SchemaMarkup
         type="touristDestination"
-        name={`Turismo Rural em ${cidadeNome}`}
+        name={`Turismo Rural em ${realCidadeNome}`}
         description={pageDescription}
-        address={{ city: cidadeNome, state: estadoUF }}
+        address={{ city: realCidadeNome, state: estadoUF }}
         attractions={attractionNames}
       />
 
@@ -162,7 +162,7 @@ const CityLandingPage = () => {
           { name: 'Rural Time', url: '/' },
           { name: 'Destinos', url: '/turismo-rural' },
           { name: estadoNome, url: `/turismo-rural/${estado}` },
-          { name: cidadeNome, url: pageUrl }
+          { name: realCidadeNome, url: pageUrl }
         ]}
       />
 
@@ -170,8 +170,8 @@ const CityLandingPage = () => {
       {propriedades.length > 0 && (
         <SchemaMarkup
           type="itemList"
-          name={`Propriedades Rurais em ${cidadeNome}`}
-          description={`Lista de propriedades rurais para turismo em ${cidadeNome}, ${estadoNome}`}
+          name={`Propriedades Rurais em ${realCidadeNome}`}
+          description={`Lista de propriedades rurais para turismo em ${realCidadeNome}, ${estadoNome}`}
           url={pageUrl}
           items={propriedades.map((p, i) => ({
             name: p.nome,
@@ -212,24 +212,24 @@ const CityLandingPage = () => {
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    <BreadcrumbPage>{cidadeNome}</BreadcrumbPage>
+                    <BreadcrumbPage>{realCidadeNome}</BreadcrumbPage>
                   </BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb>
             </nav>
 
             <h1 className="text-3xl md:text-5xl font-bold mb-4">
-              Turismo Rural e Experiências em <span className="text-primary">{cidadeNome}</span>
+              Turismo Rural e Experiências em <span className="text-primary">{realCidadeNome}</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mb-6">
-              Explore fazendas, sítios e propriedades rurais em {cidadeNome}, {estadoNome}.
+              Explore fazendas, sítios e propriedades rurais em {realCidadeNome}, {estadoNome}.
               Viva experiências autênticas no campo brasileiro.
             </p>
 
             <div className="flex flex-wrap gap-3">
               <Badge variant="outline" className="text-sm py-2 px-4">
                 <MapPin className="h-4 w-4 mr-2" />
-                {cidadeNome}, {estadoUF}
+                {realCidadeNome}, {estadoUF}
               </Badge>
               <Badge variant="outline" className="text-sm py-2 px-4">
                 <TreeDeciduous className="h-4 w-4 mr-2" />
@@ -247,12 +247,12 @@ const CityLandingPage = () => {
         <section className="py-12 bg-card">
           <div className="container mx-auto px-4">
             <article className="prose prose-lg max-w-4xl mx-auto">
-              <h2 className="text-2xl font-bold mb-4">Descubra o Turismo Rural em {cidadeNome}, {estadoNome}</h2>
+              <h2 className="text-2xl font-bold mb-4">Descubra o Turismo Rural em {realCidadeNome}, {estadoNome}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                O turismo rural em {cidadeNome} é uma porta de entrada para experiências genuínas que conectam
+                O turismo rural em {realCidadeNome} é uma porta de entrada para experiências genuínas que conectam
                 visitantes à cultura, gastronomia e natureza do interior de {estadoNome}. A região se destaca
                 por suas paisagens exuberantes, fazendas históricas e pela hospitalidade característica do campo
-                brasileiro. Quem visita {cidadeNome} encontra um ambiente de tranquilidade, longe da agitação
+                brasileiro. Quem visita {realCidadeNome} encontra um ambiente de tranquilidade, longe da agitação
                 urbana, ideal para famílias, casais e grupos de amigos em busca de lazer e descanso.
               </p>
               <p className="text-muted-foreground leading-relaxed">
@@ -263,7 +263,7 @@ const CityLandingPage = () => {
                 confortável, restaurantes com gastronomia típica e programação educativa para crianças.
               </p>
 
-              <h3 className="text-xl font-semibold mt-8 mb-4">Por que visitar {cidadeNome}?</h3>
+              <h3 className="text-xl font-semibold mt-8 mb-4">Por que visitar {realCidadeNome}?</h3>
               <ul className="list-disc list-inside text-muted-foreground space-y-2">
                 <li>Contato direto com a natureza e a vida no campo</li>
                 <li>Gastronomia regional com ingredientes frescos e orgânicos</li>
@@ -275,7 +275,7 @@ const CityLandingPage = () => {
 
               <h3 className="text-xl font-semibold mt-8 mb-4">Planeje sua visita</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Para aproveitar ao máximo o turismo rural em {cidadeNome}, recomendamos entrar em contato
+                Para aproveitar ao máximo o turismo rural em {realCidadeNome}, recomendamos entrar em contato
                 direto com as propriedades listadas abaixo. Cada uma oferece experiências diferenciadas e
                 pode orientar sobre horários de funcionamento, disponibilidade e atividades sazonais.
                 Reserve sua visita com antecedência e prepare-se para uma imersão inesquecível no campo.
@@ -288,7 +288,7 @@ const CityLandingPage = () => {
         <section className="py-16" id="propriedades">
           <div className="container mx-auto px-4">
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-              Propriedades Rurais em {cidadeNome}
+              Propriedades Rurais em {realCidadeNome}
             </h2>
 
             {loading ? (
@@ -304,7 +304,7 @@ const CityLandingPage = () => {
             ) : propriedades.length === 0 ? (
               <div className="text-center py-16">
                 <Mountain className="h-16 w-16 mx-auto mb-4 text-muted-foreground/50" />
-                <h3 className="text-xl font-semibold mb-4">Nenhuma propriedade encontrada em {cidadeNome}</h3>
+                <h3 className="text-xl font-semibold mb-4">Nenhuma propriedade encontrada em {realCidadeNome}</h3>
                 <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                   Ainda não temos propriedades rurais cadastradas nesta cidade.
                 </p>
@@ -330,7 +330,7 @@ const CityLandingPage = () => {
                       {prop.imagens?.[0] ? (
                         <OptimizedImage
                           src={prop.imagens[0]}
-                          alt={`${prop.nome} - ${prop.tipo_propriedade} para turismo rural em ${cidadeNome}`}
+                          alt={`${prop.nome} - ${prop.tipo_propriedade} para turismo rural em ${realCidadeNome}`}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           width={400}
                           height={225}
@@ -409,22 +409,22 @@ const CityLandingPage = () => {
         {/* FAQ for SGE */}
         <section className="py-12 container mx-auto px-4">
           <FAQSection
-            title={`Perguntas Frequentes sobre Turismo Rural em ${cidadeNome}`}
+            title={`Perguntas Frequentes sobre Turismo Rural em ${realCidadeNome}`}
             faqs={[
               {
-                question: `O que fazer em ${cidadeNome} para turismo rural?`,
-                answer: `${cidadeNome} oferece diversas experiências de turismo rural, incluindo visitas a fazendas, trilhas ecológicas, degustação de produtos artesanais, hospedagem rural e contato direto com a natureza.`
+                question: `O que fazer em ${realCidadeNome} para turismo rural?`,
+                answer: `${realCidadeNome} oferece diversas experiências de turismo rural, incluindo visitas a fazendas, trilhas ecológicas, degustação de produtos artesanais, hospedagem rural e contato direto com a natureza.`
               },
               {
-                question: `Quais são as melhores propriedades rurais em ${cidadeNome}?`,
-                answer: `Na Rural Time você encontra ${propriedades.length > 0 ? propriedades.length : 'diversas'} propriedades rurais em ${cidadeNome}, ${estadoNome}. Cada uma oferece experiências únicas de agroturismo e ecoturismo.`
+                question: `Quais são as melhores propriedades rurais em ${realCidadeNome}?`,
+                answer: `Na Rural Time você encontra ${propriedades.length > 0 ? propriedades.length : 'diversas'} propriedades rurais em ${realCidadeNome}, ${estadoNome}. Cada uma oferece experiências únicas de agroturismo e ecoturismo.`
               },
               {
-                question: `Turismo rural em ${cidadeNome} é adequado para crianças?`,
-                answer: `Sim! Muitas propriedades em ${cidadeNome} oferecem atividades pensadas para crianças, como contato com animais, colheita de frutas e atividades educativas sobre a vida no campo.`
+                question: `Turismo rural em ${realCidadeNome} é adequado para crianças?`,
+                answer: `Sim! Muitas propriedades em ${realCidadeNome} oferecem atividades pensadas para crianças, como contato com animais, colheita de frutas e atividades educativas sobre a vida no campo.`
               },
               {
-                question: `Como reservar uma visita a uma fazenda em ${cidadeNome}?`,
+                question: `Como reservar uma visita a uma fazenda em ${realCidadeNome}?`,
                 answer: `Você pode reservar diretamente pela Rural Time. Acesse a propriedade desejada, escolha a data e envie sua reserva via WhatsApp. O processo é rápido e simples.`
               }
             ]}
@@ -435,7 +435,7 @@ const CityLandingPage = () => {
         <section className="py-16 bg-primary/5">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Tem uma propriedade rural em {cidadeNome}?
+              Tem uma propriedade rural em {realCidadeNome}?
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
               Cadastre sua fazenda, sítio ou chácara na Rural Time e conecte-se com turistas
