@@ -232,7 +232,7 @@ export default function RuralTimeAI() {
                     onClick={() => sendMessage(s.text)}
                     className="flex items-center gap-3 px-4 py-3 rounded-xl border border-border/60 bg-card hover:bg-accent/50 text-left transition-colors group"
                   >
-                    <span className="text-xl">{s.icon}</span>
+                    {(() => { const Icon = ICON_MAP[s.icon]; return Icon ? <Icon className="h-5 w-5 text-primary" /> : null; })()}
                     <span className="text-sm text-foreground group-hover:text-primary transition-colors">{s.text}</span>
                   </button>
                 ))}
