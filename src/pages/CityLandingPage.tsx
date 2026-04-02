@@ -120,7 +120,7 @@ const CityLandingPage = () => {
     };
 
     fetchData();
-  }, [realCidadeNome, estadoUF]);
+  }, [cidadeSlug, estadoUF]);
 
   const pageTitle = `Turismo Rural em ${realCidadeNome} - Passeios e Fazendas | Rural Time`;
   const pageDescription = `Descubra ${propriedades.length > 0 ? propriedades.length + ' propriedades rurais' : 'experiências autênticas'} de turismo rural em ${realCidadeNome}, ${estadoNome}. Fazendas, sítios, trilhas ecológicas, gastronomia do campo e artesanato local.`;

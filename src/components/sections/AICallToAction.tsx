@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Bot, Sparkles, ArrowRight } from "lucide-react";
+import { Bot, Sparkles, ArrowRight, Leaf, FileText, Lightbulb, Home } from "lucide-react";
 
 export function AICallToAction() {
   const navigate = useNavigate();
