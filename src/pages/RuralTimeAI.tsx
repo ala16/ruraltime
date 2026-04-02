@@ -29,6 +29,10 @@ const SUGGESTIONS = [
   { icon: "Leaf", text: "Ideias de atividades sustentáveis para visitantes" },
 ];
 
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  Home, FileText, UtensilsCrossed, Leaf,
+};
+
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/rural-ai-chat`;
 
 async function streamChat({
