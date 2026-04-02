@@ -86,7 +86,7 @@ const CityLandingPage = () => {
       .replace(/[^a-z0-9-]/g, "");
 
   // We'll store the real city name from the first matched property
-  const [realCidadeNome, setRealCidadeNome] = useState(realCidadeNomeDisplay);
+  const [realCidadeNome, setRealCidadeNome] = useState(cidadeNomeDisplay);
 
   useEffect(() => {
     const fetchData = async () => {
