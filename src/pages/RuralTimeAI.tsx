@@ -9,6 +9,10 @@ import {
   Loader2,
   Plus,
   Sparkles,
+  Home,
+  FileText,
+  UtensilsCrossed,
+  Leaf,
 } from "lucide-react";
 import { toast } from "sonner";
 import { SEOHead } from "@/components/seo/SEOHead";
