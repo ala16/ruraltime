@@ -73,7 +73,7 @@ const CityLandingPage = () => {
   const estadoUF = estado?.toUpperCase() || '';
   const estadoNome = estadosNomes[estadoUF] || estado;
   const cidadeSlug = cidade || '';
-  const realCidadeNomeDisplay = cidadeSlug.split('-').map(word =>
+  const cidadeNomeDisplay = cidadeSlug.split('-').map(word =>
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(' ');
 
