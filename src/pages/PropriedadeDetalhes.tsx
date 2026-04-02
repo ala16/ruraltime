@@ -185,13 +185,13 @@ const PropriedadeDetalhes = () => {
 
     const propertyUrl = `https://www.ruraltime.com.br/propriedade/${propriedade.id}`;
     const mensagem = `Olá! Gostaria de agendar uma visita no *${propriedade.nome}*.
-${dataFormatada ? `\n📅 Data: ${dataFormatada}` : ''}
-${guests ? `👥 Número de pessoas: ${guests}` : ''}
+${dataFormatada ? `\nData: ${dataFormatada}` : ''}
+${guests ? `Número de pessoas: ${guests}` : ''}
 
 Poderia me informar sobre disponibilidade, horários e valores?
 
-🔗 Veja mais sobre este atrativo: ${propertyUrl}
-🌾 Conheça a Rural Time: https://www.ruraltime.com.br`;
+Veja mais sobre este atrativo: ${propertyUrl}
+Conheça a Rural Time: https://www.ruraltime.com.br`;
 
     handleContactAction('whatsapp', whatsappNumber, mensagem);
   };

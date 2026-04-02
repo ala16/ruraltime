@@ -381,7 +381,7 @@ const PropriedadesRurais = () => {
                   <div className="mt-4 pt-4 border-t">
                     <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-4 rounded-lg">
                       <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
-                        🎁 Presente uma Experiência
+                        Presente uma Experiência
                       </h4>
                       <p className="text-sm text-muted-foreground mb-3">
                         Compre um voucher de experiência rural como presente

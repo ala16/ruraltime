@@ -19,10 +19,10 @@ interface Message {
 }
 
 const SUGGESTIONS = [
-  { icon: "🏡", text: "Como começar um negócio de turismo rural?" },
-  { icon: "📋", text: "Quais licenças preciso para receber turistas?" },
-  { icon: "🍽️", text: "Como montar um restaurante rural na fazenda?" },
-  { icon: "🌿", text: "Ideias de atividades sustentáveis para visitantes" },
+  { icon: "Home", text: "Como começar um negócio de turismo rural?" },
+  { icon: "FileText", text: "Quais licenças preciso para receber turistas?" },
+  { icon: "UtensilsCrossed", text: "Como montar um restaurante rural na fazenda?" },
+  { icon: "Leaf", text: "Ideias de atividades sustentáveis para visitantes" },
 ];
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/rural-ai-chat`;

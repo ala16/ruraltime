@@ -38,7 +38,7 @@ export const ShareButtons = ({ url, title, description, ogType, ogId, ogImage }:
   };
 
   const handleShareWhatsApp = () => {
-    const whatsappText = `🌾 *Rural Time* 🌾\n\n${shareText}\n\nConfira mais detalhes e reserve sua experiência:\n${socialShareUrl}\n\n✨ Descubra o autêntico turismo rural brasileiro!`;
+    const whatsappText = `*Rural Time*\n\n${shareText}\n\nConfira mais detalhes e reserve sua experiência:\n${socialShareUrl}\n\nDescubra o autêntico turismo rural brasileiro!`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
     window.open(whatsappUrl, '_blank');
     setIsOpen(false);

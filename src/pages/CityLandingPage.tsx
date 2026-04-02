@@ -72,9 +72,21 @@ const CityLandingPage = () => {
 
   const estadoUF = estado?.toUpperCase() || '';
   const estadoNome = estadosNomes[estadoUF] || estado;
-  const cidadeNome = cidade?.split('-').map(word =>
+  const cidadeSlug = cidade || '';
+  const cidadeNomeDisplay = cidadeSlug.split('-').map(word =>
     word.charAt(0).toUpperCase() + word.slice(1)
-  ).join(' ') || '';
+  ).join(' ');
+
+  const toSlug = (str: string) =>
+    str
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "");
+
+  // We'll store the real city name from the first matched property
+  const [realCidadeNome, setRealCidadeNome] = useState(cidadeNomeDisplay);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,11 +98,14 @@ const CityLandingPage = () => {
 
         if (propResult.data) {
           const filtered = (propResult.data as Propriedade[]).filter((prop) => {
-            const cidadeMatch = prop.cidade.toLowerCase().trim() === cidadeNome.toLowerCase().trim();
-            const estadoMatch = prop.estado.toUpperCase() === estadoUF;
-            return cidadeMatch && estadoMatch;
+            const propCidadeSlug = toSlug(prop.cidade.trim());
+            const estadoMatch = prop.estado.toUpperCase().trim() === estadoUF;
+            return propCidadeSlug === cidadeSlug && estadoMatch && prop.imagens && prop.imagens.length > 0;
           });
           setPropriedades(filtered);
+          if (filtered.length > 0) {
+            setRealCidadeNome(filtered[0].cidade.trim());
+          }
         }
 
         if (artResult.data) {

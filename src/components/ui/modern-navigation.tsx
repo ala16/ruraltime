@@ -48,9 +48,9 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
   const navigationItems = [...primaryItems, ...secondaryItems];
 
   const languages = [
-    { code: 'pt' as const, label: 'PT', flag: '🇧🇷' },
-    { code: 'en' as const, label: 'EN', flag: '🇺🇸' },
-    { code: 'es' as const, label: 'ES', flag: '🇪🇸' },
+    { code: 'pt' as const, label: 'PT', flag: 'BR' },
+    { code: 'en' as const, label: 'EN', flag: 'US' },
+    { code: 'es' as const, label: 'ES', flag: 'ES' },
   ];
 
   const handleNavClick = (item: typeof navigationItems[0]) => {
