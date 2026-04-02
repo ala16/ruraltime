@@ -115,8 +115,8 @@ const Agendamento = () => {
 ${formData.telefoneContato ? `• Telefone: ${formData.telefoneContato}` : ''}
 
 Gostaria de confirmar a disponibilidade para essa data e horário.
-${propertyUrl ? `\n🔗 Veja mais sobre este atrativo: ${propertyUrl}` : ''}
-🌾 Conheça a Rural Time: https://www.ruraltime.com.br`;
+${propertyUrl ? `\nVeja mais sobre este atrativo: ${propertyUrl}` : ''}
+Conheça a Rural Time: https://www.ruraltime.com.br`;
 
     const telefoneFormatado = (propriedade?.whatsapp || propriedade?.telefone)?.replace(/\D/g, '') || '';
     const whatsappUrl = `https://wa.me/55${telefoneFormatado}?text=${encodeURIComponent(mensagem)}`;

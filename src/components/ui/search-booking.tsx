@@ -120,14 +120,14 @@ export function SearchBooking({ className }: SearchBookingProps) {
       const propertyUrl = `https://www.ruraltime.com.br/propriedade/${propriedadeSelecionada.id}`;
       const mensagem = `Olá! Gostaria de agendar uma visita no *${propriedadeSelecionada.nome}*.
 
-📅 Data: ${dataFormatada}
-🕐 Horário: ${horario}
-👥 Número de pessoas: ${numPessoas}
+Data: ${dataFormatada}
+Horário: ${horario}
+Número de pessoas: ${numPessoas}
 
 Poderia me informar sobre disponibilidade e valores?
 
-🔗 Veja mais sobre este atrativo: ${propertyUrl}
-🌾 Conheça a Rural Time: https://www.ruraltime.com.br`;
+Veja mais sobre este atrativo: ${propertyUrl}
+Conheça a Rural Time: https://www.ruraltime.com.br`;
 
       const telefone = contatoWhatsApp.replace(/\D/g, '');
       const mensagemEncoded = encodeURIComponent(mensagem);

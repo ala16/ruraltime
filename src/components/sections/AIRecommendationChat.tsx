@@ -217,7 +217,7 @@ export function AIRecommendationChat() {
                   <Bot className="w-5 h-5" />
                 </div>
                 <div>
-                  <CardTitle className="text-base">🌾 Descubra sua Experiência Rural Ideal</CardTitle>
+                  <CardTitle className="text-base">Descubra sua Experiência Rural Ideal</CardTitle>
                   <p className="text-xs opacity-80">IA para recomendações personalizadas</p>
                 </div>
               </div>

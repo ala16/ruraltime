@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Bot, Sparkles, ArrowRight } from "lucide-react";
+import { Bot, Sparkles, ArrowRight, Leaf, FileText, Lightbulb, Home } from "lucide-react";
 
 export function AICallToAction() {
   const navigate = useNavigate();
@@ -46,10 +46,10 @@ export function AICallToAction() {
           </div>
 
           <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
-            <span className="px-3 py-1 bg-muted rounded-full">🌱 Sustentabilidade</span>
-            <span className="px-3 py-1 bg-muted rounded-full">📋 Legislação</span>
-            <span className="px-3 py-1 bg-muted rounded-full">💡 Dicas de negócio</span>
-            <span className="px-3 py-1 bg-muted rounded-full">🏡 Infraestrutura</span>
+            <span className="px-3 py-1 bg-muted rounded-full flex items-center gap-1"><Leaf className="h-3 w-3" /> Sustentabilidade</span>
+            <span className="px-3 py-1 bg-muted rounded-full flex items-center gap-1"><FileText className="h-3 w-3" /> Legislação</span>
+            <span className="px-3 py-1 bg-muted rounded-full flex items-center gap-1"><Lightbulb className="h-3 w-3" /> Dicas de negócio</span>
+            <span className="px-3 py-1 bg-muted rounded-full flex items-center gap-1"><Home className="h-3 w-3" /> Infraestrutura</span>
           </div>
         </div>
       </div>

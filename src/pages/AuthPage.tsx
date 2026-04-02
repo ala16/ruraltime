@@ -160,7 +160,7 @@ const AuthPage = () => {
 
             <div className="mt-4 p-3 bg-muted rounded-lg text-sm text-center">
               <p className="text-muted-foreground">
-                📞 Faça login para acessar informações de contato das propriedades rurais
+                Faça login para acessar informações de contato das propriedades rurais
               </p>
             </div>
           </CardContent>
