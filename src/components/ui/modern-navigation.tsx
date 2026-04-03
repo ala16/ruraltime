@@ -18,13 +18,13 @@ interface ModernNavigationProps {
 }
 
 export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionClick }) => {
-  const [shouldUseScrolledStyle , setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-  const shouldUseScrolledStyle = !isHomePage || shouldUseScrolledStyle ;
+  const solidNav = !isHomePage || isScrolled;
 
   useEffect(() => {
     const handleScroll = () => {
