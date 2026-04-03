@@ -22,6 +22,9 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  const shouldUseScrolledStyle = !isHomePage || isScrolled;
 
   useEffect(() => {
     const handleScroll = () => {
