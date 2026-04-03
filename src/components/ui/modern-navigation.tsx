@@ -18,13 +18,13 @@ interface ModernNavigationProps {
 }
 
 export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionClick }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [shouldUseScrolledStyle , setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-  const shouldUseScrolledStyle = !isHomePage || isScrolled;
+  const shouldUseScrolledStyle = !isHomePage || shouldUseScrolledStyle ;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,7 +71,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
     <>
       {/* Main Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled 
+        shouldUseScrolledStyle 
           ? 'bg-white/95 backdrop-blur-lg shadow-xl border-b border-white/20 py-3' 
           : 'bg-white/10 backdrop-blur-md py-4'
       }`}>
@@ -88,17 +88,17 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
               />
               <div>
                 <h1 className={`text-xl font-bold transition-colors ${
-                  isScrolled ? 'text-rural-primary' : 'text-white'
+                  shouldUseScrolledStyle ? 'text-rural-primary' : 'text-white'
                 }`}>Rural Time</h1>
                 <p className={`text-sm transition-colors ${
-                  isScrolled ? 'text-rural-text-light' : 'text-white/90'
+                  shouldUseScrolledStyle ? 'text-rural-text-light' : 'text-white/90'
                 }`}>{t('nav.subtitle')}</p>
               </div>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-4">
-              <NavSearch isScrolled={isScrolled} />
+              <NavSearch shouldUseScrolledStyle ={shouldUseScrolledStyle } />
               {primaryItems.map((item) => (
                 'highlight' in item && item.highlight ? (
                   <button
@@ -113,7 +113,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                     key={item.id}
                     onClick={() => handleNavClick(item)}
                     className={`text-sm font-medium transition-all duration-200 hover:scale-105 ${
-                      isScrolled 
+                      shouldUseScrolledStyle 
                         ? 'text-rural-primary hover:text-rural-secondary' 
                         : 'text-white hover:text-rural-secondary'
                     }`}
@@ -130,7 +130,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                     variant="ghost"
                     size="sm"
                     className={`transition-colors ${
-                      isScrolled ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
+                      shouldUseScrolledStyle ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
                     }`}
                   >
                     <MoreHorizontal className="h-5 w-5" />
@@ -156,7 +156,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                     variant="ghost"
                     size="sm"
                     className={`transition-colors ${
-                      isScrolled ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
+                      shouldUseScrolledStyle ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
                     }`}
                   >
                     <Globe className="h-4 w-4 mr-1" />
@@ -183,7 +183,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                 size="sm"
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 className={`transition-colors ${
-                  isScrolled ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
+                  shouldUseScrolledStyle ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
                 }`}
               >
                 {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -198,7 +198,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                 size="sm"
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 className={`transition-colors ${
-                  isScrolled ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
+                  shouldUseScrolledStyle ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
                 }`}
               >
                 {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -209,7 +209,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
                 size="sm"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={`transition-colors ${
-                  isScrolled ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
+                  shouldUseScrolledStyle ? 'text-rural-primary hover:bg-rural-accent/20' : 'text-white hover:bg-white/10'
                 }`}
               >
                 {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -224,7 +224,7 @@ export const ModernNavigation: React.FC<ModernNavigationProps> = ({ onSectionCli
             <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-rural-accent/20 shadow-xl">
               <div className="px-4 py-6 space-y-4">
                 <div className="pb-2">
-                  <NavSearch isScrolled={true} />
+                  <NavSearch shouldUseScrolledStyle ={true} />
                 </div>
                 {navigationItems.map((item) => (
                   <button
